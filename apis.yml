@@ -1,0 +1,98 @@
+name: Twitch
+description: Twitch is a live streaming platform for gamers, content creators, and communities
+image: https://www.twitch.tv/favicon.ico
+url: https://www.twitch.tv
+created: '2024'
+modified: '2024'
+specificationVersion: '0.16'
+tags:
+- streaming
+- gaming
+- live video
+- video
+- entertainment
+apis:
+- name: Twitch API
+  description: The Twitch API enables developers to build experiences that integrate with Twitch, including retrieving stream data, managing users, and interacting with chat
+  image: https://www.twitch.tv/favicon.ico
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - streaming
+  - video
+  - gaming
+  - chat
+  properties:
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: OpenAPI
+    url: https://dev.twitch.tv/docs/api/reference
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: Getting Started
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: Rate Limits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: Terms of Service
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: Privacy Policy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  contact:
+  - type: Support
+    url: https://help.twitch.tv/
+  - type: Twitter
+    url: https://twitter.com/TwitchDev
+  - type: Discord
+    url: https://discord.gg/twitchdev
+- name: Twitch EventSub
+  description: EventSub is Twitch's webhook-based subscription service for receiving real-time notifications about events on Twitch
+  image: https://www.twitch.tv/favicon.ico
+  humanURL: https://dev.twitch.tv/docs/eventsub
+  baseURL: https://api.twitch.tv/helix/eventsub
+  tags:
+  - webhooks
+  - events
+  - notifications
+  properties:
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: Subscription Types
+    url: https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types
+- name: Twitch Chat API
+  description: IRC and WebSocket-based APIs for integrating with Twitch chat
+  image: https://www.twitch.tv/favicon.ico
+  humanURL: https://dev.twitch.tv/docs/chat
+  baseURL: wss://irc-ws.chat.twitch.tv:443
+  tags:
+  - chat
+  - messaging
+  - irc
+  - websocket
+  properties:
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/chat
+  - type: Chat Commands
+    url: https://dev.twitch.tv/docs/irc/commands
+  - type: Chat Badges
+    url: https://dev.twitch.tv/docs/irc/tags#privmsg-tags
+maintainers:
+- name: Twitch
+  email: developers@twitch.tv
+  url: https://dev.twitch.tv/
+common:
+- type: Developer Portal
+  url: https://dev.twitch.tv/
+- type: Console
+  url: https://dev.twitch.tv/console
+- type: Blog
+  url: https://blog.twitch.tv/en/tags/developers/
+- type: GitHub
+  url: https://github.com/twitchdev
+- type: Extensions
+  url: https://dev.twitch.tv/docs/extensions
+- type: CLI Tools
+  url: https://dev.twitch.tv/docs/cli
