@@ -1,0 +1,3646 @@
+openapi: 3.1.0
+info:
+  title: Twitch Helix API
+  description: >-
+    The Twitch Helix API provides programmatic access to Twitch platform
+    features including streams, users, videos, clips, channels, chat,
+    subscriptions, moderation, polls, predictions, and more.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: Twitch API Reference
+  url: https://dev.twitch.tv/docs/api/reference
+servers:
+  - url: https://api.twitch.tv/helix
+    description: Twitch Helix API Production
+tags:
+  - name: Ads
+    description: Manage and start commercial ad breaks
+  - name: Bits
+    description: Retrieve Bits leaderboard and Cheermote information
+  - name: Channels
+    description: Manage channel information and editors
+  - name: Channel Points
+    description: Manage custom channel point rewards and redemptions
+  - name: Charity
+    description: Retrieve charity campaign information
+  - name: Chat
+    description: Manage chat settings, emotes, badges, and announcements
+  - name: Clips
+    description: Create and retrieve clips
+  - name: Entitlements
+    description: Manage entitlement grants for Drops
+  - name: Games
+    description: Retrieve game/category information
+  - name: Goals
+    description: Retrieve creator goals
+  - name: Guest Star
+    description: Manage Guest Star sessions
+  - name: Hype Train
+    description: Retrieve Hype Train events
+  - name: Moderation
+    description: Manage channel moderation including bans, blocks, and AutoMod
+  - name: Polls
+    description: Create and manage channel polls
+  - name: Predictions
+    description: Create and manage channel predictions
+  - name: Raids
+    description: Start and cancel raids
+  - name: Schedule
+    description: Manage channel stream schedules
+  - name: Search
+    description: Search for channels and categories
+  - name: Streams
+    description: Retrieve stream information and markers
+  - name: Subscriptions
+    description: Retrieve subscription information
+  - name: Teams
+    description: Retrieve team information
+  - name: Users
+    description: Manage user information and blocks
+  - name: Videos
+    description: Manage and retrieve videos
+  - name: Whispers
+    description: Send whisper messages
+  - name: EventSub
+    description: Manage EventSub subscriptions
+  - name: Conduits
+    description: Manage EventSub conduits and shards
+security:
+  - oauth2: []
+  - appAccessToken: []
+paths:
+  /channels/ads:
+    post:
+      operationId: startCommercial
+      summary: Start Commercial
+      description: Starts a commercial on the specified broadcaster's channel.
+      tags:
+        - Ads
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - broadcaster_id
+                - length
+              properties:
+                broadcaster_id:
+                  type: string
+                  description: The ID of the broadcaster to run the commercial for
+                length:
+                  type: integer
+                  enum: [30, 60, 90, 120, 150, 180]
+                  description: The length of the commercial in seconds
+      responses:
+        '200':
+          description: Commercial started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Commercial'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /bits/leaderboard:
+    get:
+      operationId: getBitsLeaderboard
+      summary: Get Bits Leaderboard
+      description: Gets the Bits leaderboard for the authenticated broadcaster.
+      tags:
+        - Bits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: count
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 100
+          description: Number of results to return
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month, year, all]
+          description: Time period for the leaderboard
+        - name: started_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start date for the leaderboard period
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: Filter by specific user ID
+      responses:
+        '200':
+          description: Bits leaderboard returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BitsLeaderboardEntry'
+                  date_range:
+                    type: object
+                    properties:
+                      started_at:
+                        type: string
+                        format: date-time
+                      ended_at:
+                        type: string
+                        format: date-time
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /bits/cheermotes:
+    get:
+      operationId: getCheermotes
+      summary: Get Cheermotes
+      description: Gets a list of Cheermotes that users can use to cheer Bits.
+      tags:
+        - Bits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+          description: The ID of the broadcaster whose Cheermotes to retrieve
+      responses:
+        '200':
+          description: Cheermotes returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cheermote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /channels:
+    get:
+      operationId: getChannelInformation
+      summary: Get Channel Information
+      description: Gets information about one or more channels.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the broadcaster
+      responses:
+        '200':
+          description: Channel information returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Channel'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: modifyChannelInformation
+      summary: Modify Channel Information
+      description: Updates a channel's properties.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the broadcaster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                game_id:
+                  type: string
+                  description: The current game/category ID
+                broadcaster_language:
+                  type: string
+                  description: The language of the channel (BCP 47)
+                title:
+                  type: string
+                  description: The title of the stream
+                delay:
+                  type: integer
+                  description: Stream delay in seconds
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Channel tags
+      responses:
+        '204':
+          description: Channel updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /channels/editors:
+    get:
+      operationId: getChannelEditors
+      summary: Get Channel Editors
+      description: Gets a list of users who are editors for the specified channel.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Channel editors returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChannelEditor'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /channels/followers:
+    get:
+      operationId: getChannelFollowers
+      summary: Get Channel Followers
+      description: Gets a list of users that follow the specified broadcaster.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: Filter by specific follower user ID
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Followers returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Follower'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /channel_points/custom_rewards:
+    get:
+      operationId: getCustomRewards
+      summary: Get Custom Reward
+      description: Gets a list of custom rewards for the specified broadcaster.
+      tags:
+        - Channel Points
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: only_manageable_rewards
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Custom rewards returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomReward'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomReward
+      summary: Create Custom Rewards
+      description: Creates a custom reward for the specified broadcaster.
+      tags:
+        - Channel Points
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomRewardInput'
+      responses:
+        '200':
+          description: Custom reward created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomReward'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /charity/campaigns:
+    get:
+      operationId: getCharityCampaign
+      summary: Get Charity Campaign
+      description: Gets information about the broadcaster's active charity campaign.
+      tags:
+        - Charity
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Charity campaign returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CharityCampaign'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chat/emotes:
+    get:
+      operationId: getChannelEmotes
+      summary: Get Channel Emotes
+      description: Gets the list of emotes available for the specified channel.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Channel emotes returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Emote'
+                  template:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chat/emotes/global:
+    get:
+      operationId: getGlobalEmotes
+      summary: Get Global Emotes
+      description: Gets all global emotes available on Twitch.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          description: Global emotes returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Emote'
+                  template:
+                    type: string
+  /chat/emotes/set:
+    get:
+      operationId: getEmoteSets
+      summary: Get Emote Sets
+      description: Gets emotes for one or more specified emote sets.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: emote_set_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Emote sets returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Emote'
+                  template:
+                    type: string
+  /chat/badges:
+    get:
+      operationId: getChannelChatBadges
+      summary: Get Channel Chat Badges
+      description: Gets the chat badges for the specified channel.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chat badges returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatBadgeSet'
+  /chat/badges/global:
+    get:
+      operationId: getGlobalChatBadges
+      summary: Get Global Chat Badges
+      description: Gets Twitch's list of global chat badges.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          description: Global chat badges returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatBadgeSet'
+  /chat/settings:
+    get:
+      operationId: getChatSettings
+      summary: Get Chat Settings
+      description: Gets the chat settings for the specified broadcaster's channel.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chat settings returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatSettings'
+    patch:
+      operationId: updateChatSettings
+      summary: Update Chat Settings
+      description: Updates the chat settings for the specified broadcaster's channel.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatSettingsUpdate'
+      responses:
+        '200':
+          description: Chat settings updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chat/announcements:
+    post:
+      operationId: sendChatAnnouncement
+      summary: Send Chat Announcement
+      description: Sends an announcement to the broadcaster's chat room.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: The announcement message
+                color:
+                  type: string
+                  enum: [blue, green, orange, purple, primary]
+      responses:
+        '204':
+          description: Announcement sent successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /chat/chatters:
+    get:
+      operationId: getChatters
+      summary: Get Chatters
+      description: Gets the list of users in the specified broadcaster's chat.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Chatters returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Chatter'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  total:
+                    type: integer
+  /chat/messages:
+    post:
+      operationId: sendChatMessage
+      summary: Send Chat Message
+      description: Sends a message to the broadcaster's chat room.
+      tags:
+        - Chat
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - broadcaster_id
+                - sender_id
+                - message
+              properties:
+                broadcaster_id:
+                  type: string
+                sender_id:
+                  type: string
+                message:
+                  type: string
+                reply_parent_message_id:
+                  type: string
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message_id:
+                          type: string
+                        is_sent:
+                          type: boolean
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /clips:
+    get:
+      operationId: getClips
+      summary: Get Clips
+      description: Gets one or more video clips by clip ID, broadcaster, or game.
+      tags:
+        - Clips
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: started_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: ended_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Clips returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Clip'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createClip
+      summary: Create Clip
+      description: Creates a clip from the broadcaster's stream.
+      tags:
+        - Clips
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: has_delay
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '202':
+          description: Clip creation initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        edit_url:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entitlements/drops:
+    get:
+      operationId: getDropsEntitlements
+      summary: Get Drops Entitlements
+      description: Gets an organization's list of entitlements granted to users.
+      tags:
+        - Entitlements
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: fulfillment_status
+          in: query
+          schema:
+            type: string
+            enum: [CLAIMED, FULFILLED]
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Entitlements returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DropsEntitlement'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /games:
+    get:
+      operationId: getGames
+      summary: Get Games
+      description: Gets information about one or more games/categories.
+      tags:
+        - Games
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: The game/category ID
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: The game/category name
+        - name: igdb_id
+          in: query
+          schema:
+            type: string
+          description: The IGDB ID of the game
+      responses:
+        '200':
+          description: Games returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /games/top:
+    get:
+      operationId: getTopGames
+      summary: Get Top Games
+      description: Gets games sorted by number of current viewers, most popular first.
+      tags:
+        - Games
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Top games returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /goals:
+    get:
+      operationId: getCreatorGoals
+      summary: Get Creator Goals
+      description: Gets the broadcaster's list of active goals.
+      tags:
+        - Goals
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Creator goals returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CreatorGoal'
+  /hypetrain/events:
+    get:
+      operationId: getHypeTrainEvents
+      summary: Get Hype Train Events
+      description: Gets the information of the most recent Hype Train of the specified broadcaster.
+      tags:
+        - Hype Train
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Hype Train events returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HypeTrainEvent'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /moderation/banned:
+    get:
+      operationId: getBannedUsers
+      summary: Get Banned Users
+      description: Gets all users that the broadcaster has banned or timed out.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Banned users returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BannedUser'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /moderation/bans:
+    post:
+      operationId: banUser
+      summary: Ban User
+      description: Bans a user from participating in the specified broadcaster's chat room or times them out.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - user_id
+                  properties:
+                    user_id:
+                      type: string
+                    duration:
+                      type: integer
+                      description: Timeout duration in seconds (omit for permanent ban)
+                    reason:
+                      type: string
+      responses:
+        '200':
+          description: User banned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BanResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: unbanUser
+      summary: Unban User
+      description: Removes the ban or timeout on a user.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: moderator_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User unbanned successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /moderation/moderators:
+    get:
+      operationId: getModerators
+      summary: Get Moderators
+      description: Gets the moderators for the specified broadcaster's channel.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Moderators returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Moderator'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: addChannelModerator
+      summary: Add Channel Moderator
+      description: Adds a moderator to the broadcaster's channel.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Moderator added successfully
+    delete:
+      operationId: removeChannelModerator
+      summary: Remove Channel Moderator
+      description: Removes a moderator from the broadcaster's channel.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Moderator removed successfully
+  /moderation/automod/message:
+    post:
+      operationId: manageAutoModHeldMessage
+      summary: Manage Held AutoMod Messages
+      description: Allow or deny a message that was held by AutoMod.
+      tags:
+        - Moderation
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - msg_id
+                - action
+              properties:
+                user_id:
+                  type: string
+                msg_id:
+                  type: string
+                action:
+                  type: string
+                  enum: [ALLOW, DENY]
+      responses:
+        '204':
+          description: AutoMod message managed successfully
+  /polls:
+    get:
+      operationId: getPolls
+      summary: Get Polls
+      description: Gets polls for a specified channel.
+      tags:
+        - Polls
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Polls returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Poll'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createPoll
+      summary: Create Poll
+      description: Creates a poll for the specified channel.
+      tags:
+        - Polls
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PollInput'
+      responses:
+        '200':
+          description: Poll created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Poll'
+  /polls/end:
+    patch:
+      operationId: endPoll
+      summary: End Poll
+      description: Ends an active poll.
+      tags:
+        - Polls
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - broadcaster_id
+                - id
+                - status
+              properties:
+                broadcaster_id:
+                  type: string
+                id:
+                  type: string
+                status:
+                  type: string
+                  enum: [TERMINATED, ARCHIVED]
+      responses:
+        '200':
+          description: Poll ended successfully
+  /predictions:
+    get:
+      operationId: getPredictions
+      summary: Get Predictions
+      description: Gets predictions for the specified broadcaster's channel.
+      tags:
+        - Predictions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Predictions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Prediction'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createPrediction
+      summary: Create Prediction
+      description: Creates a prediction for the specified broadcaster's channel.
+      tags:
+        - Predictions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionInput'
+      responses:
+        '200':
+          description: Prediction created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Prediction'
+  /raids:
+    post:
+      operationId: startRaid
+      summary: Start a Raid
+      description: Raid another channel by sending the broadcaster's viewers to the target.
+      tags:
+        - Raids
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: from_broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: to_broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Raid started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                          format: date-time
+                        is_mature:
+                          type: boolean
+    delete:
+      operationId: cancelRaid
+      summary: Cancel a Raid
+      description: Cancel a pending raid.
+      tags:
+        - Raids
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Raid cancelled successfully
+  /schedule:
+    get:
+      operationId: getChannelStreamSchedule
+      summary: Get Channel Stream Schedule
+      description: Gets the broadcaster's streaming schedule.
+      tags:
+        - Schedule
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: start_time
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: utc_offset
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Stream schedule returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StreamSchedule'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    patch:
+      operationId: updateChannelStreamSchedule
+      summary: Update Channel Stream Schedule
+      description: Updates the broadcaster's streaming schedule settings.
+      tags:
+        - Schedule
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: is_vacation_enabled
+          in: query
+          schema:
+            type: boolean
+        - name: vacation_start_time
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: vacation_end_time
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: timezone
+          in: query
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Schedule updated successfully
+  /search/categories:
+    get:
+      operationId: searchCategories
+      summary: Search Categories
+      description: Gets the games or categories that match the specified query.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Categories returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /search/channels:
+    get:
+      operationId: searchChannels
+      summary: Search Channels
+      description: Gets the channels that match the specified query.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: live_only
+          in: query
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Channels returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChannelSearchResult'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /streams:
+    get:
+      operationId: getStreams
+      summary: Get Streams
+      description: Gets a list of all streams matching the provided filters.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: user_login
+          in: query
+          schema:
+            type: string
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [all, live]
+        - name: language
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Streams returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stream'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /streams/followed:
+    get:
+      operationId: getFollowedStreams
+      summary: Get Followed Streams
+      description: Gets the list of streams that the authenticated user follows.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Followed streams returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stream'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /streams/markers:
+    get:
+      operationId: getStreamMarkers
+      summary: Get Stream Markers
+      description: Gets a list of markers from the user's most recent stream or from a specific VOD.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: video_id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Stream markers returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StreamMarkerGroup'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createStreamMarker
+      summary: Create Stream Marker
+      description: Creates a marker in the stream at the current timestamp.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: string
+                description:
+                  type: string
+                  maxLength: 140
+      responses:
+        '200':
+          description: Stream marker created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StreamMarker'
+  /streams/key:
+    get:
+      operationId: getStreamKey
+      summary: Get Stream Key
+      description: Gets the broadcaster's stream key.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Stream key returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stream_key:
+                          type: string
+  /subscriptions:
+    get:
+      operationId: getBroadcasterSubscriptions
+      summary: Get Broadcaster Subscriptions
+      description: Gets a list of all subscribers to the specified broadcaster.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Subscriptions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  total:
+                    type: integer
+                  points:
+                    type: integer
+  /tags/streams:
+    get:
+      operationId: getStreamTags
+      summary: Get Stream Tags
+      description: Gets the list of stream tags for the specified broadcaster.
+      tags:
+        - Streams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Stream tags returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StreamTag'
+  /teams:
+    get:
+      operationId: getTeams
+      summary: Get Teams
+      description: Gets information about a Twitch team.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team information returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+  /teams/channel:
+    get:
+      operationId: getChannelTeams
+      summary: Get Channel Teams
+      description: Gets the teams that a broadcaster belongs to.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Channel teams returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+  /users:
+    get:
+      operationId: getUsers
+      summary: Get Users
+      description: Gets information about one or more Twitch users.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: login
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Users returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateUser
+      summary: Update User
+      description: Updates the authenticated user's information.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: description
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+  /users/blocks:
+    get:
+      operationId: getUserBlockList
+      summary: Get User Block List
+      description: Gets the list of users the authenticated user has blocked.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Block list returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BlockedUser'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    put:
+      operationId: blockUser
+      summary: Block User
+      description: Blocks the specified user from interacting with the broadcaster.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: target_user_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: source_context
+          in: query
+          schema:
+            type: string
+            enum: [chat, whisper]
+        - name: reason
+          in: query
+          schema:
+            type: string
+            enum: [spam, harassment, other]
+      responses:
+        '204':
+          description: User blocked successfully
+    delete:
+      operationId: unblockUser
+      summary: Unblock User
+      description: Removes the user from the broadcaster's block list.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: target_user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User unblocked successfully
+  /videos:
+    get:
+      operationId: getVideos
+      summary: Get Videos
+      description: Gets information about one or more published videos.
+      tags:
+        - Videos
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: language
+          in: query
+          schema:
+            type: string
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [all, day, week, month]
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [time, trending, views]
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [all, upload, archive, highlight]
+        - $ref: '#/components/parameters/first'
+        - $ref: '#/components/parameters/after'
+        - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Videos returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Video'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    delete:
+      operationId: deleteVideos
+      summary: Delete Videos
+      description: Deletes one or more published videos.
+      tags:
+        - Videos
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Videos deleted successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /whispers:
+    post:
+      operationId: sendWhisper
+      summary: Send Whisper
+      description: Sends a whisper message to the specified user.
+      tags:
+        - Whispers
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: from_user_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: to_user_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+      responses:
+        '204':
+          description: Whisper sent successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /eventsub/subscriptions:
+    get:
+      operationId: getEventSubSubscriptions
+      summary: Get EventSub Subscriptions
+      description: Gets a list of your EventSub subscriptions.
+      tags:
+        - EventSub
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [enabled, webhook_callback_verification_pending, webhook_callback_verification_failed, notification_failures_exceeded, authorization_revoked, moderator_removed, user_removed, version_removed]
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: EventSub subscriptions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventSubSubscription'
+                  total:
+                    type: integer
+                  total_cost:
+                    type: integer
+                  max_total_cost:
+                    type: integer
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createEventSubSubscription
+      summary: Create EventSub Subscription
+      description: Creates an EventSub subscription.
+      tags:
+        - EventSub
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubSubscriptionInput'
+      responses:
+        '202':
+          description: EventSub subscription created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventSubSubscription'
+                  total:
+                    type: integer
+                  total_cost:
+                    type: integer
+                  max_total_cost:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: deleteEventSubSubscription
+      summary: Delete EventSub Subscription
+      description: Deletes an EventSub subscription.
+      tags:
+        - EventSub
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Subscription deleted successfully
+  /conduits:
+    get:
+      operationId: getConduits
+      summary: Get Conduits
+      description: Gets the conduits for a client ID.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          description: Conduits returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conduit'
+    post:
+      operationId: createConduit
+      summary: Create Conduit
+      description: Creates a new conduit.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - shard_count
+              properties:
+                shard_count:
+                  type: integer
+      responses:
+        '200':
+          description: Conduit created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conduit'
+    patch:
+      operationId: updateConduit
+      summary: Update Conduit
+      description: Updates a conduit's shard count.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - shard_count
+              properties:
+                id:
+                  type: string
+                shard_count:
+                  type: integer
+      responses:
+        '200':
+          description: Conduit updated successfully
+    delete:
+      operationId: deleteConduit
+      summary: Delete Conduit
+      description: Deletes a specified conduit.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Conduit deleted successfully
+  /conduits/shards:
+    get:
+      operationId: getConduitShards
+      summary: Get Conduit Shards
+      description: Gets the shards for a conduit.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: conduit_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Conduit shards returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConduitShard'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    patch:
+      operationId: updateConduitShards
+      summary: Update Conduit Shards
+      description: Updates shard transport for a conduit.
+      tags:
+        - Conduits
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - conduit_id
+                - shards
+              properties:
+                conduit_id:
+                  type: string
+                shards:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - transport
+                    properties:
+                      id:
+                        type: string
+                      transport:
+                        type: object
+                        required:
+                          - method
+                        properties:
+                          method:
+                            type: string
+                            enum: [webhook, websocket]
+                          callback:
+                            type: string
+                          secret:
+                            type: string
+                          session_id:
+                            type: string
+      responses:
+        '202':
+          description: Shards updated successfully
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code Flow
+      flows:
+        authorizationCode:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes:
+            analytics:read:extensions: View analytics data for extensions
+            analytics:read:games: View analytics data for games
+            bits:read: View Bits information
+            channel:edit:commercial: Run commercials on a channel
+            channel:manage:broadcast: Manage a channel's broadcast configuration
+            channel:manage:moderators: Add and remove channel moderators
+            channel:manage:polls: Manage a channel's polls
+            channel:manage:predictions: Manage a channel's predictions
+            channel:manage:raids: Manage a channel's raids
+            channel:manage:redemptions: Manage channel points custom rewards and their redemptions
+            channel:manage:schedule: Manage a channel's stream schedule
+            channel:manage:videos: Manage a channel's videos
+            channel:read:editors: View a channel's editors
+            channel:read:goals: View a channel's goals
+            channel:read:hype_train: View Hype Train information
+            channel:read:polls: View a channel's polls
+            channel:read:predictions: View a channel's predictions
+            channel:read:redemptions: View channel points custom rewards and their redemptions
+            channel:read:stream_key: Read an authorized user's stream key
+            channel:read:subscriptions: View a channel's subscribers
+            chat:edit: Send live stream chat messages
+            chat:read: View live stream chat messages
+            clips:edit: Create clips
+            moderation:read: View a channel's moderation data
+            moderator:manage:announcements: Send announcements in channels
+            moderator:manage:automod: Manage messages held by AutoMod
+            moderator:manage:banned_users: Ban and unban users
+            moderator:manage:blocked_terms: Manage blocked terms
+            moderator:manage:chat_messages: Delete chat messages
+            moderator:manage:chat_settings: Manage chat settings
+            moderator:read:chatters: View the chatters in a channel
+            moderator:read:followers: Read the followers of a channel
+            user:edit: Manage a user's account
+            user:manage:blocked_users: Manage user's block list
+            user:manage:whispers: Send whisper messages
+            user:read:blocked_users: View a user's block list
+            user:read:broadcast: View a user's broadcasting configuration
+            user:read:email: View a user's email address
+            user:read:follows: View the list of channels a user follows
+            user:read:subscriptions: View a user's subscriptions
+            whispers:read: View whisper messages
+    appAccessToken:
+      type: http
+      scheme: bearer
+      description: App Access Token obtained via Client Credentials grant
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The token does not have the required scope
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Commercial:
+      type: object
+      properties:
+        length:
+          type: integer
+        message:
+          type: string
+        retry_after:
+          type: integer
+    BitsLeaderboardEntry:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        rank:
+          type: integer
+        score:
+          type: integer
+    Cheermote:
+      type: object
+      properties:
+        prefix:
+          type: string
+        tiers:
+          type: array
+          items:
+            type: object
+            properties:
+              min_bits:
+                type: integer
+              id:
+                type: string
+              color:
+                type: string
+              can_cheer:
+                type: boolean
+              show_in_bits_card:
+                type: boolean
+        type:
+          type: string
+        order:
+          type: integer
+        last_updated:
+          type: string
+          format: date-time
+        is_charitable:
+          type: boolean
+    Channel:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_language:
+          type: string
+        game_id:
+          type: string
+        game_name:
+          type: string
+        title:
+          type: string
+        delay:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+        content_classification_labels:
+          type: array
+          items:
+            type: string
+        is_branded_content:
+          type: boolean
+    ChannelEditor:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Follower:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        followed_at:
+          type: string
+          format: date-time
+    CustomReward:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        id:
+          type: string
+        title:
+          type: string
+        prompt:
+          type: string
+        cost:
+          type: integer
+        image:
+          type: object
+          nullable: true
+          properties:
+            url_1x:
+              type: string
+            url_2x:
+              type: string
+            url_4x:
+              type: string
+        background_color:
+          type: string
+        is_enabled:
+          type: boolean
+        is_user_input_required:
+          type: boolean
+        max_per_stream_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            max_per_stream:
+              type: integer
+        max_per_user_per_stream_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            max_per_user_per_stream:
+              type: integer
+        global_cooldown_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            global_cooldown_seconds:
+              type: integer
+        is_paused:
+          type: boolean
+        is_in_stock:
+          type: boolean
+        should_redemptions_skip_request_queue:
+          type: boolean
+        redemptions_redeemed_current_stream:
+          type: integer
+          nullable: true
+        cooldown_expires_at:
+          type: string
+          nullable: true
+          format: date-time
+    CustomRewardInput:
+      type: object
+      required:
+        - title
+        - cost
+      properties:
+        title:
+          type: string
+        cost:
+          type: integer
+        prompt:
+          type: string
+        is_enabled:
+          type: boolean
+        background_color:
+          type: string
+        is_user_input_required:
+          type: boolean
+        is_max_per_stream_enabled:
+          type: boolean
+        max_per_stream:
+          type: integer
+        is_max_per_user_per_stream_enabled:
+          type: boolean
+        max_per_user_per_stream:
+          type: integer
+        is_global_cooldown_enabled:
+          type: boolean
+        global_cooldown_seconds:
+          type: integer
+        should_redemptions_skip_request_queue:
+          type: boolean
+    CharityCampaign:
+      type: object
+      properties:
+        id:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        charity_name:
+          type: string
+        charity_description:
+          type: string
+        charity_logo:
+          type: string
+        charity_website:
+          type: string
+        current_amount:
+          type: object
+          properties:
+            value:
+              type: integer
+            decimal_places:
+              type: integer
+            currency:
+              type: string
+        target_amount:
+          type: object
+          properties:
+            value:
+              type: integer
+            decimal_places:
+              type: integer
+            currency:
+              type: string
+    Emote:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        images:
+          type: object
+          properties:
+            url_1x:
+              type: string
+            url_2x:
+              type: string
+            url_4x:
+              type: string
+        tier:
+          type: string
+        emote_type:
+          type: string
+          enum: [bitstier, follower, subscriptions]
+        emote_set_id:
+          type: string
+        format:
+          type: array
+          items:
+            type: string
+            enum: [static, animated]
+        scale:
+          type: array
+          items:
+            type: string
+            enum: ['1.0', '2.0', '3.0']
+        theme_mode:
+          type: array
+          items:
+            type: string
+            enum: [light, dark]
+    ChatBadgeSet:
+      type: object
+      properties:
+        set_id:
+          type: string
+        versions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              image_url_1x:
+                type: string
+              image_url_2x:
+                type: string
+              image_url_4x:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              click_action:
+                type: string
+              click_url:
+                type: string
+    ChatSettings:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        emote_mode:
+          type: boolean
+        follower_mode:
+          type: boolean
+        follower_mode_duration:
+          type: integer
+          nullable: true
+        moderator_id:
+          type: string
+        non_moderator_chat_delay:
+          type: boolean
+        non_moderator_chat_delay_duration:
+          type: integer
+          nullable: true
+        slow_mode:
+          type: boolean
+        slow_mode_wait_time:
+          type: integer
+          nullable: true
+        subscriber_mode:
+          type: boolean
+        unique_chat_mode:
+          type: boolean
+    ChatSettingsUpdate:
+      type: object
+      properties:
+        emote_mode:
+          type: boolean
+        follower_mode:
+          type: boolean
+        follower_mode_duration:
+          type: integer
+        non_moderator_chat_delay:
+          type: boolean
+        non_moderator_chat_delay_duration:
+          type: integer
+        slow_mode:
+          type: boolean
+        slow_mode_wait_time:
+          type: integer
+        subscriber_mode:
+          type: boolean
+        unique_chat_mode:
+          type: boolean
+    Chatter:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        embed_url:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        creator_id:
+          type: string
+        creator_name:
+          type: string
+        video_id:
+          type: string
+        game_id:
+          type: string
+        language:
+          type: string
+        title:
+          type: string
+        view_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        thumbnail_url:
+          type: string
+        duration:
+          type: number
+        vod_offset:
+          type: integer
+          nullable: true
+    DropsEntitlement:
+      type: object
+      properties:
+        id:
+          type: string
+        benefit_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+        game_id:
+          type: string
+        fulfillment_status:
+          type: string
+          enum: [CLAIMED, FULFILLED]
+        last_updated:
+          type: string
+          format: date-time
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        box_art_url:
+          type: string
+        igdb_id:
+          type: string
+    CreatorGoal:
+      type: object
+      properties:
+        id:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_login:
+          type: string
+        type:
+          type: string
+          enum: [follower, subscription, subscription_count, new_subscription, new_subscription_count]
+        description:
+          type: string
+        current_amount:
+          type: integer
+        target_amount:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    HypeTrainEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        event_type:
+          type: string
+        event_timestamp:
+          type: string
+          format: date-time
+        version:
+          type: string
+        event_data:
+          type: object
+          properties:
+            broadcaster_id:
+              type: string
+            cooldown_end_time:
+              type: string
+              format: date-time
+            expires_at:
+              type: string
+              format: date-time
+            goal:
+              type: integer
+            id:
+              type: string
+            last_contribution:
+              type: object
+              properties:
+                total:
+                  type: integer
+                type:
+                  type: string
+                user:
+                  type: string
+            level:
+              type: integer
+            started_at:
+              type: string
+              format: date-time
+            top_contributions:
+              type: array
+              items:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  type:
+                    type: string
+                  user:
+                    type: string
+            total:
+              type: integer
+    BannedUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        moderator_id:
+          type: string
+        moderator_login:
+          type: string
+        moderator_name:
+          type: string
+    BanResponse:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        moderator_id:
+          type: string
+        user_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+    Moderator:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+    Poll:
+      type: object
+      properties:
+        id:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_login:
+          type: string
+        title:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              votes:
+                type: integer
+              channel_points_votes:
+                type: integer
+              bits_votes:
+                type: integer
+        bits_voting_enabled:
+          type: boolean
+        bits_per_vote:
+          type: integer
+        channel_points_voting_enabled:
+          type: boolean
+        channel_points_per_vote:
+          type: integer
+        status:
+          type: string
+          enum: [ACTIVE, COMPLETED, TERMINATED, ARCHIVED, MODERATED, INVALID]
+        duration:
+          type: integer
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+    PollInput:
+      type: object
+      required:
+        - broadcaster_id
+        - title
+        - choices
+        - duration
+      properties:
+        broadcaster_id:
+          type: string
+        title:
+          type: string
+          maxLength: 60
+        choices:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+                maxLength: 25
+        duration:
+          type: integer
+          minimum: 15
+          maximum: 1800
+        channel_points_voting_enabled:
+          type: boolean
+        channel_points_per_vote:
+          type: integer
+    Prediction:
+      type: object
+      properties:
+        id:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_login:
+          type: string
+        title:
+          type: string
+        winning_outcome_id:
+          type: string
+          nullable: true
+        outcomes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              users:
+                type: integer
+              channel_points:
+                type: integer
+              color:
+                type: string
+                enum: [BLUE, PINK]
+              top_predictors:
+                type: array
+                nullable: true
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: string
+                    user_name:
+                      type: string
+                    user_login:
+                      type: string
+                    channel_points_used:
+                      type: integer
+                    channel_points_won:
+                      type: integer
+        prediction_window:
+          type: integer
+        status:
+          type: string
+          enum: [ACTIVE, RESOLVED, CANCELED, LOCKED]
+        created_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        locked_at:
+          type: string
+          format: date-time
+          nullable: true
+    PredictionInput:
+      type: object
+      required:
+        - broadcaster_id
+        - title
+        - outcomes
+        - prediction_window
+      properties:
+        broadcaster_id:
+          type: string
+        title:
+          type: string
+          maxLength: 45
+        outcomes:
+          type: array
+          minItems: 2
+          maxItems: 10
+          items:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+                maxLength: 25
+        prediction_window:
+          type: integer
+          minimum: 1
+          maximum: 1800
+    StreamSchedule:
+      type: object
+      properties:
+        segments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              start_time:
+                type: string
+                format: date-time
+              end_time:
+                type: string
+                format: date-time
+              title:
+                type: string
+              canceled_until:
+                type: string
+                format: date-time
+                nullable: true
+              category:
+                type: object
+                nullable: true
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+              is_recurring:
+                type: boolean
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_login:
+          type: string
+        vacation:
+          type: object
+          nullable: true
+          properties:
+            start_time:
+              type: string
+              format: date-time
+            end_time:
+              type: string
+              format: date-time
+    ChannelSearchResult:
+      type: object
+      properties:
+        broadcaster_language:
+          type: string
+        broadcaster_login:
+          type: string
+        display_name:
+          type: string
+        game_id:
+          type: string
+        game_name:
+          type: string
+        id:
+          type: string
+        is_live:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        thumbnail_url:
+          type: string
+        title:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+    Stream:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        game_id:
+          type: string
+        game_name:
+          type: string
+        type:
+          type: string
+          enum: [live, '']
+        title:
+          type: string
+        viewer_count:
+          type: integer
+        started_at:
+          type: string
+          format: date-time
+        language:
+          type: string
+        thumbnail_url:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        is_mature:
+          type: boolean
+    StreamMarker:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        position_seconds:
+          type: integer
+    StreamMarkerGroup:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_name:
+          type: string
+        user_login:
+          type: string
+        videos:
+          type: array
+          items:
+            type: object
+            properties:
+              video_id:
+                type: string
+              markers:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StreamMarker'
+    StreamTag:
+      type: object
+      properties:
+        tag_id:
+          type: string
+        is_auto:
+          type: boolean
+        localization_names:
+          type: object
+          additionalProperties:
+            type: string
+        localization_descriptions:
+          type: object
+          additionalProperties:
+            type: string
+    Subscription:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        gifter_id:
+          type: string
+        gifter_login:
+          type: string
+        gifter_name:
+          type: string
+        is_gift:
+          type: boolean
+        plan_name:
+          type: string
+        tier:
+          type: string
+          enum: ['1000', '2000', '3000']
+        user_id:
+          type: string
+        user_name:
+          type: string
+        user_login:
+          type: string
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        team_name:
+          type: string
+        team_display_name:
+          type: string
+        info:
+          type: string
+        thumbnail_url:
+          type: string
+        banner:
+          type: string
+          nullable: true
+        background_image_url:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+              user_login:
+                type: string
+              user_name:
+                type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        login:
+          type: string
+        display_name:
+          type: string
+        type:
+          type: string
+          enum: [admin, global_mod, staff, '']
+        broadcaster_type:
+          type: string
+          enum: [affiliate, partner, '']
+        description:
+          type: string
+        profile_image_url:
+          type: string
+        offline_image_url:
+          type: string
+        view_count:
+          type: integer
+          deprecated: true
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    BlockedUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        display_name:
+          type: string
+    Video:
+      type: object
+      properties:
+        id:
+          type: string
+        stream_id:
+          type: string
+          nullable: true
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        published_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+        thumbnail_url:
+          type: string
+        viewable:
+          type: string
+          enum: [public, private]
+        view_count:
+          type: integer
+        language:
+          type: string
+        type:
+          type: string
+          enum: [upload, archive, highlight]
+        duration:
+          type: string
+        muted_segments:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              duration:
+                type: integer
+              offset:
+                type: integer
+    EventSubSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        condition:
+          type: object
+          additionalProperties:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        transport:
+          type: object
+          properties:
+            method:
+              type: string
+              enum: [webhook, websocket, conduit]
+            callback:
+              type: string
+            session_id:
+              type: string
+            conduit_id:
+              type: string
+        cost:
+          type: integer
+    EventSubSubscriptionInput:
+      type: object
+      required:
+        - type
+        - version
+        - condition
+        - transport
+      properties:
+        type:
+          type: string
+          description: The subscription type
+        version:
+          type: string
+          description: The version of the subscription type
+        condition:
+          type: object
+          additionalProperties:
+            type: string
+          description: Conditions for the subscription
+        transport:
+          type: object
+          required:
+            - method
+          properties:
+            method:
+              type: string
+              enum: [webhook, websocket, conduit]
+            callback:
+              type: string
+              description: Webhook callback URL (required for webhook transport)
+            secret:
+              type: string
+              description: Secret for webhook signature verification
+            session_id:
+              type: string
+              description: WebSocket session ID (required for websocket transport)
+            conduit_id:
+              type: string
+              description: Conduit ID (required for conduit transport)
+    Conduit:
+      type: object
+      properties:
+        id:
+          type: string
+        shard_count:
+          type: integer
+    ConduitShard:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        transport:
+          type: object
+          properties:
+            method:
+              type: string
+            callback:
+              type: string
+            session_id:
+              type: string
+            connected_at:
+              type: string
+              format: date-time
+            disconnected_at:
+              type: string
+              format: date-time

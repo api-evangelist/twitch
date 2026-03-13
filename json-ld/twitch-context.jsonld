@@ -1,0 +1,198 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "twitch": "https://dev.twitch.tv/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "User": {
+      "@id": "twitch:User",
+      "@context": {
+        "login": "schema:alternateName",
+        "display_name": "schema:name",
+        "description": "schema:description",
+        "broadcaster_type": "twitch:broadcasterType",
+        "profile_image_url": "schema:image",
+        "offline_image_url": "twitch:offlineImageUrl",
+        "email": "schema:email",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Stream": {
+      "@id": "twitch:Stream",
+      "@context": {
+        "title": "schema:name",
+        "game_name": "twitch:gameName",
+        "viewer_count": {
+          "@id": "twitch:viewerCount",
+          "@type": "xsd:integer"
+        },
+        "language": "schema:inLanguage",
+        "started_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "thumbnail_url": "schema:thumbnailUrl",
+        "is_mature": {
+          "@id": "twitch:isMature",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Channel": {
+      "@id": "twitch:Channel",
+      "@context": {
+        "broadcaster_name": "schema:name",
+        "broadcaster_language": "schema:inLanguage",
+        "title": "schema:headline",
+        "game_name": "twitch:gameName",
+        "delay": {
+          "@id": "twitch:delay",
+          "@type": "xsd:integer"
+        },
+        "is_branded_content": {
+          "@id": "twitch:isBrandedContent",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Video": {
+      "@id": "twitch:Video",
+      "@context": {
+        "title": "schema:name",
+        "description": "schema:description",
+        "url": "schema:url",
+        "thumbnail_url": "schema:thumbnailUrl",
+        "view_count": {
+          "@id": "schema:interactionCount",
+          "@type": "xsd:integer"
+        },
+        "language": "schema:inLanguage",
+        "duration": "schema:duration",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "published_at": {
+          "@id": "dcterms:issued",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Clip": {
+      "@id": "twitch:Clip",
+      "@context": {
+        "title": "schema:name",
+        "url": "schema:url",
+        "embed_url": "schema:embedUrl",
+        "broadcaster_name": "twitch:broadcasterName",
+        "creator_name": "schema:creator",
+        "view_count": {
+          "@id": "schema:interactionCount",
+          "@type": "xsd:integer"
+        },
+        "duration": {
+          "@id": "schema:duration",
+          "@type": "xsd:decimal"
+        },
+        "thumbnail_url": "schema:thumbnailUrl",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Subscription": {
+      "@id": "twitch:Subscription",
+      "@context": {
+        "broadcaster_name": "twitch:broadcasterName",
+        "user_name": "schema:name",
+        "tier": "twitch:tier",
+        "plan_name": "twitch:planName",
+        "is_gift": {
+          "@id": "twitch:isGift",
+          "@type": "xsd:boolean"
+        },
+        "gifter_name": "twitch:gifterName"
+      }
+    },
+
+    "Game": {
+      "@id": "twitch:Game",
+      "@context": {
+        "name": "schema:name",
+        "box_art_url": "schema:image",
+        "igdb_id": "twitch:igdbId"
+      }
+    },
+
+    "Emote": {
+      "@id": "twitch:Emote",
+      "@context": {
+        "name": "schema:name",
+        "emote_type": "twitch:emoteType",
+        "emote_set_id": "twitch:emoteSetId",
+        "tier": "twitch:tier"
+      }
+    },
+
+    "Team": {
+      "@id": "twitch:Team",
+      "@context": {
+        "team_display_name": "schema:name",
+        "info": "schema:description",
+        "thumbnail_url": "schema:image",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Extension": {
+      "@id": "twitch:Extension",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "author_name": "schema:author",
+        "version": "schema:softwareVersion",
+        "icon_url": "schema:image",
+        "state": "twitch:extensionState",
+        "bits_enabled": {
+          "@id": "twitch:bitsEnabled",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "EventSubSubscription": {
+      "@id": "twitch:EventSubSubscription",
+      "@context": {
+        "type": "twitch:eventType",
+        "version": "schema:version",
+        "status": "twitch:status",
+        "cost": {
+          "@id": "twitch:cost",
+          "@type": "xsd:integer"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

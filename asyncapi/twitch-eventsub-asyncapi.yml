@@ -1,0 +1,700 @@
+asyncapi: 2.6.0
+info:
+  title: Twitch EventSub
+  version: '1.0'
+  description: >-
+    EventSub is Twitch's event-driven subscription service for receiving
+    real-time notifications about events on Twitch. Supports webhook,
+    WebSocket, and conduit transport methods. Subscribe to events such as
+    stream changes, channel updates, chat messages, subscriptions,
+    follows, raids, bans, and more.
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+  externalDocs:
+    description: Twitch EventSub Documentation
+    url: https://dev.twitch.tv/docs/eventsub
+servers:
+  webhook:
+    url: '{callbackUrl}'
+    protocol: https
+    description: >-
+      Webhook transport - Twitch sends HTTP POST notifications to your
+      registered callback URL
+    variables:
+      callbackUrl:
+        description: Your HTTPS callback endpoint
+  websocket:
+    url: wss://eventsub.wss.twitch.tv/ws
+    protocol: wss
+    description: >-
+      WebSocket transport - Connect to receive events over a persistent
+      WebSocket connection
+defaultContentType: application/json
+channels:
+  channel.update:
+    description: A broadcaster updates their channel properties.
+    subscribe:
+      operationId: onChannelUpdate
+      summary: Channel Update
+      message:
+        $ref: '#/components/messages/ChannelUpdateEvent'
+  channel.follow:
+    description: A user follows the specified broadcaster.
+    subscribe:
+      operationId: onChannelFollow
+      summary: Channel Follow
+      message:
+        $ref: '#/components/messages/ChannelFollowEvent'
+  channel.subscribe:
+    description: A user subscribes to the specified broadcaster.
+    subscribe:
+      operationId: onChannelSubscribe
+      summary: Channel Subscribe
+      message:
+        $ref: '#/components/messages/ChannelSubscribeEvent'
+  channel.subscription.end:
+    description: A subscription to the specified broadcaster expires.
+    subscribe:
+      operationId: onChannelSubscriptionEnd
+      summary: Channel Subscription End
+      message:
+        $ref: '#/components/messages/ChannelSubscriptionEndEvent'
+  channel.subscription.gift:
+    description: A user gifts a subscription to one or more viewers.
+    subscribe:
+      operationId: onChannelSubscriptionGift
+      summary: Channel Subscription Gift
+      message:
+        $ref: '#/components/messages/ChannelSubscriptionGiftEvent'
+  channel.subscription.message:
+    description: A user sends a resubscription chat message.
+    subscribe:
+      operationId: onChannelSubscriptionMessage
+      summary: Channel Subscription Message
+      message:
+        $ref: '#/components/messages/ChannelSubscriptionMessageEvent'
+  channel.cheer:
+    description: A user cheers Bits in the specified channel.
+    subscribe:
+      operationId: onChannelCheer
+      summary: Channel Cheer
+      message:
+        $ref: '#/components/messages/ChannelCheerEvent'
+  channel.raid:
+    description: A broadcaster raids another broadcaster's channel.
+    subscribe:
+      operationId: onChannelRaid
+      summary: Channel Raid
+      message:
+        $ref: '#/components/messages/ChannelRaidEvent'
+  channel.ban:
+    description: A viewer is banned or timed out from a channel.
+    subscribe:
+      operationId: onChannelBan
+      summary: Channel Ban
+      message:
+        $ref: '#/components/messages/ChannelBanEvent'
+  channel.unban:
+    description: A viewer is unbanned from a channel.
+    subscribe:
+      operationId: onChannelUnban
+      summary: Channel Unban
+      message:
+        $ref: '#/components/messages/ChannelUnbanEvent'
+  channel.moderator.add:
+    description: A moderator is added to a channel.
+    subscribe:
+      operationId: onChannelModeratorAdd
+      summary: Channel Moderator Add
+      message:
+        $ref: '#/components/messages/ChannelModeratorAddEvent'
+  channel.moderator.remove:
+    description: A moderator is removed from a channel.
+    subscribe:
+      operationId: onChannelModeratorRemove
+      summary: Channel Moderator Remove
+      message:
+        $ref: '#/components/messages/ChannelModeratorRemoveEvent'
+  channel.channel_points_custom_reward.add:
+    description: A custom channel points reward is added to a channel.
+    subscribe:
+      operationId: onChannelPointsCustomRewardAdd
+      summary: Channel Points Custom Reward Add
+      message:
+        $ref: '#/components/messages/ChannelPointsCustomRewardEvent'
+  channel.channel_points_custom_reward_redemption.add:
+    description: A viewer redeems a custom channel points reward.
+    subscribe:
+      operationId: onChannelPointsRedemptionAdd
+      summary: Channel Points Redemption Add
+      message:
+        $ref: '#/components/messages/ChannelPointsRedemptionEvent'
+  channel.poll.begin:
+    description: A poll begins on a channel.
+    subscribe:
+      operationId: onChannelPollBegin
+      summary: Channel Poll Begin
+      message:
+        $ref: '#/components/messages/ChannelPollEvent'
+  channel.poll.end:
+    description: A poll ends on a channel.
+    subscribe:
+      operationId: onChannelPollEnd
+      summary: Channel Poll End
+      message:
+        $ref: '#/components/messages/ChannelPollEvent'
+  channel.prediction.begin:
+    description: A prediction begins on a channel.
+    subscribe:
+      operationId: onChannelPredictionBegin
+      summary: Channel Prediction Begin
+      message:
+        $ref: '#/components/messages/ChannelPredictionEvent'
+  channel.prediction.end:
+    description: A prediction ends on a channel.
+    subscribe:
+      operationId: onChannelPredictionEnd
+      summary: Channel Prediction End
+      message:
+        $ref: '#/components/messages/ChannelPredictionEvent'
+  channel.hype_train.begin:
+    description: A Hype Train begins on a channel.
+    subscribe:
+      operationId: onHypeTrainBegin
+      summary: Hype Train Begin
+      message:
+        $ref: '#/components/messages/HypeTrainEvent'
+  channel.hype_train.progress:
+    description: A Hype Train makes progress on a channel.
+    subscribe:
+      operationId: onHypeTrainProgress
+      summary: Hype Train Progress
+      message:
+        $ref: '#/components/messages/HypeTrainEvent'
+  channel.hype_train.end:
+    description: A Hype Train ends on a channel.
+    subscribe:
+      operationId: onHypeTrainEnd
+      summary: Hype Train End
+      message:
+        $ref: '#/components/messages/HypeTrainEndEvent'
+  channel.charity_campaign.donate:
+    description: A user donates to a charity campaign on a channel.
+    subscribe:
+      operationId: onCharityDonation
+      summary: Charity Campaign Donate
+      message:
+        $ref: '#/components/messages/CharityDonationEvent'
+  channel.goal.begin:
+    description: A creator goal begins on a channel.
+    subscribe:
+      operationId: onGoalBegin
+      summary: Goal Begin
+      message:
+        $ref: '#/components/messages/GoalEvent'
+  channel.goal.progress:
+    description: A creator goal makes progress.
+    subscribe:
+      operationId: onGoalProgress
+      summary: Goal Progress
+      message:
+        $ref: '#/components/messages/GoalEvent'
+  channel.goal.end:
+    description: A creator goal ends on a channel.
+    subscribe:
+      operationId: onGoalEnd
+      summary: Goal End
+      message:
+        $ref: '#/components/messages/GoalEvent'
+  channel.chat.message:
+    description: A chat message is sent in a channel.
+    subscribe:
+      operationId: onChatMessage
+      summary: Chat Message
+      message:
+        $ref: '#/components/messages/ChatMessageEvent'
+  channel.chat.notification:
+    description: A chat notification is sent in a channel (sub, raid, etc.).
+    subscribe:
+      operationId: onChatNotification
+      summary: Chat Notification
+      message:
+        $ref: '#/components/messages/ChatNotificationEvent'
+  stream.online:
+    description: The specified broadcaster starts a stream.
+    subscribe:
+      operationId: onStreamOnline
+      summary: Stream Online
+      message:
+        $ref: '#/components/messages/StreamOnlineEvent'
+  stream.offline:
+    description: The specified broadcaster stops a stream.
+    subscribe:
+      operationId: onStreamOffline
+      summary: Stream Offline
+      message:
+        $ref: '#/components/messages/StreamOfflineEvent'
+  user.authorization.grant:
+    description: A user's authorization is granted for an application.
+    subscribe:
+      operationId: onUserAuthorizationGrant
+      summary: User Authorization Grant
+      message:
+        $ref: '#/components/messages/UserAuthorizationGrantEvent'
+  user.authorization.revoke:
+    description: A user's authorization is revoked for an application.
+    subscribe:
+      operationId: onUserAuthorizationRevoke
+      summary: User Authorization Revoke
+      message:
+        $ref: '#/components/messages/UserAuthorizationRevokeEvent'
+  user.update:
+    description: A user updates their account.
+    subscribe:
+      operationId: onUserUpdate
+      summary: User Update
+      message:
+        $ref: '#/components/messages/UserUpdateEvent'
+  drop.entitlement.grant:
+    description: A Drops entitlement is granted to a user.
+    subscribe:
+      operationId: onDropEntitlementGrant
+      summary: Drop Entitlement Grant
+      message:
+        $ref: '#/components/messages/DropEntitlementGrantEvent'
+components:
+  messages:
+    ChannelUpdateEvent:
+      name: ChannelUpdateEvent
+      title: Channel Update Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelFollowEvent:
+      name: ChannelFollowEvent
+      title: Channel Follow Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelSubscribeEvent:
+      name: ChannelSubscribeEvent
+      title: Channel Subscribe Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelSubscriptionEndEvent:
+      name: ChannelSubscriptionEndEvent
+      title: Channel Subscription End Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelSubscriptionGiftEvent:
+      name: ChannelSubscriptionGiftEvent
+      title: Channel Subscription Gift Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelSubscriptionMessageEvent:
+      name: ChannelSubscriptionMessageEvent
+      title: Channel Subscription Message Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelCheerEvent:
+      name: ChannelCheerEvent
+      title: Channel Cheer Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelRaidEvent:
+      name: ChannelRaidEvent
+      title: Channel Raid Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelBanEvent:
+      name: ChannelBanEvent
+      title: Channel Ban Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelUnbanEvent:
+      name: ChannelUnbanEvent
+      title: Channel Unban Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelModeratorAddEvent:
+      name: ChannelModeratorAddEvent
+      title: Channel Moderator Add Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelModeratorRemoveEvent:
+      name: ChannelModeratorRemoveEvent
+      title: Channel Moderator Remove Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelPointsCustomRewardEvent:
+      name: ChannelPointsCustomRewardEvent
+      title: Channel Points Custom Reward Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelPointsRedemptionEvent:
+      name: ChannelPointsRedemptionEvent
+      title: Channel Points Redemption Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelPollEvent:
+      name: ChannelPollEvent
+      title: Channel Poll Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChannelPredictionEvent:
+      name: ChannelPredictionEvent
+      title: Channel Prediction Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    HypeTrainEvent:
+      name: HypeTrainEvent
+      title: Hype Train Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    HypeTrainEndEvent:
+      name: HypeTrainEndEvent
+      title: Hype Train End Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    CharityDonationEvent:
+      name: CharityDonationEvent
+      title: Charity Donation Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    GoalEvent:
+      name: GoalEvent
+      title: Goal Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChatMessageEvent:
+      name: ChatMessageEvent
+      title: Chat Message Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    ChatNotificationEvent:
+      name: ChatNotificationEvent
+      title: Chat Notification Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    StreamOnlineEvent:
+      name: StreamOnlineEvent
+      title: Stream Online Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    StreamOfflineEvent:
+      name: StreamOfflineEvent
+      title: Stream Offline Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    UserAuthorizationGrantEvent:
+      name: UserAuthorizationGrantEvent
+      title: User Authorization Grant Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    UserAuthorizationRevokeEvent:
+      name: UserAuthorizationRevokeEvent
+      title: User Authorization Revoke Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    UserUpdateEvent:
+      name: UserUpdateEvent
+      title: User Update Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+    DropEntitlementGrantEvent:
+      name: DropEntitlementGrantEvent
+      title: Drop Entitlement Grant Event
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EventSubNotification'
+  schemas:
+    EventSubNotification:
+      type: object
+      description: Standard EventSub notification envelope
+      properties:
+        subscription:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique subscription ID
+            status:
+              type: string
+              description: Subscription status
+            type:
+              type: string
+              description: The subscription event type
+            version:
+              type: string
+              description: Version of the subscription type
+            condition:
+              type: object
+              additionalProperties:
+                type: string
+              description: Conditions the subscription was created with
+            transport:
+              type: object
+              properties:
+                method:
+                  type: string
+                  enum: [webhook, websocket, conduit]
+                callback:
+                  type: string
+            cost:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+        event:
+          type: object
+          description: The event-specific payload (varies by subscription type)
+          additionalProperties: true
+    ChannelUpdatePayload:
+      type: object
+      properties:
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        title:
+          type: string
+        language:
+          type: string
+        category_id:
+          type: string
+        category_name:
+          type: string
+        content_classification_labels:
+          type: array
+          items:
+            type: string
+    ChannelFollowPayload:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        followed_at:
+          type: string
+          format: date-time
+    ChannelSubscribePayload:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        tier:
+          type: string
+          enum: ['1000', '2000', '3000']
+        is_gift:
+          type: boolean
+    ChannelCheerPayload:
+      type: object
+      properties:
+        is_anonymous:
+          type: boolean
+        user_id:
+          type: string
+          nullable: true
+        user_login:
+          type: string
+          nullable: true
+        user_name:
+          type: string
+          nullable: true
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        message:
+          type: string
+        bits:
+          type: integer
+    ChannelRaidPayload:
+      type: object
+      properties:
+        from_broadcaster_user_id:
+          type: string
+        from_broadcaster_user_login:
+          type: string
+        from_broadcaster_user_name:
+          type: string
+        to_broadcaster_user_id:
+          type: string
+        to_broadcaster_user_login:
+          type: string
+        to_broadcaster_user_name:
+          type: string
+        viewers:
+          type: integer
+    ChannelBanPayload:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        moderator_user_id:
+          type: string
+        moderator_user_login:
+          type: string
+        moderator_user_name:
+          type: string
+        reason:
+          type: string
+        banned_at:
+          type: string
+          format: date-time
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        is_permanent:
+          type: boolean
+    StreamOnlinePayload:
+      type: object
+      properties:
+        id:
+          type: string
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+        type:
+          type: string
+          enum: [live, playlist, watch_party, premiere, rerun]
+        started_at:
+          type: string
+          format: date-time
+    StreamOfflinePayload:
+      type: object
+      properties:
+        broadcaster_user_id:
+          type: string
+        broadcaster_user_login:
+          type: string
+        broadcaster_user_name:
+          type: string
+    DropEntitlementGrantPayload:
+      type: object
+      properties:
+        id:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              organization_id:
+                type: string
+              category_id:
+                type: string
+              category_name:
+                type: string
+              campaign_id:
+                type: string
+              user_id:
+                type: string
+              user_name:
+                type: string
+              user_login:
+                type: string
+              entitlement_id:
+                type: string
+              benefit_id:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+    WebSocketSessionMessage:
+      type: object
+      description: WebSocket session welcome message
+      properties:
+        metadata:
+          type: object
+          properties:
+            message_id:
+              type: string
+            message_type:
+              type: string
+              enum: [session_welcome, session_keepalive, notification, session_reconnect, revocation]
+            message_timestamp:
+              type: string
+              format: date-time
+        payload:
+          type: object
+          properties:
+            session:
+              type: object
+              properties:
+                id:
+                  type: string
+                status:
+                  type: string
+                connected_at:
+                  type: string
+                  format: date-time
+                keepalive_timeout_seconds:
+                  type: integer
+                reconnect_url:
+                  type: string
+                  nullable: true

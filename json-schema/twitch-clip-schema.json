@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/clip.json",
+  "title": "Twitch Clip",
+  "description": "Represents a clip created from a Twitch live stream or VOD, including metadata about the broadcaster, creator, and source video.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the clip"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to view the clip on Twitch"
+    },
+    "embed_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to embed the clip"
+    },
+    "broadcaster_id": {
+      "type": "string",
+      "description": "ID of the broadcaster whose channel the clip was created on"
+    },
+    "broadcaster_name": {
+      "type": "string",
+      "description": "Display name of the broadcaster"
+    },
+    "creator_id": {
+      "type": "string",
+      "description": "ID of the user who created the clip"
+    },
+    "creator_name": {
+      "type": "string",
+      "description": "Display name of the clip creator"
+    },
+    "video_id": {
+      "type": "string",
+      "description": "ID of the video the clip was created from"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "ID of the game/category during clip creation"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the stream when the clip was created"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the clip"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times the clip has been viewed"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the clip was created"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the clip's thumbnail image"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration of the clip in seconds"
+    },
+    "vod_offset": {
+      "type": ["integer", "null"],
+      "description": "Offset in the VOD where the clip starts (null if VOD is unavailable)"
+    }
+  },
+  "required": ["id", "url", "embed_url", "broadcaster_id", "broadcaster_name", "creator_id", "creator_name", "title", "view_count", "created_at", "thumbnail_url", "duration"]
+}

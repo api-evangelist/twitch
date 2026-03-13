@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/channel.json",
+  "title": "Twitch Channel",
+  "description": "Represents a Twitch channel with its current configuration including title, game, language, tags, and content classification.",
+  "type": "object",
+  "properties": {
+    "broadcaster_id": {
+      "type": "string",
+      "description": "Unique identifier for the broadcaster"
+    },
+    "broadcaster_login": {
+      "type": "string",
+      "description": "Broadcaster's login name"
+    },
+    "broadcaster_name": {
+      "type": "string",
+      "description": "Broadcaster's display name"
+    },
+    "broadcaster_language": {
+      "type": "string",
+      "description": "Language of the channel (BCP 47)"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "ID of the current game/category"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Name of the current game/category"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the stream"
+    },
+    "delay": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Stream delay in seconds (partners only)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags applied to the channel"
+    },
+    "content_classification_labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Content classification labels applied to the channel"
+    },
+    "is_branded_content": {
+      "type": "boolean",
+      "description": "Whether the channel has branded content"
+    }
+  },
+  "required": ["broadcaster_id", "broadcaster_login", "broadcaster_name", "broadcaster_language", "game_id", "game_name", "title"]
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/stream.json",
+  "title": "Twitch Stream",
+  "description": "Represents an active live stream on Twitch, including broadcaster information, game category, viewer count, and stream metadata.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the stream"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the user who is streaming"
+    },
+    "user_login": {
+      "type": "string",
+      "description": "Login name of the user who is streaming"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Display name of the user who is streaming"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "ID of the game/category being played"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Name of the game/category being played"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["live", ""],
+      "description": "Stream type (live or empty string if offline)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the stream"
+    },
+    "viewer_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of current viewers"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the stream started"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the stream (BCP 47)"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL template for the stream thumbnail"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags applied to the stream"
+    },
+    "is_mature": {
+      "type": "boolean",
+      "description": "Whether the stream is marked as mature content"
+    }
+  },
+  "required": ["id", "user_id", "user_login", "user_name", "type", "title", "viewer_count", "started_at", "language"]
+}

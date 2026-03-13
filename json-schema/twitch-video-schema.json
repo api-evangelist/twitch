@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/video.json",
+  "title": "Twitch Video",
+  "description": "Represents a video on Twitch, including VODs (archives of past streams), highlights, and uploads.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the video"
+    },
+    "stream_id": {
+      "type": ["string", "null"],
+      "description": "ID of the stream the video was recorded from (null for uploads)"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the user who owns the video"
+    },
+    "user_login": {
+      "type": "string",
+      "description": "Login name of the user who owns the video"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Display name of the user who owns the video"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the video"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the video"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the video was created"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the video was published"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to view the video on Twitch"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL template for the video thumbnail"
+    },
+    "viewable": {
+      "type": "string",
+      "enum": ["public", "private"],
+      "description": "Visibility of the video"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times the video has been viewed"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the video"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["upload", "archive", "highlight"],
+      "description": "Type of video"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Duration of the video in ISO 8601 format (e.g., 3h21m10s)"
+    },
+    "muted_segments": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "type": "integer",
+            "description": "Duration of the muted segment in seconds"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset in the video where the muted segment begins in seconds"
+          }
+        }
+      },
+      "description": "Segments of the video that are muted"
+    }
+  },
+  "required": ["id", "user_id", "user_login", "user_name", "title", "created_at", "published_at", "url", "thumbnail_url", "viewable", "view_count", "language", "type", "duration"]
+}

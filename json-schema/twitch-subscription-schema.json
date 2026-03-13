@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/subscription.json",
+  "title": "Twitch Subscription",
+  "description": "Represents a channel subscription on Twitch, including the subscriber, broadcaster, tier level, and gift information.",
+  "type": "object",
+  "properties": {
+    "broadcaster_id": {
+      "type": "string",
+      "description": "ID of the broadcaster being subscribed to"
+    },
+    "broadcaster_login": {
+      "type": "string",
+      "description": "Login name of the broadcaster"
+    },
+    "broadcaster_name": {
+      "type": "string",
+      "description": "Display name of the broadcaster"
+    },
+    "gifter_id": {
+      "type": "string",
+      "description": "ID of the user who gifted the subscription (empty if not a gift)"
+    },
+    "gifter_login": {
+      "type": "string",
+      "description": "Login name of the gifter"
+    },
+    "gifter_name": {
+      "type": "string",
+      "description": "Display name of the gifter"
+    },
+    "is_gift": {
+      "type": "boolean",
+      "description": "Whether the subscription is a gift"
+    },
+    "plan_name": {
+      "type": "string",
+      "description": "Name of the subscription plan"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["1000", "2000", "3000"],
+      "description": "Subscription tier (1000=Tier 1, 2000=Tier 2, 3000=Tier 3)"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the subscribed user"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Display name of the subscribed user"
+    },
+    "user_login": {
+      "type": "string",
+      "description": "Login name of the subscribed user"
+    }
+  },
+  "required": ["broadcaster_id", "broadcaster_login", "broadcaster_name", "is_gift", "tier", "user_id", "user_name", "user_login"]
+}

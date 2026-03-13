@@ -1,0 +1,757 @@
+openapi: 3.1.0
+info:
+  title: Twitch Extensions API
+  description: >-
+    APIs for building interactive extensions that run as overlays or panels on
+    Twitch channels. Extensions enable developers to create interactive
+    experiences using a sandboxed iframe, with access to configuration,
+    transactions, and live channel data.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: Twitch Extensions Documentation
+  url: https://dev.twitch.tv/docs/extensions/
+servers:
+  - url: https://api.twitch.tv/helix
+    description: Twitch Helix API Production
+tags:
+  - name: Extensions
+    description: Manage and query extension information
+  - name: Configuration
+    description: Extension configuration service
+  - name: Transactions
+    description: Extension Bits transactions
+  - name: Pubsub
+    description: Extension PubSub messaging
+security:
+  - oauth2: []
+paths:
+  /extensions:
+    get:
+      operationId: getExtensions
+      summary: Get Extensions
+      description: Gets information about an extension.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: extension_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: extension_version
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Extension information returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Extension'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /extensions/released:
+    get:
+      operationId: getReleasedExtensions
+      summary: Get Released Extensions
+      description: Gets information about a released extension.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: extension_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: extension_version
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Released extension information returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Extension'
+  /users/extensions/list:
+    get:
+      operationId: getUserExtensions
+      summary: Get User Extensions
+      description: Gets a list of all extensions (active and inactive) the broadcaster has installed.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          description: User extensions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InstalledExtension'
+  /users/extensions:
+    get:
+      operationId: getUserActiveExtensions
+      summary: Get User Active Extensions
+      description: Gets the active extensions the broadcaster has installed.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: user_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Active extensions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ActiveExtensions'
+    put:
+      operationId: updateUserExtensions
+      summary: Update User Extensions
+      description: Updates the active extensions the broadcaster has installed.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ActiveExtensions'
+      responses:
+        '200':
+          description: Extensions updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ActiveExtensions'
+  /extensions/configurations:
+    get:
+      operationId: getExtensionConfigurationSegment
+      summary: Get Extension Configuration Segment
+      description: Gets the specified configuration segment from the specified extension.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          schema:
+            type: string
+        - name: extension_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: segment
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [broadcaster, developer, global]
+      responses:
+        '200':
+          description: Configuration returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExtensionConfigurationSegment'
+    put:
+      operationId: setExtensionConfigurationSegment
+      summary: Set Extension Configuration Segment
+      description: Sets a single configuration segment for a specific extension.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - extension_id
+                - segment
+              properties:
+                extension_id:
+                  type: string
+                segment:
+                  type: string
+                  enum: [broadcaster, developer, global]
+                broadcaster_id:
+                  type: string
+                content:
+                  type: string
+                  maxLength: 5120
+                version:
+                  type: string
+      responses:
+        '204':
+          description: Configuration segment set successfully
+  /extensions/required_configuration:
+    put:
+      operationId: setExtensionRequiredConfiguration
+      summary: Set Extension Required Configuration
+      description: Marks the extension's required configuration string as set.
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - extension_id
+                - extension_version
+                - required_configuration
+              properties:
+                extension_id:
+                  type: string
+                extension_version:
+                  type: string
+                required_configuration:
+                  type: string
+      responses:
+        '204':
+          description: Required configuration set successfully
+  /extensions/pubsub:
+    post:
+      operationId: sendExtensionPubSubMessage
+      summary: Send Extension PubSub Message
+      description: Sends a PubSub message to one or more channels the extension is installed on.
+      tags:
+        - Pubsub
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target
+                - broadcaster_id
+                - message
+              properties:
+                target:
+                  type: array
+                  items:
+                    type: string
+                  description: Target recipients (broadcast, global, or whisper-<user_id>)
+                broadcaster_id:
+                  type: string
+                is_global_broadcast:
+                  type: boolean
+                message:
+                  type: string
+                  maxLength: 5120
+      responses:
+        '204':
+          description: PubSub message sent successfully
+  /extensions/chat:
+    post:
+      operationId: sendExtensionChatMessage
+      summary: Send Extension Chat Message
+      description: Sends a chat message to a broadcaster's channel from the extension.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: broadcaster_id
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+                - extension_id
+                - extension_version
+              properties:
+                text:
+                  type: string
+                  maxLength: 280
+                extension_id:
+                  type: string
+                extension_version:
+                  type: string
+      responses:
+        '204':
+          description: Chat message sent successfully
+  /extensions/transactions:
+    get:
+      operationId: getExtensionTransactions
+      summary: Get Extension Transactions
+      description: Gets a list of transactions for the specified extension.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: extension_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+        - name: after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transactions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExtensionTransaction'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /extensions/live:
+    get:
+      operationId: getExtensionLiveChannels
+      summary: Get Extension Live Channels
+      description: Gets a list of channels with an active extension, sorted by descending viewer count.
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: extension_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: first
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+        - name: after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Live channels returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        broadcaster_id:
+                          type: string
+                        broadcaster_name:
+                          type: string
+                        game_name:
+                          type: string
+                        game_id:
+                          type: string
+                        title:
+                          type: string
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /extensions/bits/products:
+    get:
+      operationId: getExtensionBitsProducts
+      summary: Get Extension Bits Products
+      description: Gets a list of Bits products registered for the extension.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: should_include_all
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Bits products returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BitsProduct'
+    put:
+      operationId: updateExtensionBitsProduct
+      summary: Update Extension Bits Product
+      description: Adds or updates a Bits product registered for the extension.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BitsProductInput'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BitsProduct'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes:
+            user:read:broadcast: View a user's broadcasting configuration
+            user:edit:broadcast: Edit a user's broadcasting configuration
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+    Extension:
+      type: object
+      properties:
+        author_name:
+          type: string
+        bits_enabled:
+          type: boolean
+        can_install:
+          type: boolean
+        configuration_location:
+          type: string
+          enum: [hosted, custom, none]
+        description:
+          type: string
+        eula_tos_url:
+          type: string
+        has_chat_support:
+          type: boolean
+        icon_url:
+          type: string
+        icon_urls:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        privacy_policy_url:
+          type: string
+        request_identity_link:
+          type: boolean
+        screenshot_urls:
+          type: array
+          items:
+            type: string
+        state:
+          type: string
+          enum: [Approved, AssetsUploaded, Deleted, Deprecated, InReview, InTest, PendingAction, Rejected, Released]
+        subscriptions_support_level:
+          type: string
+          enum: [none, optional]
+        summary:
+          type: string
+        support_email:
+          type: string
+        version:
+          type: string
+        viewer_summary:
+          type: string
+        views:
+          type: object
+          properties:
+            mobile:
+              type: object
+              properties:
+                viewer_url:
+                  type: string
+            panel:
+              type: object
+              properties:
+                viewer_url:
+                  type: string
+                height:
+                  type: integer
+                can_link_external_content:
+                  type: boolean
+            video_overlay:
+              type: object
+              properties:
+                viewer_url:
+                  type: string
+                can_link_external_content:
+                  type: boolean
+            component:
+              type: object
+              properties:
+                viewer_url:
+                  type: string
+                aspect_ratio_x:
+                  type: integer
+                aspect_ratio_y:
+                  type: integer
+                autoscale:
+                  type: boolean
+                scale_pixels:
+                  type: integer
+                target_height:
+                  type: integer
+                can_link_external_content:
+                  type: boolean
+    InstalledExtension:
+      type: object
+      properties:
+        id:
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        can_activate:
+          type: boolean
+        type:
+          type: array
+          items:
+            type: string
+            enum: [component, mobile, panel, overlay]
+    ActiveExtensions:
+      type: object
+      properties:
+        panel:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        overlay:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        component:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+    ActiveExtensionSlot:
+      type: object
+      properties:
+        active:
+          type: boolean
+        id:
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        x:
+          type: integer
+        y:
+          type: integer
+    ExtensionConfigurationSegment:
+      type: object
+      properties:
+        segment:
+          type: string
+          enum: [broadcaster, developer, global]
+        broadcaster_id:
+          type: string
+        content:
+          type: string
+        version:
+          type: string
+    ExtensionTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        product_type:
+          type: string
+          enum: [BITS_IN_EXTENSION]
+        product_data:
+          type: object
+          properties:
+            sku:
+              type: string
+            cost:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                type:
+                  type: string
+                  enum: [bits]
+            displayName:
+              type: string
+            inDevelopment:
+              type: boolean
+    BitsProduct:
+      type: object
+      properties:
+        sku:
+          type: string
+        cost:
+          type: object
+          properties:
+            amount:
+              type: integer
+            type:
+              type: string
+              enum: [bits]
+        in_development:
+          type: boolean
+        display_name:
+          type: string
+        expiration:
+          type: string
+          format: date-time
+        is_broadcast:
+          type: boolean
+    BitsProductInput:
+      type: object
+      required:
+        - sku
+        - cost
+      properties:
+        sku:
+          type: string
+        cost:
+          type: object
+          required:
+            - amount
+            - type
+          properties:
+            amount:
+              type: integer
+            type:
+              type: string
+              enum: [bits]
+        display_name:
+          type: string
+        in_development:
+          type: boolean
+        expiration:
+          type: string
+          format: date-time
+        is_broadcast:
+          type: boolean

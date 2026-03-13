@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev.twitch.tv/schemas/twitch/user.json",
+  "title": "Twitch User",
+  "description": "Represents a Twitch user account, including profile information, broadcaster type, and account metadata.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the user"
+    },
+    "login": {
+      "type": "string",
+      "description": "User's login name (lowercase)"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "User's display name"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["admin", "global_mod", "staff", ""],
+      "description": "User's site-wide role"
+    },
+    "broadcaster_type": {
+      "type": "string",
+      "enum": ["affiliate", "partner", ""],
+      "description": "User's broadcaster type"
+    },
+    "description": {
+      "type": "string",
+      "description": "User's profile description"
+    },
+    "profile_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the user's profile image"
+    },
+    "offline_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the user's offline image"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address (requires user:read:email scope)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the account was created"
+    }
+  },
+  "required": ["id", "login", "display_name", "type", "broadcaster_type", "description", "profile_image_url", "offline_image_url", "created_at"]
+}

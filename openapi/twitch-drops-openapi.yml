@@ -1,0 +1,278 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops API
+  description: >-
+    APIs for game developers to create and manage Drops campaigns that grant
+    in-game rewards to Twitch viewers watching streamers play their game.
+    Drops campaigns are managed through the Twitch Developer Console and
+    fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/
+servers:
+  - url: https://api.twitch.tv/helix
+    description: Twitch Helix API Production
+tags:
+  - name: Entitlements
+    description: Manage Drops entitlements and fulfillment
+  - name: Analytics
+    description: Retrieve Drops analytics
+security:
+  - oauth2: []
+paths:
+  /entitlements/drops:
+    get:
+      operationId: getDropsEntitlements
+      summary: Get Drops Entitlements
+      description: >-
+        Gets an organization's list of entitlements that have been granted to
+        all of its games. Use this to track which rewards need to be fulfilled.
+      tags:
+        - Entitlements
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: Entitlement ID to filter by
+        - name: user_id
+          in: query
+          schema:
+            type: string
+          description: User ID to filter by
+        - name: game_id
+          in: query
+          schema:
+            type: string
+          description: Game ID to filter by
+        - name: fulfillment_status
+          in: query
+          schema:
+            type: string
+            enum: [CLAIMED, FULFILLED]
+          description: Filter by fulfillment status
+        - name: first
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 1000
+          description: Maximum number of results to return
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Cursor for forward pagination
+      responses:
+        '200':
+          description: Drops entitlements returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DropsEntitlement'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /entitlements/drops/update:
+    patch:
+      operationId: updateDropsEntitlements
+      summary: Update Drops Entitlements
+      description: >-
+        Updates the fulfillment status of one or more entitlements. Mark
+        entitlements as FULFILLED after delivering the reward to the user.
+      tags:
+        - Entitlements
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - entitlement_ids
+                - fulfillment_status
+              properties:
+                entitlement_ids:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 100
+                  description: List of entitlement IDs to update
+                fulfillment_status:
+                  type: string
+                  enum: [CLAIMED, FULFILLED]
+                  description: New fulfillment status
+      responses:
+        '200':
+          description: Entitlements updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          enum: [SUCCESS, INVALID_ID, NOT_FOUND, UNAUTHORIZED, UPDATE_FAILED]
+                        ids:
+                          type: array
+                          items:
+                            type: string
+        '400':
+          description: Invalid request
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/games:
+    get:
+      operationId: getGameAnalytics
+      summary: Get Game Analytics
+      description: Gets an analytics report for one or more games including Drops data.
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: game_id
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: started_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: ended_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: first
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+        - name: after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Game analytics returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GameAnalyticsReport'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+    DropsEntitlement:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the entitlement
+        benefit_id:
+          type: string
+          description: The benefit ID associated with this entitlement
+        timestamp:
+          type: string
+          format: date-time
+          description: When the entitlement was granted
+        user_id:
+          type: string
+          description: The user ID of the viewer who earned the entitlement
+        game_id:
+          type: string
+          description: The game ID of the game the viewer was watching
+        fulfillment_status:
+          type: string
+          enum: [CLAIMED, FULFILLED]
+          description: Current fulfillment status
+        last_updated:
+          type: string
+          format: date-time
+          description: When the entitlement was last updated
+    GameAnalyticsReport:
+      type: object
+      properties:
+        game_id:
+          type: string
+        URL:
+          type: string
+          description: URL to the downloadable CSV report
+        type:
+          type: string
+        date_range:
+          type: object
+          properties:
+            started_at:
+              type: string
+              format: date-time
+            ended_at:
+              type: string
+              format: date-time

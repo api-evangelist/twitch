@@ -1,0 +1,233 @@
+openapi: 3.1.0
+info:
+  title: Twitch Insights and Analytics API
+  description: >-
+    APIs for accessing extension and game analytics data including views,
+    clicks, hours watched, and concurrent streamers as downloadable CSV
+    reports. Provides both extension analytics and game analytics endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: Twitch Insights Documentation
+  url: https://dev.twitch.tv/docs/insights/
+servers:
+  - url: https://api.twitch.tv/helix
+    description: Twitch Helix API Production
+tags:
+  - name: Extension Analytics
+    description: Analytics data for extensions
+  - name: Game Analytics
+    description: Analytics data for games
+security:
+  - oauth2: []
+paths:
+  /analytics/extensions:
+    get:
+      operationId: getExtensionAnalytics
+      summary: Get Extension Analytics
+      description: >-
+        Gets an analytics report for one or more extensions. The response
+        includes a URL to a downloadable CSV file containing the analytics data.
+      tags:
+        - Extension Analytics
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: extension_id
+          in: query
+          schema:
+            type: string
+          description: Extension ID to filter by
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [overview_v2]
+          description: The type of analytics report
+        - name: started_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start of the date range (RFC 3339)
+        - name: ended_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: End of the date range (RFC 3339)
+        - name: first
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+          description: Maximum number of results to return
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Cursor for forward pagination
+      responses:
+        '200':
+          description: Extension analytics returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExtensionAnalyticsReport'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/games:
+    get:
+      operationId: getGameAnalytics
+      summary: Get Game Analytics
+      description: >-
+        Gets an analytics report for one or more games. The response includes
+        a URL to a downloadable CSV file containing the analytics data.
+      tags:
+        - Game Analytics
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+        - name: game_id
+          in: query
+          schema:
+            type: string
+          description: Game ID to filter by
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [overview_v2]
+          description: The type of analytics report
+        - name: started_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start of the date range (RFC 3339)
+        - name: ended_at
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: End of the date range (RFC 3339)
+        - name: first
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+          description: Maximum number of results to return
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Cursor for forward pagination
+      responses:
+        '200':
+          description: Game analytics returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GameAnalyticsReport'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes:
+            analytics:read:extensions: View analytics data for extensions
+            analytics:read:games: View analytics data for games
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+    ExtensionAnalyticsReport:
+      type: object
+      properties:
+        extension_id:
+          type: string
+          description: The extension ID
+        URL:
+          type: string
+          description: URL to the downloadable CSV analytics report
+        type:
+          type: string
+          description: The type of report
+        date_range:
+          type: object
+          properties:
+            started_at:
+              type: string
+              format: date-time
+            ended_at:
+              type: string
+              format: date-time
+    GameAnalyticsReport:
+      type: object
+      properties:
+        game_id:
+          type: string
+          description: The game ID
+        URL:
+          type: string
+          description: URL to the downloadable CSV analytics report
+        type:
+          type: string
+          description: The type of report
+        date_range:
+          type: object
+          properties:
+            started_at:
+              type: string
+              format: date-time
+            ended_at:
+              type: string
+              format: date-time

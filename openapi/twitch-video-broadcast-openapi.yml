@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Twitch Video Broadcast API
+  description: >-
+    API for retrieving ingest server information used by broadcasters to send
+    live video streams to Twitch via RTMP. Provides ingest endpoints sorted
+    by proximity and availability.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: Twitch Video Broadcast Documentation
+  url: https://dev.twitch.tv/docs/video-broadcast/
+servers:
+  - url: https://ingest.twitch.tv
+    description: Twitch Ingest Server
+tags:
+  - name: Ingest
+    description: Ingest server information for broadcasting
+paths:
+  /api/v2/ingests:
+    get:
+      operationId: getIngests
+      summary: Get Ingest Servers
+      description: >-
+        Gets a list of Twitch ingest servers for broadcasting. Returns
+        servers sorted by proximity to the requester. Broadcasters should
+        connect to the lowest-numbered available server.
+      tags:
+        - Ingest
+      responses:
+        '200':
+          description: Ingest servers returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ingests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IngestServer'
+components:
+  schemas:
+    IngestServer:
+      type: object
+      properties:
+        _id:
+          type: integer
+          description: Unique identifier for the ingest server
+        availability:
+          type: number
+          format: float
+          description: Availability score of the server (1.0 means available)
+        default:
+          type: boolean
+          description: Whether this is the recommended default server
+        name:
+          type: string
+          description: Human-readable name of the ingest location
+        url_template:
+          type: string
+          description: >-
+            RTMP URL template for the ingest server. Replace {stream_key}
+            with the broadcaster's stream key.
+        url_template_secure:
+          type: string
+          description: >-
+            Secure RTMPS URL template for the ingest server. Replace
+            {stream_key} with the broadcaster's stream key.
+        priority:
+          type: integer
+          description: Priority ranking of the server (lower is higher priority)

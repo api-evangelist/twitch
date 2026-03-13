@@ -1,0 +1,814 @@
+openapi: 3.1.0
+info:
+  title: IGDB API
+  description: >-
+    The Internet Game Database (IGDB) API provides comprehensive video game
+    information including metadata, ratings, screenshots, videos, and media.
+    IGDB is owned and operated by Twitch and uses Twitch OAuth for
+    authentication. The API uses a POST-based query language called Apicalypse.
+  version: '4.0'
+  contact:
+    name: IGDB Support
+    url: https://api-docs.igdb.com/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+externalDocs:
+  description: IGDB API Documentation
+  url: https://api-docs.igdb.com/
+servers:
+  - url: https://api.igdb.com/v4
+    description: IGDB API v4 Production
+tags:
+  - name: Games
+    description: Video game data
+  - name: Platforms
+    description: Gaming platform data
+  - name: Companies
+    description: Game company data
+  - name: Characters
+    description: Game character data
+  - name: Collections
+    description: Game collections and franchises
+  - name: Media
+    description: Screenshots, artwork, and videos
+  - name: Genres
+    description: Game genre data
+  - name: Themes
+    description: Game theme data
+  - name: Search
+    description: Multi-resource search
+security:
+  - oauth2: []
+paths:
+  /games:
+    post:
+      operationId: queryGames
+      summary: Query Games
+      description: >-
+        Query the games endpoint using Apicalypse query language. Send the
+        query as the request body in plain text format.
+      tags:
+        - Games
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: 'fields name,rating,summary,genres.name; where rating > 90; sort rating desc; limit 10;'
+      responses:
+        '200':
+          description: Games returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+        '400':
+          description: Invalid query syntax
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /games/count:
+    post:
+      operationId: countGames
+      summary: Count Games
+      description: Returns the count of games matching the query.
+      tags:
+        - Games
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Count returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /platforms:
+    post:
+      operationId: queryPlatforms
+      summary: Query Platforms
+      description: Query gaming platforms using Apicalypse query language.
+      tags:
+        - Platforms
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Platforms returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Platform'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /companies:
+    post:
+      operationId: queryCompanies
+      summary: Query Companies
+      description: Query game companies using Apicalypse query language.
+      tags:
+        - Companies
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Companies returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /characters:
+    post:
+      operationId: queryCharacters
+      summary: Query Characters
+      description: Query game characters using Apicalypse query language.
+      tags:
+        - Characters
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Characters returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /collections:
+    post:
+      operationId: queryCollections
+      summary: Query Collections
+      description: Query game collections and franchises using Apicalypse query language.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Collections returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /franchises:
+    post:
+      operationId: queryFranchises
+      summary: Query Franchises
+      description: Query game franchises using Apicalypse query language.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Franchises returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Franchise'
+  /genres:
+    post:
+      operationId: queryGenres
+      summary: Query Genres
+      description: Query game genres using Apicalypse query language.
+      tags:
+        - Genres
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Genres returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+  /themes:
+    post:
+      operationId: queryThemes
+      summary: Query Themes
+      description: Query game themes using Apicalypse query language.
+      tags:
+        - Themes
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Themes returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Theme'
+  /screenshots:
+    post:
+      operationId: queryScreenshots
+      summary: Query Screenshots
+      description: Query game screenshots using Apicalypse query language.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Screenshots returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Screenshot'
+  /artworks:
+    post:
+      operationId: queryArtworks
+      summary: Query Artworks
+      description: Query game artworks using Apicalypse query language.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Artworks returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artwork'
+  /game_videos:
+    post:
+      operationId: queryGameVideos
+      summary: Query Game Videos
+      description: Query game video references using Apicalypse query language.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Game videos returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameVideo'
+  /covers:
+    post:
+      operationId: queryCovers
+      summary: Query Covers
+      description: Query game cover art using Apicalypse query language.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Covers returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cover'
+  /involved_companies:
+    post:
+      operationId: queryInvolvedCompanies
+      summary: Query Involved Companies
+      description: Query companies involved in game development or publishing.
+      tags:
+        - Companies
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Involved companies returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvolvedCompany'
+  /release_dates:
+    post:
+      operationId: queryReleaseDates
+      summary: Query Release Dates
+      description: Query game release dates across platforms and regions.
+      tags:
+        - Games
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Release dates returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReleaseDate'
+  /search:
+    post:
+      operationId: multiSearch
+      summary: Multi-Search
+      description: Search across multiple IGDB resources simultaneously.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    game:
+                      type: integer
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Twitch OAuth2 Client Credentials for IGDB access
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+  schemas:
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        summary:
+          type: string
+        storyline:
+          type: string
+        rating:
+          type: number
+          format: double
+        rating_count:
+          type: integer
+        aggregated_rating:
+          type: number
+          format: double
+        aggregated_rating_count:
+          type: integer
+        total_rating:
+          type: number
+          format: double
+        total_rating_count:
+          type: integer
+        first_release_date:
+          type: integer
+          description: Unix timestamp
+        category:
+          type: integer
+          description: '0=main_game, 1=dlc_addon, 2=expansion, 3=bundle, 4=standalone_expansion, 5=mod, 6=episode, 7=season, 8=remake, 9=remaster, 10=expanded_game, 11=port, 12=fork, 13=pack, 14=update'
+        status:
+          type: integer
+          description: '0=released, 2=alpha, 3=beta, 4=early_access, 5=offline, 6=cancelled, 7=rumored, 8=delisted'
+        genres:
+          type: array
+          items:
+            type: integer
+        platforms:
+          type: array
+          items:
+            type: integer
+        themes:
+          type: array
+          items:
+            type: integer
+        cover:
+          type: integer
+        screenshots:
+          type: array
+          items:
+            type: integer
+        artworks:
+          type: array
+          items:
+            type: integer
+        videos:
+          type: array
+          items:
+            type: integer
+        involved_companies:
+          type: array
+          items:
+            type: integer
+        franchises:
+          type: array
+          items:
+            type: integer
+        collection:
+          type: integer
+        similar_games:
+          type: array
+          items:
+            type: integer
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Platform:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        abbreviation:
+          type: string
+        alternative_name:
+          type: string
+        category:
+          type: integer
+          description: '1=console, 2=arcade, 3=platform, 4=operating_system, 5=portable_console, 6=computer'
+        generation:
+          type: integer
+        platform_family:
+          type: integer
+        platform_logo:
+          type: integer
+        summary:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        country:
+          type: integer
+        logo:
+          type: integer
+        start_date:
+          type: integer
+        url:
+          type: string
+        developed:
+          type: array
+          items:
+            type: integer
+        published:
+          type: array
+          items:
+            type: integer
+        parent:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        gender:
+          type: integer
+          description: '0=Male, 1=Female, 2=Other'
+        species:
+          type: integer
+          description: '1=Human, 2=Alien, 3=Animal, 4=Android, 5=Unknown'
+        mug_shot:
+          type: integer
+        games:
+          type: array
+          items:
+            type: integer
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        games:
+          type: array
+          items:
+            type: integer
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Franchise:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        games:
+          type: array
+          items:
+            type: integer
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Theme:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Screenshot:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        image_id:
+          type: string
+        url:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    Artwork:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        image_id:
+          type: string
+        url:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    GameVideo:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        name:
+          type: string
+        video_id:
+          type: string
+          description: YouTube video ID
+    Cover:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        image_id:
+          type: string
+        url:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    InvolvedCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+        company:
+          type: integer
+        game:
+          type: integer
+        developer:
+          type: boolean
+        publisher:
+          type: boolean
+        porting:
+          type: boolean
+        supporting:
+          type: boolean
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    ReleaseDate:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        platform:
+          type: integer
+        date:
+          type: integer
+          description: Unix timestamp
+        region:
+          type: integer
+          description: '1=Europe, 2=North America, 3=Australia, 4=New Zealand, 5=Japan, 6=China, 7=Asia, 8=Worldwide, 9=Korea, 10=Brazil'
+        category:
+          type: integer
+          description: '0=YYYYMMMMDD, 1=YYYYMMMM, 2=YYYY, 3=YYYYQ1, 4=YYYYQ2, 5=YYYYQ3, 6=YYYYQ4, 7=TBD'
+        human:
+          type: string
+          description: Human-readable date string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
