@@ -18,10 +18,10 @@ servers:
   - url: https://api.twitch.tv/helix
     description: Twitch Helix API Production
 tags:
-  - name: Entitlements
-    description: Manage Drops entitlements and fulfillment
   - name: Analytics
     description: Retrieve Drops analytics
+  - name: Entitlements
+    description: Manage Drops entitlements and fulfillment
 security:
   - oauth2: []
 paths:

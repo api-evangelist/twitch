@@ -18,24 +18,24 @@ servers:
   - url: https://api.igdb.com/v4
     description: IGDB API v4 Production
 tags:
-  - name: Games
-    description: Video game data
-  - name: Platforms
-    description: Gaming platform data
-  - name: Companies
-    description: Game company data
   - name: Characters
     description: Game character data
   - name: Collections
     description: Game collections and franchises
-  - name: Media
-    description: Screenshots, artwork, and videos
+  - name: Companies
+    description: Game company data
+  - name: Games
+    description: Video game data
   - name: Genres
     description: Game genre data
-  - name: Themes
-    description: Game theme data
+  - name: Media
+    description: Screenshots, artwork, and videos
+  - name: Platforms
+    description: Gaming platform data
   - name: Search
     description: Multi-resource search
+  - name: Themes
+    description: Game theme data
 security:
   - oauth2: []
 paths:

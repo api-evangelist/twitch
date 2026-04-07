@@ -18,14 +18,14 @@ servers:
   - url: https://api.twitch.tv/helix
     description: Twitch Helix API Production
 tags:
-  - name: Extensions
-    description: Manage and query extension information
   - name: Configuration
     description: Extension configuration service
-  - name: Transactions
-    description: Extension Bits transactions
+  - name: Extensions
+    description: Manage and query extension information
   - name: Pubsub
     description: Extension PubSub messaging
+  - name: Transactions
+    description: Extension Bits transactions
 security:
   - oauth2: []
 paths:

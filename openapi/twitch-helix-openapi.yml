@@ -21,24 +21,26 @@ tags:
     description: Manage and start commercial ad breaks
   - name: Bits
     description: Retrieve Bits leaderboard and Cheermote information
-  - name: Channels
-    description: Manage channel information and editors
   - name: Channel Points
     description: Manage custom channel point rewards and redemptions
+  - name: Channels
+    description: Manage channel information and editors
   - name: Charity
     description: Retrieve charity campaign information
   - name: Chat
     description: Manage chat settings, emotes, badges, and announcements
   - name: Clips
     description: Create and retrieve clips
+  - name: Conduits
+    description: Manage EventSub conduits and shards
   - name: Entitlements
     description: Manage entitlement grants for Drops
+  - name: EventSub
+    description: Manage EventSub subscriptions
   - name: Games
     description: Retrieve game/category information
   - name: Goals
     description: Retrieve creator goals
-  - name: Guest Star
-    description: Manage Guest Star sessions
   - name: Hype Train
     description: Retrieve Hype Train events
   - name: Moderation
@@ -65,10 +67,6 @@ tags:
     description: Manage and retrieve videos
   - name: Whispers
     description: Send whisper messages
-  - name: EventSub
-    description: Manage EventSub subscriptions
-  - name: Conduits
-    description: Manage EventSub conduits and shards
 security:
   - oauth2: []
   - appAccessToken: []

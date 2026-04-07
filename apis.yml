@@ -7,11 +7,11 @@ created: '2024'
 modified: '2026-03-16'
 specificationVersion: '0.18'
 tags:
-  - streaming
-  - gaming
-  - live video
-  - video
-  - entertainment
+  - Entertainment
+  - Gaming
+  - Live Video
+  - Streaming
+  - Video
 apis:
   - name: Twitch API
     description: >-
@@ -21,10 +21,10 @@ apis:
     humanURL: https://dev.twitch.tv/
     baseURL: https://api.twitch.tv/helix
     tags:
-      - streaming
-      - video
-      - gaming
-      - chat
+      - Chat
+      - Gaming
+      - Streaming
+      - Video
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/api/
@@ -73,9 +73,9 @@ apis:
     humanURL: https://dev.twitch.tv/docs/eventsub
     baseURL: https://api.twitch.tv/helix/eventsub
     tags:
-      - webhooks
-      - events
-      - notifications
+      - Events
+      - Notifications
+      - Webhooks
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/eventsub
@@ -96,10 +96,10 @@ apis:
     humanURL: https://dev.twitch.tv/docs/chat
     baseURL: wss://irc-ws.chat.twitch.tv:443
     tags:
-      - chat
-      - messaging
-      - irc
-      - websocket
+      - Chat
+      - Irc
+      - Messaging
+      - Websocket
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/chat
@@ -117,11 +117,11 @@ apis:
     humanURL: https://dev.twitch.tv/docs/embed/
     baseURL: https://embed.twitch.tv
     tags:
-      - embed
-      - video
-      - clips
-      - chat
-      - player
+      - Chat
+      - Clips
+      - Embed
+      - Player
+      - Video
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/embed/
@@ -139,10 +139,10 @@ apis:
     humanURL: https://dev.twitch.tv/docs/extensions/
     baseURL: https://api.twitch.tv/helix/extensions
     tags:
-      - extensions
-      - overlays
-      - panels
-      - interactive
+      - Extensions
+      - Interactive
+      - Overlays
+      - Panels
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/extensions/
@@ -162,10 +162,10 @@ apis:
     humanURL: https://dev.twitch.tv/docs/drops/
     baseURL: https://api.twitch.tv/helix
     tags:
-      - drops
-      - rewards
-      - gaming
-      - campaigns
+      - Campaigns
+      - Drops
+      - Gaming
+      - Rewards
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/drops/
@@ -183,11 +183,11 @@ apis:
     humanURL: https://dev.twitch.tv/docs/video-broadcast/
     baseURL: https://ingest.twitch.tv
     tags:
-      - broadcast
-      - video
-      - streaming
-      - ingest
-      - rtmp
+      - Broadcast
+      - Ingest
+      - Rtmp
+      - Streaming
+      - Video
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/video-broadcast/
@@ -203,10 +203,10 @@ apis:
     humanURL: https://dev.twitch.tv/docs/insights/
     baseURL: https://api.twitch.tv/helix/analytics
     tags:
-      - analytics
-      - insights
-      - reporting
-      - metrics
+      - Analytics
+      - Insights
+      - Metrics
+      - Reporting
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/insights/
@@ -222,10 +222,10 @@ apis:
     humanURL: https://api-docs.igdb.com/
     baseURL: https://api.igdb.com/v4
     tags:
-      - games
-      - database
-      - metadata
-      - ratings
+      - Database
+      - Games
+      - Metadata
+      - Ratings
     properties:
       - type: Documentation
         url: https://api-docs.igdb.com/
