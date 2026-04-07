@@ -23,7 +23,7 @@ paths:
   /api/v2/ingests:
     get:
       operationId: getIngests
-      summary: Get Ingest Servers
+      summary: Twitch Get Ingest Servers
       description: >-
         Gets a list of Twitch ingest servers for broadcasting. Returns
         servers sorted by proximity to the requester. Broadcasters should

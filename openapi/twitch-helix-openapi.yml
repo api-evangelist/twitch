@@ -76,7 +76,7 @@ paths:
   /channels/ads:
     post:
       operationId: startCommercial
-      summary: Start Commercial
+      summary: Twitch Start Commercial
       description: Starts a commercial on the specified broadcaster's channel.
       tags:
         - Ads
@@ -118,7 +118,7 @@ paths:
   /bits/leaderboard:
     get:
       operationId: getBitsLeaderboard
-      summary: Get Bits Leaderboard
+      summary: Twitch Get Bits Leaderboard
       description: Gets the Bits leaderboard for the authenticated broadcaster.
       tags:
         - Bits
@@ -176,7 +176,7 @@ paths:
   /bits/cheermotes:
     get:
       operationId: getCheermotes
-      summary: Get Cheermotes
+      summary: Twitch Get Cheermotes
       description: Gets a list of Cheermotes that users can use to cheer Bits.
       tags:
         - Bits
@@ -204,7 +204,7 @@ paths:
   /channels:
     get:
       operationId: getChannelInformation
-      summary: Get Channel Information
+      summary: Twitch Get Channel Information
       description: Gets information about one or more channels.
       tags:
         - Channels
@@ -234,7 +234,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     patch:
       operationId: modifyChannelInformation
-      summary: Modify Channel Information
+      summary: Twitch Modify Channel Information
       description: Updates a channel's properties.
       tags:
         - Channels
@@ -280,7 +280,7 @@ paths:
   /channels/editors:
     get:
       operationId: getChannelEditors
-      summary: Get Channel Editors
+      summary: Twitch Get Channel Editors
       description: Gets a list of users who are editors for the specified channel.
       tags:
         - Channels
@@ -308,7 +308,7 @@ paths:
   /channels/followers:
     get:
       operationId: getChannelFollowers
-      summary: Get Channel Followers
+      summary: Twitch Get Channel Followers
       description: Gets a list of users that follow the specified broadcaster.
       tags:
         - Channels
@@ -347,7 +347,7 @@ paths:
   /channel_points/custom_rewards:
     get:
       operationId: getCustomRewards
-      summary: Get Custom Reward
+      summary: Twitch Get Custom Reward
       description: Gets a list of custom rewards for the specified broadcaster.
       tags:
         - Channel Points
@@ -382,7 +382,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createCustomReward
-      summary: Create Custom Rewards
+      summary: Twitch Create Custom Rewards
       description: Creates a custom reward for the specified broadcaster.
       tags:
         - Channel Points
@@ -418,7 +418,7 @@ paths:
   /charity/campaigns:
     get:
       operationId: getCharityCampaign
-      summary: Get Charity Campaign
+      summary: Twitch Get Charity Campaign
       description: Gets information about the broadcaster's active charity campaign.
       tags:
         - Charity
@@ -446,7 +446,7 @@ paths:
   /chat/emotes:
     get:
       operationId: getChannelEmotes
-      summary: Get Channel Emotes
+      summary: Twitch Get Channel Emotes
       description: Gets the list of emotes available for the specified channel.
       tags:
         - Chat
@@ -476,7 +476,7 @@ paths:
   /chat/emotes/global:
     get:
       operationId: getGlobalEmotes
-      summary: Get Global Emotes
+      summary: Twitch Get Global Emotes
       description: Gets all global emotes available on Twitch.
       tags:
         - Chat
@@ -499,7 +499,7 @@ paths:
   /chat/emotes/set:
     get:
       operationId: getEmoteSets
-      summary: Get Emote Sets
+      summary: Twitch Get Emote Sets
       description: Gets emotes for one or more specified emote sets.
       tags:
         - Chat
@@ -527,7 +527,7 @@ paths:
   /chat/badges:
     get:
       operationId: getChannelChatBadges
-      summary: Get Channel Chat Badges
+      summary: Twitch Get Channel Chat Badges
       description: Gets the chat badges for the specified channel.
       tags:
         - Chat
@@ -553,7 +553,7 @@ paths:
   /chat/badges/global:
     get:
       operationId: getGlobalChatBadges
-      summary: Get Global Chat Badges
+      summary: Twitch Get Global Chat Badges
       description: Gets Twitch's list of global chat badges.
       tags:
         - Chat
@@ -574,7 +574,7 @@ paths:
   /chat/settings:
     get:
       operationId: getChatSettings
-      summary: Get Chat Settings
+      summary: Twitch Get Chat Settings
       description: Gets the chat settings for the specified broadcaster's channel.
       tags:
         - Chat
@@ -603,7 +603,7 @@ paths:
                       $ref: '#/components/schemas/ChatSettings'
     patch:
       operationId: updateChatSettings
-      summary: Update Chat Settings
+      summary: Twitch Update Chat Settings
       description: Updates the chat settings for the specified broadcaster's channel.
       tags:
         - Chat
@@ -644,7 +644,7 @@ paths:
   /chat/announcements:
     post:
       operationId: sendChatAnnouncement
-      summary: Send Chat Announcement
+      summary: Twitch Send Chat Announcement
       description: Sends an announcement to the broadcaster's chat room.
       tags:
         - Chat
@@ -683,7 +683,7 @@ paths:
   /chat/chatters:
     get:
       operationId: getChatters
-      summary: Get Chatters
+      summary: Twitch Get Chatters
       description: Gets the list of users in the specified broadcaster's chat.
       tags:
         - Chat
@@ -720,7 +720,7 @@ paths:
   /chat/messages:
     post:
       operationId: sendChatMessage
-      summary: Send Chat Message
+      summary: Twitch Send Chat Message
       description: Sends a message to the broadcaster's chat room.
       tags:
         - Chat
@@ -767,7 +767,7 @@ paths:
   /clips:
     get:
       operationId: getClips
-      summary: Get Clips
+      summary: Twitch Get Clips
       description: Gets one or more video clips by clip ID, broadcaster, or game.
       tags:
         - Clips
@@ -816,7 +816,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createClip
-      summary: Create Clip
+      summary: Twitch Create Clip
       description: Creates a clip from the broadcaster's stream.
       tags:
         - Clips
@@ -853,7 +853,7 @@ paths:
   /entitlements/drops:
     get:
       operationId: getDropsEntitlements
-      summary: Get Drops Entitlements
+      summary: Twitch Get Drops Entitlements
       description: Gets an organization's list of entitlements granted to users.
       tags:
         - Entitlements
@@ -895,7 +895,7 @@ paths:
   /games:
     get:
       operationId: getGames
-      summary: Get Games
+      summary: Twitch Get Games
       description: Gets information about one or more games/categories.
       tags:
         - Games
@@ -933,7 +933,7 @@ paths:
   /games/top:
     get:
       operationId: getTopGames
-      summary: Get Top Games
+      summary: Twitch Get Top Games
       description: Gets games sorted by number of current viewers, most popular first.
       tags:
         - Games
@@ -959,7 +959,7 @@ paths:
   /goals:
     get:
       operationId: getCreatorGoals
-      summary: Get Creator Goals
+      summary: Twitch Get Creator Goals
       description: Gets the broadcaster's list of active goals.
       tags:
         - Goals
@@ -985,7 +985,7 @@ paths:
   /hypetrain/events:
     get:
       operationId: getHypeTrainEvents
-      summary: Get Hype Train Events
+      summary: Twitch Get Hype Train Events
       description: Gets the information of the most recent Hype Train of the specified broadcaster.
       tags:
         - Hype Train
@@ -1015,7 +1015,7 @@ paths:
   /moderation/banned:
     get:
       operationId: getBannedUsers
-      summary: Get Banned Users
+      summary: Twitch Get Banned Users
       description: Gets all users that the broadcaster has banned or timed out.
       tags:
         - Moderation
@@ -1050,7 +1050,7 @@ paths:
   /moderation/bans:
     post:
       operationId: banUser
-      summary: Ban User
+      summary: Twitch Ban User
       description: Bans a user from participating in the specified broadcaster's chat room or times them out.
       tags:
         - Moderation
@@ -1103,7 +1103,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     delete:
       operationId: unbanUser
-      summary: Unban User
+      summary: Twitch Unban User
       description: Removes the ban or timeout on a user.
       tags:
         - Moderation
@@ -1132,7 +1132,7 @@ paths:
   /moderation/moderators:
     get:
       operationId: getModerators
-      summary: Get Moderators
+      summary: Twitch Get Moderators
       description: Gets the moderators for the specified broadcaster's channel.
       tags:
         - Moderation
@@ -1165,7 +1165,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: addChannelModerator
-      summary: Add Channel Moderator
+      summary: Twitch Add Channel Moderator
       description: Adds a moderator to the broadcaster's channel.
       tags:
         - Moderation
@@ -1186,7 +1186,7 @@ paths:
           description: Moderator added successfully
     delete:
       operationId: removeChannelModerator
-      summary: Remove Channel Moderator
+      summary: Twitch Remove Channel Moderator
       description: Removes a moderator from the broadcaster's channel.
       tags:
         - Moderation
@@ -1208,7 +1208,7 @@ paths:
   /moderation/automod/message:
     post:
       operationId: manageAutoModHeldMessage
-      summary: Manage Held AutoMod Messages
+      summary: Twitch Manage Held AutoMod Messages
       description: Allow or deny a message that was held by AutoMod.
       tags:
         - Moderation
@@ -1238,7 +1238,7 @@ paths:
   /polls:
     get:
       operationId: getPolls
-      summary: Get Polls
+      summary: Twitch Get Polls
       description: Gets polls for a specified channel.
       tags:
         - Polls
@@ -1271,7 +1271,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createPoll
-      summary: Create Poll
+      summary: Twitch Create Poll
       description: Creates a poll for the specified channel.
       tags:
         - Polls
@@ -1298,7 +1298,7 @@ paths:
   /polls/end:
     patch:
       operationId: endPoll
-      summary: End Poll
+      summary: Twitch End Poll
       description: Ends an active poll.
       tags:
         - Polls
@@ -1328,7 +1328,7 @@ paths:
   /predictions:
     get:
       operationId: getPredictions
-      summary: Get Predictions
+      summary: Twitch Get Predictions
       description: Gets predictions for the specified broadcaster's channel.
       tags:
         - Predictions
@@ -1361,7 +1361,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createPrediction
-      summary: Create Prediction
+      summary: Twitch Create Prediction
       description: Creates a prediction for the specified broadcaster's channel.
       tags:
         - Predictions
@@ -1388,7 +1388,7 @@ paths:
   /raids:
     post:
       operationId: startRaid
-      summary: Start a Raid
+      summary: Twitch Start a Raid
       description: Raid another channel by sending the broadcaster's viewers to the target.
       tags:
         - Raids
@@ -1424,7 +1424,7 @@ paths:
                           type: boolean
     delete:
       operationId: cancelRaid
-      summary: Cancel a Raid
+      summary: Twitch Cancel a Raid
       description: Cancel a pending raid.
       tags:
         - Raids
@@ -1441,7 +1441,7 @@ paths:
   /schedule:
     get:
       operationId: getChannelStreamSchedule
-      summary: Get Channel Stream Schedule
+      summary: Twitch Get Channel Stream Schedule
       description: Gets the broadcaster's streaming schedule.
       tags:
         - Schedule
@@ -1481,7 +1481,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     patch:
       operationId: updateChannelStreamSchedule
-      summary: Update Channel Stream Schedule
+      summary: Twitch Update Channel Stream Schedule
       description: Updates the broadcaster's streaming schedule settings.
       tags:
         - Schedule
@@ -1516,7 +1516,7 @@ paths:
   /search/categories:
     get:
       operationId: searchCategories
-      summary: Search Categories
+      summary: Twitch Search Categories
       description: Gets the games or categories that match the specified query.
       tags:
         - Search
@@ -1546,7 +1546,7 @@ paths:
   /search/channels:
     get:
       operationId: searchChannels
-      summary: Search Channels
+      summary: Twitch Search Channels
       description: Gets the channels that match the specified query.
       tags:
         - Search
@@ -1580,7 +1580,7 @@ paths:
   /streams:
     get:
       operationId: getStreams
-      summary: Get Streams
+      summary: Twitch Get Streams
       description: Gets a list of all streams matching the provided filters.
       tags:
         - Streams
@@ -1627,7 +1627,7 @@ paths:
   /streams/followed:
     get:
       operationId: getFollowedStreams
-      summary: Get Followed Streams
+      summary: Twitch Get Followed Streams
       description: Gets the list of streams that the authenticated user follows.
       tags:
         - Streams
@@ -1657,7 +1657,7 @@ paths:
   /streams/markers:
     get:
       operationId: getStreamMarkers
-      summary: Get Stream Markers
+      summary: Twitch Get Stream Markers
       description: Gets a list of markers from the user's most recent stream or from a specific VOD.
       tags:
         - Streams
@@ -1690,7 +1690,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createStreamMarker
-      summary: Create Stream Marker
+      summary: Twitch Create Stream Marker
       description: Creates a marker in the stream at the current timestamp.
       tags:
         - Streams
@@ -1725,7 +1725,7 @@ paths:
   /streams/key:
     get:
       operationId: getStreamKey
-      summary: Get Stream Key
+      summary: Twitch Get Stream Key
       description: Gets the broadcaster's stream key.
       tags:
         - Streams
@@ -1754,7 +1754,7 @@ paths:
   /subscriptions:
     get:
       operationId: getBroadcasterSubscriptions
-      summary: Get Broadcaster Subscriptions
+      summary: Twitch Get Broadcaster Subscriptions
       description: Gets a list of all subscribers to the specified broadcaster.
       tags:
         - Subscriptions
@@ -1792,7 +1792,7 @@ paths:
   /tags/streams:
     get:
       operationId: getStreamTags
-      summary: Get Stream Tags
+      summary: Twitch Get Stream Tags
       description: Gets the list of stream tags for the specified broadcaster.
       tags:
         - Streams
@@ -1818,7 +1818,7 @@ paths:
   /teams:
     get:
       operationId: getTeams
-      summary: Get Teams
+      summary: Twitch Get Teams
       description: Gets information about a Twitch team.
       tags:
         - Teams
@@ -1847,7 +1847,7 @@ paths:
   /teams/channel:
     get:
       operationId: getChannelTeams
-      summary: Get Channel Teams
+      summary: Twitch Get Channel Teams
       description: Gets the teams that a broadcaster belongs to.
       tags:
         - Teams
@@ -1873,7 +1873,7 @@ paths:
   /users:
     get:
       operationId: getUsers
-      summary: Get Users
+      summary: Twitch Get Users
       description: Gets information about one or more Twitch users.
       tags:
         - Users
@@ -1903,7 +1903,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: updateUser
-      summary: Update User
+      summary: Twitch Update User
       description: Updates the authenticated user's information.
       tags:
         - Users
@@ -1928,7 +1928,7 @@ paths:
   /users/blocks:
     get:
       operationId: getUserBlockList
-      summary: Get User Block List
+      summary: Twitch Get User Block List
       description: Gets the list of users the authenticated user has blocked.
       tags:
         - Users
@@ -1957,7 +1957,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     put:
       operationId: blockUser
-      summary: Block User
+      summary: Twitch Block User
       description: Blocks the specified user from interacting with the broadcaster.
       tags:
         - Users
@@ -1983,7 +1983,7 @@ paths:
           description: User blocked successfully
     delete:
       operationId: unblockUser
-      summary: Unblock User
+      summary: Twitch Unblock User
       description: Removes the user from the broadcaster's block list.
       tags:
         - Users
@@ -2000,7 +2000,7 @@ paths:
   /videos:
     get:
       operationId: getVideos
-      summary: Get Videos
+      summary: Twitch Get Videos
       description: Gets information about one or more published videos.
       tags:
         - Videos
@@ -2056,7 +2056,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     delete:
       operationId: deleteVideos
-      summary: Delete Videos
+      summary: Twitch Delete Videos
       description: Deletes one or more published videos.
       tags:
         - Videos
@@ -2079,7 +2079,7 @@ paths:
   /whispers:
     post:
       operationId: sendWhisper
-      summary: Send Whisper
+      summary: Twitch Send Whisper
       description: Sends a whisper message to the specified user.
       tags:
         - Whispers
@@ -2114,7 +2114,7 @@ paths:
   /eventsub/subscriptions:
     get:
       operationId: getEventSubSubscriptions
-      summary: Get EventSub Subscriptions
+      summary: Twitch Get EventSub Subscriptions
       description: Gets a list of your EventSub subscriptions.
       tags:
         - EventSub
@@ -2156,7 +2156,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createEventSubSubscription
-      summary: Create EventSub Subscription
+      summary: Twitch Create EventSub Subscription
       description: Creates an EventSub subscription.
       tags:
         - EventSub
@@ -2190,7 +2190,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     delete:
       operationId: deleteEventSubSubscription
-      summary: Delete EventSub Subscription
+      summary: Twitch Delete EventSub Subscription
       description: Deletes an EventSub subscription.
       tags:
         - EventSub
@@ -2207,7 +2207,7 @@ paths:
   /conduits:
     get:
       operationId: getConduits
-      summary: Get Conduits
+      summary: Twitch Get Conduits
       description: Gets the conduits for a client ID.
       tags:
         - Conduits
@@ -2227,7 +2227,7 @@ paths:
                       $ref: '#/components/schemas/Conduit'
     post:
       operationId: createConduit
-      summary: Create Conduit
+      summary: Twitch Create Conduit
       description: Creates a new conduit.
       tags:
         - Conduits
@@ -2258,7 +2258,7 @@ paths:
                       $ref: '#/components/schemas/Conduit'
     patch:
       operationId: updateConduit
-      summary: Update Conduit
+      summary: Twitch Update Conduit
       description: Updates a conduit's shard count.
       tags:
         - Conduits
@@ -2283,7 +2283,7 @@ paths:
           description: Conduit updated successfully
     delete:
       operationId: deleteConduit
-      summary: Delete Conduit
+      summary: Twitch Delete Conduit
       description: Deletes a specified conduit.
       tags:
         - Conduits
@@ -2300,7 +2300,7 @@ paths:
   /conduits/shards:
     get:
       operationId: getConduitShards
-      summary: Get Conduit Shards
+      summary: Twitch Get Conduit Shards
       description: Gets the shards for a conduit.
       tags:
         - Conduits
@@ -2332,7 +2332,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     patch:
       operationId: updateConduitShards
-      summary: Update Conduit Shards
+      summary: Twitch Update Conduit Shards
       description: Updates shard transport for a conduit.
       tags:
         - Conduits

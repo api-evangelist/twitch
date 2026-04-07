@@ -32,7 +32,7 @@ paths:
   /extensions:
     get:
       operationId: getExtensions
-      summary: Get Extensions
+      summary: Twitch Get Extensions
       description: Gets information about an extension.
       tags:
         - Extensions
@@ -64,7 +64,7 @@ paths:
   /extensions/released:
     get:
       operationId: getReleasedExtensions
-      summary: Get Released Extensions
+      summary: Twitch Get Released Extensions
       description: Gets information about a released extension.
       tags:
         - Extensions
@@ -94,7 +94,7 @@ paths:
   /users/extensions/list:
     get:
       operationId: getUserExtensions
-      summary: Get User Extensions
+      summary: Twitch Get User Extensions
       description: Gets a list of all extensions (active and inactive) the broadcaster has installed.
       tags:
         - Extensions
@@ -115,7 +115,7 @@ paths:
   /users/extensions:
     get:
       operationId: getUserActiveExtensions
-      summary: Get User Active Extensions
+      summary: Twitch Get User Active Extensions
       description: Gets the active extensions the broadcaster has installed.
       tags:
         - Extensions
@@ -137,7 +137,7 @@ paths:
                     $ref: '#/components/schemas/ActiveExtensions'
     put:
       operationId: updateUserExtensions
-      summary: Update User Extensions
+      summary: Twitch Update User Extensions
       description: Updates the active extensions the broadcaster has installed.
       tags:
         - Extensions
@@ -165,7 +165,7 @@ paths:
   /extensions/configurations:
     get:
       operationId: getExtensionConfigurationSegment
-      summary: Get Extension Configuration Segment
+      summary: Twitch Get Extension Configuration Segment
       description: Gets the specified configuration segment from the specified extension.
       tags:
         - Configuration
@@ -200,7 +200,7 @@ paths:
                       $ref: '#/components/schemas/ExtensionConfigurationSegment'
     put:
       operationId: setExtensionConfigurationSegment
-      summary: Set Extension Configuration Segment
+      summary: Twitch Set Extension Configuration Segment
       description: Sets a single configuration segment for a specific extension.
       tags:
         - Configuration
@@ -234,7 +234,7 @@ paths:
   /extensions/required_configuration:
     put:
       operationId: setExtensionRequiredConfiguration
-      summary: Set Extension Required Configuration
+      summary: Twitch Set Extension Required Configuration
       description: Marks the extension's required configuration string as set.
       tags:
         - Configuration
@@ -268,7 +268,7 @@ paths:
   /extensions/pubsub:
     post:
       operationId: sendExtensionPubSubMessage
-      summary: Send Extension PubSub Message
+      summary: Twitch Send Extension PubSub Message
       description: Sends a PubSub message to one or more channels the extension is installed on.
       tags:
         - Pubsub
@@ -303,7 +303,7 @@ paths:
   /extensions/chat:
     post:
       operationId: sendExtensionChatMessage
-      summary: Send Extension Chat Message
+      summary: Twitch Send Extension Chat Message
       description: Sends a chat message to a broadcaster's channel from the extension.
       tags:
         - Extensions
@@ -338,7 +338,7 @@ paths:
   /extensions/transactions:
     get:
       operationId: getExtensionTransactions
-      summary: Get Extension Transactions
+      summary: Twitch Get Extension Transactions
       description: Gets a list of transactions for the specified extension.
       tags:
         - Transactions
@@ -379,7 +379,7 @@ paths:
   /extensions/live:
     get:
       operationId: getExtensionLiveChannels
-      summary: Get Extension Live Channels
+      summary: Twitch Get Extension Live Channels
       description: Gets a list of channels with an active extension, sorted by descending viewer count.
       tags:
         - Extensions
@@ -427,7 +427,7 @@ paths:
   /extensions/bits/products:
     get:
       operationId: getExtensionBitsProducts
-      summary: Get Extension Bits Products
+      summary: Twitch Get Extension Bits Products
       description: Gets a list of Bits products registered for the extension.
       tags:
         - Transactions
@@ -451,7 +451,7 @@ paths:
                       $ref: '#/components/schemas/BitsProduct'
     put:
       operationId: updateExtensionBitsProduct
-      summary: Update Extension Bits Product
+      summary: Twitch Update Extension Bits Product
       description: Adds or updates a Bits product registered for the extension.
       tags:
         - Transactions

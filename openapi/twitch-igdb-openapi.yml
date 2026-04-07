@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: IGDB API
+  title: Twitch IGDB API
   description: >-
     The Internet Game Database (IGDB) API provides comprehensive video game
     information including metadata, ratings, screenshots, videos, and media.
@@ -42,7 +42,7 @@ paths:
   /games:
     post:
       operationId: queryGames
-      summary: Query Games
+      summary: Twitch Query Games
       description: >-
         Query the games endpoint using Apicalypse query language. Send the
         query as the request body in plain text format.
@@ -73,7 +73,7 @@ paths:
   /games/count:
     post:
       operationId: countGames
-      summary: Count Games
+      summary: Twitch Count Games
       description: Returns the count of games matching the query.
       tags:
         - Games
@@ -97,7 +97,7 @@ paths:
   /platforms:
     post:
       operationId: queryPlatforms
-      summary: Query Platforms
+      summary: Twitch Query Platforms
       description: Query gaming platforms using Apicalypse query language.
       tags:
         - Platforms
@@ -123,7 +123,7 @@ paths:
   /companies:
     post:
       operationId: queryCompanies
-      summary: Query Companies
+      summary: Twitch Query Companies
       description: Query game companies using Apicalypse query language.
       tags:
         - Companies
@@ -149,7 +149,7 @@ paths:
   /characters:
     post:
       operationId: queryCharacters
-      summary: Query Characters
+      summary: Twitch Query Characters
       description: Query game characters using Apicalypse query language.
       tags:
         - Characters
@@ -175,7 +175,7 @@ paths:
   /collections:
     post:
       operationId: queryCollections
-      summary: Query Collections
+      summary: Twitch Query Collections
       description: Query game collections and franchises using Apicalypse query language.
       tags:
         - Collections
@@ -201,7 +201,7 @@ paths:
   /franchises:
     post:
       operationId: queryFranchises
-      summary: Query Franchises
+      summary: Twitch Query Franchises
       description: Query game franchises using Apicalypse query language.
       tags:
         - Collections
@@ -225,7 +225,7 @@ paths:
   /genres:
     post:
       operationId: queryGenres
-      summary: Query Genres
+      summary: Twitch Query Genres
       description: Query game genres using Apicalypse query language.
       tags:
         - Genres
@@ -249,7 +249,7 @@ paths:
   /themes:
     post:
       operationId: queryThemes
-      summary: Query Themes
+      summary: Twitch Query Themes
       description: Query game themes using Apicalypse query language.
       tags:
         - Themes
@@ -273,7 +273,7 @@ paths:
   /screenshots:
     post:
       operationId: queryScreenshots
-      summary: Query Screenshots
+      summary: Twitch Query Screenshots
       description: Query game screenshots using Apicalypse query language.
       tags:
         - Media
@@ -297,7 +297,7 @@ paths:
   /artworks:
     post:
       operationId: queryArtworks
-      summary: Query Artworks
+      summary: Twitch Query Artworks
       description: Query game artworks using Apicalypse query language.
       tags:
         - Media
@@ -321,7 +321,7 @@ paths:
   /game_videos:
     post:
       operationId: queryGameVideos
-      summary: Query Game Videos
+      summary: Twitch Query Game Videos
       description: Query game video references using Apicalypse query language.
       tags:
         - Media
@@ -345,7 +345,7 @@ paths:
   /covers:
     post:
       operationId: queryCovers
-      summary: Query Covers
+      summary: Twitch Query Covers
       description: Query game cover art using Apicalypse query language.
       tags:
         - Media
@@ -369,7 +369,7 @@ paths:
   /involved_companies:
     post:
       operationId: queryInvolvedCompanies
-      summary: Query Involved Companies
+      summary: Twitch Query Involved Companies
       description: Query companies involved in game development or publishing.
       tags:
         - Companies
@@ -393,7 +393,7 @@ paths:
   /release_dates:
     post:
       operationId: queryReleaseDates
-      summary: Query Release Dates
+      summary: Twitch Query Release Dates
       description: Query game release dates across platforms and regions.
       tags:
         - Games
@@ -417,7 +417,7 @@ paths:
   /search:
     post:
       operationId: multiSearch
-      summary: Multi-Search
+      summary: Twitch Multi-Search
       description: Search across multiple IGDB resources simultaneously.
       tags:
         - Search

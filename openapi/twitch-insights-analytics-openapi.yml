@@ -27,7 +27,7 @@ paths:
   /analytics/extensions:
     get:
       operationId: getExtensionAnalytics
-      summary: Get Extension Analytics
+      summary: Twitch Get Extension Analytics
       description: >-
         Gets an analytics report for one or more extensions. The response
         includes a URL to a downloadable CSV file containing the analytics data.
@@ -89,7 +89,7 @@ paths:
   /analytics/games:
     get:
       operationId: getGameAnalytics
-      summary: Get Game Analytics
+      summary: Twitch Get Game Analytics
       description: >-
         Gets an analytics report for one or more games. The response includes
         a URL to a downloadable CSV file containing the analytics data.
