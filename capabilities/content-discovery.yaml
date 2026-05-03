@@ -1,0 +1,212 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Twitch Content Discovery"
+  description: >-
+    Unified workflow for discovering Twitch content including live streams,
+    channels, games, clips, and videos. Used by app developers and content
+    aggregators to surface the most relevant Twitch content.
+  tags:
+    - Twitch
+    - Content Discovery
+    - Streaming
+    - Gaming
+    - Video
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
+      TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
+
+capability:
+  consumes:
+    - import: twitch-helix
+      location: ./shared/helix.yaml
+    - import: twitch-igdb
+      location: ./shared/igdb.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: twitch-content-discovery-api
+      description: "Unified REST API for Twitch content discovery."
+      resources:
+        - path: /v1/streams
+          name: streams
+          description: "Live stream discovery"
+          operations:
+            - method: GET
+              name: get-streams
+              description: "Get active live streams filtered by game, language, or user"
+              call: "twitch-helix.get-streams"
+              with:
+                game_id: "rest.game_id"
+                language: "rest.language"
+                first: "rest.first"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/channels
+          name: channels
+          description: "Channel information and search"
+          operations:
+            - method: GET
+              name: search-channels
+              description: "Search for Twitch channels"
+              call: "twitch-helix.search-channels"
+              with:
+                query: "rest.query"
+                live_only: "rest.live_only"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/clips
+          name: clips
+          description: "Content clips"
+          operations:
+            - method: GET
+              name: get-clips
+              description: "Get clips from a broadcaster or game"
+              call: "twitch-helix.get-clips"
+              with:
+                broadcaster_id: "rest.broadcaster_id"
+                game_id: "rest.game_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/videos
+          name: videos
+          description: "VOD and highlight videos"
+          operations:
+            - method: GET
+              name: get-videos
+              description: "Get videos from a broadcaster or game"
+              call: "twitch-helix.get-videos"
+              with:
+                user_id: "rest.user_id"
+                game_id: "rest.game_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/games
+          name: games
+          description: "Game and category discovery"
+          operations:
+            - method: GET
+              name: get-top-games
+              description: "Get the most popular games on Twitch"
+              call: "twitch-helix.get-top-games"
+              with:
+                first: "rest.first"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/game-database
+          name: game-database
+          description: "Detailed game metadata from IGDB"
+          operations:
+            - method: POST
+              name: query-games
+              description: "Query detailed game information from IGDB"
+              call: "twitch-igdb.query-games"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: twitch-content-discovery-mcp
+      transport: http
+      description: "MCP server for AI-assisted Twitch content discovery."
+      tools:
+        - name: get-streams
+          description: "Find active live streams on Twitch by game, language, or user"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-streams"
+          with:
+            game_id: "tools.game_id"
+            language: "tools.language"
+            first: "tools.first"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-channels
+          description: "Search for Twitch channels by name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.search-channels"
+          with:
+            query: "tools.query"
+            live_only: "tools.live_only"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-clips
+          description: "Get video clips from a broadcaster or game category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-clips"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+            game_id: "tools.game_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-videos
+          description: "Get VODs and highlight videos from a broadcaster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-videos"
+          with:
+            user_id: "tools.user_id"
+            game_id: "tools.game_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-top-games
+          description: "Get the most popular game categories on Twitch right now"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-top-games"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-games
+          description: "Get game information by ID or name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-games"
+          with:
+            id: "tools.id"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-game-database
+          description: "Query the IGDB game database for detailed game metadata"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-igdb.query-games"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-game-platforms
+          description: "Query gaming platform information from IGDB"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-igdb.query-platforms"
+          outputParameters:
+            - type: object
+              mapping: "$."

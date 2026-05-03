@@ -1,0 +1,188 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Twitch Channel Management"
+  description: >-
+    Workflow capability for Twitch broadcasters to manage their channels,
+    including chat configuration, polls, subscriptions, moderation, and
+    channel points. Used by broadcaster tools, chatbots, and channel
+    management dashboards.
+  tags:
+    - Twitch
+    - Channel Management
+    - Broadcasting
+    - Chat
+    - Moderation
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
+      TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
+
+capability:
+  consumes:
+    - import: twitch-helix
+      location: ./shared/helix.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: twitch-channel-management-api
+      description: "Unified REST API for Twitch channel management."
+      resources:
+        - path: /v1/channel
+          name: channel
+          description: "Channel configuration"
+          operations:
+            - method: GET
+              name: get-channel-information
+              description: "Get channel information"
+              call: "twitch-helix.get-channel-information"
+              with:
+                broadcaster_id: "rest.broadcaster_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/chat-settings
+          name: chat-settings
+          description: "Chat configuration"
+          operations:
+            - method: GET
+              name: get-chat-settings
+              description: "Get chat settings for a broadcaster"
+              call: "twitch-helix.get-chat-settings"
+              with:
+                broadcaster_id: "rest.broadcaster_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/polls
+          name: polls
+          description: "Channel polls management"
+          operations:
+            - method: GET
+              name: get-polls
+              description: "Get active and past polls"
+              call: "twitch-helix.get-polls"
+              with:
+                broadcaster_id: "rest.broadcaster_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-poll
+              description: "Create a new poll"
+              call: "twitch-helix.create-poll"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/subscriptions
+          name: subscriptions
+          description: "Subscriber information"
+          operations:
+            - method: GET
+              name: get-broadcaster-subscriptions
+              description: "Get channel subscriber information"
+              call: "twitch-helix.get-broadcaster-subscriptions"
+              with:
+                broadcaster_id: "rest.broadcaster_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/chat-messages
+          name: chat-messages
+          description: "Chat message sending"
+          operations:
+            - method: POST
+              name: send-chat-message
+              description: "Send a message to channel chat"
+              call: "twitch-helix.send-chat-message"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9081
+      namespace: twitch-channel-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Twitch channel management."
+      tools:
+        - name: get-channel-information
+          description: "Get channel information and configuration for a broadcaster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-channel-information"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-chat-settings
+          description: "Get the current chat settings for a broadcaster's channel"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-chat-settings"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-chat-message
+          description: "Send a message to a Twitch channel chat"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "twitch-helix.send-chat-message"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-polls
+          description: "Get active and past polls for a broadcaster"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-polls"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-poll
+          description: "Create a new poll on a broadcaster's channel"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "twitch-helix.create-poll"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-broadcaster-subscriptions
+          description: "Get subscriber information for a broadcaster's channel"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "twitch-helix.get-broadcaster-subscriptions"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-clip
+          description: "Create a clip from a broadcaster's live stream"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "twitch-helix.create-clip"
+          with:
+            broadcaster_id: "tools.broadcaster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

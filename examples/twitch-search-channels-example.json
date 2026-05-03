@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.twitch.tv/helix/search/channels",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Client-Id": "{client_id}"
+    },
+    "parameters": {
+      "query": "loserfruit",
+      "first": 2,
+      "live_only": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "broadcaster_language": "en",
+          "broadcaster_login": "loserfruit",
+          "display_name": "Loserfruit",
+          "game_id": "509658",
+          "game_name": "Just Chatting",
+          "id": "41245072",
+          "is_live": false,
+          "tags": [],
+          "thumbnail_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png",
+          "title": "loserfruit",
+          "started_at": ""
+        }
+      ],
+      "pagination": {
+        "cursor": "Mg=="
+      }
+    }
+  }
+}

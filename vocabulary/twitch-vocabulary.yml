@@ -1,0 +1,176 @@
+name: Twitch
+description: >-
+  Vocabulary and taxonomy for Twitch API concepts, streaming terminology,
+  and platform-specific terms used across the Twitch developer ecosystem.
+created: "2026-05-03"
+modified: "2026-05-03"
+tags:
+  - Twitch
+  - Streaming
+  - Gaming
+  - Live Video
+
+terms:
+
+  # Core Platform Concepts
+  - term: Broadcaster
+    definition: >-
+      A Twitch user who streams live video content to an audience. May be
+      an affiliate or partner with access to additional features.
+    tags: [User, Identity]
+
+  - term: Viewer
+    definition: >-
+      A Twitch user who watches a stream. Viewers can interact via chat,
+      cheer Bits, subscribe, and follow channels.
+    tags: [User, Audience]
+
+  - term: Channel
+    definition: >-
+      A broadcaster's dedicated space on Twitch where they stream content.
+      Channels have titles, categories, tags, and subscriber counts.
+    tags: [Content, Identity]
+
+  - term: Stream
+    definition: >-
+      A live video broadcast from a broadcaster's channel. Streams have
+      a viewer count, language, category, and title.
+    tags: [Content, Live]
+
+  - term: Clip
+    definition: >-
+      A short video segment captured from a live stream or VOD by a viewer.
+      Clips are publicly shareable and have a maximum duration of 60 seconds.
+    tags: [Content, Video]
+
+  - term: VOD
+    definition: >-
+      Video on Demand. A recorded archive of a past broadcast, accessible
+      after a stream has ended (subject to broadcast settings).
+    tags: [Content, Video]
+
+  # Monetization
+  - term: Bits
+    definition: >-
+      Virtual currency that viewers use to cheer in chat. Each Bit is worth
+      $0.01 USD to the broadcaster.
+    tags: [Monetization, Currency]
+
+  - term: Subscription
+    definition: >-
+      A recurring monthly payment by a viewer to support a broadcaster.
+      Subscriptions come in Tier 1, Tier 2, and Tier 3 levels.
+    tags: [Monetization]
+
+  - term: Channel Points
+    definition: >-
+      A loyalty program where viewers earn points by watching streams and
+      redeem them for broadcaster-defined rewards.
+    tags: [Monetization, Engagement]
+
+  - term: Drops
+    definition: >-
+      An in-game reward system where viewers earn game items by watching
+      affiliated streams.
+    tags: [Monetization, Gaming]
+
+  # Authentication
+  - term: OAuth 2.0
+    definition: >-
+      The authorization framework used by Twitch. Supports Authorization Code
+      Flow for user tokens and Client Credentials Flow for app access tokens.
+    tags: [Authentication, Security]
+
+  - term: User Access Token
+    definition: >-
+      An OAuth token tied to a specific Twitch user, required for user-scoped
+      API operations like managing channel settings or sending messages.
+    tags: [Authentication, Token]
+
+  - term: App Access Token
+    definition: >-
+      An OAuth token generated using the Client Credentials flow for
+      application-level access to public data.
+    tags: [Authentication, Token]
+
+  - term: Scope
+    definition: >-
+      A permission level requested during OAuth authorization that grants
+      access to specific API operations.
+    tags: [Authentication, Security]
+
+  # Real-Time
+  - term: EventSub
+    definition: >-
+      Twitch's webhook and WebSocket-based subscription service for receiving
+      real-time event notifications (e.g., new followers, subscriptions, raids).
+    tags: [Events, Real-Time, Webhooks]
+
+  - term: Conduit
+    definition: >-
+      An EventSub transport that enables distributing event notifications
+      across multiple WebSocket shards for high-scale applications.
+    tags: [Events, Real-Time, Scale]
+
+  - term: Webhook
+    definition: >-
+      An HTTP callback URL that Twitch calls when subscribed events occur.
+      Requires HMAC signature verification.
+    tags: [Events, Integration]
+
+  # Social
+  - term: Follow
+    definition: >-
+      A user action that subscribes them to a channel's live notifications
+      without a financial commitment.
+    tags: [Social, Engagement]
+
+  - term: Raid
+    definition: >-
+      A feature where a broadcaster sends their viewers to another channel
+      at the end of their own stream.
+    tags: [Social, Community]
+
+  - term: Hype Train
+    definition: >-
+      A platform feature triggered when many viewers support a channel with
+      subscriptions or Bits in a short period.
+    tags: [Engagement, Community]
+
+  # Developer
+  - term: Client ID
+    definition: >-
+      A public identifier for a Twitch developer application, required as
+      a header on all API requests.
+    tags: [Developer, Authentication]
+
+  - term: Extension
+    definition: >-
+      An interactive, sandboxed iframe overlay or panel that runs on Twitch
+      channels, built with the Twitch Extensions framework.
+    tags: [Developer, Integration]
+
+  - term: IGDB
+    definition: >-
+      Internet Game Database. A comprehensive video game metadata service
+      owned by Twitch, accessible via a separate API.
+    tags: [Gaming, Database]
+
+  - term: Apicalypse
+    definition: >-
+      The query language used by the IGDB API. Queries are sent as POST
+      body text to filter, sort, and select game data fields.
+    tags: [IGDB, Query Language]
+
+  # Content Categories
+  - term: Category
+    definition: >-
+      A game, show, or activity that a broadcaster selects to describe their
+      stream content. Formerly called "Game" in the API.
+    tags: [Content, Taxonomy]
+
+  - term: Tag
+    definition: >-
+      A keyword or descriptor applied to a stream or channel to help viewers
+      find relevant content.
+    tags: [Content, Discovery]

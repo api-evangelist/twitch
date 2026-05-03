@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Twitch Stream Structure",
+  "description": "Structural definition of a Twitch live stream object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stream ID"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the broadcaster"
+    },
+    "user_login": {
+      "type": "string",
+      "description": "Broadcaster's login name (lowercase)"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Broadcaster's display name"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "ID of the game/category being streamed"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Name of the game/category being streamed"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["live", ""],
+      "description": "Stream type; 'live' if active"
+    },
+    "title": {
+      "type": "string",
+      "description": "Stream title"
+    },
+    "viewer_count": {
+      "type": "integer",
+      "description": "Number of current viewers"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when stream started"
+    },
+    "language": {
+      "type": "string",
+      "description": "BCP 47 language tag of the stream"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Template URL for stream thumbnail ({width}x{height})"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Stream tags"
+    },
+    "is_mature": {
+      "type": "boolean",
+      "description": "Whether the stream is marked as mature content"
+    }
+  }
+}

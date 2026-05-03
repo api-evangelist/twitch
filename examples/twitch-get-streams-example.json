@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.twitch.tv/helix/streams",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Client-Id": "{client_id}"
+    },
+    "parameters": {
+      "game_id": "21779",
+      "first": 5,
+      "language": "en"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "41375541868",
+          "user_id": "459331509",
+          "user_login": "auronplay",
+          "user_name": "auronplay",
+          "game_id": "21779",
+          "game_name": "League of Legends",
+          "type": "live",
+          "title": "!duos @Alexelcapo | !pc !tienda",
+          "viewer_count": 78365,
+          "started_at": "2021-03-10T15:04:21Z",
+          "language": "es",
+          "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg",
+          "tag_ids": [],
+          "tags": ["Spanish", "Gaming"],
+          "is_mature": false
+        }
+      ],
+      "pagination": {
+        "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam94TlRZd01EWTNPRE13TENKMElqcDBjblZsZlE9PSJ9fQ=="
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+extends: spectral:oas
+rules:
+
+  # Twitch API conventions: all summaries must use Title Case and include the "Twitch" prefix
+  twitch-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    given: "$.paths[*][*].summary"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]+$"
+
+  twitch-summary-provider-prefix:
+    description: Operation summaries should be prefixed with the API product name (e.g. "Twitch")
+    message: "Summary '{{value}}' should start with a provider or product prefix"
+    given: "$.paths[*][*].summary"
+    severity: hint
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(Twitch|IGDB)"
+
+  # Twitch requires Client-Id header on all authenticated operations
+  twitch-requires-client-id-parameter:
+    description: Twitch operations should reference the clientId parameter
+    message: "Twitch operations should reference the #/components/parameters/clientId parameter"
+    given: "$.paths[*][get,post,patch,put,delete].parameters[*]"
+    severity: hint
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            $ref:
+              type: string
+
+  # OAuth2 security should be defined
+  twitch-security-defined:
+    description: All operations should declare security requirements
+    message: "Operation '{{path}}' is missing security declaration"
+    given: "$.paths[*][get,post,patch,put,delete]"
+    severity: warn
+    then:
+      field: security
+      function: truthy
+
+  # Twitch uses bearer/app access tokens; no operation should use basic auth
+  twitch-no-basic-auth:
+    description: Twitch does not use HTTP Basic authentication
+    message: "Basic authentication is not used in the Twitch API"
+    given: "$.components.securitySchemes[*]"
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          not:
+            properties:
+              scheme:
+                const: basic
+
+  # Operation IDs must use camelCase
+  twitch-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "OperationId '{{value}}' must use camelCase"
+    given: "$.paths[*][*].operationId"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # Tags must use Title Case
+  twitch-tags-title-case:
+    description: Tags must use Title Case
+    message: "Tag '{{value}}' must use Title Case"
+    given: "$.tags[*].name"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]+$"
+
+  # Responses must define at least a 200 or 201
+  twitch-success-response-defined:
+    description: Operations must define a success response
+    message: "Operation must define a 200, 201, or 204 response"
+    given: "$.paths[*][get,post,patch,put,delete].responses"
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  # All paths must be kebab-case
+  twitch-paths-kebab-case:
+    description: Path segments must use snake_case or kebab-case (Twitch uses snake_case)
+    message: "Path '{{path}}' should use lowercase letters with underscores"
+    given: "$.paths"
+    severity: hint
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z][a-z0-9_/{}]*)+$"
+
+  # Pagination parameters should follow Twitch conventions
+  twitch-pagination-first-parameter:
+    description: Collection GET endpoints should support pagination via 'first' and 'after' parameters
+    message: "Collection endpoints should support 'first' and 'after' cursor pagination"
+    given: "$.paths[*][get]"
+    severity: hint
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.twitch.tv/helix/clips",
+    "headers": {
+      "Authorization": "Bearer {user_access_token}",
+      "Client-Id": "{client_id}"
+    },
+    "parameters": {
+      "broadcaster_id": "141981764",
+      "has_delay": false
+    }
+  },
+  "response": {
+    "status": 202,
+    "body": {
+      "data": [
+        {
+          "id": "FiveLetterHyphenatedWords",
+          "edit_url": "https://clips.twitch.tv/FiveLetterHyphenatedWords/edit"
+        }
+      ]
+    }
+  }
+}

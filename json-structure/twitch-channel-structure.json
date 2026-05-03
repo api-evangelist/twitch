@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Twitch Channel Structure",
+  "description": "Structural definition of a Twitch channel",
+  "type": "object",
+  "properties": {
+    "broadcaster_id": {
+      "type": "string",
+      "description": "Unique ID of the broadcaster"
+    },
+    "broadcaster_login": {
+      "type": "string",
+      "description": "Broadcaster's login name"
+    },
+    "broadcaster_name": {
+      "type": "string",
+      "description": "Broadcaster's display name"
+    },
+    "broadcaster_language": {
+      "type": "string",
+      "description": "BCP 47 language tag for the channel"
+    },
+    "game_id": {
+      "type": "string",
+      "description": "Current game/category ID"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Current game/category name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Current stream title"
+    },
+    "delay": {
+      "type": "integer",
+      "description": "Stream delay in seconds (partner feature)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Channel tags"
+    },
+    "content_classification_labels": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Content classification labels"
+    },
+    "is_branded_content": {
+      "type": "boolean",
+      "description": "Whether branded content rules apply"
+    }
+  }
+}

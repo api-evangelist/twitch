@@ -4,7 +4,7 @@ description: >-
 image: https://www.twitch.tv/favicon.ico
 url: https://www.twitch.tv
 created: '2024'
-modified: '2026-03-16'
+modified: '2026-05-03'
 specificationVersion: '0.18'
 tags:
   - Entertainment
@@ -287,3 +287,17 @@ common:
     url: json-schema/twitch-subscription-schema.json
   - type: JSONSchema
     url: json-schema/twitch-video-schema.json
+  - type: JSONStructure
+    url: json-structure/twitch-stream-structure.json
+  - type: JSONStructure
+    url: json-structure/twitch-channel-structure.json
+  - type: JSONStructure
+    url: json-structure/twitch-user-structure.json
+  - type: Vocabulary
+    url: vocabulary/twitch-vocabulary.yml
+  - type: SpectralRules
+    url: rules/twitch-rules.yml
+  - type: NaftikoCapability
+    url: capabilities/content-discovery.yaml
+  - type: NaftikoCapability
+    url: capabilities/channel-management.yaml
