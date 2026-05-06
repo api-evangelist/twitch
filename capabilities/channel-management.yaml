@@ -1,188 +1,527 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Twitch Channel Management"
-  description: >-
-    Workflow capability for Twitch broadcasters to manage their channels,
-    including chat configuration, polls, subscriptions, moderation, and
-    channel points. Used by broadcaster tools, chatbots, and channel
-    management dashboards.
+  label: Twitch Channel Management
+  description: Workflow capability for Twitch broadcasters to manage their channels, including chat configuration, polls,
+    subscriptions, moderation, and channel points. Used by broadcaster tools, chatbots, and channel management dashboards.
   tags:
-    - Twitch
-    - Channel Management
-    - Broadcasting
-    - Chat
-    - Moderation
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Twitch
+  - Channel Management
+  - Broadcasting
+  - Chat
+  - Moderation
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
-      TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
-
+- namespace: env
+  keys:
+    TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
+    TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
 capability:
   consumes:
-    - import: twitch-helix
-      location: ./shared/helix.yaml
-
+  - type: http
+    namespace: twitch-helix
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix REST API
+    authentication:
+      type: bearer
+      token: '{{TWITCH_ACCESS_TOKEN}}'
+    resources:
+    - name: streams
+      path: /streams
+      description: Live stream information
+      operations:
+      - name: get-streams
+        method: GET
+        description: Get information about active streams
+        inputParameters:
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game/category ID
+        - name: language
+          in: query
+          type: string
+          required: false
+          description: Filter by stream language
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: Filter by user ID
+        - name: user_login
+          in: query
+          type: string
+          required: false
+          description: Filter by user login name
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results to return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels
+      path: /channels
+      description: Channel information and management
+      operations:
+      - name: get-channel-information
+        method: GET
+        description: Get information about one or more channels
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The ID of the broadcaster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      description: User information and management
+      operations:
+      - name: get-users
+        method: GET
+        description: Get information about users
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: User ID
+        - name: login
+          in: query
+          type: string
+          required: false
+          description: User login name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: clips
+      path: /clips
+      description: Clip creation and retrieval
+      operations:
+      - name: get-clips
+        method: GET
+        description: Get clips for a broadcaster, game, or by clip ID
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: false
+          description: Filter clips by broadcaster
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter clips by game
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Clip ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-clip
+        method: POST
+        description: Create a clip from a live stream
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: ID of the broadcaster to clip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: videos
+      path: /videos
+      description: Video management
+      operations:
+      - name: get-videos
+        method: GET
+        description: Get video information by ID, user, or game
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Video ID
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: Filter by user ID
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search-channels
+      path: /search/channels
+      description: Search for channels
+      operations:
+      - name: search-channels
+        method: GET
+        description: Search for channels by name
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search query
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        - name: live_only
+          in: query
+          type: boolean
+          required: false
+          description: Filter to live-only channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: games
+      path: /games
+      description: Game/category information
+      operations:
+      - name: get-games
+        method: GET
+        description: Get game information by ID or name
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Game ID
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: Game name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-top-games
+        method: GET
+        description: Get the most popular games/categories on Twitch
+        inputParameters:
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: chat
+      path: /chat
+      description: Chat settings and emotes
+      operations:
+      - name: get-chat-settings
+        method: GET
+        description: Get chat settings for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: send-chat-message
+        method: POST
+        description: Send a chat message on behalf of a user
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: ID of the channel to send to
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            broadcaster_id: '{{tools.broadcaster_id}}'
+            sender_id: '{{tools.sender_id}}'
+            message: '{{tools.message}}'
+    - name: subscriptions
+      path: /subscriptions
+      description: Subscription information
+      operations:
+      - name: get-broadcaster-subscriptions
+        method: GET
+        description: Get subscription information for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: polls
+      path: /polls
+      description: Channel polls
+      operations:
+      - name: get-polls
+        method: GET
+        description: Get active or past polls for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-poll
+        method: POST
+        description: Create a poll for a broadcaster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            broadcaster_id: '{{tools.broadcaster_id}}'
+            title: '{{tools.title}}'
+            choices: '{{tools.choices}}'
+            duration: '{{tools.duration}}'
+    - name: analytics
+      path: /analytics/games
+      description: Game analytics
+      operations:
+      - name: get-game-analytics
+        method: GET
+        description: Get analytics data for game developers
+        inputParameters:
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game ID
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Report type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: twitch-channel-management-api
-      description: "Unified REST API for Twitch channel management."
-      resources:
-        - path: /v1/channel
-          name: channel
-          description: "Channel configuration"
-          operations:
-            - method: GET
-              name: get-channel-information
-              description: "Get channel information"
-              call: "twitch-helix.get-channel-information"
-              with:
-                broadcaster_id: "rest.broadcaster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/chat-settings
-          name: chat-settings
-          description: "Chat configuration"
-          operations:
-            - method: GET
-              name: get-chat-settings
-              description: "Get chat settings for a broadcaster"
-              call: "twitch-helix.get-chat-settings"
-              with:
-                broadcaster_id: "rest.broadcaster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/polls
-          name: polls
-          description: "Channel polls management"
-          operations:
-            - method: GET
-              name: get-polls
-              description: "Get active and past polls"
-              call: "twitch-helix.get-polls"
-              with:
-                broadcaster_id: "rest.broadcaster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-poll
-              description: "Create a new poll"
-              call: "twitch-helix.create-poll"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/subscriptions
-          name: subscriptions
-          description: "Subscriber information"
-          operations:
-            - method: GET
-              name: get-broadcaster-subscriptions
-              description: "Get channel subscriber information"
-              call: "twitch-helix.get-broadcaster-subscriptions"
-              with:
-                broadcaster_id: "rest.broadcaster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/chat-messages
-          name: chat-messages
-          description: "Chat message sending"
-          operations:
-            - method: POST
-              name: send-chat-message
-              description: "Send a message to channel chat"
-              call: "twitch-helix.send-chat-message"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9081
-      namespace: twitch-channel-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted Twitch channel management."
-      tools:
-        - name: get-channel-information
-          description: "Get channel information and configuration for a broadcaster"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-channel-information"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-chat-settings
-          description: "Get the current chat settings for a broadcaster's channel"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-chat-settings"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: send-chat-message
-          description: "Send a message to a Twitch channel chat"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "twitch-helix.send-chat-message"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-polls
-          description: "Get active and past polls for a broadcaster"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-polls"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-poll
-          description: "Create a new poll on a broadcaster's channel"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "twitch-helix.create-poll"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-broadcaster-subscriptions
-          description: "Get subscriber information for a broadcaster's channel"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-broadcaster-subscriptions"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-clip
-          description: "Create a clip from a broadcaster's live stream"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "twitch-helix.create-clip"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: twitch-channel-management-api
+    description: Unified REST API for Twitch channel management.
+    resources:
+    - path: /v1/channel
+      name: channel
+      description: Channel configuration
+      operations:
+      - method: GET
+        name: get-channel-information
+        description: Get channel information
+        call: twitch-helix.get-channel-information
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chat-settings
+      name: chat-settings
+      description: Chat configuration
+      operations:
+      - method: GET
+        name: get-chat-settings
+        description: Get chat settings for a broadcaster
+        call: twitch-helix.get-chat-settings
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/polls
+      name: polls
+      description: Channel polls management
+      operations:
+      - method: GET
+        name: get-polls
+        description: Get active and past polls
+        call: twitch-helix.get-polls
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-poll
+        description: Create a new poll
+        call: twitch-helix.create-poll
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions
+      name: subscriptions
+      description: Subscriber information
+      operations:
+      - method: GET
+        name: get-broadcaster-subscriptions
+        description: Get channel subscriber information
+        call: twitch-helix.get-broadcaster-subscriptions
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chat-messages
+      name: chat-messages
+      description: Chat message sending
+      operations:
+      - method: POST
+        name: send-chat-message
+        description: Send a message to channel chat
+        call: twitch-helix.send-chat-message
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9081
+    namespace: twitch-channel-management-mcp
+    transport: http
+    description: MCP server for AI-assisted Twitch channel management.
+    tools:
+    - name: get-channel-information
+      description: Get channel information and configuration for a broadcaster
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-channel-information
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-chat-settings
+      description: Get the current chat settings for a broadcaster's channel
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-chat-settings
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-chat-message
+      description: Send a message to a Twitch channel chat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: twitch-helix.send-chat-message
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-polls
+      description: Get active and past polls for a broadcaster
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-polls
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-poll
+      description: Create a new poll on a broadcaster's channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: twitch-helix.create-poll
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-broadcaster-subscriptions
+      description: Get subscriber information for a broadcaster's channel
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-broadcaster-subscriptions
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-clip
+      description: Create a clip from a broadcaster's live stream
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: twitch-helix.create-clip
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.

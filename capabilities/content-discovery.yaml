@@ -1,212 +1,626 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Twitch Content Discovery"
-  description: >-
-    Unified workflow for discovering Twitch content including live streams,
-    channels, games, clips, and videos. Used by app developers and content
-    aggregators to surface the most relevant Twitch content.
+  label: Twitch Content Discovery
+  description: Unified workflow for discovering Twitch content including live streams, channels, games, clips, and videos.
+    Used by app developers and content aggregators to surface the most relevant Twitch content.
   tags:
-    - Twitch
-    - Content Discovery
-    - Streaming
-    - Gaming
-    - Video
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Twitch
+  - Content Discovery
+  - Streaming
+  - Gaming
+  - Video
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
-      TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
-
+- namespace: env
+  keys:
+    TWITCH_ACCESS_TOKEN: TWITCH_ACCESS_TOKEN
+    TWITCH_CLIENT_ID: TWITCH_CLIENT_ID
 capability:
   consumes:
-    - import: twitch-helix
-      location: ./shared/helix.yaml
-    - import: twitch-igdb
-      location: ./shared/igdb.yaml
-
+  - type: http
+    namespace: twitch-helix
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix REST API
+    authentication:
+      type: bearer
+      token: '{{TWITCH_ACCESS_TOKEN}}'
+    resources:
+    - name: streams
+      path: /streams
+      description: Live stream information
+      operations:
+      - name: get-streams
+        method: GET
+        description: Get information about active streams
+        inputParameters:
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game/category ID
+        - name: language
+          in: query
+          type: string
+          required: false
+          description: Filter by stream language
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: Filter by user ID
+        - name: user_login
+          in: query
+          type: string
+          required: false
+          description: Filter by user login name
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of results to return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels
+      path: /channels
+      description: Channel information and management
+      operations:
+      - name: get-channel-information
+        method: GET
+        description: Get information about one or more channels
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The ID of the broadcaster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      description: User information and management
+      operations:
+      - name: get-users
+        method: GET
+        description: Get information about users
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: User ID
+        - name: login
+          in: query
+          type: string
+          required: false
+          description: User login name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: clips
+      path: /clips
+      description: Clip creation and retrieval
+      operations:
+      - name: get-clips
+        method: GET
+        description: Get clips for a broadcaster, game, or by clip ID
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: false
+          description: Filter clips by broadcaster
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter clips by game
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Clip ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-clip
+        method: POST
+        description: Create a clip from a live stream
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: ID of the broadcaster to clip
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: videos
+      path: /videos
+      description: Video management
+      operations:
+      - name: get-videos
+        method: GET
+        description: Get video information by ID, user, or game
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Video ID
+        - name: user_id
+          in: query
+          type: string
+          required: false
+          description: Filter by user ID
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search-channels
+      path: /search/channels
+      description: Search for channels
+      operations:
+      - name: search-channels
+        method: GET
+        description: Search for channels by name
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search query
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        - name: live_only
+          in: query
+          type: boolean
+          required: false
+          description: Filter to live-only channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: games
+      path: /games
+      description: Game/category information
+      operations:
+      - name: get-games
+        method: GET
+        description: Get game information by ID or name
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: false
+          description: Game ID
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: Game name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-top-games
+        method: GET
+        description: Get the most popular games/categories on Twitch
+        inputParameters:
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: chat
+      path: /chat
+      description: Chat settings and emotes
+      operations:
+      - name: get-chat-settings
+        method: GET
+        description: Get chat settings for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: send-chat-message
+        method: POST
+        description: Send a chat message on behalf of a user
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: ID of the channel to send to
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            broadcaster_id: '{{tools.broadcaster_id}}'
+            sender_id: '{{tools.sender_id}}'
+            message: '{{tools.message}}'
+    - name: subscriptions
+      path: /subscriptions
+      description: Subscription information
+      operations:
+      - name: get-broadcaster-subscriptions
+        method: GET
+        description: Get subscription information for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        - name: first
+          in: query
+          type: integer
+          required: false
+          description: Maximum results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: polls
+      path: /polls
+      description: Channel polls
+      operations:
+      - name: get-polls
+        method: GET
+        description: Get active or past polls for a broadcaster
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+          description: The broadcaster's ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-poll
+        method: POST
+        description: Create a poll for a broadcaster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            broadcaster_id: '{{tools.broadcaster_id}}'
+            title: '{{tools.title}}'
+            choices: '{{tools.choices}}'
+            duration: '{{tools.duration}}'
+    - name: analytics
+      path: /analytics/games
+      description: Game analytics
+      operations:
+      - name: get-game-analytics
+        method: GET
+        description: Get analytics data for game developers
+        inputParameters:
+        - name: game_id
+          in: query
+          type: string
+          required: false
+          description: Filter by game ID
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Report type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: twitch-igdb
+    baseUri: https://api.igdb.com/v4
+    description: IGDB video game database API
+    authentication:
+      type: bearer
+      token: '{{TWITCH_ACCESS_TOKEN}}'
+    resources:
+    - name: games
+      path: /games
+      description: Video game data including metadata, ratings, and media
+      operations:
+      - name: query-games
+        method: POST
+        description: Query games using Apicalypse query language
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: text
+          data:
+            query: '{{tools.query}}'
+    - name: platforms
+      path: /platforms
+      description: Gaming platform data
+      operations:
+      - name: query-platforms
+        method: POST
+        description: Query gaming platforms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: text
+          data:
+            query: '{{tools.query}}'
+    - name: genres
+      path: /genres
+      description: Game genre data
+      operations:
+      - name: query-genres
+        method: POST
+        description: Query game genres
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: companies
+      path: /companies
+      description: Game company data
+      operations:
+      - name: query-companies
+        method: POST
+        description: Query game companies (developers and publishers)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search
+      description: Multi-resource search across IGDB
+      operations:
+      - name: multi-search
+        method: POST
+        description: Search across multiple IGDB resource types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: twitch-content-discovery-api
-      description: "Unified REST API for Twitch content discovery."
-      resources:
-        - path: /v1/streams
-          name: streams
-          description: "Live stream discovery"
-          operations:
-            - method: GET
-              name: get-streams
-              description: "Get active live streams filtered by game, language, or user"
-              call: "twitch-helix.get-streams"
-              with:
-                game_id: "rest.game_id"
-                language: "rest.language"
-                first: "rest.first"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/channels
-          name: channels
-          description: "Channel information and search"
-          operations:
-            - method: GET
-              name: search-channels
-              description: "Search for Twitch channels"
-              call: "twitch-helix.search-channels"
-              with:
-                query: "rest.query"
-                live_only: "rest.live_only"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/clips
-          name: clips
-          description: "Content clips"
-          operations:
-            - method: GET
-              name: get-clips
-              description: "Get clips from a broadcaster or game"
-              call: "twitch-helix.get-clips"
-              with:
-                broadcaster_id: "rest.broadcaster_id"
-                game_id: "rest.game_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/videos
-          name: videos
-          description: "VOD and highlight videos"
-          operations:
-            - method: GET
-              name: get-videos
-              description: "Get videos from a broadcaster or game"
-              call: "twitch-helix.get-videos"
-              with:
-                user_id: "rest.user_id"
-                game_id: "rest.game_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/games
-          name: games
-          description: "Game and category discovery"
-          operations:
-            - method: GET
-              name: get-top-games
-              description: "Get the most popular games on Twitch"
-              call: "twitch-helix.get-top-games"
-              with:
-                first: "rest.first"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/game-database
-          name: game-database
-          description: "Detailed game metadata from IGDB"
-          operations:
-            - method: POST
-              name: query-games
-              description: "Query detailed game information from IGDB"
-              call: "twitch-igdb.query-games"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: twitch-content-discovery-mcp
-      transport: http
-      description: "MCP server for AI-assisted Twitch content discovery."
-      tools:
-        - name: get-streams
-          description: "Find active live streams on Twitch by game, language, or user"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-streams"
-          with:
-            game_id: "tools.game_id"
-            language: "tools.language"
-            first: "tools.first"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: search-channels
-          description: "Search for Twitch channels by name"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.search-channels"
-          with:
-            query: "tools.query"
-            live_only: "tools.live_only"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-clips
-          description: "Get video clips from a broadcaster or game category"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-clips"
-          with:
-            broadcaster_id: "tools.broadcaster_id"
-            game_id: "tools.game_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-videos
-          description: "Get VODs and highlight videos from a broadcaster"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-videos"
-          with:
-            user_id: "tools.user_id"
-            game_id: "tools.game_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-top-games
-          description: "Get the most popular game categories on Twitch right now"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-top-games"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-games
-          description: "Get game information by ID or name"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-helix.get-games"
-          with:
-            id: "tools.id"
-            name: "tools.name"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: query-game-database
-          description: "Query the IGDB game database for detailed game metadata"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-igdb.query-games"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: query-game-platforms
-          description: "Query gaming platform information from IGDB"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "twitch-igdb.query-platforms"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: twitch-content-discovery-api
+    description: Unified REST API for Twitch content discovery.
+    resources:
+    - path: /v1/streams
+      name: streams
+      description: Live stream discovery
+      operations:
+      - method: GET
+        name: get-streams
+        description: Get active live streams filtered by game, language, or user
+        call: twitch-helix.get-streams
+        with:
+          game_id: rest.game_id
+          language: rest.language
+          first: rest.first
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels
+      name: channels
+      description: Channel information and search
+      operations:
+      - method: GET
+        name: search-channels
+        description: Search for Twitch channels
+        call: twitch-helix.search-channels
+        with:
+          query: rest.query
+          live_only: rest.live_only
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/clips
+      name: clips
+      description: Content clips
+      operations:
+      - method: GET
+        name: get-clips
+        description: Get clips from a broadcaster or game
+        call: twitch-helix.get-clips
+        with:
+          broadcaster_id: rest.broadcaster_id
+          game_id: rest.game_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/videos
+      name: videos
+      description: VOD and highlight videos
+      operations:
+      - method: GET
+        name: get-videos
+        description: Get videos from a broadcaster or game
+        call: twitch-helix.get-videos
+        with:
+          user_id: rest.user_id
+          game_id: rest.game_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/games
+      name: games
+      description: Game and category discovery
+      operations:
+      - method: GET
+        name: get-top-games
+        description: Get the most popular games on Twitch
+        call: twitch-helix.get-top-games
+        with:
+          first: rest.first
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/game-database
+      name: game-database
+      description: Detailed game metadata from IGDB
+      operations:
+      - method: POST
+        name: query-games
+        description: Query detailed game information from IGDB
+        call: twitch-igdb.query-games
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: twitch-content-discovery-mcp
+    transport: http
+    description: MCP server for AI-assisted Twitch content discovery.
+    tools:
+    - name: get-streams
+      description: Find active live streams on Twitch by game, language, or user
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-streams
+      with:
+        game_id: tools.game_id
+        language: tools.language
+        first: tools.first
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-channels
+      description: Search for Twitch channels by name
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.search-channels
+      with:
+        query: tools.query
+        live_only: tools.live_only
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-clips
+      description: Get video clips from a broadcaster or game category
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-clips
+      with:
+        broadcaster_id: tools.broadcaster_id
+        game_id: tools.game_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-videos
+      description: Get VODs and highlight videos from a broadcaster
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-videos
+      with:
+        user_id: tools.user_id
+        game_id: tools.game_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-games
+      description: Get the most popular game categories on Twitch right now
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-top-games
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-games
+      description: Get game information by ID or name
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-helix.get-games
+      with:
+        id: tools.id
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-game-database
+      description: Query the IGDB game database for detailed game metadata
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-igdb.query-games
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-game-platforms
+      description: Query gaming platform information from IGDB
+      hints:
+        readOnly: true
+        openWorld: true
+      call: twitch-igdb.query-platforms
+      outputParameters:
+      - type: object
+        mapping: $.
