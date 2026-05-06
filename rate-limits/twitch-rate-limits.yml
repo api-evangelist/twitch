@@ -4,126 +4,61 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Twitch
 providerId: twitch
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Entertainment
-  - Gaming
-  - Live Video
   - Streaming
-  - Video
+  - Developer API
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Twitch API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+description: The Twitch Helix API protects services with a token-bucket algorithm. Each application receives
+  separate buckets for app access tokens and user access tokens, and individual endpoints can charge non-default
+  point values. User-token requests are scoped per client ID per user per minute. The Extensions API uses
+  a separate rate-limit framework documented in the extensions guide.
+sources:
+  - https://dev.twitch.tv/docs/api/guide/
+  - https://dev.twitch.tv/docs/api/
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: Ratelimit-Limit
+  remaining: Ratelimit-Remaining
+  reset: Ratelimit-Reset
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
+  - name: App Access Token Bucket
+    scope: client-id (app token)
+    metric: points_per_minute
+    limit: 800
     timeFrame: minute
-    applies:
-      - Twitch API
-      - Twitch EventSub
-      - Twitch Chat API
-      - Twitch Embed API
-      - Twitch Extensions API
-      - Twitch Drops API
-      - Twitch Video Broadcast API
-      - Twitch Insights and Analytics API
-      - IGDB API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Twitch API
-      - Twitch EventSub
-      - Twitch Chat API
-      - Twitch Embed API
-      - Twitch Extensions API
-      - Twitch Drops API
-      - Twitch Video Broadcast API
-      - Twitch Insights and Analytics API
-      - IGDB API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
+    notes: Default endpoint cost is 1 point per request; some endpoints charge more. A separate bucket
+      per app access token applies.
+  - name: User Access Token Bucket
+    scope: client-id per user (user token)
+    metric: points_per_minute
+    limit: 800
     timeFrame: minute
-    applies:
-      - Twitch API
-      - Twitch EventSub
-      - Twitch Chat API
-      - Twitch Embed API
-      - Twitch Extensions API
-      - Twitch Drops API
-      - Twitch Video Broadcast API
-      - Twitch Insights and Analytics API
-      - IGDB API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Twitch API
-      - Twitch EventSub
-      - Twitch Chat API
-      - Twitch Embed API
-      - Twitch Extensions API
-      - Twitch Drops API
-      - Twitch Video Broadcast API
-      - Twitch Insights and Analytics API
-      - IGDB API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Twitch API
-      - Twitch EventSub
-      - Twitch Chat API
-      - Twitch Embed API
-      - Twitch Extensions API
-      - Twitch Drops API
-      - Twitch Video Broadcast API
-      - Twitch Insights and Analytics API
-      - IGDB API
+    notes: Limits apply per client ID per user per minute when using user OAuth tokens.
+  - name: Per-Endpoint Variable Cost
+    scope: endpoint
+    metric: points_per_request
+    limit: see endpoint documentation
+    notes: Some endpoints deduct more than 1 point per request; consult the specific endpoint reference
+      for its point cost.
+  - name: Extensions API
+    scope: extension/client
+    metric: varies
+    limit: see Extensions API documentation
+    notes: The Extensions API has its own rate-limit framework documented separately.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Token Bucket
+    description: Each request deducts its endpoint's point value from the bucket; HTTP 429 is returned
+      if the bucket would go below zero within the 1-minute window. The bucket replenishes at the documented
+      rate.
+  - name: Separate App vs User Buckets
+    description: App access token requests and user access token requests draw from independent buckets;
+      you do not need to choose between them, but you must track each separately.
+  - name: Header-Driven Recovery
+    description: Use Ratelimit-Remaining to back off proactively and Ratelimit-Reset (Unix timestamp)
+      to wait the correct interval before retrying after a 429.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

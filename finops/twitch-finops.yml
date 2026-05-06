@@ -1,206 +1,82 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Twitch
+providerId: twitch
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Streaming
+  - Developer API
+  - Free
+  - FinOps
+  - FOCUS
+description: FOCUS-aligned FinOps for the Twitch developer surface — the Helix and Extensions APIs are
+  free of charge under Twitch's developer terms, so the FinOps surface is governance-focused (rate-limit
+  budgets and bucket consumption) rather than dollar-cost. There is no metered invoice line; cost lives
+  in the indirect engineering and infrastructure cost of operating against Twitch's APIs.
+sources:
+  - https://dev.twitch.tv/docs/api/
+  - https://dev.twitch.tv/docs/api/guide/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Twitch
-providerId: twitch
-publisherName: Twitch
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Entertainment
-  - Gaming
-  - Live Video
-  - Streaming
-  - Video
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Twitch API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Twitch Interactive, Inc.
+serviceCategory: Streaming Developer API
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Free
+  billingFrequency: On-Demand
   billingCurrency: USD
   chargeCategories:
     - Usage
-    - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Twitch
-  ServiceCategory: Developer Tools / API
+  ServiceName: Twitch Helix API
+  ServiceCategory: Streaming Developer API
   ProviderName: Twitch
-  PublisherName: Twitch
-  InvoiceIssuerName: Twitch
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Twitch Interactive, Inc.
+  InvoiceIssuerName: Twitch Interactive, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
+  - name: helix_requests
+    description: Helix API requests issued by your registered application; consumes points from the relevant
+      bucket.
     unit: request
     aggregation: sum
     dimensions:
-      - api
+      - client_id
+      - token_type
       - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: bucket_points
+    description: Points deducted from the token bucket; the practical FinOps unit since Twitch does not
+      charge in dollars.
+    unit: point
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
+      - client_id
+      - token_type
+  - name: eventsub_subscriptions
+    description: Active EventSub webhook subscriptions on the application.
+    unit: subscription
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Twitch API
-    baseURL: https://api.twitch.tv/helix
-    tags:
-      - Chat
-      - Gaming
-      - Streaming
-      - Video
-    serviceName: Twitch API
-    serviceCategory: API
-  - name: Twitch EventSub
-    baseURL: https://api.twitch.tv/helix/eventsub
-    tags:
-      - Events
-      - Notifications
-      - Webhooks
-    serviceName: Twitch EventSub
-    serviceCategory: API
-  - name: Twitch Chat API
-    baseURL: wss://irc-ws.chat.twitch.tv:443
-    tags:
-      - Chat
-      - Irc
-      - Messaging
-      - Websocket
-    serviceName: Twitch Chat API
-    serviceCategory: API
-  - name: Twitch Embed API
-    baseURL: https://embed.twitch.tv
-    tags:
-      - Chat
-      - Clips
-      - Embed
-      - Player
-      - Video
-    serviceName: Twitch Embed API
-    serviceCategory: API
-  - name: Twitch Extensions API
-    baseURL: https://api.twitch.tv/helix/extensions
-    tags:
-      - Extensions
-      - Interactive
-      - Overlays
-      - Panels
-    serviceName: Twitch Extensions API
-    serviceCategory: API
-  - name: Twitch Drops API
-    baseURL: https://api.twitch.tv/helix
-    tags:
-      - Campaigns
-      - Drops
-      - Gaming
-      - Rewards
-    serviceName: Twitch Drops API
-    serviceCategory: API
-  - name: Twitch Video Broadcast API
-    baseURL: https://ingest.twitch.tv
-    tags:
-      - Broadcast
-      - Ingest
-      - Rtmp
-      - Streaming
-      - Video
-    serviceName: Twitch Video Broadcast API
-    serviceCategory: API
-  - name: Twitch Insights and Analytics API
-    baseURL: https://api.twitch.tv/helix/analytics
-    tags:
-      - Analytics
-      - Insights
-      - Metrics
-      - Reporting
-    serviceName: Twitch Insights and Analytics API
-    serviceCategory: API
-  - name: IGDB API
-    baseURL: https://api.igdb.com/v4
-    tags:
-      - Database
-      - Games
-      - Metadata
-      - Ratings
-    serviceName: IGDB API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - client_id
+principles:
+  - name: Visibility
+    description: Use the Ratelimit-Limit / Remaining / Reset response headers and per-application logging
+      to track point consumption across app and user buckets in real time.
+  - name: Allocation
+    description: Allocate "cost" to the consuming feature by tagging requests with the originating internal
+      service or feature flag; bucket headroom is the budget being allocated.
+  - name: Optimization
+    description: Cache responses, prefer EventSub webhooks over polling, batch lookups (e.g. bulk Get
+      Users), and use app tokens for non-user-scoped reads to avoid per-user bucket pressure.
+  - name: Accountability
+    description: Assign a developer owner per Twitch application (client ID); they are responsible for
+      respecting the bucket, handling 429s with backoff, and migrating away from deprecated endpoints.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
