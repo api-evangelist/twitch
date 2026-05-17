@@ -32,21 +32,21 @@ apis:
         url: https://dev.twitch.tv/docs/api/reference
       - type: Authentication
         url: https://dev.twitch.tv/docs/authentication
-      - type: Getting Started
+      - type: GettingStarted
         url: https://dev.twitch.tv/docs/api/get-started
-      - type: Rate Limits
+      - type: RateLimits
         url: https://dev.twitch.tv/docs/api/guide#rate-limits
       - type: Webhooks
         url: https://dev.twitch.tv/docs/eventsub
       - type: API Status
         url: https://devstatus.twitch.tv/
-      - type: Terms of Service
+      - type: TermsOfService
         url: https://www.twitch.tv/p/legal/terms-of-service/
-      - type: Privacy Policy
+      - type: PrivacyPolicy
         url: https://www.twitch.tv/p/legal/privacy-notice/
       - type: Scopes
         url: https://dev.twitch.tv/docs/authentication/scopes/
-      - type: Change Log
+      - type: ChangeLog
         url: https://dev.twitch.tv/docs/change-log/
       - type: Migration Guide
         url: https://dev.twitch.tv/docs/api/migration
@@ -191,7 +191,7 @@ apis:
     properties:
       - type: Documentation
         url: https://dev.twitch.tv/docs/video-broadcast/
-      - type: API Reference
+      - type: APIReference
         url: https://dev.twitch.tv/docs/video-broadcast/reference/
       - type: OpenAPI
         url: openapi/twitch-video-broadcast-openapi.yml
@@ -259,7 +259,7 @@ common:
     url: https://dev.twitch.tv/code/
   - type: Products
     url: https://dev.twitch.tv/products/
-  - type: Change Log
+  - type: ChangeLog
     url: https://dev.twitch.tv/docs/change-log/
   - type: Product Lifecycle
     url: https://dev.twitch.tv/docs/product-lifecycle/
@@ -269,11 +269,11 @@ common:
     url: https://dev.twitch.tv/docs/mobile-deeplinks/
   - type: Game Engine Plugins
     url: https://dev.twitch.tv/docs/game-engine-plugins/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.twitch.tv/p/legal/terms-of-service/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.twitch.tv/p/legal/privacy-notice/
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/twitch-context.jsonld
   - type: JSONSchema
     url: json-schema/twitch-stream-schema.json
