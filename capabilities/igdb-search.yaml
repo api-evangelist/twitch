@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch IGDB API — Search
+  description: 'Twitch IGDB API — Search. 1 operations. Lead operation: Twitch Multi-Search. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: igdb-search
+    baseUri: https://api.igdb.com/v4
+    description: Twitch IGDB API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: search
+      path: /search
+      operations:
+      - name: multisearch
+        method: POST
+        description: Twitch Multi-Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: igdb-search-rest
+    port: 8080
+    description: REST adapter for Twitch IGDB API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: POST
+        name: multisearch
+        description: Twitch Multi-Search
+        call: igdb-search.multisearch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: igdb-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch IGDB API — Search. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-multi-search
+      description: Twitch Multi-Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-search.multisearch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

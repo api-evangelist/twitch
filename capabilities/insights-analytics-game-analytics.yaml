@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Insights and Analytics API — Game Analytics
+  description: 'Twitch Insights and Analytics API — Game Analytics. 1 operations. Lead operation: Twitch Get Game Analytics.
+    Self-contained Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Game Analytics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: insights-analytics-game-analytics
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Insights and Analytics API — Game Analytics business capability. Self-contained, no shared references.
+    resources:
+    - name: analytics-games
+      path: /analytics/games
+      operations:
+      - name: getgameanalytics
+        method: GET
+        description: Twitch Get Game Analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: game_id
+          in: query
+          type: string
+          description: Game ID to filter by
+        - name: type
+          in: query
+          type: string
+          description: The type of analytics report
+        - name: started_at
+          in: query
+          type: string
+          description: Start of the date range (RFC 3339)
+        - name: ended_at
+          in: query
+          type: string
+          description: End of the date range (RFC 3339)
+        - name: first
+          in: query
+          type: integer
+          description: Maximum number of results to return
+        - name: after
+          in: query
+          type: string
+          description: Cursor for forward pagination
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: insights-analytics-game-analytics-rest
+    port: 8080
+    description: REST adapter for Twitch Insights and Analytics API — Game Analytics. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/analytics/games
+      name: analytics-games
+      description: REST surface for analytics-games.
+      operations:
+      - method: GET
+        name: getgameanalytics
+        description: Twitch Get Game Analytics
+        call: insights-analytics-game-analytics.getgameanalytics
+        with:
+          game_id: rest.game_id
+          type: rest.type
+          started_at: rest.started_at
+          ended_at: rest.ended_at
+          first: rest.first
+          after: rest.after
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: insights-analytics-game-analytics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Insights and Analytics API — Game Analytics. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: twitch-get-game-analytics
+      description: Twitch Get Game Analytics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: insights-analytics-game-analytics.getgameanalytics
+      with:
+        game_id: tools.game_id
+        type: tools.type
+        started_at: tools.started_at
+        ended_at: tools.ended_at
+        first: tools.first
+        after: tools.after
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,157 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — EventSub
+  description: 'Twitch Helix API — EventSub. 3 operations. Lead operation: Twitch Get EventSub Subscriptions. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - EventSub
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-eventsub
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — EventSub business capability. Self-contained, no shared references.
+    resources:
+    - name: eventsub-subscriptions
+      path: /eventsub/subscriptions
+      operations:
+      - name: geteventsubsubscriptions
+        method: GET
+        description: Twitch Get EventSub Subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        - name: type
+          in: query
+          type: string
+        - name: user_id
+          in: query
+          type: string
+      - name: createeventsubsubscription
+        method: POST
+        description: Twitch Create EventSub Subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteeventsubsubscription
+        method: DELETE
+        description: Twitch Delete EventSub Subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-eventsub-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — EventSub. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/eventsub/subscriptions
+      name: eventsub-subscriptions
+      description: REST surface for eventsub-subscriptions.
+      operations:
+      - method: GET
+        name: geteventsubsubscriptions
+        description: Twitch Get EventSub Subscriptions
+        call: helix-eventsub.geteventsubsubscriptions
+        with:
+          status: rest.status
+          type: rest.type
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createeventsubsubscription
+        description: Twitch Create EventSub Subscription
+        call: helix-eventsub.createeventsubsubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteeventsubsubscription
+        description: Twitch Delete EventSub Subscription
+        call: helix-eventsub.deleteeventsubsubscription
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-eventsub-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — EventSub. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: twitch-get-eventsub-subscriptions
+      description: Twitch Get EventSub Subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-eventsub.geteventsubsubscriptions
+      with:
+        status: tools.status
+        type: tools.type
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-create-eventsub-subscription
+      description: Twitch Create EventSub Subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helix-eventsub.createeventsubsubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-delete-eventsub-subscription
+      description: Twitch Delete EventSub Subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: helix-eventsub.deleteeventsubsubscription
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

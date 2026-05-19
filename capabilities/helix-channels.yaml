@@ -1,0 +1,210 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Channels
+  description: 'Twitch Helix API — Channels. 4 operations. Lead operation: Twitch Get Channel Information. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Channels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-channels
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Channels business capability. Self-contained, no shared references.
+    resources:
+    - name: channels
+      path: /channels
+      operations:
+      - name: getchannelinformation
+        method: GET
+        description: Twitch Get Channel Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          description: The ID of the broadcaster
+          required: true
+      - name: modifychannelinformation
+        method: PATCH
+        description: Twitch Modify Channel Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          description: The ID of the broadcaster
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-editors
+      path: /channels/editors
+      operations:
+      - name: getchanneleditors
+        method: GET
+        description: Twitch Get Channel Editors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    - name: channels-followers
+      path: /channels/followers
+      operations:
+      - name: getchannelfollowers
+        method: GET
+        description: Twitch Get Channel Followers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: user_id
+          in: query
+          type: string
+          description: Filter by specific follower user ID
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-channels-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Channels. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels
+      name: channels
+      description: REST surface for channels.
+      operations:
+      - method: GET
+        name: getchannelinformation
+        description: Twitch Get Channel Information
+        call: helix-channels.getchannelinformation
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifychannelinformation
+        description: Twitch Modify Channel Information
+        call: helix-channels.modifychannelinformation
+        with:
+          broadcaster_id: rest.broadcaster_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/editors
+      name: channels-editors
+      description: REST surface for channels-editors.
+      operations:
+      - method: GET
+        name: getchanneleditors
+        description: Twitch Get Channel Editors
+        call: helix-channels.getchanneleditors
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/followers
+      name: channels-followers
+      description: REST surface for channels-followers.
+      operations:
+      - method: GET
+        name: getchannelfollowers
+        description: Twitch Get Channel Followers
+        call: helix-channels.getchannelfollowers
+        with:
+          broadcaster_id: rest.broadcaster_id
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-channels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Channels. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: twitch-get-channel-information
+      description: Twitch Get Channel Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-channels.getchannelinformation
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-modify-channel-information
+      description: Twitch Modify Channel Information
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: helix-channels.modifychannelinformation
+      with:
+        broadcaster_id: tools.broadcaster_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-channel-editors
+      description: Twitch Get Channel Editors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-channels.getchanneleditors
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-channel-followers
+      description: Twitch Get Channel Followers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-channels.getchannelfollowers
+      with:
+        broadcaster_id: tools.broadcaster_id
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.

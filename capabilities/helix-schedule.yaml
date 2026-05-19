@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Schedule
+  description: 'Twitch Helix API — Schedule. 2 operations. Lead operation: Twitch Get Channel Stream Schedule. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Schedule
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-schedule
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Schedule business capability. Self-contained, no shared references.
+    resources:
+    - name: schedule
+      path: /schedule
+      operations:
+      - name: getchannelstreamschedule
+        method: GET
+        description: Twitch Get Channel Stream Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: query
+          type: string
+        - name: start_time
+          in: query
+          type: string
+        - name: utc_offset
+          in: query
+          type: string
+      - name: updatechannelstreamschedule
+        method: PATCH
+        description: Twitch Update Channel Stream Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: is_vacation_enabled
+          in: query
+          type: boolean
+        - name: vacation_start_time
+          in: query
+          type: string
+        - name: vacation_end_time
+          in: query
+          type: string
+        - name: timezone
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-schedule-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Schedule. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/schedule
+      name: schedule
+      description: REST surface for schedule.
+      operations:
+      - method: GET
+        name: getchannelstreamschedule
+        description: Twitch Get Channel Stream Schedule
+        call: helix-schedule.getchannelstreamschedule
+        with:
+          broadcaster_id: rest.broadcaster_id
+          id: rest.id
+          start_time: rest.start_time
+          utc_offset: rest.utc_offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatechannelstreamschedule
+        description: Twitch Update Channel Stream Schedule
+        call: helix-schedule.updatechannelstreamschedule
+        with:
+          broadcaster_id: rest.broadcaster_id
+          is_vacation_enabled: rest.is_vacation_enabled
+          vacation_start_time: rest.vacation_start_time
+          vacation_end_time: rest.vacation_end_time
+          timezone: rest.timezone
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-schedule-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Schedule. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: twitch-get-channel-stream-schedule
+      description: Twitch Get Channel Stream Schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-schedule.getchannelstreamschedule
+      with:
+        broadcaster_id: tools.broadcaster_id
+        id: tools.id
+        start_time: tools.start_time
+        utc_offset: tools.utc_offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-update-channel-stream-schedule
+      description: Twitch Update Channel Stream Schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: helix-schedule.updatechannelstreamschedule
+      with:
+        broadcaster_id: tools.broadcaster_id
+        is_vacation_enabled: tools.is_vacation_enabled
+        vacation_start_time: tools.vacation_start_time
+        vacation_end_time: tools.vacation_end_time
+        timezone: tools.timezone
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch IGDB API — Companies
+  description: 'Twitch IGDB API — Companies. 2 operations. Lead operation: Twitch Query Companies. Self-contained Naftiko
+    capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Companies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: igdb-companies
+    baseUri: https://api.igdb.com/v4
+    description: Twitch IGDB API — Companies business capability. Self-contained, no shared references.
+    resources:
+    - name: companies
+      path: /companies
+      operations:
+      - name: querycompanies
+        method: POST
+        description: Twitch Query Companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: involved_companies
+      path: /involved_companies
+      operations:
+      - name: queryinvolvedcompanies
+        method: POST
+        description: Twitch Query Involved Companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: igdb-companies-rest
+    port: 8080
+    description: REST adapter for Twitch IGDB API — Companies. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/companies
+      name: companies
+      description: REST surface for companies.
+      operations:
+      - method: POST
+        name: querycompanies
+        description: Twitch Query Companies
+        call: igdb-companies.querycompanies
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/involved-companies
+      name: involved-companies
+      description: REST surface for involved_companies.
+      operations:
+      - method: POST
+        name: queryinvolvedcompanies
+        description: Twitch Query Involved Companies
+        call: igdb-companies.queryinvolvedcompanies
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: igdb-companies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch IGDB API — Companies. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: twitch-query-companies
+      description: Twitch Query Companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-companies.querycompanies
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-query-involved-companies
+      description: Twitch Query Involved Companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-companies.queryinvolvedcompanies
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

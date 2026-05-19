@@ -1,0 +1,301 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Streams
+  description: 'Twitch Helix API — Streams. 6 operations. Lead operation: Twitch Get Streams. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Streams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-streams
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Streams business capability. Self-contained, no shared references.
+    resources:
+    - name: streams
+      path: /streams
+      operations:
+      - name: getstreams
+        method: GET
+        description: Twitch Get Streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: query
+          type: string
+        - name: user_login
+          in: query
+          type: string
+        - name: game_id
+          in: query
+          type: string
+        - name: type
+          in: query
+          type: string
+        - name: language
+          in: query
+          type: string
+    - name: streams-followed
+      path: /streams/followed
+      operations:
+      - name: getfollowedstreams
+        method: GET
+        description: Twitch Get Followed Streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: query
+          type: string
+          required: true
+    - name: streams-key
+      path: /streams/key
+      operations:
+      - name: getstreamkey
+        method: GET
+        description: Twitch Get Stream Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    - name: streams-markers
+      path: /streams/markers
+      operations:
+      - name: getstreammarkers
+        method: GET
+        description: Twitch Get Stream Markers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: query
+          type: string
+        - name: video_id
+          in: query
+          type: string
+      - name: createstreammarker
+        method: POST
+        description: Twitch Create Stream Marker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tags-streams
+      path: /tags/streams
+      operations:
+      - name: getstreamtags
+        method: GET
+        description: Twitch Get Stream Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-streams-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Streams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/streams
+      name: streams
+      description: REST surface for streams.
+      operations:
+      - method: GET
+        name: getstreams
+        description: Twitch Get Streams
+        call: helix-streams.getstreams
+        with:
+          user_id: rest.user_id
+          user_login: rest.user_login
+          game_id: rest.game_id
+          type: rest.type
+          language: rest.language
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams/followed
+      name: streams-followed
+      description: REST surface for streams-followed.
+      operations:
+      - method: GET
+        name: getfollowedstreams
+        description: Twitch Get Followed Streams
+        call: helix-streams.getfollowedstreams
+        with:
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams/key
+      name: streams-key
+      description: REST surface for streams-key.
+      operations:
+      - method: GET
+        name: getstreamkey
+        description: Twitch Get Stream Key
+        call: helix-streams.getstreamkey
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams/markers
+      name: streams-markers
+      description: REST surface for streams-markers.
+      operations:
+      - method: GET
+        name: getstreammarkers
+        description: Twitch Get Stream Markers
+        call: helix-streams.getstreammarkers
+        with:
+          user_id: rest.user_id
+          video_id: rest.video_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createstreammarker
+        description: Twitch Create Stream Marker
+        call: helix-streams.createstreammarker
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/streams
+      name: tags-streams
+      description: REST surface for tags-streams.
+      operations:
+      - method: GET
+        name: getstreamtags
+        description: Twitch Get Stream Tags
+        call: helix-streams.getstreamtags
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-streams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Streams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-get-streams
+      description: Twitch Get Streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-streams.getstreams
+      with:
+        user_id: tools.user_id
+        user_login: tools.user_login
+        game_id: tools.game_id
+        type: tools.type
+        language: tools.language
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-followed-streams
+      description: Twitch Get Followed Streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-streams.getfollowedstreams
+      with:
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-stream-key
+      description: Twitch Get Stream Key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-streams.getstreamkey
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-stream-markers
+      description: Twitch Get Stream Markers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-streams.getstreammarkers
+      with:
+        user_id: tools.user_id
+        video_id: tools.video_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-create-stream-marker
+      description: Twitch Create Stream Marker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helix-streams.createstreammarker
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-stream-tags
+      description: Twitch Get Stream Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-streams.getstreamtags
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.

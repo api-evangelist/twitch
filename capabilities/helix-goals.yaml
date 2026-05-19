@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Goals
+  description: 'Twitch Helix API — Goals. 1 operations. Lead operation: Twitch Get Creator Goals. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Goals
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-goals
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Goals business capability. Self-contained, no shared references.
+    resources:
+    - name: goals
+      path: /goals
+      operations:
+      - name: getcreatorgoals
+        method: GET
+        description: Twitch Get Creator Goals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-goals-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Goals. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/goals
+      name: goals
+      description: REST surface for goals.
+      operations:
+      - method: GET
+        name: getcreatorgoals
+        description: Twitch Get Creator Goals
+        call: helix-goals.getcreatorgoals
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-goals-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Goals. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-get-creator-goals
+      description: Twitch Get Creator Goals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-goals.getcreatorgoals
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.

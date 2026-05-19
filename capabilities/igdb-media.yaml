@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch IGDB API — Media
+  description: 'Twitch IGDB API — Media. 4 operations. Lead operation: Twitch Query Artworks. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Media
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: igdb-media
+    baseUri: https://api.igdb.com/v4
+    description: Twitch IGDB API — Media business capability. Self-contained, no shared references.
+    resources:
+    - name: artworks
+      path: /artworks
+      operations:
+      - name: queryartworks
+        method: POST
+        description: Twitch Query Artworks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: covers
+      path: /covers
+      operations:
+      - name: querycovers
+        method: POST
+        description: Twitch Query Covers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: game_videos
+      path: /game_videos
+      operations:
+      - name: querygamevideos
+        method: POST
+        description: Twitch Query Game Videos
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: screenshots
+      path: /screenshots
+      operations:
+      - name: queryscreenshots
+        method: POST
+        description: Twitch Query Screenshots
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: igdb-media-rest
+    port: 8080
+    description: REST adapter for Twitch IGDB API — Media. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/artworks
+      name: artworks
+      description: REST surface for artworks.
+      operations:
+      - method: POST
+        name: queryartworks
+        description: Twitch Query Artworks
+        call: igdb-media.queryartworks
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/covers
+      name: covers
+      description: REST surface for covers.
+      operations:
+      - method: POST
+        name: querycovers
+        description: Twitch Query Covers
+        call: igdb-media.querycovers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/game-videos
+      name: game-videos
+      description: REST surface for game_videos.
+      operations:
+      - method: POST
+        name: querygamevideos
+        description: Twitch Query Game Videos
+        call: igdb-media.querygamevideos
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/screenshots
+      name: screenshots
+      description: REST surface for screenshots.
+      operations:
+      - method: POST
+        name: queryscreenshots
+        description: Twitch Query Screenshots
+        call: igdb-media.queryscreenshots
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: igdb-media-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch IGDB API — Media. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-query-artworks
+      description: Twitch Query Artworks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-media.queryartworks
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-query-covers
+      description: Twitch Query Covers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-media.querycovers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-query-game-videos
+      description: Twitch Query Game Videos
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-media.querygamevideos
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-query-screenshots
+      description: Twitch Query Screenshots
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: igdb-media.queryscreenshots
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

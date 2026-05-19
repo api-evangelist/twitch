@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Raids
+  description: 'Twitch Helix API — Raids. 2 operations. Lead operation: Twitch Start a Raid. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Raids
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-raids
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Raids business capability. Self-contained, no shared references.
+    resources:
+    - name: raids
+      path: /raids
+      operations:
+      - name: startraid
+        method: POST
+        description: Twitch Start a Raid
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from_broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: to_broadcaster_id
+          in: query
+          type: string
+          required: true
+      - name: cancelraid
+        method: DELETE
+        description: Twitch Cancel a Raid
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-raids-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Raids. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/raids
+      name: raids
+      description: REST surface for raids.
+      operations:
+      - method: POST
+        name: startraid
+        description: Twitch Start a Raid
+        call: helix-raids.startraid
+        with:
+          from_broadcaster_id: rest.from_broadcaster_id
+          to_broadcaster_id: rest.to_broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelraid
+        description: Twitch Cancel a Raid
+        call: helix-raids.cancelraid
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-raids-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Raids. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-start-raid
+      description: Twitch Start a Raid
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helix-raids.startraid
+      with:
+        from_broadcaster_id: tools.from_broadcaster_id
+        to_broadcaster_id: tools.to_broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-cancel-raid
+      description: Twitch Cancel a Raid
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: helix-raids.cancelraid
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.

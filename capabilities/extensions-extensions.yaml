@@ -1,0 +1,336 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Extensions API — Extensions
+  description: 'Twitch Extensions API — Extensions. 7 operations. Lead operation: Twitch Get Extensions. Self-contained Naftiko
+    capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Extensions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: extensions-extensions
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Extensions API — Extensions business capability. Self-contained, no shared references.
+    resources:
+    - name: extensions
+      path: /extensions
+      operations:
+      - name: getextensions
+        method: GET
+        description: Twitch Get Extensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: extension_id
+          in: query
+          type: string
+          required: true
+        - name: extension_version
+          in: query
+          type: string
+    - name: extensions-chat
+      path: /extensions/chat
+      operations:
+      - name: sendextensionchatmessage
+        method: POST
+        description: Twitch Send Extension Chat Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: extensions-live
+      path: /extensions/live
+      operations:
+      - name: getextensionlivechannels
+        method: GET
+        description: Twitch Get Extension Live Channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: extension_id
+          in: query
+          type: string
+          required: true
+        - name: first
+          in: query
+          type: integer
+        - name: after
+          in: query
+          type: string
+    - name: extensions-released
+      path: /extensions/released
+      operations:
+      - name: getreleasedextensions
+        method: GET
+        description: Twitch Get Released Extensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: extension_id
+          in: query
+          type: string
+          required: true
+        - name: extension_version
+          in: query
+          type: string
+    - name: users-extensions
+      path: /users/extensions
+      operations:
+      - name: getuseractiveextensions
+        method: GET
+        description: Twitch Get User Active Extensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: query
+          type: string
+      - name: updateuserextensions
+        method: PUT
+        description: Twitch Update User Extensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-extensions-list
+      path: /users/extensions/list
+      operations:
+      - name: getuserextensions
+        method: GET
+        description: Twitch Get User Extensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: extensions-extensions-rest
+    port: 8080
+    description: REST adapter for Twitch Extensions API — Extensions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/extensions
+      name: extensions
+      description: REST surface for extensions.
+      operations:
+      - method: GET
+        name: getextensions
+        description: Twitch Get Extensions
+        call: extensions-extensions.getextensions
+        with:
+          extension_id: rest.extension_id
+          extension_version: rest.extension_version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extensions/chat
+      name: extensions-chat
+      description: REST surface for extensions-chat.
+      operations:
+      - method: POST
+        name: sendextensionchatmessage
+        description: Twitch Send Extension Chat Message
+        call: extensions-extensions.sendextensionchatmessage
+        with:
+          broadcaster_id: rest.broadcaster_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extensions/live
+      name: extensions-live
+      description: REST surface for extensions-live.
+      operations:
+      - method: GET
+        name: getextensionlivechannels
+        description: Twitch Get Extension Live Channels
+        call: extensions-extensions.getextensionlivechannels
+        with:
+          extension_id: rest.extension_id
+          first: rest.first
+          after: rest.after
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extensions/released
+      name: extensions-released
+      description: REST surface for extensions-released.
+      operations:
+      - method: GET
+        name: getreleasedextensions
+        description: Twitch Get Released Extensions
+        call: extensions-extensions.getreleasedextensions
+        with:
+          extension_id: rest.extension_id
+          extension_version: rest.extension_version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/extensions
+      name: users-extensions
+      description: REST surface for users-extensions.
+      operations:
+      - method: GET
+        name: getuseractiveextensions
+        description: Twitch Get User Active Extensions
+        call: extensions-extensions.getuseractiveextensions
+        with:
+          user_id: rest.user_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateuserextensions
+        description: Twitch Update User Extensions
+        call: extensions-extensions.updateuserextensions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/extensions/list
+      name: users-extensions-list
+      description: REST surface for users-extensions-list.
+      operations:
+      - method: GET
+        name: getuserextensions
+        description: Twitch Get User Extensions
+        call: extensions-extensions.getuserextensions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: extensions-extensions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Extensions API — Extensions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: twitch-get-extensions
+      description: Twitch Get Extensions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.getextensions
+      with:
+        extension_id: tools.extension_id
+        extension_version: tools.extension_version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-send-extension-chat-message
+      description: Twitch Send Extension Chat Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: extensions-extensions.sendextensionchatmessage
+      with:
+        broadcaster_id: tools.broadcaster_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-extension-live-channels
+      description: Twitch Get Extension Live Channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.getextensionlivechannels
+      with:
+        extension_id: tools.extension_id
+        first: tools.first
+        after: tools.after
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-released-extensions
+      description: Twitch Get Released Extensions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.getreleasedextensions
+      with:
+        extension_id: tools.extension_id
+        extension_version: tools.extension_version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-user-active-extensions
+      description: Twitch Get User Active Extensions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.getuseractiveextensions
+      with:
+        user_id: tools.user_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-update-user-extensions
+      description: Twitch Update User Extensions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.updateuserextensions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-user-extensions
+      description: Twitch Get User Extensions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: extensions-extensions.getuserextensions
+      outputParameters:
+      - type: object
+        mapping: $.

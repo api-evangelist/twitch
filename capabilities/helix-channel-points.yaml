@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Channel Points
+  description: 'Twitch Helix API — Channel Points. 2 operations. Lead operation: Twitch Get Custom Reward. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Channel Points
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-channel-points
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Channel Points business capability. Self-contained, no shared references.
+    resources:
+    - name: channel_points-custom_rewards
+      path: /channel_points/custom_rewards
+      operations:
+      - name: getcustomrewards
+        method: GET
+        description: Twitch Get Custom Reward
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: id
+          in: query
+          type: string
+        - name: only_manageable_rewards
+          in: query
+          type: boolean
+      - name: createcustomreward
+        method: POST
+        description: Twitch Create Custom Rewards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-channel-points-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Channel Points. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/channel-points/custom-rewards
+      name: channel-points-custom-rewards
+      description: REST surface for channel_points-custom_rewards.
+      operations:
+      - method: GET
+        name: getcustomrewards
+        description: Twitch Get Custom Reward
+        call: helix-channel-points.getcustomrewards
+        with:
+          broadcaster_id: rest.broadcaster_id
+          id: rest.id
+          only_manageable_rewards: rest.only_manageable_rewards
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomreward
+        description: Twitch Create Custom Rewards
+        call: helix-channel-points.createcustomreward
+        with:
+          broadcaster_id: rest.broadcaster_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-channel-points-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Channel Points. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: twitch-get-custom-reward
+      description: Twitch Get Custom Reward
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-channel-points.getcustomrewards
+      with:
+        broadcaster_id: tools.broadcaster_id
+        id: tools.id
+        only_manageable_rewards: tools.only_manageable_rewards
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-create-custom-rewards
+      description: Twitch Create Custom Rewards
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helix-channel-points.createcustomreward
+      with:
+        broadcaster_id: tools.broadcaster_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

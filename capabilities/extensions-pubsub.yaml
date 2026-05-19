@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Extensions API — Pubsub
+  description: 'Twitch Extensions API — Pubsub. 1 operations. Lead operation: Twitch Send Extension PubSub Message. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Pubsub
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: extensions-pubsub
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Extensions API — Pubsub business capability. Self-contained, no shared references.
+    resources:
+    - name: extensions-pubsub
+      path: /extensions/pubsub
+      operations:
+      - name: sendextensionpubsubmessage
+        method: POST
+        description: Twitch Send Extension PubSub Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: extensions-pubsub-rest
+    port: 8080
+    description: REST adapter for Twitch Extensions API — Pubsub. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/extensions/pubsub
+      name: extensions-pubsub
+      description: REST surface for extensions-pubsub.
+      operations:
+      - method: POST
+        name: sendextensionpubsubmessage
+        description: Twitch Send Extension PubSub Message
+        call: extensions-pubsub.sendextensionpubsubmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: extensions-pubsub-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Extensions API — Pubsub. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: twitch-send-extension-pubsub-message
+      description: Twitch Send Extension PubSub Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: extensions-pubsub.sendextensionpubsubmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

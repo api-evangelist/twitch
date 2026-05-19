@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Video Broadcast API — Ingest
+  description: 'Twitch Video Broadcast API — Ingest. 1 operations. Lead operation: Twitch Get Ingest Servers. Self-contained
+    Naftiko capability covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Ingest
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: video-broadcast-ingest
+    baseUri: https://ingest.twitch.tv
+    description: Twitch Video Broadcast API — Ingest business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-ingests
+      path: /api/v2/ingests
+      operations:
+      - name: getingests
+        method: GET
+        description: Twitch Get Ingest Servers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: video-broadcast-ingest-rest
+    port: 8080
+    description: REST adapter for Twitch Video Broadcast API — Ingest. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/ingests
+      name: api-v2-ingests
+      description: REST surface for api-v2-ingests.
+      operations:
+      - method: GET
+        name: getingests
+        description: Twitch Get Ingest Servers
+        call: video-broadcast-ingest.getingests
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: video-broadcast-ingest-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Video Broadcast API — Ingest. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: twitch-get-ingest-servers
+      description: Twitch Get Ingest Servers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: video-broadcast-ingest.getingests
+      outputParameters:
+      - type: object
+        mapping: $.

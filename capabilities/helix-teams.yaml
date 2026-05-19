@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Teams
+  description: 'Twitch Helix API — Teams. 2 operations. Lead operation: Twitch Get Teams. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-teams
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: teams
+      path: /teams
+      operations:
+      - name: getteams
+        method: GET
+        description: Twitch Get Teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+        - name: id
+          in: query
+          type: string
+    - name: teams-channel
+      path: /teams/channel
+      operations:
+      - name: getchannelteams
+        method: GET
+        description: Twitch Get Channel Teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: broadcaster_id
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-teams-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Teams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/teams
+      name: teams
+      description: REST surface for teams.
+      operations:
+      - method: GET
+        name: getteams
+        description: Twitch Get Teams
+        call: helix-teams.getteams
+        with:
+          name: rest.name
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/channel
+      name: teams-channel
+      description: REST surface for teams-channel.
+      operations:
+      - method: GET
+        name: getchannelteams
+        description: Twitch Get Channel Teams
+        call: helix-teams.getchannelteams
+        with:
+          broadcaster_id: rest.broadcaster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-get-teams
+      description: Twitch Get Teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-teams.getteams
+      with:
+        name: tools.name
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-channel-teams
+      description: Twitch Get Channel Teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-teams.getchannelteams
+      with:
+        broadcaster_id: tools.broadcaster_id
+      outputParameters:
+      - type: object
+        mapping: $.

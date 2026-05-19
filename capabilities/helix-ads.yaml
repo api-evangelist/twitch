@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Ads
+  description: 'Twitch Helix API — Ads. 1 operations. Lead operation: Twitch Start Commercial. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Ads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-ads
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Ads business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-ads
+      path: /channels/ads
+      operations:
+      - name: startcommercial
+        method: POST
+        description: Twitch Start Commercial
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-ads-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Ads. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/ads
+      name: channels-ads
+      description: REST surface for channels-ads.
+      operations:
+      - method: POST
+        name: startcommercial
+        description: Twitch Start Commercial
+        call: helix-ads.startcommercial
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-ads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Ads. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-start-commercial
+      description: Twitch Start Commercial
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helix-ads.startcommercial
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

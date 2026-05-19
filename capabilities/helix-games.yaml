@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Twitch Helix API — Games
+  description: 'Twitch Helix API — Games. 2 operations. Lead operation: Twitch Get Games. Self-contained Naftiko capability
+    covering one Twitch business surface.'
+  tags:
+  - Twitch
+  - Games
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TWITCH_API_KEY: TWITCH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: helix-games
+    baseUri: https://api.twitch.tv/helix
+    description: Twitch Helix API — Games business capability. Self-contained, no shared references.
+    resources:
+    - name: games
+      path: /games
+      operations:
+      - name: getgames
+        method: GET
+        description: Twitch Get Games
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The game/category ID
+        - name: name
+          in: query
+          type: string
+          description: The game/category name
+        - name: igdb_id
+          in: query
+          type: string
+          description: The IGDB ID of the game
+    - name: games-top
+      path: /games/top
+      operations:
+      - name: gettopgames
+        method: GET
+        description: Twitch Get Top Games
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TWITCH_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: helix-games-rest
+    port: 8080
+    description: REST adapter for Twitch Helix API — Games. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/games
+      name: games
+      description: REST surface for games.
+      operations:
+      - method: GET
+        name: getgames
+        description: Twitch Get Games
+        call: helix-games.getgames
+        with:
+          id: rest.id
+          name: rest.name
+          igdb_id: rest.igdb_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/games/top
+      name: games-top
+      description: REST surface for games-top.
+      operations:
+      - method: GET
+        name: gettopgames
+        description: Twitch Get Top Games
+        call: helix-games.gettopgames
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: helix-games-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Twitch Helix API — Games. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: twitch-get-games
+      description: Twitch Get Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-games.getgames
+      with:
+        id: tools.id
+        name: tools.name
+        igdb_id: tools.igdb_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: twitch-get-top-games
+      description: Twitch Get Top Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helix-games.gettopgames
+      outputParameters:
+      - type: object
+        mapping: $.
