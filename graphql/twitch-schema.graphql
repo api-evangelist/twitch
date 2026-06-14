@@ -1,0 +1,1263 @@
+"""
+Twitch GraphQL Schema
+Derived from the Twitch Helix REST API surface (https://dev.twitch.tv/docs/api/reference/)
+and the internal Twitch GQL endpoint used by Twitch web/mobile clients.
+This schema is a community-documented representation; Twitch does not publish an
+official public GraphQL API specification.
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar URL
+scalar ID
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum StreamType {
+  LIVE
+  ALL
+}
+
+enum VideoType {
+  ALL
+  ARCHIVE
+  HIGHLIGHT
+  UPLOAD
+}
+
+enum VideoSort {
+  TIME
+  TRENDING
+  VIEWS
+}
+
+enum PollStatus {
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+  MODERATED
+  INVALID
+  TERMINATED
+}
+
+enum PredictionStatus {
+  ACTIVE
+  CANCELLED
+  LOCKED
+  RESOLVED
+}
+
+enum RedemptionStatus {
+  UNFULFILLED
+  FULFILLED
+  CANCELLED
+}
+
+enum HypeTrainContributionType {
+  BITS
+  SUBSCRIPTION
+  OTHER
+}
+
+enum AutoModStatus {
+  ALLOWED
+  DENIED
+  EXPIRED
+  PENDING
+}
+
+enum BanType {
+  BAN
+  TIMEOUT
+}
+
+enum GoalType {
+  FOLLOWER
+  SUBSCRIPTION
+  SUBSCRIPTION_COUNT
+  NEW_SUBSCRIPTION
+  NEW_SUBSCRIPTION_COUNT
+  NEW_BIT
+  NEW_CHEERER
+}
+
+enum ChatColor {
+  BLUE
+  BLUE_VIOLET
+  CADET_BLUE
+  CHOCOLATE
+  CORAL
+  DODGER_BLUE
+  FIREBRICK
+  GOLDEN_ROD
+  GREEN
+  HOT_PINK
+  ORANGE_RED
+  RED
+  SEA_GREEN
+  SPRING_GREEN
+  YELLOW_GREEN
+}
+
+enum EventSubTransport {
+  WEBHOOK
+  WEBSOCKET
+  CONDUIT
+}
+
+enum AdType {
+  PRE_ROLL
+  MID_ROLL
+}
+
+enum ExtensionType {
+  COMPONENT
+  MOBILE
+  OVERLAY
+  PANEL
+}
+
+# ─── Core Types ─────────────────────────────────────────────────────────────
+
+"""A live or recent stream on Twitch."""
+type Stream {
+  id: ID!
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  user: User
+  gameId: ID
+  gameName: String
+  game: Game
+  type: StreamType!
+  title: String!
+  tags: [String!]
+  viewerCount: Int!
+  startedAt: DateTime!
+  language: String!
+  thumbnailUrl: URL!
+  isMature: Boolean!
+}
+
+"""A Twitch channel (the broadcaster's profile page and stream container)."""
+type Channel {
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  broadcasterLanguage: String!
+  gameName: String!
+  gameId: ID!
+  title: String!
+  delay: Int!
+  tags: [String!]
+  contentClassificationLabels: [String!]
+  isBrandedContent: Boolean!
+  user: User
+  stream: Stream
+}
+
+"""A Twitch user account."""
+type User {
+  id: ID!
+  login: String!
+  displayName: String!
+  type: String
+  broadcasterType: String
+  description: String
+  profileImageUrl: URL
+  offlineImageUrl: URL
+  viewCount: Int
+  email: String
+  createdAt: DateTime!
+  channel: Channel
+  streams(first: Int, after: String): StreamConnection
+  videos(first: Int, after: String, type: VideoType, sort: VideoSort): VideoConnection
+  clips(first: Int, after: String): ClipConnection
+  followers(first: Int, after: String): FollowerConnection
+  subscriptions(first: Int, after: String): SubscriptionConnection
+}
+
+"""A game or category on Twitch."""
+type Game {
+  id: ID!
+  name: String!
+  boxArtUrl: URL!
+  igdbId: ID
+  streams(first: Int, after: String): StreamConnection
+  videos(first: Int, after: String): VideoConnection
+  clips(first: Int, after: String): ClipConnection
+  tags: [Tag!]
+}
+
+"""An alias for Game used in category search contexts."""
+type Category {
+  id: ID!
+  name: String!
+  boxArtUrl: URL!
+}
+
+"""A recorded video (VOD, highlight, or upload)."""
+type Video {
+  id: ID!
+  streamId: ID
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  title: String!
+  description: String
+  createdAt: DateTime!
+  publishedAt: DateTime
+  url: URL!
+  thumbnailUrl: URL!
+  viewable: String
+  viewCount: Int!
+  language: String!
+  type: VideoType!
+  duration: String!
+  mutedSegments: [MutedSegment]
+}
+
+"""A segment of a video that has been muted due to copyright."""
+type MutedSegment {
+  duration: Int!
+  offset: Int!
+}
+
+"""A short clip captured from a Twitch stream."""
+type Clip {
+  id: ID!
+  url: URL!
+  embedUrl: URL!
+  broadcasterId: ID!
+  broadcasterName: String!
+  creatorId: ID!
+  creatorName: String!
+  videoId: ID
+  gameId: ID
+  language: String!
+  title: String!
+  viewCount: Int!
+  createdAt: DateTime!
+  thumbnailUrl: URL!
+  duration: Float!
+  vodOffset: Int
+  isFeatured: Boolean
+}
+
+"""A follow relationship between a user and a channel."""
+type Follower {
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  followedAt: DateTime!
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+}
+
+"""A paid subscription from a user to a broadcaster's channel."""
+type Subscription {
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  gifterId: ID
+  gifterLogin: String
+  gifterName: String
+  isGift: Boolean!
+  planName: String!
+  tier: String!
+  userId: ID!
+  userLogin: String!
+  userName: String!
+}
+
+"""A scheduled segment in a broadcaster's stream schedule."""
+type ScheduleSegment {
+  id: ID!
+  startTime: DateTime!
+  endTime: DateTime!
+  title: String!
+  canceledUntil: DateTime
+  category: Category
+  isRecurring: Boolean!
+}
+
+"""A broadcaster's stream schedule."""
+type Schedule {
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  segments: [ScheduleSegment!]!
+  vacation: ScheduleVacation
+}
+
+"""A vacation block during which no segments are scheduled."""
+type ScheduleVacation {
+  startTime: DateTime!
+  endTime: DateTime!
+}
+
+"""A channel point poll."""
+type Poll {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterName: String!
+  broadcasterLogin: String!
+  title: String!
+  choices: [PollChoice!]!
+  channelPointsVotingEnabled: Boolean!
+  channelPointsPerVote: Int
+  status: PollStatus!
+  duration: Int!
+  startedAt: DateTime!
+  endedAt: DateTime
+}
+
+"""An individual choice within a Poll."""
+type PollChoice {
+  id: ID!
+  title: String!
+  votes: Int!
+  channelPointsVotes: Int!
+}
+
+"""A channel points prediction."""
+type Prediction {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterName: String!
+  broadcasterLogin: String!
+  title: String!
+  winningOutcomeId: ID
+  outcomes: [PredictionOutcome!]!
+  predictionWindow: Int!
+  status: PredictionStatus!
+  createdAt: DateTime!
+  endedAt: DateTime
+  lockedAt: DateTime
+}
+
+"""An individual outcome option in a Prediction."""
+type PredictionOutcome {
+  id: ID!
+  title: String!
+  users: Int!
+  channelPoints: Int!
+  topPredictors: [PredictionPredictor]
+  color: String!
+}
+
+"""A top predictor for a prediction outcome."""
+type PredictionPredictor {
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  channelPointsUsed: Int!
+  channelPointsWon: Int
+}
+
+"""An entry in the Bits leaderboard."""
+type BitsLeaderboard {
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  rank: Int!
+  score: Int!
+}
+
+"""A Bits product available for purchase."""
+type BitsProduct {
+  sku: String!
+  cost: BitsProductCost!
+  inDevelopment: Boolean!
+  displayName: String!
+  expiration: DateTime
+  isBroadcast: Boolean!
+}
+
+"""The cost of a Bits product."""
+type BitsProductCost {
+  amount: Int!
+  type: String!
+}
+
+"""A Twitch Extension."""
+type Extension {
+  authorName: String!
+  bitsEnabled: Boolean!
+  canInstall: Boolean!
+  configurationLocation: String!
+  description: String!
+  eulaTosUrl: URL
+  hasChatSupport: Boolean!
+  iconUrl: URL!
+  iconUrls: ExtensionIconUrls
+  id: ID!
+  installedAt: DateTime!
+  isValid: Boolean!
+  name: String!
+  privacyPolicyUrl: URL
+  requestIdentityLink: Boolean!
+  screenshotUrls: [URL!]
+  state: String!
+  subscriptionsSupportLevel: String!
+  summary: String!
+  supportEmail: String
+  version: String!
+  viewerSummary: String
+  type: ExtensionType!
+}
+
+"""Icon URLs for an extension at various resolutions."""
+type ExtensionIconUrls {
+  x100: URL
+  x150: URL
+  x300: URL
+}
+
+"""A stream tag."""
+type Tag {
+  tagId: ID!
+  isAuto: Boolean!
+  localizationNames: [LocalizationEntry!]!
+  localizationDescriptions: [LocalizationEntry!]!
+}
+
+"""A localization name/description entry."""
+type LocalizationEntry {
+  locale: String!
+  value: String!
+}
+
+"""A Twitch emote."""
+type Emote {
+  id: ID!
+  name: String!
+  images: EmoteImages!
+  tier: String
+  emoteType: String!
+  emoteSetId: ID!
+  format: [String!]!
+  scale: [String!]!
+  themeMode: [String!]!
+}
+
+"""Image URLs for an emote at various sizes."""
+type EmoteImages {
+  url1x: URL!
+  url2x: URL!
+  url4x: URL!
+}
+
+"""A chat badge."""
+type Badge {
+  setId: ID!
+  versions: [BadgeVersion!]!
+}
+
+"""A specific version of a chat badge."""
+type BadgeVersion {
+  id: ID!
+  imageUrl1x: URL!
+  imageUrl2x: URL!
+  imageUrl4x: URL!
+  title: String!
+  description: String!
+  clickAction: String
+  clickUrl: URL
+}
+
+"""A custom channel point reward."""
+type Reward {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  image: RewardImage
+  backgroundColor: String!
+  isEnabled: Boolean!
+  cost: Int!
+  title: String!
+  prompt: String!
+  isUserInputRequired: Boolean!
+  maxPerStreamSetting: RewardMaxPerStreamSetting!
+  maxPerUserPerStreamSetting: RewardMaxPerUserPerStreamSetting!
+  globalCooldownSetting: RewardGlobalCooldownSetting!
+  isPaused: Boolean!
+  isInStock: Boolean!
+  defaultImage: RewardImage!
+  shouldRedemptionsSkipRequestQueue: Boolean!
+  redemptionsRedeemedCurrentStream: Int
+  cooldownExpiresAt: DateTime
+}
+
+type RewardImage {
+  url1x: URL!
+  url2x: URL!
+  url4x: URL!
+}
+
+type RewardMaxPerStreamSetting {
+  isEnabled: Boolean!
+  maxPerStream: Int!
+}
+
+type RewardMaxPerUserPerStreamSetting {
+  isEnabled: Boolean!
+  maxPerUserPerStream: Int!
+}
+
+type RewardGlobalCooldownSetting {
+  isEnabled: Boolean!
+  globalCooldownSeconds: Int!
+}
+
+"""A redemption of a custom channel point reward."""
+type Redemption {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  userInput: String
+  status: RedemptionStatus!
+  redeemedAt: DateTime!
+  reward: Reward!
+}
+
+"""A Hype Train event."""
+type HypeTrain {
+  id: ID!
+  broadcasterId: ID!
+  total: Int!
+  progress: Int!
+  goal: Int!
+  topContributions: [HypeTrainContribution!]!
+  lastContribution: HypeTrainContribution!
+  level: Int!
+  startedAt: DateTime!
+  expiresAt: DateTime!
+}
+
+"""A single contribution to a Hype Train."""
+type HypeTrainContribution {
+  total: Int!
+  type: HypeTrainContributionType!
+  user: ID!
+}
+
+"""A user ban or timeout action."""
+type BanUser {
+  broadcasterId: ID!
+  moderatorId: ID!
+  userId: ID!
+  createdAt: DateTime!
+  endTime: DateTime
+}
+
+"""An unban request submitted by a banned user."""
+type UnbanRequest {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterName: String!
+  broadcasterLogin: String!
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  text: String!
+  status: String!
+  createdAt: DateTime!
+  resolvedAt: DateTime
+  resolutionText: String
+  moderatorId: ID
+  moderatorLogin: String
+  moderatorName: String
+}
+
+"""Shield mode status for a channel."""
+type Shield {
+  isActive: Boolean!
+  moderatorId: ID!
+  moderatorLogin: String!
+  moderatorName: String!
+  lastActivatedAt: DateTime!
+}
+
+"""Moderation action details."""
+type Moderation {
+  broadcasterId: ID!
+  moderatorId: ID!
+  userId: ID!
+  action: String!
+  reason: String
+  createdAt: DateTime!
+}
+
+"""A chat announcer (moderator who can send announcements)."""
+type Announcer {
+  broadcasterId: ID!
+  broadcasterName: String!
+  moderatorId: ID!
+  moderatorLogin: String!
+  moderatorName: String!
+}
+
+"""A single chat message."""
+type ChatMessage {
+  messageId: ID!
+  broadcasterId: ID!
+  broadcasterLogin: String!
+  broadcasterName: String!
+  senderId: ID!
+  senderLogin: String!
+  senderName: String!
+  messageType: String!
+  message: String!
+  color: String
+  badges: [Badge!]
+  cheermotes: [Cheermote]
+  emotes: [MessageEmote]
+  sentAt: DateTime!
+}
+
+"""An emote appearing within a chat message."""
+type MessageEmote {
+  id: ID!
+  emoteSetId: ID!
+  format: [String!]!
+  begin: Int!
+  end: Int!
+}
+
+"""Chat settings for a channel."""
+type ChatSettings {
+  broadcasterId: ID!
+  emoteMode: Boolean!
+  followerMode: Boolean!
+  followerModeDuration: Int
+  slowMode: Boolean!
+  slowModeWaitTime: Int
+  subscriberMode: Boolean!
+  uniqueChatMode: Boolean!
+  sharedChatMode: Boolean
+  nonModeratorChatDelay: Boolean!
+  nonModeratorChatDelayDuration: Int
+}
+
+"""A Bits cheer event."""
+type Cheer {
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  broadcasterId: ID!
+  message: String!
+  bits: Int!
+  cheeredAt: DateTime!
+}
+
+"""A cheermote (animated Bits emote)."""
+type Cheermote {
+  prefix: String!
+  tiers: [CheermoteTier!]!
+  type: String!
+  order: Int!
+  lastUpdated: DateTime!
+  isCharitable: Boolean!
+}
+
+"""A single tier within a cheermote."""
+type CheermoteTier {
+  minBits: Int!
+  id: ID!
+  color: String!
+  images: CheermoteImages!
+  canCheer: Boolean!
+  showInBitsCard: Boolean!
+}
+
+"""Image variants for a cheermote."""
+type CheermoteImages {
+  dark: CheermoteImageSet!
+  light: CheermoteImageSet!
+}
+
+type CheermoteImageSet {
+  animated: CheermoteImageSizes!
+  static: CheermoteImageSizes!
+}
+
+type CheermoteImageSizes {
+  x1: URL!
+  x1_5: URL
+  x2: URL!
+  x3: URL!
+  x4: URL!
+}
+
+"""A channel goal (follower, sub, bits, etc.)."""
+type Goal {
+  id: ID!
+  broadcasterId: ID!
+  broadcasterName: String!
+  broadcasterLogin: String!
+  type: GoalType!
+  description: String!
+  currentAmount: Int!
+  targetAmount: Int!
+  createdAt: DateTime!
+}
+
+"""An EventSub subscription."""
+type EventSubSubscription {
+  id: ID!
+  status: String!
+  type: String!
+  version: String!
+  condition: EventSubCondition!
+  createdAt: DateTime!
+  transport: EventSubTransportConfig!
+  cost: Int!
+}
+
+"""The condition filter for an EventSub subscription."""
+type EventSubCondition {
+  broadcasterId: ID
+  userId: ID
+  moderatorUserId: ID
+  fromBroadcasterId: ID
+  toBroadcasterId: ID
+  rewardId: ID
+  clientId: ID
+  extensionClientId: ID
+  conduitId: ID
+}
+
+"""Transport configuration for an EventSub subscription."""
+type EventSubTransportConfig {
+  method: EventSubTransport!
+  callback: URL
+  sessionId: ID
+  connectedAt: DateTime
+  disconnectedAt: DateTime
+  conduitId: ID
+}
+
+"""A shard within an EventSub conduit."""
+type ConduitShard {
+  id: ID!
+  status: String!
+  transport: EventSubTransportConfig!
+}
+
+"""A raider (a broadcaster who raided a channel)."""
+type Raider {
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  viewerCount: Int!
+  raidedAt: DateTime!
+}
+
+"""A VIP user in a channel."""
+type VIP {
+  userId: ID!
+  userName: String!
+  userLogin: String!
+}
+
+"""A guest in a Guest Star session."""
+type Guest {
+  slotId: ID!
+  isLive: Boolean!
+  userId: ID
+  userName: String
+  userLogin: String
+  volumeLevel: Int
+  assignedPosition: String
+}
+
+"""A creator (high-level representation of a Twitch content creator)."""
+type Creator {
+  id: ID!
+  login: String!
+  displayName: String!
+  profileImageUrl: URL
+  broadcasterType: String!
+  description: String
+  viewCount: Int
+  createdAt: DateTime!
+  channel: Channel
+  stream: Stream
+}
+
+"""An ad break in a stream."""
+type Ad {
+  lengthSeconds: Int!
+  startedAt: DateTime!
+  type: AdType
+  nextAdAt: DateTime
+  lastAdAt: DateTime
+  snoozeCount: Int
+  snoozeRefreshAt: DateTime
+}
+
+"""An AutoMod message hold status."""
+type AutoMod {
+  msgId: ID!
+  userId: ID!
+  userLogin: String!
+  userName: String!
+  status: AutoModStatus!
+  reason: String
+  message: String!
+  category: String
+  level: Int
+  heldAt: DateTime!
+}
+
+"""A term blocked by AutoMod."""
+type BlockedTerm {
+  broadcasterId: ID!
+  moderatorId: ID!
+  id: ID!
+  text: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  expiresAt: DateTime
+}
+
+# ─── Connection / Pagination Types ──────────────────────────────────────────
+
+type StreamConnection {
+  edges: [StreamEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type StreamEdge {
+  cursor: String!
+  node: Stream!
+}
+
+type VideoConnection {
+  edges: [VideoEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type VideoEdge {
+  cursor: String!
+  node: Video!
+}
+
+type ClipConnection {
+  edges: [ClipEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type ClipEdge {
+  cursor: String!
+  node: Clip!
+}
+
+type FollowerConnection {
+  edges: [FollowerEdge!]!
+  pageInfo: PageInfo!
+  total: Int
+}
+
+type FollowerEdge {
+  cursor: String!
+  node: Follower!
+}
+
+type SubscriptionConnection {
+  edges: [SubscriptionEdge!]!
+  pageInfo: PageInfo!
+  total: Int
+  points: Int
+}
+
+type SubscriptionEdge {
+  cursor: String!
+  node: Subscription!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# ─── Input Types ────────────────────────────────────────────────────────────
+
+input CreatePollInput {
+  broadcasterId: ID!
+  title: String!
+  choices: [PollChoiceInput!]!
+  duration: Int!
+  channelPointsVotingEnabled: Boolean
+  channelPointsPerVote: Int
+}
+
+input PollChoiceInput {
+  title: String!
+}
+
+input EndPollInput {
+  broadcasterId: ID!
+  id: ID!
+  status: PollStatus!
+}
+
+input CreatePredictionInput {
+  broadcasterId: ID!
+  title: String!
+  outcomes: [PredictionOutcomeInput!]!
+  predictionWindow: Int!
+}
+
+input PredictionOutcomeInput {
+  title: String!
+}
+
+input EndPredictionInput {
+  broadcasterId: ID!
+  id: ID!
+  status: PredictionStatus!
+  winningOutcomeId: ID
+}
+
+input BanUserInput {
+  broadcasterId: ID!
+  moderatorId: ID!
+  userId: ID!
+  reason: String
+  duration: Int
+}
+
+input UnbanUserInput {
+  broadcasterId: ID!
+  moderatorId: ID!
+  userId: ID!
+}
+
+input CreateCustomRewardInput {
+  broadcasterId: ID!
+  title: String!
+  cost: Int!
+  prompt: String
+  isEnabled: Boolean
+  backgroundColor: String
+  isUserInputRequired: Boolean
+  maxPerStreamEnabled: Boolean
+  maxPerStream: Int
+  maxPerUserPerStreamEnabled: Boolean
+  maxPerUserPerStream: Int
+  globalCooldownEnabled: Boolean
+  globalCooldownSeconds: Int
+  shouldRedemptionsSkipRequestQueue: Boolean
+}
+
+input UpdateCustomRewardInput {
+  broadcasterId: ID!
+  id: ID!
+  title: String
+  cost: Int
+  prompt: String
+  isEnabled: Boolean
+  backgroundColor: String
+  isUserInputRequired: Boolean
+  maxPerStreamEnabled: Boolean
+  maxPerStream: Int
+  maxPerUserPerStreamEnabled: Boolean
+  maxPerUserPerStream: Int
+  globalCooldownEnabled: Boolean
+  globalCooldownSeconds: Int
+  isPaused: Boolean
+  shouldRedemptionsSkipRequestQueue: Boolean
+}
+
+input SendChatAnnouncementInput {
+  broadcasterId: ID!
+  moderatorId: ID!
+  message: String!
+  color: String
+}
+
+input UpdateChatSettingsInput {
+  broadcasterId: ID!
+  moderatorId: ID!
+  emoteMode: Boolean
+  followerMode: Boolean
+  followerModeDuration: Int
+  slowMode: Boolean
+  slowModeWaitTime: Int
+  subscriberMode: Boolean
+  uniqueChatMode: Boolean
+  nonModeratorChatDelay: Boolean
+  nonModeratorChatDelayDuration: Int
+}
+
+input StartRaidInput {
+  fromBroadcasterId: ID!
+  toBroadcasterId: ID!
+}
+
+input StartAdInput {
+  broadcasterId: ID!
+  length: Int!
+}
+
+input UpdateScheduleSegmentInput {
+  broadcasterId: ID!
+  id: ID!
+  startTime: DateTime
+  duration: Int
+  categoryId: ID
+  title: String
+  isCanceled: Boolean
+  timezone: String
+}
+
+# ─── Root Types ─────────────────────────────────────────────────────────────
+
+type Query {
+  """Fetch a live stream by user ID."""
+  stream(userId: ID!): Stream
+
+  """Fetch multiple live streams."""
+  streams(
+    userIds: [ID!]
+    userLogins: [String!]
+    gameIds: [ID!]
+    type: StreamType
+    language: String
+    first: Int
+    after: String
+    before: String
+  ): StreamConnection!
+
+  """Fetch a channel by broadcaster ID."""
+  channel(broadcasterId: ID!): Channel
+
+  """Fetch a user by ID or login."""
+  user(id: ID, login: String): User
+
+  """Fetch multiple users by IDs or logins."""
+  users(ids: [ID!], logins: [String!]): [User!]!
+
+  """Fetch a game/category by ID or name."""
+  game(id: ID, name: String): Game
+
+  """Fetch multiple games/categories."""
+  games(ids: [ID!], names: [String!]): [Game!]!
+
+  """Fetch top games/categories by viewer count."""
+  topGames(first: Int, after: String, before: String): [Game!]!
+
+  """Fetch VODs for a user."""
+  videos(
+    userId: ID
+    gameId: ID
+    ids: [ID!]
+    language: String
+    period: String
+    sort: VideoSort
+    type: VideoType
+    first: Int
+    after: String
+    before: String
+  ): VideoConnection!
+
+  """Fetch clips."""
+  clips(
+    broadcasterId: ID
+    gameId: ID
+    ids: [ID!]
+    startedAt: DateTime
+    endedAt: DateTime
+    isFeatured: Boolean
+    first: Int
+    after: String
+    before: String
+  ): ClipConnection!
+
+  """Fetch followers of a broadcaster."""
+  followers(
+    broadcasterId: ID!
+    userId: ID
+    first: Int
+    after: String
+  ): FollowerConnection!
+
+  """Fetch subscriptions for a broadcaster."""
+  subscriptions(
+    broadcasterId: ID!
+    userId: [ID!]
+    first: Int
+    after: String
+  ): SubscriptionConnection!
+
+  """Fetch the stream schedule for a broadcaster."""
+  schedule(broadcasterId: ID!, startTime: DateTime, utcOffset: String, first: Int, after: String): Schedule
+
+  """Fetch polls for a broadcaster."""
+  polls(broadcasterId: ID!, id: [ID!], status: PollStatus, first: Int, after: String): [Poll!]!
+
+  """Fetch predictions for a broadcaster."""
+  predictions(broadcasterId: ID!, id: [ID!], status: PredictionStatus, first: Int, after: String): [Prediction!]!
+
+  """Fetch the Bits leaderboard for a broadcaster."""
+  bitsLeaderboard(count: Int, period: String, startedAt: DateTime, userId: ID): [BitsLeaderboard!]!
+
+  """Fetch Bits products for an extension."""
+  bitsProducts(shouldIncludeAll: Boolean): [BitsProduct!]!
+
+  """Fetch a broadcaster's channel point rewards."""
+  customRewards(broadcasterId: ID!, id: [ID!], onlyManageableRewards: Boolean): [Reward!]!
+
+  """Fetch redemptions for a reward."""
+  customRewardRedemptions(
+    broadcasterId: ID!
+    rewardId: ID!
+    status: RedemptionStatus
+    id: [ID!]
+    sort: String
+    first: Int
+    after: String
+  ): [Redemption!]!
+
+  """Fetch Hype Train events for a broadcaster."""
+  hypeTrain(broadcasterId: ID!, first: Int, after: String): [HypeTrain!]!
+
+  """Fetch banned users for a broadcaster."""
+  bannedUsers(broadcasterId: ID!, userId: [ID!], first: Int, after: String, before: String): [BanUser!]!
+
+  """Fetch unban requests for a broadcaster."""
+  unbanRequests(broadcasterId: ID!, moderatorId: ID!, status: String, userId: ID, first: Int, after: String): [UnbanRequest!]!
+
+  """Fetch shield mode status for a broadcaster."""
+  shieldMode(broadcasterId: ID!, moderatorId: ID!): Shield
+
+  """Fetch chat settings for a broadcaster."""
+  chatSettings(broadcasterId: ID!, moderatorId: ID): ChatSettings
+
+  """Fetch global or channel emotes."""
+  emotes(broadcasterId: ID): [Emote!]!
+
+  """Fetch global or channel badges."""
+  badges(broadcasterId: ID): [Badge!]!
+
+  """Fetch cheermotes."""
+  cheermotes(broadcasterId: ID): [Cheermote!]!
+
+  """Fetch goals for a broadcaster."""
+  goals(broadcasterId: ID!): [Goal!]!
+
+  """Fetch tags for streams."""
+  tags(broadcasterId: ID!): [Tag!]!
+
+  """Fetch EventSub subscriptions."""
+  eventSubSubscriptions(status: String, type: String, userId: ID, after: String): [EventSubSubscription!]!
+
+  """Fetch conduit shards."""
+  conduitShards(conduitId: ID!, status: String, after: String): [ConduitShard!]!
+
+  """Fetch VIPs for a broadcaster."""
+  vips(broadcasterId: ID!, userId: [ID!], first: Int, after: String): [VIP!]!
+
+  """Fetch ad schedule for a broadcaster."""
+  adSchedule(broadcasterId: ID!): Ad
+
+  """Fetch AutoMod held messages."""
+  autoModHeld(broadcasterId: ID!, first: Int, after: String): [AutoMod!]!
+
+  """Fetch blocked terms for a broadcaster."""
+  blockedTerms(broadcasterId: ID!, moderatorId: ID!, first: Int, after: String): [BlockedTerm!]!
+
+  """Search channels by query."""
+  searchChannels(query: String!, first: Int, after: String, liveOnly: Boolean): [Channel!]!
+
+  """Search categories/games by query."""
+  searchCategories(query: String!, first: Int, after: String): [Category!]!
+
+  """Fetch extensions for the authenticated user."""
+  userExtensions: [Extension!]!
+}
+
+type Mutation {
+  """Create a poll in a channel."""
+  createPoll(input: CreatePollInput!): Poll!
+
+  """End an active poll."""
+  endPoll(input: EndPollInput!): Poll!
+
+  """Create a prediction in a channel."""
+  createPrediction(input: CreatePredictionInput!): Prediction!
+
+  """End or resolve a prediction."""
+  endPrediction(input: EndPredictionInput!): Prediction!
+
+  """Ban or timeout a user."""
+  banUser(input: BanUserInput!): BanUser!
+
+  """Unban a user."""
+  unbanUser(input: UnbanUserInput!): Boolean!
+
+  """Create a custom channel point reward."""
+  createCustomReward(input: CreateCustomRewardInput!): Reward!
+
+  """Update an existing custom reward."""
+  updateCustomReward(input: UpdateCustomRewardInput!): Reward!
+
+  """Send a chat announcement."""
+  sendChatAnnouncement(input: SendChatAnnouncementInput!): Boolean!
+
+  """Update chat settings for a channel."""
+  updateChatSettings(input: UpdateChatSettingsInput!): ChatSettings!
+
+  """Raid another broadcaster's channel."""
+  startRaid(input: StartRaidInput!): Boolean!
+
+  """Cancel an in-progress raid."""
+  cancelRaid(broadcasterId: ID!): Boolean!
+
+  """Start an ad break."""
+  startAd(input: StartAdInput!): Ad!
+
+  """Snooze the next ad break."""
+  snoozeNextAd(broadcasterId: ID!): Ad!
+
+  """Update a schedule segment."""
+  updateScheduleSegment(input: UpdateScheduleSegmentInput!): ScheduleSegment!
+
+  """Delete a schedule segment."""
+  deleteScheduleSegment(broadcasterId: ID!, id: ID!): Boolean!
+
+  """Activate or deactivate Shield Mode."""
+  updateShieldMode(broadcasterId: ID!, moderatorId: ID!, isActive: Boolean!): Shield!
+
+  """Add a blocked term."""
+  addBlockedTerm(broadcasterId: ID!, moderatorId: ID!, text: String!): BlockedTerm!
+
+  """Remove a blocked term."""
+  removeBlockedTerm(broadcasterId: ID!, moderatorId: ID!, id: ID!): Boolean!
+
+  """Add a VIP to a channel."""
+  addVIP(broadcasterId: ID!, userId: ID!): Boolean!
+
+  """Remove a VIP from a channel."""
+  removeVIP(broadcasterId: ID!, userId: ID!): Boolean!
+
+  """Resolve an unban request."""
+  resolveUnbanRequest(broadcasterId: ID!, moderatorId: ID!, unbanRequestId: ID!, status: String!, resolutionText: String): UnbanRequest!
+
+  """Manage an AutoMod held message."""
+  manageAutoModMessage(userId: ID!, msgId: ID!, action: String!): Boolean!
+}
