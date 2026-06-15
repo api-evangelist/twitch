@@ -1,0 +1,106 @@
+{
+  "item": [
+    {
+      "id": "ce3e7808-9133-4067-9197-8e4d50fb6e93",
+      "name": "Ingest",
+      "description": {
+        "content": "Ingest server information for broadcasting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae49d09b-411e-46d5-a247-f7af69a44208",
+          "name": "Twitch Get Ingest Servers",
+          "request": {
+            "name": "Twitch Get Ingest Servers",
+            "description": {
+              "content": "Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28bf006a-ecfb-4f3a-9085-19594999e644",
+              "name": "Ingest servers returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ingests\": [\n    {\n      \"_id\": 8503,\n      \"availability\": 3354.2494069075656,\n      \"default\": false,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 3072\n    },\n    {\n      \"_id\": 8841,\n      \"availability\": 2276.3893318535065,\n      \"default\": false,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 7727\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ingest.twitch.tv",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c87f3fc-eaef-467a-be1b-af753b73a506",
+    "name": "Twitch Video Broadcast API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving ingest server information used by broadcasters to send live video streams to Twitch via RTMP. Provides ingest endpoints sorted by proximity and availability.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

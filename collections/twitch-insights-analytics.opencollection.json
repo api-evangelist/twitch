@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Insights and Analytics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://id.twitch.tv/oauth2/authorize",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extension Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Extension Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/analytics/extensions",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "extension_id",
+                "value": "",
+                "type": "query",
+                "description": "Extension ID to filter by"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of analytics report"
+              },
+              {
+                "name": "started_at",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range (RFC 3339)"
+              },
+              {
+                "name": "ended_at",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range (RFC 3339)"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets an analytics report for one or more extensions. The response includes a URL to a downloadable CSV file containing the analytics data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Game Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Game Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/analytics/games",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "query",
+                "description": "Game ID to filter by"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of analytics report"
+              },
+              {
+                "name": "started_at",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range (RFC 3339)"
+              },
+              {
+                "name": "ended_at",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range (RFC 3339)"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets an analytics report for one or more games. The response includes a URL to a downloadable CSV file containing the analytics data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

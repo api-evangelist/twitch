@@ -2,6 +2,13 @@
   "repo": "twitch",
   "feeds": [
     {
+      "source": "https://blog.twitch.tv/en/feed.xml",
+      "feed_url": "https://blog.twitch.tv/en/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://dev.twitch.tv/console",
       "feed_url": "https://dev.twitch.tv/console",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
-  "post_count": 0
+  "post_count": 1,
+  "fetched": "2026-06-14T20:42:17Z"
 }

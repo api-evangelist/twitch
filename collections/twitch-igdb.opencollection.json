@@ -1,0 +1,365 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch IGDB API",
+    "version": "4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/games",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query the games endpoint using Apicalypse query language. Send the query as the request body in plain text format."
+        },
+        {
+          "info": {
+            "name": "Twitch Count Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/games/count",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns the count of games matching the query."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Release Dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/release_dates",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game release dates across platforms and regions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Platforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Platforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/platforms",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query gaming platforms using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/companies",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game companies using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Involved Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/involved_companies",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query companies involved in game development or publishing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Characters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Characters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/characters",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game characters using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/collections",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game collections and franchises using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Franchises",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/franchises",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game franchises using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Genres",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Genres",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/genres",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game genres using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Themes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Themes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/themes",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game themes using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Screenshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/screenshots",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game screenshots using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Artworks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/artworks",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game artworks using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Game Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/game_videos",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game video references using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Covers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/covers",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game cover art using Apicalypse query language."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Multi-Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.igdb.com/v4/search",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Search across multiple IGDB resources simultaneously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

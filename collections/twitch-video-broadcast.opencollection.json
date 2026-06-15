@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Video Broadcast API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Ingest Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ingest.twitch.tv/api/v2/ingests"
+          },
+          "docs": "Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
