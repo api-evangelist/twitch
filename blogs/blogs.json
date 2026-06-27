@@ -2,20 +2,13 @@
   "repo": "twitch",
   "feeds": [
     {
-      "source": "https://blog.twitch.tv/en/feed.xml",
-      "feed_url": "https://blog.twitch.tv/en/feed.xml",
-      "title": "",
+      "source": "https://blog.twitch.tv/en/tags/developers/",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://dev.twitch.tv/console",
-      "feed_url": "https://dev.twitch.tv/console",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 2,
+  "fetched": "2026-06-27T13:18:15Z",
+  "agent_pulled": "2026-06-27"
 }

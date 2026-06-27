@@ -233,7 +233,7 @@ maintainers:
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/twitch-tv
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://dev.twitch.tv/
 - type: Console
   url: https://dev.twitch.tv/console
@@ -247,7 +247,7 @@ common:
   url: https://dev.twitch.tv/docs/cli
 - type: Support
   url: https://dev.twitch.tv/support/
-- type: Forum
+- type: Forums
   url: https://discuss.dev.twitch.com/
 - type: Feedback
   url: https://twitch.uservoice.com/forums/310213-developers
