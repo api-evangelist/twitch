@@ -1,0 +1,38 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/twitch-drops-openapi.yml, openapi/twitch-extensions-openapi.yml, openapi/twitch-helix-openapi.yml,
+  openapi/twitch-igdb-openapi.yml, openapi/twitch-insights-analytics-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://id.twitch.tv/oauth2/token
+    scopes: 0
+  sources:
+  - openapi/twitch-drops-openapi.yml
+  - openapi/twitch-igdb-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://id.twitch.tv/oauth2/authorize
+    tokenUrl: https://id.twitch.tv/oauth2/token
+    scopes: 2
+  sources:
+  - openapi/twitch-extensions-openapi.yml
+  - openapi/twitch-helix-openapi.yml
+  - openapi/twitch-insights-analytics-openapi.yml
+- name: appAccessToken
+  type: http
+  scheme: bearer
+  description: App Access Token obtained via Client Credentials grant
+  sources:
+  - openapi/twitch-helix-openapi.yml
