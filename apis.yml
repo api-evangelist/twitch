@@ -231,6 +231,10 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Authentication
+  url: authentication/twitch-authentication.yml
+- type: OAuthScopes
+  url: scopes/twitch-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/twitch-tv
 - type: DeveloperPortal

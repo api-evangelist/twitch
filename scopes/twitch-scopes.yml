@@ -1,0 +1,291 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/twitch-drops-openapi.yml, openapi/twitch-extensions-openapi.yml, openapi/twitch-helix-openapi.yml,
+  openapi/twitch-igdb-openapi.yml, openapi/twitch-insights-analytics-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/twitch-drops-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://id.twitch.tv/oauth2/token
+- name: oauth2
+  source: openapi/twitch-extensions-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://id.twitch.tv/oauth2/authorize
+    tokenUrl: https://id.twitch.tv/oauth2/token
+- name: oauth2
+  source: openapi/twitch-helix-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://id.twitch.tv/oauth2/authorize
+    tokenUrl: https://id.twitch.tv/oauth2/token
+  description: OAuth 2.0 Authorization Code Flow
+- name: oauth2
+  source: openapi/twitch-igdb-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://id.twitch.tv/oauth2/token
+  description: Twitch OAuth2 Client Credentials for IGDB access
+- name: oauth2
+  source: openapi/twitch-insights-analytics-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://id.twitch.tv/oauth2/authorize
+    tokenUrl: https://id.twitch.tv/oauth2/token
+scopes:
+- scope: analytics:read:extensions
+  description: View analytics data for extensions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+  - openapi/twitch-insights-analytics-openapi.yml
+- scope: analytics:read:games
+  description: View analytics data for games
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+  - openapi/twitch-insights-analytics-openapi.yml
+- scope: bits:read
+  description: View Bits information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:edit:commercial
+  description: Run commercials on a channel
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:broadcast
+  description: Manage a channel's broadcast configuration
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:moderators
+  description: Add and remove channel moderators
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:polls
+  description: Manage a channel's polls
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:predictions
+  description: Manage a channel's predictions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:raids
+  description: Manage a channel's raids
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:redemptions
+  description: Manage channel points custom rewards and their redemptions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:schedule
+  description: Manage a channel's stream schedule
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:manage:videos
+  description: Manage a channel's videos
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:editors
+  description: View a channel's editors
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:goals
+  description: View a channel's goals
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:hype_train
+  description: View Hype Train information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:polls
+  description: View a channel's polls
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:predictions
+  description: View a channel's predictions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:redemptions
+  description: View channel points custom rewards and their redemptions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:stream_key
+  description: Read an authorized user's stream key
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: channel:read:subscriptions
+  description: View a channel's subscribers
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: chat:edit
+  description: Send live stream chat messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: chat:read
+  description: View live stream chat messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: clips:edit
+  description: Create clips
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderation:read
+  description: View a channel's moderation data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:announcements
+  description: Send announcements in channels
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:automod
+  description: Manage messages held by AutoMod
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:banned_users
+  description: Ban and unban users
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:blocked_terms
+  description: Manage blocked terms
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:chat_messages
+  description: Delete chat messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:manage:chat_settings
+  description: Manage chat settings
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:read:chatters
+  description: View the chatters in a channel
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: moderator:read:followers
+  description: Read the followers of a channel
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:edit
+  description: Manage a user's account
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:edit:broadcast
+  description: Edit a user's broadcasting configuration
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-extensions-openapi.yml
+- scope: user:manage:blocked_users
+  description: Manage user's block list
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:manage:whispers
+  description: Send whisper messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:read:blocked_users
+  description: View a user's block list
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:read:broadcast
+  description: View a user's broadcasting configuration
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-extensions-openapi.yml
+  - openapi/twitch-helix-openapi.yml
+- scope: user:read:email
+  description: View a user's email address
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:read:follows
+  description: View the list of channels a user follows
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: user:read:subscriptions
+  description: View a user's subscriptions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
+- scope: whispers:read
+  description: View whisper messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/twitch-helix-openapi.yml
