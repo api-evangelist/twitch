@@ -231,6 +231,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: AgenticAccess
+  url: agentic-access/twitch-agentic-access.yml
 - type: DomainSecurity
   url: security/twitch-domain-security.yml
 - type: Authentication
