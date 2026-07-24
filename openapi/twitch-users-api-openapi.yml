@@ -1,0 +1,251 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Users API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Users
+  description: Manage user information and blocks
+paths:
+  /users:
+    get:
+      operationId: getUsers
+      summary: Twitch Get Users
+      description: Gets information about one or more Twitch users.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: login
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Users returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateUser
+      summary: Twitch Update User
+      description: Updates the authenticated user's information.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: description
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+  /users/blocks:
+    get:
+      operationId: getUserBlockList
+      summary: Twitch Get User Block List
+      description: Gets the list of users the authenticated user has blocked.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Block list returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BlockedUser'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    put:
+      operationId: blockUser
+      summary: Twitch Block User
+      description: Blocks the specified user from interacting with the broadcaster.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: target_user_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: source_context
+        in: query
+        schema:
+          type: string
+          enum:
+          - chat
+          - whisper
+      - name: reason
+        in: query
+        schema:
+          type: string
+          enum:
+          - spam
+          - harassment
+          - other
+      responses:
+        '204':
+          description: User blocked successfully
+    delete:
+      operationId: unblockUser
+      summary: Twitch Unblock User
+      description: Removes the user from the broadcaster's block list.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: target_user_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User unblocked successfully
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        login:
+          type: string
+        display_name:
+          type: string
+        type:
+          type: string
+          enum:
+          - admin
+          - global_mod
+          - staff
+          - ''
+        broadcaster_type:
+          type: string
+          enum:
+          - affiliate
+          - partner
+          - ''
+        description:
+          type: string
+        profile_image_url:
+          type: string
+        offline_image_url:
+          type: string
+        view_count:
+          type: integer
+          deprecated: true
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    BlockedUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        display_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

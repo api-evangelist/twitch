@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Conduits API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Conduits
+  description: Manage EventSub conduits and shards
+paths:
+  /conduits:
+    get:
+      operationId: getConduits
+      summary: Twitch Get Conduits
+      description: Gets the conduits for a client ID.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      responses:
+        '200':
+          description: Conduits returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conduit'
+    post:
+      operationId: createConduit
+      summary: Twitch Create Conduit
+      description: Creates a new conduit.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shard_count
+              properties:
+                shard_count:
+                  type: integer
+      responses:
+        '200':
+          description: Conduit created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conduit'
+    patch:
+      operationId: updateConduit
+      summary: Twitch Update Conduit
+      description: Updates a conduit's shard count.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - shard_count
+              properties:
+                id:
+                  type: string
+                shard_count:
+                  type: integer
+      responses:
+        '200':
+          description: Conduit updated successfully
+    delete:
+      operationId: deleteConduit
+      summary: Twitch Delete Conduit
+      description: Deletes a specified conduit.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Conduit deleted successfully
+  /conduits/shards:
+    get:
+      operationId: getConduitShards
+      summary: Twitch Get Conduit Shards
+      description: Gets the shards for a conduit.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: conduit_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Conduit shards returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConduitShard'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    patch:
+      operationId: updateConduitShards
+      summary: Twitch Update Conduit Shards
+      description: Updates shard transport for a conduit.
+      tags:
+      - Conduits
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - conduit_id
+              - shards
+              properties:
+                conduit_id:
+                  type: string
+                shards:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - id
+                    - transport
+                    properties:
+                      id:
+                        type: string
+                      transport:
+                        type: object
+                        required:
+                        - method
+                        properties:
+                          method:
+                            type: string
+                            enum:
+                            - webhook
+                            - websocket
+                          callback:
+                            type: string
+                          secret:
+                            type: string
+                          session_id:
+                            type: string
+      responses:
+        '202':
+          description: Shards updated successfully
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    Conduit:
+      type: object
+      properties:
+        id:
+          type: string
+        shard_count:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    ConduitShard:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        transport:
+          type: object
+          properties:
+            method:
+              type: string
+            callback:
+              type: string
+            session_id:
+              type: string
+            connected_at:
+              type: string
+              format: date-time
+            disconnected_at:
+              type: string
+              format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Characters API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Characters
+  description: Game character data
+paths:
+  /characters:
+    post:
+      operationId: queryCharacters
+      summary: Twitch Query Characters
+      description: Query game characters using Apicalypse query language.
+      tags:
+      - Characters
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Characters returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        gender:
+          type: integer
+          description: 0=Male, 1=Female, 2=Other
+        species:
+          type: integer
+          description: 1=Human, 2=Alien, 3=Animal, 4=Android, 5=Unknown
+        mug_shot:
+          type: integer
+        games:
+          type: array
+          items:
+            type: integer
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

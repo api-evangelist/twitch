@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Whispers API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Whispers
+  description: Send whisper messages
+paths:
+  /whispers:
+    post:
+      operationId: sendWhisper
+      summary: Twitch Send Whisper
+      description: Sends a whisper message to the specified user.
+      tags:
+      - Whispers
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: from_user_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: to_user_id
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+      responses:
+        '204':
+          description: Whisper sent successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

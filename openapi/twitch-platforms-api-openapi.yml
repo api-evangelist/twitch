@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Platforms API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Platforms
+  description: Gaming platform data
+paths:
+  /platforms:
+    post:
+      operationId: queryPlatforms
+      summary: Twitch Query Platforms
+      description: Query gaming platforms using Apicalypse query language.
+      tags:
+      - Platforms
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Platforms returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Platform'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Platform:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        abbreviation:
+          type: string
+        alternative_name:
+          type: string
+        category:
+          type: integer
+          description: 1=console, 2=arcade, 3=platform, 4=operating_system, 5=portable_console, 6=computer
+        generation:
+          type: integer
+        platform_family:
+          type: integer
+        platform_logo:
+          type: integer
+        summary:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

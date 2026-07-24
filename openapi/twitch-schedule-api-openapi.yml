@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Schedule API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Schedule
+  description: Manage channel stream schedules
+paths:
+  /schedule:
+    get:
+      operationId: getChannelStreamSchedule
+      summary: Twitch Get Channel Stream Schedule
+      description: Gets the broadcaster's streaming schedule.
+      tags:
+      - Schedule
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: utc_offset
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Stream schedule returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StreamSchedule'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    patch:
+      operationId: updateChannelStreamSchedule
+      summary: Twitch Update Channel Stream Schedule
+      description: Updates the broadcaster's streaming schedule settings.
+      tags:
+      - Schedule
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: is_vacation_enabled
+        in: query
+        schema:
+          type: boolean
+      - name: vacation_start_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: vacation_end_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: timezone
+        in: query
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Schedule updated successfully
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    StreamSchedule:
+      type: object
+      properties:
+        segments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              start_time:
+                type: string
+                format: date-time
+              end_time:
+                type: string
+                format: date-time
+              title:
+                type: string
+              canceled_until:
+                type: string
+                format: date-time
+                nullable: true
+              category:
+                type: object
+                nullable: true
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+              is_recurring:
+                type: boolean
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        broadcaster_login:
+          type: string
+        vacation:
+          type: object
+          nullable: true
+          properties:
+            start_time:
+              type: string
+              format: date-time
+            end_time:
+              type: string
+              format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

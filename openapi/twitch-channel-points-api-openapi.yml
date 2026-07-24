@@ -1,0 +1,230 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Channel Points API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Channel Points
+  description: Manage custom channel point rewards and redemptions
+paths:
+  /channel_points/custom_rewards:
+    get:
+      operationId: getCustomRewards
+      summary: Twitch Get Custom Reward
+      description: Gets a list of custom rewards for the specified broadcaster.
+      tags:
+      - Channel Points
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: only_manageable_rewards
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Custom rewards returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomReward'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomReward
+      summary: Twitch Create Custom Rewards
+      description: Creates a custom reward for the specified broadcaster.
+      tags:
+      - Channel Points
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomRewardInput'
+      responses:
+        '200':
+          description: Custom reward created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomReward'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    CustomReward:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        id:
+          type: string
+        title:
+          type: string
+        prompt:
+          type: string
+        cost:
+          type: integer
+        image:
+          type: object
+          nullable: true
+          properties:
+            url_1x:
+              type: string
+            url_2x:
+              type: string
+            url_4x:
+              type: string
+        background_color:
+          type: string
+        is_enabled:
+          type: boolean
+        is_user_input_required:
+          type: boolean
+        max_per_stream_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            max_per_stream:
+              type: integer
+        max_per_user_per_stream_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            max_per_user_per_stream:
+              type: integer
+        global_cooldown_setting:
+          type: object
+          properties:
+            is_enabled:
+              type: boolean
+            global_cooldown_seconds:
+              type: integer
+        is_paused:
+          type: boolean
+        is_in_stock:
+          type: boolean
+        should_redemptions_skip_request_queue:
+          type: boolean
+        redemptions_redeemed_current_stream:
+          type: integer
+          nullable: true
+        cooldown_expires_at:
+          type: string
+          nullable: true
+          format: date-time
+    CustomRewardInput:
+      type: object
+      required:
+      - title
+      - cost
+      properties:
+        title:
+          type: string
+        cost:
+          type: integer
+        prompt:
+          type: string
+        is_enabled:
+          type: boolean
+        background_color:
+          type: string
+        is_user_input_required:
+          type: boolean
+        is_max_per_stream_enabled:
+          type: boolean
+        max_per_stream:
+          type: integer
+        is_max_per_user_per_stream_enabled:
+          type: boolean
+        max_per_user_per_stream:
+          type: integer
+        is_global_cooldown_enabled:
+          type: boolean
+        global_cooldown_seconds:
+          type: integer
+        should_redemptions_skip_request_queue:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

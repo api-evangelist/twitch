@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Subscriptions API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Subscriptions
+  description: Retrieve subscription information
+paths:
+  /subscriptions:
+    get:
+      operationId: getBroadcasterSubscriptions
+      summary: Twitch Get Broadcaster Subscriptions
+      description: Gets a list of all subscribers to the specified broadcaster.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Subscriptions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  total:
+                    type: integer
+                  points:
+                    type: integer
+components:
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        broadcaster_login:
+          type: string
+        broadcaster_name:
+          type: string
+        gifter_id:
+          type: string
+        gifter_login:
+          type: string
+        gifter_name:
+          type: string
+        is_gift:
+          type: boolean
+        plan_name:
+          type: string
+        tier:
+          type: string
+          enum:
+          - '1000'
+          - '2000'
+          - '3000'
+        user_id:
+          type: string
+        user_name:
+          type: string
+        user_login:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

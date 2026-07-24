@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Ads
+  description: Manage and start commercial ad breaks
+paths:
+  /channels/ads:
+    post:
+      operationId: startCommercial
+      summary: Twitch Start Commercial
+      description: Starts a commercial on the specified broadcaster's channel.
+      tags:
+      - Ads
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - broadcaster_id
+              - length
+              properties:
+                broadcaster_id:
+                  type: string
+                  description: The ID of the broadcaster to run the commercial for
+                length:
+                  type: integer
+                  enum:
+                  - 30
+                  - 60
+                  - 90
+                  - 120
+                  - 150
+                  - 180
+                  description: The length of the commercial in seconds
+      responses:
+        '200':
+          description: Commercial started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Commercial'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Commercial:
+      type: object
+      properties:
+        length:
+          type: integer
+        message:
+          type: string
+        retry_after:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

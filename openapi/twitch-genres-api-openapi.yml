@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Genres API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Genres
+  description: Game genre data
+paths:
+  /genres:
+    post:
+      operationId: queryGenres
+      summary: Twitch Query Genres
+      description: Query game genres using Apicalypse query language.
+      tags:
+      - Genres
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Genres returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+components:
+  schemas:
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

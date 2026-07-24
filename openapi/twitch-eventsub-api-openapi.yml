@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads EventSub API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: EventSub
+  description: Manage EventSub subscriptions
+paths:
+  /eventsub/subscriptions:
+    get:
+      operationId: getEventSubSubscriptions
+      summary: Twitch Get EventSub Subscriptions
+      description: Gets a list of your EventSub subscriptions.
+      tags:
+      - EventSub
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - enabled
+          - webhook_callback_verification_pending
+          - webhook_callback_verification_failed
+          - notification_failures_exceeded
+          - authorization_revoked
+          - moderator_removed
+          - user_removed
+          - version_removed
+      - name: type
+        in: query
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: EventSub subscriptions returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventSubSubscription'
+                  total:
+                    type: integer
+                  total_cost:
+                    type: integer
+                  max_total_cost:
+                    type: integer
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createEventSubSubscription
+      summary: Twitch Create EventSub Subscription
+      description: Creates an EventSub subscription.
+      tags:
+      - EventSub
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubSubscriptionInput'
+      responses:
+        '202':
+          description: EventSub subscription created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventSubSubscription'
+                  total:
+                    type: integer
+                  total_cost:
+                    type: integer
+                  max_total_cost:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: deleteEventSubSubscription
+      summary: Twitch Delete EventSub Subscription
+      description: Deletes an EventSub subscription.
+      tags:
+      - EventSub
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Subscription deleted successfully
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    EventSubSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        condition:
+          type: object
+          additionalProperties:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        transport:
+          type: object
+          properties:
+            method:
+              type: string
+              enum:
+              - webhook
+              - websocket
+              - conduit
+            callback:
+              type: string
+            session_id:
+              type: string
+            conduit_id:
+              type: string
+        cost:
+          type: integer
+    EventSubSubscriptionInput:
+      type: object
+      required:
+      - type
+      - version
+      - condition
+      - transport
+      properties:
+        type:
+          type: string
+          description: The subscription type
+        version:
+          type: string
+          description: The version of the subscription type
+        condition:
+          type: object
+          additionalProperties:
+            type: string
+          description: Conditions for the subscription
+        transport:
+          type: object
+          required:
+          - method
+          properties:
+            method:
+              type: string
+              enum:
+              - webhook
+              - websocket
+              - conduit
+            callback:
+              type: string
+              description: Webhook callback URL (required for webhook transport)
+            secret:
+              type: string
+              description: Secret for webhook signature verification
+            session_id:
+              type: string
+              description: WebSocket session ID (required for websocket transport)
+            conduit_id:
+              type: string
+              description: Conduit ID (required for conduit transport)
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

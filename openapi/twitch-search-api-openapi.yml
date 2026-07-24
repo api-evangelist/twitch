@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Search API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Search
+  description: Search for channels and categories
+paths:
+  /search/categories:
+    get:
+      operationId: searchCategories
+      summary: Twitch Search Categories
+      description: Gets the games or categories that match the specified query.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Categories returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /search/channels:
+    get:
+      operationId: searchChannels
+      summary: Twitch Search Channels
+      description: Gets the channels that match the specified query.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: live_only
+        in: query
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      responses:
+        '200':
+          description: Channels returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChannelSearchResult'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /search:
+    post:
+      operationId: multiSearch
+      summary: Twitch Multi-Search
+      description: Search across multiple IGDB resources simultaneously.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/clientId_2'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    game:
+                      type: integer
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    clientId_2:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        box_art_url:
+          type: string
+        igdb_id:
+          type: string
+    ChannelSearchResult:
+      type: object
+      properties:
+        broadcaster_language:
+          type: string
+        broadcaster_login:
+          type: string
+        display_name:
+          type: string
+        game_id:
+          type: string
+        game_name:
+          type: string
+        id:
+          type: string
+        is_live:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        thumbnail_url:
+          type: string
+        title:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

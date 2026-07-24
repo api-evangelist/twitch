@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Companies API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Companies
+  description: Game company data
+paths:
+  /companies:
+    post:
+      operationId: queryCompanies
+      summary: Twitch Query Companies
+      description: Query game companies using Apicalypse query language.
+      tags:
+      - Companies
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Companies returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /involved_companies:
+    post:
+      operationId: queryInvolvedCompanies
+      summary: Twitch Query Involved Companies
+      description: Query companies involved in game development or publishing.
+      tags:
+      - Companies
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Involved companies returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvolvedCompany'
+components:
+  schemas:
+    InvolvedCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+        company:
+          type: integer
+        game:
+          type: integer
+        developer:
+          type: boolean
+        publisher:
+          type: boolean
+        porting:
+          type: boolean
+        supporting:
+          type: boolean
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        country:
+          type: integer
+        logo:
+          type: integer
+        start_date:
+          type: integer
+        url:
+          type: string
+        developed:
+          type: array
+          items:
+            type: integer
+        published:
+          type: array
+          items:
+            type: integer
+        parent:
+          type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

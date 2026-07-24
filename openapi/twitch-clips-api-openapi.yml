@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Clips API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Clips
+  description: Create and retrieve clips
+paths:
+  /clips:
+    get:
+      operationId: getClips
+      summary: Twitch Get Clips
+      description: Gets one or more video clips by clip ID, broadcaster, or game.
+      tags:
+      - Clips
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        schema:
+          type: string
+      - name: game_id
+        in: query
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: started_at
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: ended_at
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Clips returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Clip'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createClip
+      summary: Twitch Create Clip
+      description: Creates a clip from the broadcaster's stream.
+      tags:
+      - Clips
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: has_delay
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '202':
+          description: Clip creation initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        edit_url:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Clip:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        embed_url:
+          type: string
+        broadcaster_id:
+          type: string
+        broadcaster_name:
+          type: string
+        creator_id:
+          type: string
+        creator_name:
+          type: string
+        video_id:
+          type: string
+        game_id:
+          type: string
+        language:
+          type: string
+        title:
+          type: string
+        view_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        thumbnail_url:
+          type: string
+        duration:
+          type: number
+        vod_offset:
+          type: integer
+          nullable: true
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

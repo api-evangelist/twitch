@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Analytics API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Analytics
+  description: Retrieve Drops analytics
+paths:
+  /analytics/games:
+    get:
+      operationId: getGameAnalytics
+      summary: Twitch Get Game Analytics
+      description: Gets an analytics report for one or more games including Drops data.
+      tags:
+      - Analytics
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: game_id
+        in: query
+        schema:
+          type: string
+      - name: type
+        in: query
+        schema:
+          type: string
+      - name: started_at
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: ended_at
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: first
+        in: query
+        schema:
+          type: integer
+          maximum: 100
+      - name: after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Game analytics returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GameAnalyticsReport'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    GameAnalyticsReport:
+      type: object
+      properties:
+        game_id:
+          type: string
+        URL:
+          type: string
+          description: URL to the downloadable CSV report
+        type:
+          type: string
+        date_range:
+          type: object
+          properties:
+            started_at:
+              type: string
+              format: date-time
+            ended_at:
+              type: string
+              format: date-time
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

@@ -1,35 +1,28 @@
 openapi: 3.1.0
 info:
-  title: Twitch Video Broadcast API
-  description: >-
-    API for retrieving ingest server information used by broadcasters to send
-    live video streams to Twitch via RTMP. Provides ingest endpoints sorted
-    by proximity and availability.
+  title: Twitch Drops Ads Ingest API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
   version: '1.0'
   contact:
     name: Twitch Developer Support
     url: https://dev.twitch.tv/support/
   termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
-externalDocs:
-  description: Twitch Video Broadcast Documentation
-  url: https://dev.twitch.tv/docs/video-broadcast/
 servers:
-  - url: https://ingest.twitch.tv
-    description: Twitch Ingest Server
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
 tags:
-  - name: Ingest
-    description: Ingest server information for broadcasting
+- name: Ingest
+  description: Ingest server information for broadcasting
 paths:
   /api/v2/ingests:
     get:
       operationId: getIngests
       summary: Twitch Get Ingest Servers
-      description: >-
-        Gets a list of Twitch ingest servers for broadcasting. Returns
-        servers sorted by proximity to the requester. Broadcasters should
-        connect to the lowest-numbered available server.
+      description: Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server.
       tags:
-        - Ingest
+      - Ingest
       responses:
         '200':
           description: Ingest servers returned successfully
@@ -62,14 +55,20 @@ components:
           description: Human-readable name of the ingest location
         url_template:
           type: string
-          description: >-
-            RTMP URL template for the ingest server. Replace {stream_key}
-            with the broadcaster's stream key.
+          description: RTMP URL template for the ingest server. Replace {stream_key} with the broadcaster's stream key.
         url_template_secure:
           type: string
-          description: >-
-            Secure RTMPS URL template for the ingest server. Replace
-            {stream_key} with the broadcaster's stream key.
+          description: Secure RTMPS URL template for the ingest server. Replace {stream_key} with the broadcaster's stream key.
         priority:
           type: integer
           description: Priority ranking of the server (lower is higher priority)
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

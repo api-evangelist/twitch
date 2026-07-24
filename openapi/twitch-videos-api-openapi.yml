@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Videos API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Videos
+  description: Manage and retrieve videos
+paths:
+  /videos:
+    get:
+      operationId: getVideos
+      summary: Twitch Get Videos
+      description: Gets information about one or more published videos.
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: id
+        in: query
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - name: game_id
+        in: query
+        schema:
+          type: string
+      - name: language
+        in: query
+        schema:
+          type: string
+      - name: period
+        in: query
+        schema:
+          type: string
+          enum:
+          - all
+          - day
+          - week
+          - month
+      - name: sort
+        in: query
+        schema:
+          type: string
+          enum:
+          - time
+          - trending
+          - views
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - all
+          - upload
+          - archive
+          - highlight
+      - $ref: '#/components/parameters/first'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/before'
+      responses:
+        '200':
+          description: Videos returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Video'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    delete:
+      operationId: deleteVideos
+      summary: Twitch Delete Videos
+      description: Deletes one or more published videos.
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Videos deleted successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+components:
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Video:
+      type: object
+      properties:
+        id:
+          type: string
+        stream_id:
+          type: string
+          nullable: true
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        published_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+        thumbnail_url:
+          type: string
+        viewable:
+          type: string
+          enum:
+          - public
+          - private
+        view_count:
+          type: integer
+        language:
+          type: string
+        type:
+          type: string
+          enum:
+          - upload
+          - archive
+          - highlight
+        duration:
+          type: string
+        muted_segments:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              duration:
+                type: integer
+              offset:
+                type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

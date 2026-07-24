@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Teams API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Teams
+  description: Retrieve team information
+paths:
+  /teams:
+    get:
+      operationId: getTeams
+      summary: Twitch Get Teams
+      description: Gets information about a Twitch team.
+      tags:
+      - Teams
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team information returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+  /teams/channel:
+    get:
+      operationId: getChannelTeams
+      summary: Twitch Get Channel Teams
+      description: Gets the teams that a broadcaster belongs to.
+      tags:
+      - Teams
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Channel teams returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+components:
+  schemas:
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        team_name:
+          type: string
+        team_display_name:
+          type: string
+        info:
+          type: string
+        thumbnail_url:
+          type: string
+        banner:
+          type: string
+          nullable: true
+        background_image_url:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+              user_login:
+                type: string
+              user_name:
+                type: string
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/

@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Twitch Drops Ads Raids API
+  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  version: '1.0'
+  contact:
+    name: Twitch Developer Support
+    url: https://dev.twitch.tv/support/
+  termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
+servers:
+- url: https://api.twitch.tv/helix
+  description: Twitch Helix API Production
+security:
+- oauth2: []
+tags:
+- name: Raids
+  description: Start and cancel raids
+paths:
+  /raids:
+    post:
+      operationId: startRaid
+      summary: Twitch Start a Raid
+      description: Raid another channel by sending the broadcaster's viewers to the target.
+      tags:
+      - Raids
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: from_broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: to_broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Raid started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                          format: date-time
+                        is_mature:
+                          type: boolean
+    delete:
+      operationId: cancelRaid
+      summary: Twitch Cancel a Raid
+      description: Cancel a pending raid.
+      tags:
+      - Raids
+      parameters:
+      - $ref: '#/components/parameters/clientId'
+      - name: broadcaster_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Raid cancelled successfully
+components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://id.twitch.tv/oauth2/token
+          scopes: {}
+externalDocs:
+  description: Twitch Drops Documentation
+  url: https://dev.twitch.tv/docs/drops/
