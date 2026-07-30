@@ -1,6 +1,19 @@
 name: Twitch
 description: Twitch is a live streaming platform for gamers, content creators, and
   communities.
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.twitch.tv/favicon.ico
 url: https://www.twitch.tv
 created: '2024'
@@ -13,63 +26,10 @@ tags:
 - Streaming
 - Video
 apis:
-- name: Twitch API
-  description: The Twitch API enables developers to build experiences that integrate
-    with Twitch, including retrieving stream data, managing users, and interacting
-    with chat.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://dev.twitch.tv/
-  baseURL: https://api.twitch.tv/helix
-  tags:
-  - Chat
-  - Gaming
-  - Streaming
-  - Video
-  properties:
-  - type: Documentation
-    url: https://dev.twitch.tv/docs/api/
-  - type: OpenAPI
-    url: https://dev.twitch.tv/docs/api/reference
-  - type: Authentication
-    url: https://dev.twitch.tv/docs/authentication
-  - type: GettingStarted
-    url: https://dev.twitch.tv/docs/api/get-started
-  - type: RateLimits
-    url: https://dev.twitch.tv/docs/api/guide#rate-limits
-  - type: Webhooks
-    url: https://dev.twitch.tv/docs/eventsub
-  - type: API Status
-    url: https://devstatus.twitch.tv/
-  - type: TermsOfService
-    url: https://www.twitch.tv/p/legal/terms-of-service/
-  - type: PrivacyPolicy
-    url: https://www.twitch.tv/p/legal/privacy-notice/
-  - type: Scopes
-    url: https://dev.twitch.tv/docs/authentication/scopes/
-  - type: ChangeLog
-    url: https://dev.twitch.tv/docs/change-log/
-  - type: Migration Guide
-    url: https://dev.twitch.tv/docs/api/migration
-  - type: Concepts
-    url: https://dev.twitch.tv/docs/api/guide
-  - type: Clips
-    url: https://dev.twitch.tv/docs/api/clips
-  - type: Videos
-    url: https://dev.twitch.tv/docs/api/videos/
-  - type: OpenAPI
-    url: openapi/twitch-helix-openapi.yml
-  - url: graphql/twitch-graphql.md
-    type: GraphQL
-  contact:
-  - type: Support
-    url: https://help.twitch.tv/
-  - type: Twitter
-    url: https://twitter.com/TwitchDev
-  - type: Discord
-    url: https://discord.gg/twitchdev
 - name: Twitch EventSub
-  description: EventSub is Twitch's webhook-based subscription service for receiving
-    real-time notifications about events on Twitch.
+  description: >-
+    EventSub is Twitch's webhook-based subscription service for receiving real-time notifications about
+    events on Twitch.
   image: https://www.twitch.tv/favicon.ico
   humanURL: https://dev.twitch.tv/docs/eventsub
   baseURL: https://api.twitch.tv/helix/eventsub
@@ -110,8 +70,8 @@ apis:
   - type: Authentication
     url: https://dev.twitch.tv/docs/chat/authenticating/
 - name: Twitch Embed API
-  description: APIs for embedding Twitch live streams, video on demand, clips, and
-    chat into external websites.
+  description: >-
+    APIs for embedding Twitch live streams, video on demand, clips, and chat into external websites.
   image: https://www.twitch.tv/favicon.ico
   humanURL: https://dev.twitch.tv/docs/embed/
   baseURL: https://embed.twitch.tv
@@ -130,18 +90,46 @@ apis:
     url: https://dev.twitch.tv/docs/embed/chat/
   - type: Everything
     url: https://dev.twitch.tv/docs/embed/everything/
-- name: Twitch Extensions API
-  description: APIs for building interactive extensions that run as overlays or panels
-    on Twitch channels, communicating via a sandboxed iframe.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://dev.twitch.tv/docs/extensions/
-  baseURL: https://api.twitch.tv/helix/extensions
+- aid: twitch:twitch-ads-api
+  name: Twitch Ads API
+  description: Manage and start commercial ad breaks
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
   tags:
-  - Extensions
-  - Interactive
-  - Overlays
-  - Panels
+  - Ads
   properties:
+  - type: OpenAPI
+    url: openapi/twitch-ads-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -150,83 +138,2518 @@ apis:
     url: https://dev.twitch.tv/docs/extensions/reference/
   - type: Frontend API Usage
     url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
-  - type: OpenAPI
-    url: openapi/twitch-extensions-openapi.yml
-- name: Twitch Drops API
-  description: APIs for game developers to create and manage Drops campaigns that
-    grant in-game rewards to Twitch viewers watching streamers play their game.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://dev.twitch.tv/docs/drops/
-  baseURL: https://api.twitch.tv/helix
-  tags:
-  - Campaigns
-  - Drops
-  - Gaming
-  - Rewards
-  properties:
   - type: Documentation
     url: https://dev.twitch.tv/docs/drops/
   - type: Campaign Guide
     url: https://dev.twitch.tv/docs/drops/campaign-guide
   - type: Technical Guide
     url: https://dev.twitch.tv/docs/drops/technical-guide/
-  - type: OpenAPI
-    url: openapi/twitch-drops-openapi.yml
-- name: Twitch Video Broadcast API
-  description: API for retrieving ingest server information used by broadcasters to
-    send live video streams to Twitch via RTMP.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://dev.twitch.tv/docs/video-broadcast/
-  baseURL: https://ingest.twitch.tv
-  tags:
-  - Broadcast
-  - Ingest
-  - Rtmp
-  - Streaming
-  - Video
-  properties:
   - type: Documentation
     url: https://dev.twitch.tv/docs/video-broadcast/
   - type: APIReference
     url: https://dev.twitch.tv/docs/video-broadcast/reference/
-  - type: OpenAPI
-    url: openapi/twitch-video-broadcast-openapi.yml
-- name: Twitch Insights and Analytics API
-  description: APIs for accessing extension and game analytics data including views,
-    clicks, hours watched, and concurrent streamers as downloadable CSV reports.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://dev.twitch.tv/docs/insights/
-  baseURL: https://api.twitch.tv/helix/analytics
-  tags:
-  - Analytics
-  - Insights
-  - Metrics
-  - Reporting
-  properties:
   - type: Documentation
     url: https://dev.twitch.tv/docs/insights/
   - type: Dashboard
     url: https://dev.twitch.tv/insights/
-  - type: OpenAPI
-    url: openapi/twitch-insights-analytics-openapi.yml
-- name: IGDB API
-  description: The Internet Game Database API provides comprehensive video game information
-    including metadata, ratings, and media, and is owned and operated by Twitch.
-  image: https://www.twitch.tv/favicon.ico
-  humanURL: https://api-docs.igdb.com/
-  baseURL: https://api.igdb.com/v4
-  tags:
-  - Database
-  - Games
-  - Metadata
-  - Ratings
-  properties:
   - type: Documentation
     url: https://api-docs.igdb.com/
+- aid: twitch:twitch-analytics-api
+  name: Twitch Analytics API
+  description: Retrieve Drops analytics
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
   - type: Authentication
     url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-bits-api
+  name: Twitch Bits API
+  description: Retrieve Bits leaderboard and Cheermote information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Bits
+  properties:
   - type: OpenAPI
-    url: openapi/twitch-igdb-openapi.yml
+    url: openapi/twitch-bits-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-channel-points-api
+  name: Twitch Channel Points API
+  description: Manage custom channel point rewards and redemptions
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Channel Points
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-channel-points-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-channels-api
+  name: Twitch Channels API
+  description: Manage channel information and editors
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-channels-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-characters-api
+  name: Twitch Characters API
+  description: Game character data
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Characters
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-characters-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-charity-api
+  name: Twitch Charity API
+  description: Retrieve charity campaign information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Charity
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-charity-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-chat-api
+  name: Twitch Chat API
+  description: Manage chat settings, emotes, badges, and announcements
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Chat
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-chat-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-clips-api
+  name: Twitch Clips API
+  description: Create and retrieve clips
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Clips
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-clips-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-collections-api
+  name: Twitch Collections API
+  description: Game collections and franchises
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-collections-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-companies-api
+  name: Twitch Companies API
+  description: Game company data
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-companies-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-conduits-api
+  name: Twitch Conduits API
+  description: Manage EventSub conduits and shards
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Conduits
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-conduits-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-configuration-api
+  name: Twitch Configuration API
+  description: Extension configuration service
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-entitlements-api
+  name: Twitch Entitlements API
+  description: Manage Drops entitlements and fulfillment
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-entitlements-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-eventsub-api
+  name: Twitch EventSub API
+  description: Manage EventSub subscriptions
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - EventSub
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-eventsub-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-extension-analytics-api
+  name: Twitch Extension Analytics API
+  description: Analytics data for extensions
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Extension Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-extension-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-extensions-api
+  name: Twitch Extensions API
+  description: Manage and query extension information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Extensions
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-extensions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-game-analytics-api
+  name: Twitch Game Analytics API
+  description: Analytics data for games
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Game Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-game-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-games-api
+  name: Twitch Games API
+  description: Retrieve game/category information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Games
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-games-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-genres-api
+  name: Twitch Genres API
+  description: Game genre data
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Genres
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-genres-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-goals-api
+  name: Twitch Goals API
+  description: Retrieve creator goals
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Goals
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-goals-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-hype-train-api
+  name: Twitch Hype Train API
+  description: Retrieve Hype Train events
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Hype Train
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-hype-train-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-ingest-api
+  name: Twitch Ingest API
+  description: Ingest server information for broadcasting
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Ingest
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-ingest-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-media-api
+  name: Twitch Media API
+  description: Screenshots, artwork, and videos
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-media-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-moderation-api
+  name: Twitch Moderation API
+  description: Manage channel moderation including bans, blocks, and AutoMod
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Moderation
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-moderation-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-platforms-api
+  name: Twitch Platforms API
+  description: Gaming platform data
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Platforms
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-platforms-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-polls-api
+  name: Twitch Polls API
+  description: Create and manage channel polls
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Polls
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-polls-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-predictions-api
+  name: Twitch Predictions API
+  description: Create and manage channel predictions
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Predictions
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-predictions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-pubsub-api
+  name: Twitch Pubsub API
+  description: Extension PubSub messaging
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Pubsub
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-pubsub-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-raids-api
+  name: Twitch Raids API
+  description: Start and cancel raids
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Raids
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-raids-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-schedule-api
+  name: Twitch Schedule API
+  description: Manage channel stream schedules
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Schedule
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-schedule-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-search-api
+  name: Twitch Search API
+  description: Search for channels and categories
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-search-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-streams-api
+  name: Twitch Streams API
+  description: Retrieve stream information and markers
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Streams
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-streams-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-subscriptions-api
+  name: Twitch Subscriptions API
+  description: Retrieve subscription information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-teams-api
+  name: Twitch Teams API
+  description: Retrieve team information
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-teams-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-themes-api
+  name: Twitch Themes API
+  description: Game theme data
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Themes
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-themes-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-transactions-api
+  name: Twitch Transactions API
+  description: Extension Bits transactions
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-users-api
+  name: Twitch Users API
+  description: Manage user information and blocks
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-users-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-videos-api
+  name: Twitch Videos API
+  description: Manage and retrieve videos
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-videos-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
+- aid: twitch:twitch-whispers-api
+  name: Twitch Whispers API
+  description: Send whisper messages
+  humanURL: https://dev.twitch.tv/
+  baseURL: https://api.twitch.tv/helix
+  tags:
+  - Whispers
+  properties:
+  - type: OpenAPI
+    url: openapi/twitch-whispers-api-openapi.yml
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/api/
+  - type: Authentication
+    url: https://dev.twitch.tv/docs/authentication
+  - type: GettingStarted
+    url: https://dev.twitch.tv/docs/api/get-started
+  - type: RateLimits
+    url: https://dev.twitch.tv/docs/api/guide#rate-limits
+  - type: Webhooks
+    url: https://dev.twitch.tv/docs/eventsub
+  - type: API Status
+    url: https://devstatus.twitch.tv/
+  - type: TermsOfService
+    url: https://www.twitch.tv/p/legal/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.twitch.tv/p/legal/privacy-notice/
+  - type: Scopes
+    url: https://dev.twitch.tv/docs/authentication/scopes/
+  - type: ChangeLog
+    url: https://dev.twitch.tv/docs/change-log/
+  - type: Migration Guide
+    url: https://dev.twitch.tv/docs/api/migration
+  - type: Concepts
+    url: https://dev.twitch.tv/docs/api/guide
+  - type: Clips
+    url: https://dev.twitch.tv/docs/api/clips
+  - type: Videos
+    url: https://dev.twitch.tv/docs/api/videos/
+  - type: GraphQL
+    url: graphql/twitch-graphql.md
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/extensions/
+  - type: Building Extensions
+    url: https://dev.twitch.tv/docs/extensions/building/
+  - type: Extensions Reference
+    url: https://dev.twitch.tv/docs/extensions/reference/
+  - type: Frontend API Usage
+    url: https://dev.twitch.tv/docs/extensions/frontend-api-usage/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/drops/
+  - type: Campaign Guide
+    url: https://dev.twitch.tv/docs/drops/campaign-guide
+  - type: Technical Guide
+    url: https://dev.twitch.tv/docs/drops/technical-guide/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/video-broadcast/
+  - type: APIReference
+    url: https://dev.twitch.tv/docs/video-broadcast/reference/
+  - type: Documentation
+    url: https://dev.twitch.tv/docs/insights/
+  - type: Dashboard
+    url: https://dev.twitch.tv/insights/
+  - type: Documentation
+    url: https://api-docs.igdb.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
