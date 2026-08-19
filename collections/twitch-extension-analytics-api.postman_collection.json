@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "b6d128aa-6e0c-4f22-9417-8d4da24f0851",
+      "name": "Extension Analytics",
+      "description": {
+        "content": "Analytics data for extensions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ecc6eff-bcd3-4c61-8a44-23a12833d542",
+          "name": "Twitch Get Extension Analytics",
+          "request": {
+            "name": "Twitch Get Extension Analytics",
+            "description": {
+              "content": "Gets an analytics report for one or more extensions. The response includes a URL to a downloadable CSV file containing the analytics data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "extensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extension_id",
+                  "value": "<string>",
+                  "description": "Extension ID to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of analytics report"
+                },
+                {
+                  "disabled": false,
+                  "key": "started_at",
+                  "value": "<dateTime>",
+                  "description": "Start of the date range (RFC 3339)"
+                },
+                {
+                  "disabled": false,
+                  "key": "ended_at",
+                  "value": "<dateTime>",
+                  "description": "End of the date range (RFC 3339)"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c6f7115-78f4-4297-b84b-87a23d1afef3",
+              "name": "Extension analytics returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ended_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"extension_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1952-05-28T23:36:24.075Z\",\n        \"ended_at\": \"2007-11-23T21:34:24.916Z\"\n      }\n    },\n    {\n      \"extension_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1962-11-02T04:35:11.637Z\",\n        \"ended_at\": \"1980-05-19T08:16:13.965Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18d8aad1-9968-4511-b575-b6fa60b38ec0",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "ended_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 7913,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ebb28ec-c0c5-4967-8034-d5bfc656a2c8",
+    "name": "Twitch Drops Ads Extension Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

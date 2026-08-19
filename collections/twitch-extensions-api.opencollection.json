@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Extensions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extensions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Extensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/extensions",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "extension_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "extension_version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets information about an extension."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Released Extensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/extensions/released",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "extension_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "extension_version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets information about a released extension."
+        },
+        {
+          "info": {
+            "name": "Twitch Get User Extensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/users/extensions/list",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets a list of all extensions (active and inactive) the broadcaster has installed."
+        },
+        {
+          "info": {
+            "name": "Twitch Get User Active Extensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/users/extensions",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the active extensions the broadcaster has installed."
+        },
+        {
+          "info": {
+            "name": "Twitch Update User Extensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.twitch.tv/helix/users/extensions",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the active extensions the broadcaster has installed."
+        },
+        {
+          "info": {
+            "name": "Twitch Send Extension Chat Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/extensions/chat",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a chat message to a broadcaster's channel from the extension."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Extension Live Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/extensions/live",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "extension_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a list of channels with an active extension, sorted by descending viewer count."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

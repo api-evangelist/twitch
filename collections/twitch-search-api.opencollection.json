@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Search Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/search/categories",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets the games or categories that match the specified query."
+        },
+        {
+          "info": {
+            "name": "Twitch Search Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/search/channels",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "live_only",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets the channels that match the specified query."
+        },
+        {
+          "info": {
+            "name": "Twitch Multi-Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/search",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Search across multiple IGDB resources simultaneously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

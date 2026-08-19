@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Chat API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Channel Emotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/emotes",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the list of emotes available for the specified channel."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Global Emotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/emotes/global",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets all global emotes available on Twitch."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Emote Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/emotes/set",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "emote_set_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets emotes for one or more specified emote sets."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Channel Chat Badges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/badges",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the chat badges for the specified channel."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Global Chat Badges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/badges/global",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets Twitch's list of global chat badges."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Chat Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/settings",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "moderator_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the chat settings for the specified broadcaster's channel."
+        },
+        {
+          "info": {
+            "name": "Twitch Update Chat Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.twitch.tv/helix/chat/settings",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "moderator_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the chat settings for the specified broadcaster's channel."
+        },
+        {
+          "info": {
+            "name": "Twitch Send Chat Announcement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/chat/announcements",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "moderator_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an announcement to the broadcaster's chat room."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Chatters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/chat/chatters",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "broadcaster_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "moderator_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets the list of users in the specified broadcaster's chat."
+        },
+        {
+          "info": {
+            "name": "Twitch Send Chat Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/chat/messages",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to the broadcaster's chat room."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

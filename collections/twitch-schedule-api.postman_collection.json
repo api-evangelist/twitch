@@ -1,0 +1,324 @@
+{
+  "item": [
+    {
+      "id": "2564803a-f77d-4788-b750-96d81752bc1c",
+      "name": "Schedule",
+      "description": {
+        "content": "Manage channel stream schedules",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd69d9c1-bb85-4bbc-bbb0-6142bbddc783",
+          "name": "Twitch Get Channel Stream Schedule",
+          "request": {
+            "name": "Twitch Get Channel Stream Schedule",
+            "description": {
+              "content": "Gets the broadcaster's streaming schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "utc_offset",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40c772ab-f61b-4ea0-8573-20979f86ac1a",
+              "name": "Stream schedule returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "utc_offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"segments\": [\n      {\n        \"id\": \"string\",\n        \"start_time\": \"1959-11-14T16:22:45.161Z\",\n        \"end_time\": \"1981-04-22T23:43:44.039Z\",\n        \"title\": \"string\",\n        \"canceled_until\": \"2008-04-20T21:01:30.074Z\",\n        \"category\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"is_recurring\": false\n      },\n      {\n        \"id\": \"string\",\n        \"start_time\": \"1987-04-04T19:20:47.469Z\",\n        \"end_time\": \"2000-09-27T20:48:24.425Z\",\n        \"title\": \"string\",\n        \"canceled_until\": \"1988-03-20T17:46:13.558Z\",\n        \"category\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        \"is_recurring\": false\n      }\n    ],\n    \"broadcaster_id\": \"string\",\n    \"broadcaster_name\": \"string\",\n    \"broadcaster_login\": \"string\",\n    \"vacation\": {\n      \"start_time\": \"1976-11-03T02:31:39.855Z\",\n      \"end_time\": \"1965-01-28T07:27:32.205Z\"\n    }\n  },\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29682772-f0fc-4a9d-9277-c3ffa6994173",
+          "name": "Twitch Update Channel Stream Schedule",
+          "request": {
+            "name": "Twitch Update Channel Stream Schedule",
+            "description": {
+              "content": "Updates the broadcaster's streaming schedule settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "is_vacation_enabled",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vacation_start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vacation_end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timezone",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc798fdf-13c2-46a5-a90e-e6a44049f9ef",
+              "name": "Schedule updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_vacation_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vacation_start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "vacation_end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timezone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dfcff952-156e-492c-aac0-08946553d18d",
+    "name": "Twitch Drops Ads Schedule API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

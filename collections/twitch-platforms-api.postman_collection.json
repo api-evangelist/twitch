@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "4eb26923-e850-4156-aeda-f9da3043abc2",
+      "name": "Platforms",
+      "description": {
+        "content": "Gaming platform data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddc932d5-cea9-4064-b29d-51bfaa245667",
+          "name": "Twitch Query Platforms",
+          "request": {
+            "name": "Twitch Query Platforms",
+            "description": {
+              "content": "Query gaming platforms using Apicalypse query language.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platforms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Twitch application client ID",
+                "key": "Client-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "aed05468-1d8d-4091-b7d2-419bffbba74f",
+              "name": "Platforms returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 739,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"abbreviation\": \"string\",\n    \"alternative_name\": \"string\",\n    \"category\": 7332,\n    \"generation\": 3533,\n    \"platform_family\": 1788,\n    \"platform_logo\": 2064,\n    \"summary\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 1571,\n    \"updated_at\": 5348\n  },\n  {\n    \"id\": 5851,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"abbreviation\": \"string\",\n    \"alternative_name\": \"string\",\n    \"category\": 840,\n    \"generation\": 5780,\n    \"platform_family\": 5652,\n    \"platform_logo\": 5834,\n    \"summary\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 5436,\n    \"updated_at\": 7131\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c504e4f1-bdcb-4a9d-ab45-07cb73426048",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platforms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f961fe5-5719-4e24-b1b6-ea3d81afcce3",
+    "name": "Twitch Drops Ads Platforms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "item": [
+    {
+      "id": "c87863cb-f54d-4a4f-bde8-72a703da4762",
+      "name": "Companies",
+      "description": {
+        "content": "Game company data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f50c9f91-9db7-4e96-8ea8-ca1c8da21b75",
+          "name": "Twitch Query Companies",
+          "request": {
+            "name": "Twitch Query Companies",
+            "description": {
+              "content": "Query game companies using Apicalypse query language.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Twitch application client ID",
+                "key": "Client-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "cb45a285-57ee-4d8e-8a7e-05ee8b06e25c",
+              "name": "Companies returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9530,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"country\": 7891,\n    \"logo\": 5797,\n    \"start_date\": 4343,\n    \"url\": \"string\",\n    \"developed\": [\n      7226,\n      594\n    ],\n    \"published\": [\n      3060,\n      4140\n    ],\n    \"parent\": 582,\n    \"created_at\": 7039,\n    \"updated_at\": 6269\n  },\n  {\n    \"id\": 1363,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"country\": 1367,\n    \"logo\": 5516,\n    \"start_date\": 2615,\n    \"url\": \"string\",\n    \"developed\": [\n      7620,\n      4051\n    ],\n    \"published\": [\n      2359,\n      4400\n    ],\n    \"parent\": 6866,\n    \"created_at\": 9346,\n    \"updated_at\": 5457\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "689adf8a-b336-4eb0-a035-11922fe2d0ba",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f899eb08-55a7-4244-b276-f0b1f6a6a1a7",
+          "name": "Twitch Query Involved Companies",
+          "request": {
+            "name": "Twitch Query Involved Companies",
+            "description": {
+              "content": "Query companies involved in game development or publishing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "involved_companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Twitch application client ID",
+                "key": "Client-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "d5f2f130-b010-4b55-9539-d5b659c89ced",
+              "name": "Involved companies returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "involved_companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 364,\n    \"company\": 3780,\n    \"game\": 1790,\n    \"developer\": true,\n    \"publisher\": false,\n    \"porting\": false,\n    \"supporting\": true,\n    \"created_at\": 2020,\n    \"updated_at\": 5868\n  },\n  {\n    \"id\": 2379,\n    \"company\": 2540,\n    \"game\": 4052,\n    \"developer\": true,\n    \"publisher\": true,\n    \"porting\": false,\n    \"supporting\": true,\n    \"created_at\": 1667,\n    \"updated_at\": 8278\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8bbfbab4-5801-43e8-9e2e-221453ecf2b4",
+    "name": "Twitch Drops Ads Companies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

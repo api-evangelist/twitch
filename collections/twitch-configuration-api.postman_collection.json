@@ -1,0 +1,390 @@
+{
+  "item": [
+    {
+      "id": "55237206-46ab-4360-aa6f-175b520acf3d",
+      "name": "Configuration",
+      "description": {
+        "content": "Extension configuration service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16cd6d6b-d8a2-439a-b7c2-bae23f95df1a",
+          "name": "Twitch Get Extension Configuration Segment",
+          "request": {
+            "name": "Twitch Get Extension Configuration Segment",
+            "description": {
+              "content": "Gets the specified configuration segment from the specified extension.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "extension_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "segment",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea55e2e6-3c96-4abf-9966-c466f9a57f0e",
+              "name": "Configuration returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "segment",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"segment\": \"global\",\n      \"broadcaster_id\": \"string\",\n      \"content\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"segment\": \"developer\",\n      \"broadcaster_id\": \"string\",\n      \"content\": \"string\",\n      \"version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a8e1d57-4399-4ba0-9d8d-eb1f50670306",
+          "name": "Twitch Set Extension Configuration Segment",
+          "request": {
+            "name": "Twitch Set Extension Configuration Segment",
+            "description": {
+              "content": "Sets a single configuration segment for a specific extension.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extension_id\": \"<string>\",\n  \"segment\": \"<string>\",\n  \"broadcaster_id\": \"<string>\",\n  \"content\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5a26aa5-6ad3-45b6-9a9a-bdc940acc524",
+              "name": "Configuration segment set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extension_id\": \"<string>\",\n  \"segment\": \"<string>\",\n  \"broadcaster_id\": \"<string>\",\n  \"content\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce96d8b4-14c0-4fc6-9232-4a378c632204",
+          "name": "Twitch Set Extension Required Configuration",
+          "request": {
+            "name": "Twitch Set Extension Required Configuration",
+            "description": {
+              "content": "Marks the extension's required configuration string as set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "required_configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extension_id\": \"<string>\",\n  \"extension_version\": \"<string>\",\n  \"required_configuration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9243c5eb-d109-4c0e-a9a7-74f64166c258",
+              "name": "Required configuration set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "required_configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"extension_id\": \"<string>\",\n  \"extension_version\": \"<string>\",\n  \"required_configuration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46bc2ede-0b41-4477-9073-e40ab5cc629d",
+    "name": "Twitch Drops Ads Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

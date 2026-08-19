@@ -1,0 +1,876 @@
+{
+  "item": [
+    {
+      "id": "6b0551ac-ce89-45c1-9207-925b95f78640",
+      "name": "Extensions",
+      "description": {
+        "content": "Manage and query extension information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4571979-721d-4a62-80b2-198d6e8b8be7",
+          "name": "Twitch Get Extensions",
+          "request": {
+            "name": "Twitch Get Extensions",
+            "description": {
+              "content": "Gets information about an extension.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extension_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "extension_version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4df10308-1194-4e4f-9e30-42963c72c27d",
+              "name": "Extension information returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extension_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"author_name\": \"string\",\n      \"bits_enabled\": true,\n      \"can_install\": true,\n      \"configuration_location\": \"custom\",\n      \"description\": \"string\",\n      \"eula_tos_url\": \"string\",\n      \"has_chat_support\": false,\n      \"icon_url\": \"string\",\n      \"icon_urls\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"privacy_policy_url\": \"string\",\n      \"request_identity_link\": true,\n      \"screenshot_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"Approved\",\n      \"subscriptions_support_level\": \"optional\",\n      \"summary\": \"string\",\n      \"support_email\": \"string\",\n      \"version\": \"string\",\n      \"viewer_summary\": \"string\",\n      \"views\": {\n        \"mobile\": {\n          \"viewer_url\": \"string\"\n        },\n        \"panel\": {\n          \"viewer_url\": \"string\",\n          \"height\": 2270,\n          \"can_link_external_content\": false\n        },\n        \"video_overlay\": {\n          \"viewer_url\": \"string\",\n          \"can_link_external_content\": true\n        },\n        \"component\": {\n          \"viewer_url\": \"string\",\n          \"aspect_ratio_x\": 4508,\n          \"aspect_ratio_y\": 3092,\n          \"autoscale\": true,\n          \"scale_pixels\": 2390,\n          \"target_height\": 1337,\n          \"can_link_external_content\": true\n        }\n      }\n    },\n    {\n      \"author_name\": \"string\",\n      \"bits_enabled\": true,\n      \"can_install\": false,\n      \"configuration_location\": \"hosted\",\n      \"description\": \"string\",\n      \"eula_tos_url\": \"string\",\n      \"has_chat_support\": false,\n      \"icon_url\": \"string\",\n      \"icon_urls\": {\n        \"key_0\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"privacy_policy_url\": \"string\",\n      \"request_identity_link\": true,\n      \"screenshot_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"InReview\",\n      \"subscriptions_support_level\": \"none\",\n      \"summary\": \"string\",\n      \"support_email\": \"string\",\n      \"version\": \"string\",\n      \"viewer_summary\": \"string\",\n      \"views\": {\n        \"mobile\": {\n          \"viewer_url\": \"string\"\n        },\n        \"panel\": {\n          \"viewer_url\": \"string\",\n          \"height\": 9477,\n          \"can_link_external_content\": false\n        },\n        \"video_overlay\": {\n          \"viewer_url\": \"string\",\n          \"can_link_external_content\": true\n        },\n        \"component\": {\n          \"viewer_url\": \"string\",\n          \"aspect_ratio_x\": 2964,\n          \"aspect_ratio_y\": 4471,\n          \"autoscale\": true,\n          \"scale_pixels\": 7049,\n          \"target_height\": 2091,\n          \"can_link_external_content\": false\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea00a341-f0f3-42a8-85a0-755743e40013",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extension_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 6384,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7f0e172-9ec8-4b5f-9d99-71a0ff139176",
+          "name": "Twitch Get Released Extensions",
+          "request": {
+            "name": "Twitch Get Released Extensions",
+            "description": {
+              "content": "Gets information about a released extension.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "released"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extension_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "extension_version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10202a48-fab9-4486-93ad-b9e8466a962e",
+              "name": "Released extension information returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "released"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extension_version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"author_name\": \"string\",\n      \"bits_enabled\": true,\n      \"can_install\": true,\n      \"configuration_location\": \"custom\",\n      \"description\": \"string\",\n      \"eula_tos_url\": \"string\",\n      \"has_chat_support\": false,\n      \"icon_url\": \"string\",\n      \"icon_urls\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"privacy_policy_url\": \"string\",\n      \"request_identity_link\": true,\n      \"screenshot_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"Approved\",\n      \"subscriptions_support_level\": \"optional\",\n      \"summary\": \"string\",\n      \"support_email\": \"string\",\n      \"version\": \"string\",\n      \"viewer_summary\": \"string\",\n      \"views\": {\n        \"mobile\": {\n          \"viewer_url\": \"string\"\n        },\n        \"panel\": {\n          \"viewer_url\": \"string\",\n          \"height\": 2270,\n          \"can_link_external_content\": false\n        },\n        \"video_overlay\": {\n          \"viewer_url\": \"string\",\n          \"can_link_external_content\": true\n        },\n        \"component\": {\n          \"viewer_url\": \"string\",\n          \"aspect_ratio_x\": 4508,\n          \"aspect_ratio_y\": 3092,\n          \"autoscale\": true,\n          \"scale_pixels\": 2390,\n          \"target_height\": 1337,\n          \"can_link_external_content\": true\n        }\n      }\n    },\n    {\n      \"author_name\": \"string\",\n      \"bits_enabled\": true,\n      \"can_install\": false,\n      \"configuration_location\": \"hosted\",\n      \"description\": \"string\",\n      \"eula_tos_url\": \"string\",\n      \"has_chat_support\": false,\n      \"icon_url\": \"string\",\n      \"icon_urls\": {\n        \"key_0\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"privacy_policy_url\": \"string\",\n      \"request_identity_link\": true,\n      \"screenshot_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"InReview\",\n      \"subscriptions_support_level\": \"none\",\n      \"summary\": \"string\",\n      \"support_email\": \"string\",\n      \"version\": \"string\",\n      \"viewer_summary\": \"string\",\n      \"views\": {\n        \"mobile\": {\n          \"viewer_url\": \"string\"\n        },\n        \"panel\": {\n          \"viewer_url\": \"string\",\n          \"height\": 9477,\n          \"can_link_external_content\": false\n        },\n        \"video_overlay\": {\n          \"viewer_url\": \"string\",\n          \"can_link_external_content\": true\n        },\n        \"component\": {\n          \"viewer_url\": \"string\",\n          \"aspect_ratio_x\": 2964,\n          \"aspect_ratio_y\": 4471,\n          \"autoscale\": true,\n          \"scale_pixels\": 7049,\n          \"target_height\": 2091,\n          \"can_link_external_content\": false\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ec7d4e7-3c34-4f91-aeed-54de7881bcdc",
+          "name": "Twitch Get User Extensions",
+          "request": {
+            "name": "Twitch Get User Extensions",
+            "description": {
+              "content": "Gets a list of all extensions (active and inactive) the broadcaster has installed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "extensions",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a37c83a8-6b59-4f71-aa2b-8fc8c8347c2c",
+              "name": "User extensions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "extensions",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"version\": \"string\",\n      \"name\": \"string\",\n      \"can_activate\": false,\n      \"type\": [\n        \"panel\",\n        \"panel\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"version\": \"string\",\n      \"name\": \"string\",\n      \"can_activate\": false,\n      \"type\": [\n        \"overlay\",\n        \"component\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb062a0c-4961-4a0d-931f-44fd177f547e",
+          "name": "Twitch Get User Active Extensions",
+          "request": {
+            "name": "Twitch Get User Active Extensions",
+            "description": {
+              "content": "Gets the active extensions the broadcaster has installed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "extensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c76d351-80cc-4448-9a07-aadf3c7c1a6e",
+              "name": "Active extensions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"panel\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3852,\n        \"y\": 9642\n      },\n      \"key_1\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 214,\n        \"y\": 9800\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 2825,\n        \"y\": 1419\n      },\n      \"key_3\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3709,\n        \"y\": 5231\n      }\n    },\n    \"overlay\": {\n      \"key_0\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 5032,\n        \"y\": 4957\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4573,\n        \"y\": 7216\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 6325,\n        \"y\": 6835\n      }\n    },\n    \"component\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 7203,\n        \"y\": 2257\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4637,\n        \"y\": 8168\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2714a778-e935-43ab-bd12-ee03f2a232d6",
+          "name": "Twitch Update User Extensions",
+          "request": {
+            "name": "Twitch Update User Extensions",
+            "description": {
+              "content": "Updates the active extensions the broadcaster has installed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "extensions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"panel\": {\n      \"key_0\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      },\n      \"key_1\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      },\n      \"key_2\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      }\n    },\n    \"overlay\": {\n      \"key_0\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      }\n    },\n    \"component\": {\n      \"key_0\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      },\n      \"key_1\": {\n        \"active\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"version\": \"<string>\",\n        \"name\": \"<string>\",\n        \"x\": \"<integer>\",\n        \"y\": \"<integer>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c50427d-94d8-49b5-b453-b3b285bfe0d6",
+              "name": "Extensions updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "extensions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"panel\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3852,\n        \"y\": 9642\n      },\n      \"key_1\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 214,\n        \"y\": 9800\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 2825,\n        \"y\": 1419\n      },\n      \"key_3\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3709,\n        \"y\": 5231\n      }\n    },\n    \"overlay\": {\n      \"key_0\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 5032,\n        \"y\": 4957\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4573,\n        \"y\": 7216\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 6325,\n        \"y\": 6835\n      }\n    },\n    \"component\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 7203,\n        \"y\": 2257\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4637,\n        \"y\": 8168\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"panel\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3852,\n        \"y\": 9642\n      },\n      \"key_1\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 214,\n        \"y\": 9800\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 2825,\n        \"y\": 1419\n      },\n      \"key_3\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 3709,\n        \"y\": 5231\n      }\n    },\n    \"overlay\": {\n      \"key_0\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 5032,\n        \"y\": 4957\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4573,\n        \"y\": 7216\n      },\n      \"key_2\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 6325,\n        \"y\": 6835\n      }\n    },\n    \"component\": {\n      \"key_0\": {\n        \"active\": true,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 7203,\n        \"y\": 2257\n      },\n      \"key_1\": {\n        \"active\": false,\n        \"id\": \"string\",\n        \"version\": \"string\",\n        \"name\": \"string\",\n        \"x\": 4637,\n        \"y\": 8168\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbaa22f7-fa8a-4f29-9a9a-a62fd43b8e46",
+          "name": "Twitch Send Extension Chat Message",
+          "request": {
+            "name": "Twitch Send Extension Chat Message",
+            "description": {
+              "content": "Sends a chat message to a broadcaster's channel from the extension.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "chat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"extension_id\": \"<string>\",\n  \"extension_version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0866384f-46bf-4e47-be56-c30be699d807",
+              "name": "Chat message sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "chat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"extension_id\": \"<string>\",\n  \"extension_version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30bc576a-087b-4b20-98d3-5f8703df9506",
+          "name": "Twitch Get Extension Live Channels",
+          "request": {
+            "name": "Twitch Get Extension Live Channels",
+            "description": {
+              "content": "Gets a list of channels with an active extension, sorted by descending viewer count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "live"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "extension_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69ff2948-1016-4f0d-a780-813cef1ab92b",
+              "name": "Live channels returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "extension_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"game_name\": \"string\",\n      \"game_id\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"game_name\": \"string\",\n      \"game_id\": \"string\",\n      \"title\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5596b6f-a4e0-407c-b0a9-db01d0add5f4",
+    "name": "Twitch Drops Ads Extensions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

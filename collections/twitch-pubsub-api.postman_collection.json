@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "d9e6ed2a-c867-4989-8189-48c7c6349d25",
+      "name": "Pubsub",
+      "description": {
+        "content": "Extension PubSub messaging",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3afd3ff-fb3a-40b0-add5-c23c9929bbe4",
+          "name": "Twitch Send Extension PubSub Message",
+          "request": {
+            "name": "Twitch Send Extension PubSub Message",
+            "description": {
+              "content": "Sends a PubSub message to one or more channels the extension is installed on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "extensions",
+                "pubsub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"broadcaster_id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"is_global_broadcast\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd648a11-6169-4561-8e6d-a4554e61525a",
+              "name": "PubSub message sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "extensions",
+                    "pubsub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"broadcaster_id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"is_global_broadcast\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1e573b7e-8ce6-40f8-ace8-13cfaad8c622",
+    "name": "Twitch Drops Ads Pubsub API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

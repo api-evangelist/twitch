@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Games API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/games",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The game/category ID"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The game/category name"
+              },
+              {
+                "name": "igdb_id",
+                "value": "",
+                "type": "query",
+                "description": "The IGDB ID of the game"
+              }
+            ]
+          },
+          "docs": "Gets information about one or more games/categories."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/games",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query the games endpoint using Apicalypse query language. Send the query as the request body in plain text format."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Top Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/games/top",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for backward pagination"
+              }
+            ]
+          },
+          "docs": "Gets games sorted by number of current viewers, most popular first."
+        },
+        {
+          "info": {
+            "name": "Twitch Count Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/games/count",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns the count of games matching the query."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Release Dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/release_dates",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game release dates across platforms and regions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

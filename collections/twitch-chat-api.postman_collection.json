@@ -1,0 +1,1487 @@
+{
+  "item": [
+    {
+      "id": "10097197-9a18-43aa-a55f-d126765f93c5",
+      "name": "Chat",
+      "description": {
+        "content": "Manage chat settings, emotes, badges, and announcements",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9ab6f00-578b-44ef-bce4-924708394a58",
+          "name": "Twitch Get Channel Emotes",
+          "request": {
+            "name": "Twitch Get Channel Emotes",
+            "description": {
+              "content": "Gets the list of emotes available for the specified channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "emotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6d60679-9363-452c-bb8e-4bfdf5a9b21f",
+              "name": "Channel emotes returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "emotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"bitstier\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"static\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"dark\",\n        \"light\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"subscriptions\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"animated\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"light\",\n        \"light\"\n      ]\n    }\n  ],\n  \"template\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c856f909-0128-416e-afaf-47045ca759b7",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "emotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 3182,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74a25fb0-1d2a-457d-8755-a5577eac64a1",
+          "name": "Twitch Get Global Emotes",
+          "request": {
+            "name": "Twitch Get Global Emotes",
+            "description": {
+              "content": "Gets all global emotes available on Twitch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "emotes",
+                "global"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58e6f318-46f8-4105-8aca-543f755a4a10",
+              "name": "Global emotes returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "emotes",
+                    "global"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"bitstier\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"static\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"dark\",\n        \"light\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"subscriptions\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"animated\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"light\",\n        \"light\"\n      ]\n    }\n  ],\n  \"template\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8758564-7010-4828-8c1f-c83e509fe5ac",
+          "name": "Twitch Get Emote Sets",
+          "request": {
+            "name": "Twitch Get Emote Sets",
+            "description": {
+              "content": "Gets emotes for one or more specified emote sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "emotes",
+                "set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "emote_set_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28012c19-90e6-4717-bdb7-5c20922eaa76",
+              "name": "Emote sets returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "emotes",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "emote_set_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"bitstier\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"static\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"dark\",\n        \"light\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"tier\": \"string\",\n      \"emote_type\": \"subscriptions\",\n      \"emote_set_id\": \"string\",\n      \"format\": [\n        \"animated\",\n        \"static\"\n      ],\n      \"scale\": [\n        \"3.0\",\n        \"2.0\"\n      ],\n      \"theme_mode\": [\n        \"light\",\n        \"light\"\n      ]\n    }\n  ],\n  \"template\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7a4df26-fda8-412f-88dd-93ea002b57ca",
+          "name": "Twitch Get Channel Chat Badges",
+          "request": {
+            "name": "Twitch Get Channel Chat Badges",
+            "description": {
+              "content": "Gets the chat badges for the specified channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "badges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72c8cde2-8356-4de6-97ef-91972538037b",
+              "name": "Chat badges returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "badges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"set_id\": \"string\",\n      \"versions\": [\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        }\n      ]\n    },\n    {\n      \"set_id\": \"string\",\n      \"versions\": [\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea340591-0425-433c-b3bd-03db4141c676",
+          "name": "Twitch Get Global Chat Badges",
+          "request": {
+            "name": "Twitch Get Global Chat Badges",
+            "description": {
+              "content": "Gets Twitch's list of global chat badges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "badges",
+                "global"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13abf919-25dd-4896-9e64-55a51de7a84c",
+              "name": "Global chat badges returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "badges",
+                    "global"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"set_id\": \"string\",\n      \"versions\": [\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        }\n      ]\n    },\n    {\n      \"set_id\": \"string\",\n      \"versions\": [\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"image_url_1x\": \"string\",\n          \"image_url_2x\": \"string\",\n          \"image_url_4x\": \"string\",\n          \"title\": \"string\",\n          \"description\": \"string\",\n          \"click_action\": \"string\",\n          \"click_url\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ef11365-a709-497a-8cef-83cc8d03bbe3",
+          "name": "Twitch Get Chat Settings",
+          "request": {
+            "name": "Twitch Get Chat Settings",
+            "description": {
+              "content": "Gets the chat settings for the specified broadcaster's channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "moderator_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e1eff8c-3ab3-4dd7-bbcc-089e9297fb64",
+              "name": "Chat settings returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"emote_mode\": true,\n      \"follower_mode\": true,\n      \"follower_mode_duration\": 3147,\n      \"moderator_id\": \"string\",\n      \"non_moderator_chat_delay\": false,\n      \"non_moderator_chat_delay_duration\": 8768,\n      \"slow_mode\": true,\n      \"slow_mode_wait_time\": 567,\n      \"subscriber_mode\": false,\n      \"unique_chat_mode\": true\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"emote_mode\": true,\n      \"follower_mode\": true,\n      \"follower_mode_duration\": 4510,\n      \"moderator_id\": \"string\",\n      \"non_moderator_chat_delay\": false,\n      \"non_moderator_chat_delay_duration\": 8730,\n      \"slow_mode\": true,\n      \"slow_mode_wait_time\": 8565,\n      \"subscriber_mode\": false,\n      \"unique_chat_mode\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "693caae3-2a2e-4804-97cb-04bd42ccb07c",
+          "name": "Twitch Update Chat Settings",
+          "request": {
+            "name": "Twitch Update Chat Settings",
+            "description": {
+              "content": "Updates the chat settings for the specified broadcaster's channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "moderator_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emote_mode\": \"<boolean>\",\n  \"follower_mode\": \"<boolean>\",\n  \"follower_mode_duration\": \"<integer>\",\n  \"non_moderator_chat_delay\": \"<boolean>\",\n  \"non_moderator_chat_delay_duration\": \"<integer>\",\n  \"slow_mode\": \"<boolean>\",\n  \"slow_mode_wait_time\": \"<integer>\",\n  \"subscriber_mode\": \"<boolean>\",\n  \"unique_chat_mode\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bba6947e-6ca0-48f4-bbdf-2ac04f9d194a",
+              "name": "Chat settings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emote_mode\": \"<boolean>\",\n  \"follower_mode\": \"<boolean>\",\n  \"follower_mode_duration\": \"<integer>\",\n  \"non_moderator_chat_delay\": \"<boolean>\",\n  \"non_moderator_chat_delay_duration\": \"<integer>\",\n  \"slow_mode\": \"<boolean>\",\n  \"slow_mode_wait_time\": \"<integer>\",\n  \"subscriber_mode\": \"<boolean>\",\n  \"unique_chat_mode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"emote_mode\": true,\n      \"follower_mode\": true,\n      \"follower_mode_duration\": 3147,\n      \"moderator_id\": \"string\",\n      \"non_moderator_chat_delay\": false,\n      \"non_moderator_chat_delay_duration\": 8768,\n      \"slow_mode\": true,\n      \"slow_mode_wait_time\": 567,\n      \"subscriber_mode\": false,\n      \"unique_chat_mode\": true\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"emote_mode\": true,\n      \"follower_mode\": true,\n      \"follower_mode_duration\": 4510,\n      \"moderator_id\": \"string\",\n      \"non_moderator_chat_delay\": false,\n      \"non_moderator_chat_delay_duration\": 8730,\n      \"slow_mode\": true,\n      \"slow_mode_wait_time\": 8565,\n      \"subscriber_mode\": false,\n      \"unique_chat_mode\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05a75ca2-cfcb-4d84-9a5f-8a60afb57118",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emote_mode\": \"<boolean>\",\n  \"follower_mode\": \"<boolean>\",\n  \"follower_mode_duration\": \"<integer>\",\n  \"non_moderator_chat_delay\": \"<boolean>\",\n  \"non_moderator_chat_delay_duration\": \"<integer>\",\n  \"slow_mode\": \"<boolean>\",\n  \"slow_mode_wait_time\": \"<integer>\",\n  \"subscriber_mode\": \"<boolean>\",\n  \"unique_chat_mode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 3182,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4eba4c69-fd95-4ed3-a19b-d013d81ec14b",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emote_mode\": \"<boolean>\",\n  \"follower_mode\": \"<boolean>\",\n  \"follower_mode_duration\": \"<integer>\",\n  \"non_moderator_chat_delay\": \"<boolean>\",\n  \"non_moderator_chat_delay_duration\": \"<integer>\",\n  \"slow_mode\": \"<boolean>\",\n  \"slow_mode_wait_time\": \"<integer>\",\n  \"subscriber_mode\": \"<boolean>\",\n  \"unique_chat_mode\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 3182,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa4d162f-5f80-47c7-84f1-826bfbc42f2b",
+          "name": "Twitch Send Chat Announcement",
+          "request": {
+            "name": "Twitch Send Chat Announcement",
+            "description": {
+              "content": "Sends an announcement to the broadcaster's chat room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "moderator_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bea433a-df63-40b2-9324-f39d3b17f091",
+              "name": "Announcement sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "announcements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4382dca8-da3d-4fac-a070-17173b3ab586",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "announcements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 3182,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cb6a73d-0ca5-4f0f-9993-95eb19acb691",
+          "name": "Twitch Get Chatters",
+          "request": {
+            "name": "Twitch Get Chatters",
+            "description": {
+              "content": "Gets the list of users in the specified broadcaster's chat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "chatters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "moderator_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4dce5600-c0a1-41c7-87bc-0c5af8dfbbf4",
+              "name": "Chatters returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "chatters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  },\n  \"total\": 9765\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28d17632-7586-40b6-aaea-fe9be78584bf",
+          "name": "Twitch Send Chat Message",
+          "request": {
+            "name": "Twitch Send Chat Message",
+            "description": {
+              "content": "Sends a message to the broadcaster's chat room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chat",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"sender_id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reply_parent_message_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "316a4fe5-a70a-46f5-9db4-8ecfab62644a",
+              "name": "Message sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"sender_id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reply_parent_message_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"message_id\": \"string\",\n      \"is_sent\": true\n    },\n    {\n      \"message_id\": \"string\",\n      \"is_sent\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7323ec40-0087-407c-b166-4ebff37ca099",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chat",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"sender_id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"reply_parent_message_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 3182,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "026e5835-a93d-4af3-b00d-72105c838fc5",
+    "name": "Twitch Drops Ads Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Companies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/companies",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game companies using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Involved Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/involved_companies",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query companies involved in game development or publishing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

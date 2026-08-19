@@ -1,0 +1,481 @@
+{
+  "item": [
+    {
+      "id": "7279afd8-4143-45db-84c1-1b09496ce37e",
+      "name": "Channel Points",
+      "description": {
+        "content": "Manage custom channel point rewards and redemptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb1cef51-6b82-40ce-910c-6c29121791c0",
+          "name": "Twitch Get Custom Reward",
+          "request": {
+            "name": "Twitch Get Custom Reward",
+            "description": {
+              "content": "Gets a list of custom rewards for the specified broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channel_points",
+                "custom_rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "only_manageable_rewards",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "621172b0-f86e-44ef-9553-bbea7c157a11",
+              "name": "Custom rewards returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channel_points",
+                    "custom_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_manageable_rewards",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"prompt\": \"string\",\n      \"cost\": 8637,\n      \"image\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"background_color\": \"string\",\n      \"is_enabled\": true,\n      \"is_user_input_required\": true,\n      \"max_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_stream\": 5201\n      },\n      \"max_per_user_per_stream_setting\": {\n        \"is_enabled\": false,\n        \"max_per_user_per_stream\": 3646\n      },\n      \"global_cooldown_setting\": {\n        \"is_enabled\": false,\n        \"global_cooldown_seconds\": 7752\n      },\n      \"is_paused\": false,\n      \"is_in_stock\": true,\n      \"should_redemptions_skip_request_queue\": true,\n      \"redemptions_redeemed_current_stream\": 8336,\n      \"cooldown_expires_at\": \"2006-08-15T11:02:35.639Z\"\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"prompt\": \"string\",\n      \"cost\": 7432,\n      \"image\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"background_color\": \"string\",\n      \"is_enabled\": true,\n      \"is_user_input_required\": false,\n      \"max_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_stream\": 2797\n      },\n      \"max_per_user_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_user_per_stream\": 1542\n      },\n      \"global_cooldown_setting\": {\n        \"is_enabled\": true,\n        \"global_cooldown_seconds\": 8909\n      },\n      \"is_paused\": true,\n      \"is_in_stock\": false,\n      \"should_redemptions_skip_request_queue\": false,\n      \"redemptions_redeemed_current_stream\": 5691,\n      \"cooldown_expires_at\": \"1996-05-21T12:14:39.128Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b80e3d1-c256-4eaf-9e54-fcce04e949bf",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channel_points",
+                    "custom_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_manageable_rewards",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 6993,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41317a80-8723-48d1-9340-be5780cf01c8",
+          "name": "Twitch Create Custom Rewards",
+          "request": {
+            "name": "Twitch Create Custom Rewards",
+            "description": {
+              "content": "Creates a custom reward for the specified broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channel_points",
+                "custom_rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"cost\": \"<integer>\",\n  \"prompt\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"background_color\": \"<string>\",\n  \"is_user_input_required\": \"<boolean>\",\n  \"is_max_per_stream_enabled\": \"<boolean>\",\n  \"max_per_stream\": \"<integer>\",\n  \"is_max_per_user_per_stream_enabled\": \"<boolean>\",\n  \"max_per_user_per_stream\": \"<integer>\",\n  \"is_global_cooldown_enabled\": \"<boolean>\",\n  \"global_cooldown_seconds\": \"<integer>\",\n  \"should_redemptions_skip_request_queue\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00cf7b3d-4d77-43dc-8706-24bb8d4ef96a",
+              "name": "Custom reward created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channel_points",
+                    "custom_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"cost\": \"<integer>\",\n  \"prompt\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"background_color\": \"<string>\",\n  \"is_user_input_required\": \"<boolean>\",\n  \"is_max_per_stream_enabled\": \"<boolean>\",\n  \"max_per_stream\": \"<integer>\",\n  \"is_max_per_user_per_stream_enabled\": \"<boolean>\",\n  \"max_per_user_per_stream\": \"<integer>\",\n  \"is_global_cooldown_enabled\": \"<boolean>\",\n  \"global_cooldown_seconds\": \"<integer>\",\n  \"should_redemptions_skip_request_queue\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"prompt\": \"string\",\n      \"cost\": 8637,\n      \"image\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"background_color\": \"string\",\n      \"is_enabled\": true,\n      \"is_user_input_required\": true,\n      \"max_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_stream\": 5201\n      },\n      \"max_per_user_per_stream_setting\": {\n        \"is_enabled\": false,\n        \"max_per_user_per_stream\": 3646\n      },\n      \"global_cooldown_setting\": {\n        \"is_enabled\": false,\n        \"global_cooldown_seconds\": 7752\n      },\n      \"is_paused\": false,\n      \"is_in_stock\": true,\n      \"should_redemptions_skip_request_queue\": true,\n      \"redemptions_redeemed_current_stream\": 8336,\n      \"cooldown_expires_at\": \"2006-08-15T11:02:35.639Z\"\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"prompt\": \"string\",\n      \"cost\": 7432,\n      \"image\": {\n        \"url_1x\": \"string\",\n        \"url_2x\": \"string\",\n        \"url_4x\": \"string\"\n      },\n      \"background_color\": \"string\",\n      \"is_enabled\": true,\n      \"is_user_input_required\": false,\n      \"max_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_stream\": 2797\n      },\n      \"max_per_user_per_stream_setting\": {\n        \"is_enabled\": true,\n        \"max_per_user_per_stream\": 1542\n      },\n      \"global_cooldown_setting\": {\n        \"is_enabled\": true,\n        \"global_cooldown_seconds\": 8909\n      },\n      \"is_paused\": true,\n      \"is_in_stock\": false,\n      \"should_redemptions_skip_request_queue\": false,\n      \"redemptions_redeemed_current_stream\": 5691,\n      \"cooldown_expires_at\": \"1996-05-21T12:14:39.128Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd921865-9902-4ca3-a8e9-d4db55c0b86a",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channel_points",
+                    "custom_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"cost\": \"<integer>\",\n  \"prompt\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"background_color\": \"<string>\",\n  \"is_user_input_required\": \"<boolean>\",\n  \"is_max_per_stream_enabled\": \"<boolean>\",\n  \"max_per_stream\": \"<integer>\",\n  \"is_max_per_user_per_stream_enabled\": \"<boolean>\",\n  \"max_per_user_per_stream\": \"<integer>\",\n  \"is_global_cooldown_enabled\": \"<boolean>\",\n  \"global_cooldown_seconds\": \"<integer>\",\n  \"should_redemptions_skip_request_queue\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 6993,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4bc8065-fd93-48b0-8375-e8380d07e9b2",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channel_points",
+                    "custom_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"cost\": \"<integer>\",\n  \"prompt\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"background_color\": \"<string>\",\n  \"is_user_input_required\": \"<boolean>\",\n  \"is_max_per_stream_enabled\": \"<boolean>\",\n  \"max_per_stream\": \"<integer>\",\n  \"is_max_per_user_per_stream_enabled\": \"<boolean>\",\n  \"max_per_user_per_stream\": \"<integer>\",\n  \"is_global_cooldown_enabled\": \"<boolean>\",\n  \"global_cooldown_seconds\": \"<integer>\",\n  \"should_redemptions_skip_request_queue\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 6993,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d654b69-7ac8-400e-87d4-f929957639b5",
+    "name": "Twitch Drops Ads Channel Points API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

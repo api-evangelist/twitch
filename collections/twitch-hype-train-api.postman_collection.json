@@ -1,0 +1,169 @@
+{
+  "item": [
+    {
+      "id": "b542a4b1-94ad-42fe-b850-cfb0f10b6d15",
+      "name": "Hype Train",
+      "description": {
+        "content": "Retrieve Hype Train events",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d949e23-6e5d-4637-b5fc-3d00cf418ef1",
+          "name": "Twitch Get Hype Train Events",
+          "request": {
+            "name": "Twitch Get Hype Train Events",
+            "description": {
+              "content": "Gets the information of the most recent Hype Train of the specified broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hypetrain",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e6c92f5-02be-4bd9-8440-0069d58c027c",
+              "name": "Hype Train events returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hypetrain",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"event_type\": \"string\",\n      \"event_timestamp\": \"2021-06-23T01:36:42.620Z\",\n      \"version\": \"string\",\n      \"event_data\": {\n        \"broadcaster_id\": \"string\",\n        \"cooldown_end_time\": \"1956-06-13T12:04:37.064Z\",\n        \"expires_at\": \"1994-07-28T10:00:20.690Z\",\n        \"goal\": 2400,\n        \"id\": \"string\",\n        \"last_contribution\": {\n          \"total\": 1865,\n          \"type\": \"string\",\n          \"user\": \"string\"\n        },\n        \"level\": 3143,\n        \"started_at\": \"1951-10-02T19:58:00.390Z\",\n        \"top_contributions\": [\n          {\n            \"total\": 8982,\n            \"type\": \"string\",\n            \"user\": \"string\"\n          },\n          {\n            \"total\": 6792,\n            \"type\": \"string\",\n            \"user\": \"string\"\n          }\n        ],\n        \"total\": 4350\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"event_type\": \"string\",\n      \"event_timestamp\": \"1980-03-08T23:42:20.944Z\",\n      \"version\": \"string\",\n      \"event_data\": {\n        \"broadcaster_id\": \"string\",\n        \"cooldown_end_time\": \"1965-11-10T10:56:48.893Z\",\n        \"expires_at\": \"1952-12-27T04:39:13.553Z\",\n        \"goal\": 7760,\n        \"id\": \"string\",\n        \"last_contribution\": {\n          \"total\": 7749,\n          \"type\": \"string\",\n          \"user\": \"string\"\n        },\n        \"level\": 9576,\n        \"started_at\": \"1987-08-15T15:49:18.416Z\",\n        \"top_contributions\": [\n          {\n            \"total\": 263,\n            \"type\": \"string\",\n            \"user\": \"string\"\n          },\n          {\n            \"total\": 5087,\n            \"type\": \"string\",\n            \"user\": \"string\"\n          }\n        ],\n        \"total\": 556\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1da838d9-3839-48cd-9a03-9df8624ecea8",
+    "name": "Twitch Drops Ads Hype Train API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

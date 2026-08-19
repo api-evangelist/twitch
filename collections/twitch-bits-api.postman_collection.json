@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "3ad7871b-9c14-43aa-8221-0f58192c69fc",
+      "name": "Bits",
+      "description": {
+        "content": "Retrieve Bits leaderboard and Cheermote information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37e74757-3d30-4452-a239-2826324aa7cf",
+          "name": "Twitch Get Bits Leaderboard",
+          "request": {
+            "name": "Twitch Get Bits Leaderboard",
+            "description": {
+              "content": "Gets the Bits leaderboard for the authenticated broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bits",
+                "leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "Number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "Time period for the leaderboard"
+                },
+                {
+                  "disabled": false,
+                  "key": "started_at",
+                  "value": "<dateTime>",
+                  "description": "Start date for the leaderboard period"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "Filter by specific user ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e63db33c-dbe2-43ef-b675-643447d41a9f",
+              "name": "Bits leaderboard returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bits",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"rank\": 7346,\n      \"score\": 4081\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"rank\": 6550,\n      \"score\": 8736\n    }\n  ],\n  \"date_range\": {\n    \"started_at\": \"1994-09-03T10:51:11.838Z\",\n    \"ended_at\": \"2003-04-30T07:41:09.529Z\"\n  },\n  \"total\": 415\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94829ef-94ea-4654-92b6-57748de08d01",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bits",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "started_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 9310,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c8c6054-4a78-49b0-b554-2eba3b8303d1",
+          "name": "Twitch Get Cheermotes",
+          "request": {
+            "name": "Twitch Get Cheermotes",
+            "description": {
+              "content": "Gets a list of Cheermotes that users can use to cheer Bits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bits",
+                "cheermotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "The ID of the broadcaster whose Cheermotes to retrieve"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e118acdf-53b3-4a26-a2d0-1ab0919b9f97",
+              "name": "Cheermotes returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bits",
+                    "cheermotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"prefix\": \"string\",\n      \"tiers\": [\n        {\n          \"min_bits\": 8539,\n          \"id\": \"string\",\n          \"color\": \"string\",\n          \"can_cheer\": true,\n          \"show_in_bits_card\": false\n        },\n        {\n          \"min_bits\": 7190,\n          \"id\": \"string\",\n          \"color\": \"string\",\n          \"can_cheer\": true,\n          \"show_in_bits_card\": false\n        }\n      ],\n      \"type\": \"string\",\n      \"order\": 2209,\n      \"last_updated\": \"2018-03-31T20:30:48.028Z\",\n      \"is_charitable\": false\n    },\n    {\n      \"prefix\": \"string\",\n      \"tiers\": [\n        {\n          \"min_bits\": 5725,\n          \"id\": \"string\",\n          \"color\": \"string\",\n          \"can_cheer\": true,\n          \"show_in_bits_card\": true\n        },\n        {\n          \"min_bits\": 420,\n          \"id\": \"string\",\n          \"color\": \"string\",\n          \"can_cheer\": false,\n          \"show_in_bits_card\": true\n        }\n      ],\n      \"type\": \"string\",\n      \"order\": 5152,\n      \"last_updated\": \"1951-11-30T06:21:43.562Z\",\n      \"is_charitable\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43b71183-0482-48f3-a37a-b7b33fc963a0",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bits",
+                    "cheermotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 9310,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa6350f6-738d-4e33-86fc-89880ffc8868",
+    "name": "Twitch Drops Ads Bits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "a0dfa440-a745-4c47-ac9d-a40188242c28",
+      "name": "EventSub",
+      "description": {
+        "content": "Manage EventSub subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8371e4e2-c6f3-4288-9eb8-06c310509de4",
+          "name": "Twitch Get EventSub Subscriptions",
+          "request": {
+            "name": "Twitch Get EventSub Subscriptions",
+            "description": {
+              "content": "Gets a list of your EventSub subscriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventsub",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00a3783d-6d31-4e0f-ac07-889750cf3e43",
+              "name": "EventSub subscriptions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventsub",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"condition\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"created_at\": \"1989-12-21T10:16:17.013Z\",\n      \"transport\": {\n        \"method\": \"conduit\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"conduit_id\": \"string\"\n      },\n      \"cost\": 8893\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"condition\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"created_at\": \"1976-05-30T20:37:35.110Z\",\n      \"transport\": {\n        \"method\": \"webhook\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"conduit_id\": \"string\"\n      },\n      \"cost\": 5437\n    }\n  ],\n  \"total\": 6785,\n  \"total_cost\": 1412,\n  \"max_total_cost\": 4713,\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a032d39-9f15-430e-9234-d7f53186a3de",
+          "name": "Twitch Create EventSub Subscription",
+          "request": {
+            "name": "Twitch Create EventSub Subscription",
+            "description": {
+              "content": "Creates an EventSub subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventsub",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"version\": \"<string>\",\n  \"condition\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"transport\": {\n    \"method\": \"<string>\",\n    \"callback\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"session_id\": \"<string>\",\n    \"conduit_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af0a03d2-c4cb-4384-b330-3e8bf45a8b08",
+              "name": "EventSub subscription created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventsub",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"version\": \"<string>\",\n  \"condition\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"transport\": {\n    \"method\": \"<string>\",\n    \"callback\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"session_id\": \"<string>\",\n    \"conduit_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"condition\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"created_at\": \"2021-05-08T18:52:23.560Z\",\n      \"transport\": {\n        \"method\": \"websocket\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"conduit_id\": \"string\"\n      },\n      \"cost\": 7433\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"condition\": {\n        \"key_0\": \"string\"\n      },\n      \"created_at\": \"2023-09-12T14:29:54.568Z\",\n      \"transport\": {\n        \"method\": \"webhook\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"conduit_id\": \"string\"\n      },\n      \"cost\": 2105\n    }\n  ],\n  \"total\": 7932,\n  \"total_cost\": 5629,\n  \"max_total_cost\": 3918\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483050cc-1e28-410c-9c16-39b530a53316",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventsub",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"version\": \"<string>\",\n  \"condition\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"transport\": {\n    \"method\": \"<string>\",\n    \"callback\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"session_id\": \"<string>\",\n    \"conduit_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 740,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b84c44cd-2fef-4cd2-bbcd-e984a80bae6c",
+          "name": "Twitch Delete EventSub Subscription",
+          "request": {
+            "name": "Twitch Delete EventSub Subscription",
+            "description": {
+              "content": "Deletes an EventSub subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eventsub",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "347fa709-529d-418d-a340-ca567b76864c",
+              "name": "Subscription deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eventsub",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33bf467c-3f13-4947-9f46-f37db9c577b9",
+    "name": "Twitch Drops Ads EventSub API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

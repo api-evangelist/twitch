@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "eee2339d-7d33-4df7-9f24-7ee7cc9cd102",
+      "name": "Charity",
+      "description": {
+        "content": "Retrieve charity campaign information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8bcfd35-f0df-4d7c-92c1-ebdce51191ed",
+          "name": "Twitch Get Charity Campaign",
+          "request": {
+            "name": "Twitch Get Charity Campaign",
+            "description": {
+              "content": "Gets information about the broadcaster's active charity campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charity",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07de11cb-f494-4dee-b814-9278f6214214",
+              "name": "Charity campaign returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charity",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"charity_name\": \"string\",\n      \"charity_description\": \"string\",\n      \"charity_logo\": \"string\",\n      \"charity_website\": \"string\",\n      \"current_amount\": {\n        \"value\": 5025,\n        \"decimal_places\": 5423,\n        \"currency\": \"string\"\n      },\n      \"target_amount\": {\n        \"value\": 8997,\n        \"decimal_places\": 5802,\n        \"currency\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"charity_name\": \"string\",\n      \"charity_description\": \"string\",\n      \"charity_logo\": \"string\",\n      \"charity_website\": \"string\",\n      \"current_amount\": {\n        \"value\": 339,\n        \"decimal_places\": 6395,\n        \"currency\": \"string\"\n      },\n      \"target_amount\": {\n        \"value\": 9108,\n        \"decimal_places\": 7175,\n        \"currency\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1da88205-a9da-4adc-98e4-1b7b2809214e",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charity",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"status\": 4222,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b329a9a8-692f-46c5-9875-865a198c4693",
+    "name": "Twitch Drops Ads Charity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

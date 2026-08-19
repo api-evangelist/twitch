@@ -1,0 +1,287 @@
+{
+  "item": [
+    {
+      "id": "766aaf2b-0b78-41b0-b6d9-810aec715cf7",
+      "name": "Predictions",
+      "description": {
+        "content": "Create and manage channel predictions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e1310b47-c53a-469c-a769-ea4cb3860b32",
+          "name": "Twitch Get Predictions",
+          "request": {
+            "name": "Twitch Get Predictions",
+            "description": {
+              "content": "Gets predictions for the specified broadcaster's channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "predictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2ac08c8-50be-4172-9446-12d030e0c683",
+              "name": "Predictions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "predictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"winning_outcome_id\": \"string\",\n      \"outcomes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 1067,\n          \"channel_points\": 2746,\n          \"color\": \"PINK\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 3003,\n              \"channel_points_won\": 8098\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 274,\n              \"channel_points_won\": 5630\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 8540,\n          \"channel_points\": 3598,\n          \"color\": \"PINK\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 7462,\n              \"channel_points_won\": 9728\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 9739,\n              \"channel_points_won\": 6963\n            }\n          ]\n        }\n      ],\n      \"prediction_window\": 4482,\n      \"status\": \"CANCELED\",\n      \"created_at\": \"1968-08-11T05:47:38.020Z\",\n      \"ended_at\": \"1971-05-29T08:15:47.069Z\",\n      \"locked_at\": \"1968-10-28T02:29:34.616Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"winning_outcome_id\": \"string\",\n      \"outcomes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 7366,\n          \"channel_points\": 151,\n          \"color\": \"BLUE\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 8967,\n              \"channel_points_won\": 1281\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 2766,\n              \"channel_points_won\": 2591\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 3744,\n          \"channel_points\": 6264,\n          \"color\": \"PINK\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 8422,\n              \"channel_points_won\": 6446\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 535,\n              \"channel_points_won\": 3945\n            }\n          ]\n        }\n      ],\n      \"prediction_window\": 52,\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"1970-12-04T03:38:07.280Z\",\n      \"ended_at\": \"2001-03-13T23:24:26.738Z\",\n      \"locked_at\": \"2013-02-13T00:16:42.849Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91ea99f0-5a53-4577-9ddb-add4d060d961",
+          "name": "Twitch Create Prediction",
+          "request": {
+            "name": "Twitch Create Prediction",
+            "description": {
+              "content": "Creates a prediction for the specified broadcaster's channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "predictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"outcomes\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"prediction_window\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3067fa6d-eb4d-409e-9197-9b200eddf9be",
+              "name": "Prediction created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "predictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"outcomes\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"prediction_window\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"winning_outcome_id\": \"string\",\n      \"outcomes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 8337,\n          \"channel_points\": 2177,\n          \"color\": \"BLUE\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 7547,\n              \"channel_points_won\": 4705\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 7410,\n              \"channel_points_won\": 899\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 2322,\n          \"channel_points\": 2554,\n          \"color\": \"BLUE\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 2105,\n              \"channel_points_won\": 306\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 8783,\n              \"channel_points_won\": 1643\n            }\n          ]\n        }\n      ],\n      \"prediction_window\": 7877,\n      \"status\": \"RESOLVED\",\n      \"created_at\": \"2002-10-22T11:16:41.688Z\",\n      \"ended_at\": \"2014-03-29T03:23:30.523Z\",\n      \"locked_at\": \"1968-02-01T12:39:56.754Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"winning_outcome_id\": \"string\",\n      \"outcomes\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 2104,\n          \"channel_points\": 5459,\n          \"color\": \"PINK\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 3466,\n              \"channel_points_won\": 9848\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 4749,\n              \"channel_points_won\": 2260\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"users\": 5459,\n          \"channel_points\": 2155,\n          \"color\": \"PINK\",\n          \"top_predictors\": [\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 4015,\n              \"channel_points_won\": 1394\n            },\n            {\n              \"user_id\": \"string\",\n              \"user_name\": \"string\",\n              \"user_login\": \"string\",\n              \"channel_points_used\": 3209,\n              \"channel_points_won\": 9711\n            }\n          ]\n        }\n      ],\n      \"prediction_window\": 4771,\n      \"status\": \"RESOLVED\",\n      \"created_at\": \"2011-06-13T12:30:03.215Z\",\n      \"ended_at\": \"1952-01-09T07:43:34.404Z\",\n      \"locked_at\": \"1965-02-26T20:32:06.198Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "384121a5-ec3f-4652-84bc-1677d0437e10",
+    "name": "Twitch Drops Ads Predictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

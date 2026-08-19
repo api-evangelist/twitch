@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "ba0cf783-1463-40e2-b9b8-0aad486403ff",
+      "name": "Polls",
+      "description": {
+        "content": "Create and manage channel polls",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0fcb5c35-fa8f-46ff-a3bc-5b4b4341394d",
+          "name": "Twitch Get Polls",
+          "request": {
+            "name": "Twitch Get Polls",
+            "description": {
+              "content": "Gets polls for a specified channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfd5c53f-ba36-466b-8c43-f2788c67fc55",
+              "name": "Polls returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 2096,\n          \"channel_points_votes\": 133,\n          \"bits_votes\": 4981\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4421,\n          \"channel_points_votes\": 2514,\n          \"bits_votes\": 5659\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 2188,\n      \"channel_points_voting_enabled\": false,\n      \"channel_points_per_vote\": 8725,\n      \"status\": \"ACTIVE\",\n      \"duration\": 3485,\n      \"started_at\": \"2021-02-13T13:00:09.012Z\",\n      \"ended_at\": \"1951-07-29T20:56:22.799Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 1125,\n          \"channel_points_votes\": 3540,\n          \"bits_votes\": 4108\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4094,\n          \"channel_points_votes\": 8700,\n          \"bits_votes\": 3724\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 3420,\n      \"channel_points_voting_enabled\": true,\n      \"channel_points_per_vote\": 4541,\n      \"status\": \"TERMINATED\",\n      \"duration\": 303,\n      \"started_at\": \"1960-04-30T20:26:05.610Z\",\n      \"ended_at\": \"1987-12-02T07:00:18.682Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1593f55f-dd94-4c92-a2dd-d5c1104aba6c",
+          "name": "Twitch Create Poll",
+          "request": {
+            "name": "Twitch Create Poll",
+            "description": {
+              "content": "Creates a poll for the specified channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"choices\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"duration\": \"<integer>\",\n  \"channel_points_voting_enabled\": \"<boolean>\",\n  \"channel_points_per_vote\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "167b6b7d-c1a9-421a-be3a-be8bf60509c1",
+              "name": "Poll created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"choices\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"duration\": \"<integer>\",\n  \"channel_points_voting_enabled\": \"<boolean>\",\n  \"channel_points_per_vote\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4486,\n          \"channel_points_votes\": 9073,\n          \"bits_votes\": 7212\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 3806,\n          \"channel_points_votes\": 9064,\n          \"bits_votes\": 1047\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 8669,\n      \"channel_points_voting_enabled\": false,\n      \"channel_points_per_vote\": 911,\n      \"status\": \"MODERATED\",\n      \"duration\": 8233,\n      \"started_at\": \"1950-04-07T16:18:53.063Z\",\n      \"ended_at\": \"2003-04-15T11:54:33.147Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4138,\n          \"channel_points_votes\": 8953,\n          \"bits_votes\": 2631\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 2356,\n          \"channel_points_votes\": 4536,\n          \"bits_votes\": 3245\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 5848,\n      \"channel_points_voting_enabled\": true,\n      \"channel_points_per_vote\": 8105,\n      \"status\": \"MODERATED\",\n      \"duration\": 3167,\n      \"started_at\": \"2006-06-08T15:36:06.801Z\",\n      \"ended_at\": \"2001-09-14T21:04:14.162Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e715846-980a-4566-8ff2-26ad620f6933",
+          "name": "Twitch End Poll",
+          "request": {
+            "name": "Twitch End Poll",
+            "description": {
+              "content": "Ends an active poll.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polls",
+                "end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39ae5f6b-7517-4211-8017-b3c59501971b",
+              "name": "Poll ended successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polls",
+                    "end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "260b81cc-9569-4639-890a-f39bed6918ce",
+    "name": "Twitch Drops Ads Polls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

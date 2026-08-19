@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "cd2dfcff-22de-45d4-8601-e1c42a2ff78b",
+      "name": "Themes",
+      "description": {
+        "content": "Game theme data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ce82328-d0d8-4e3b-a716-3ac0785cbc8d",
+          "name": "Twitch Query Themes",
+          "request": {
+            "name": "Twitch Query Themes",
+            "description": {
+              "content": "Query game themes using Apicalypse query language.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "themes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Twitch application client ID",
+                "key": "Client-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "137a50e0-7a88-4b9c-909e-4bce440da094",
+              "name": "Themes returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "themes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8278,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 1270,\n    \"updated_at\": 116\n  },\n  {\n    \"id\": 1581,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 2185,\n    \"updated_at\": 7337\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0724836e-2c49-46cc-992f-223116208cc6",
+    "name": "Twitch Drops Ads Themes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

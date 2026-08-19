@@ -1,0 +1,332 @@
+{
+  "item": [
+    {
+      "id": "73253e3a-368a-4702-8bfa-4aa28e5a3b97",
+      "name": "Videos",
+      "description": {
+        "content": "Manage and retrieve videos",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c553b250-6732-4a71-b848-8a2009a69ec0",
+          "name": "Twitch Get Videos",
+          "request": {
+            "name": "Twitch Get Videos",
+            "description": {
+              "content": "Gets information about one or more published videos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Cursor for backward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ee723da-cdce-475c-a3a4-2d1c1b0e88dc",
+              "name": "Videos returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "period",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"stream_id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"created_at\": \"1978-11-12T06:57:07.860Z\",\n      \"published_at\": \"1963-10-20T01:04:22.739Z\",\n      \"url\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"viewable\": \"private\",\n      \"view_count\": 1725,\n      \"language\": \"string\",\n      \"type\": \"highlight\",\n      \"duration\": \"string\",\n      \"muted_segments\": [\n        {\n          \"duration\": 1890,\n          \"offset\": 6472\n        },\n        {\n          \"duration\": 6216,\n          \"offset\": 4228\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"stream_id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"created_at\": \"2006-02-02T11:22:15.410Z\",\n      \"published_at\": \"1981-01-14T15:38:25.022Z\",\n      \"url\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"viewable\": \"private\",\n      \"view_count\": 433,\n      \"language\": \"string\",\n      \"type\": \"highlight\",\n      \"duration\": \"string\",\n      \"muted_segments\": [\n        {\n          \"duration\": 903,\n          \"offset\": 7354\n        },\n        {\n          \"duration\": 4842,\n          \"offset\": 3163\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aa98097-9cd7-431e-a096-b01cc3918941",
+          "name": "Twitch Delete Videos",
+          "request": {
+            "name": "Twitch Delete Videos",
+            "description": {
+              "content": "Deletes one or more published videos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a309464b-ac14-4757-bb8f-6d48e535fb5e",
+              "name": "Videos deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc4a2087-df8d-4b6b-85b9-786df6b36517",
+    "name": "Twitch Drops Ads Videos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

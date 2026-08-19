@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "3c711d0f-946b-40bc-aaf4-978fbfc71928",
+      "name": "Ingest",
+      "description": {
+        "content": "Ingest server information for broadcasting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cd0d809-cbdf-44eb-a2c4-df9670185d2e",
+          "name": "Twitch Get Ingest Servers",
+          "request": {
+            "name": "Twitch Get Ingest Servers",
+            "description": {
+              "content": "Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "ingests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44f9925c-7479-41dc-939c-423d435edc3d",
+              "name": "Ingest servers returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ingests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ingests\": [\n    {\n      \"_id\": 7300,\n      \"availability\": 4092.252041940723,\n      \"default\": true,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 9388\n    },\n    {\n      \"_id\": 4058,\n      \"availability\": 4735.306808636259,\n      \"default\": true,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 7746\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "349c6bcd-e6a3-473f-abda-648ce067133f",
+    "name": "Twitch Drops Ads Ingest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

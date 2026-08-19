@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "1b0d0395-88d4-48f8-b5c6-aa0c323cd412",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Retrieve subscription information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7eca760e-828e-420a-b4fb-d7cc8e05ffeb",
+          "name": "Twitch Get Broadcaster Subscriptions",
+          "request": {
+            "name": "Twitch Get Broadcaster Subscriptions",
+            "description": {
+              "content": "Gets a list of all subscribers to the specified broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d3fef24-04ad-4322-bc36-98fcaa052890",
+              "name": "Subscriptions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"gifter_id\": \"string\",\n      \"gifter_login\": \"string\",\n      \"gifter_name\": \"string\",\n      \"is_gift\": false,\n      \"plan_name\": \"string\",\n      \"tier\": \"2000\",\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"user_login\": \"string\"\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"gifter_id\": \"string\",\n      \"gifter_login\": \"string\",\n      \"gifter_name\": \"string\",\n      \"is_gift\": true,\n      \"plan_name\": \"string\",\n      \"tier\": \"2000\",\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"user_login\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  },\n  \"total\": 212,\n  \"points\": 3234\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5c4b04e-a469-46b6-9138-a4382c81cadb",
+    "name": "Twitch Drops Ads Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

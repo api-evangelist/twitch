@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Media API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Query Screenshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/screenshots",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game screenshots using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Artworks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/artworks",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game artworks using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Game Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/game_videos",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game video references using Apicalypse query language."
+        },
+        {
+          "info": {
+            "name": "Twitch Query Covers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/covers",
+            "headers": [
+              {
+                "name": "Client-ID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Query game cover art using Apicalypse query language."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

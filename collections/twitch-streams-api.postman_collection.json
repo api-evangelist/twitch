@@ -1,0 +1,799 @@
+{
+  "item": [
+    {
+      "id": "035a6e74-8688-4424-ab51-a60fb6d6c650",
+      "name": "Streams",
+      "description": {
+        "content": "Retrieve stream information and markers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c80b22a8-983a-4ab0-b233-31a9252475da",
+          "name": "Twitch Get Streams",
+          "request": {
+            "name": "Twitch Get Streams",
+            "description": {
+              "content": "Gets a list of all streams matching the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_login",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "game_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Cursor for backward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7021dc9-9407-449e-b315-56e33c0a9c26",
+              "name": "Streams returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "game_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"type\": \"live\",\n      \"title\": \"string\",\n      \"viewer_count\": 4572,\n      \"started_at\": \"1975-09-29T09:17:13.309Z\",\n      \"language\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_mature\": false\n    },\n    {\n      \"id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"type\": \"live\",\n      \"title\": \"string\",\n      \"viewer_count\": 6487,\n      \"started_at\": \"1969-09-12T16:51:57.185Z\",\n      \"language\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_mature\": false\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2de2b0ee-e57c-4831-b1d4-c2ec4699e861",
+          "name": "Twitch Get Followed Streams",
+          "request": {
+            "name": "Twitch Get Followed Streams",
+            "description": {
+              "content": "Gets the list of streams that the authenticated user follows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "followed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65ea1c23-f0cc-481b-a5da-fe48c09ab87e",
+              "name": "Followed streams returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "followed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"type\": \"live\",\n      \"title\": \"string\",\n      \"viewer_count\": 4572,\n      \"started_at\": \"1975-09-29T09:17:13.309Z\",\n      \"language\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_mature\": false\n    },\n    {\n      \"id\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"type\": \"live\",\n      \"title\": \"string\",\n      \"viewer_count\": 6487,\n      \"started_at\": \"1969-09-12T16:51:57.185Z\",\n      \"language\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_mature\": false\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a2fee3c-5205-44ba-8bf5-50bc3b030cbf",
+          "name": "Twitch Get Stream Markers",
+          "request": {
+            "name": "Twitch Get Stream Markers",
+            "description": {
+              "content": "Gets a list of markers from the user's most recent stream or from a specific VOD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "markers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "video_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "20",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "Cursor for backward pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c53973aa-9a94-4626-b274-48ca25700d1f",
+              "name": "Stream markers returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "markers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "video_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"user_login\": \"string\",\n      \"videos\": [\n        {\n          \"video_id\": \"string\",\n          \"markers\": [\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1999-12-13T07:24:19.067Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 2485\n            },\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1958-02-26T10:06:25.435Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 3455\n            }\n          ]\n        },\n        {\n          \"video_id\": \"string\",\n          \"markers\": [\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1966-01-03T06:05:26.951Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 8395\n            },\n            {\n              \"id\": \"string\",\n              \"created_at\": \"2010-03-30T09:51:56.502Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 1489\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"user_login\": \"string\",\n      \"videos\": [\n        {\n          \"video_id\": \"string\",\n          \"markers\": [\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1973-06-26T01:39:22.393Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 4801\n            },\n            {\n              \"id\": \"string\",\n              \"created_at\": \"2020-03-30T22:24:59.313Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 6374\n            }\n          ]\n        },\n        {\n          \"video_id\": \"string\",\n          \"markers\": [\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1986-05-06T21:09:55.167Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 6951\n            },\n            {\n              \"id\": \"string\",\n              \"created_at\": \"1986-02-03T23:50:49.162Z\",\n              \"description\": \"string\",\n              \"position_seconds\": 2661\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "893bc154-0d04-4a3d-b79f-c63e93b7b3e5",
+          "name": "Twitch Create Stream Marker",
+          "request": {
+            "name": "Twitch Create Stream Marker",
+            "description": {
+              "content": "Creates a marker in the stream at the current timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "markers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "739082f9-2c08-4a19-8009-98f2fdadf935",
+              "name": "Stream marker created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "markers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1996-06-14T00:32:16.621Z\",\n      \"description\": \"string\",\n      \"position_seconds\": 5695\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": \"2021-03-18T06:41:05.770Z\",\n      \"description\": \"string\",\n      \"position_seconds\": 5214\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d358a755-1243-4252-b57d-2eb76c0ea2fc",
+          "name": "Twitch Get Stream Key",
+          "request": {
+            "name": "Twitch Get Stream Key",
+            "description": {
+              "content": "Gets the broadcaster's stream key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d06f5a3-7272-41d4-8a19-f900120de308",
+              "name": "Stream key returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"stream_key\": \"string\"\n    },\n    {\n      \"stream_key\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9ab106e-9285-493c-bc30-6335e8d0a619",
+          "name": "Twitch Get Stream Tags",
+          "request": {
+            "name": "Twitch Get Stream Tags",
+            "description": {
+              "content": "Gets the list of stream tags for the specified broadcaster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tags",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "broadcaster_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46ccd604-e308-4c84-9d53-ae7fdd35b5d8",
+              "name": "Stream tags returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tags",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"tag_id\": \"string\",\n      \"is_auto\": false,\n      \"localization_names\": {\n        \"key_0\": \"string\"\n      },\n      \"localization_descriptions\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"tag_id\": \"string\",\n      \"is_auto\": true,\n      \"localization_names\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"localization_descriptions\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.twitch.tv/helix",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://id.twitch.tv/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b8f859b-2dae-4ac9-978c-5cdf301ed743",
+    "name": "Twitch Drops Ads Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

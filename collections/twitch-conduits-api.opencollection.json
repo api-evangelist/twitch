@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Twitch Drops Ads Conduits API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://id.twitch.tv/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conduits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Twitch Get Conduits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/conduits",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets the conduits for a client ID."
+        },
+        {
+          "info": {
+            "name": "Twitch Create Conduit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.twitch.tv/helix/conduits",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new conduit."
+        },
+        {
+          "info": {
+            "name": "Twitch Update Conduit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.twitch.tv/helix/conduits",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a conduit's shard count."
+        },
+        {
+          "info": {
+            "name": "Twitch Delete Conduit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.twitch.tv/helix/conduits",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a specified conduit."
+        },
+        {
+          "info": {
+            "name": "Twitch Get Conduit Shards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.twitch.tv/helix/conduits/shards",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "conduit_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination"
+              }
+            ]
+          },
+          "docs": "Gets the shards for a conduit."
+        },
+        {
+          "info": {
+            "name": "Twitch Update Conduit Shards",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.twitch.tv/helix/conduits/shards",
+            "headers": [
+              {
+                "name": "Client-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates shard transport for a conduit."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
