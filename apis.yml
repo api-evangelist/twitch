@@ -34,6 +34,10 @@ apis:
   humanURL: https://dev.twitch.tv/docs/eventsub
   baseURL: https://api.twitch.tv/helix/eventsub
   tags:
+  - Event
+  - Notification
+  - Webhook
+  tags_raw:
   - Events
   - Notifications
   - Webhooks
@@ -56,6 +60,11 @@ apis:
   humanURL: https://dev.twitch.tv/docs/chat
   baseURL: wss://irc-ws.chat.twitch.tv:443
   tags:
+  - Chat
+  - Irc
+  - Messaging
+  - WebSocket
+  tags_raw:
   - Chat
   - Irc
   - Messaging
@@ -672,6 +681,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -1888,6 +1899,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Pub-Sub
+  tags_raw:
   - Pubsub
   properties:
   - type: OpenAPI
@@ -2208,6 +2221,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -2272,6 +2287,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -2400,6 +2417,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -2464,6 +2483,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
