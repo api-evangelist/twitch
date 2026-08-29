@@ -1,6 +1,18 @@
 name: Twitch
 description: Twitch is a live streaming platform for gamers, content creators, and
   communities.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -2675,6 +2687,9 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: CapabilityMap
+  url: capabilities/twitch-capability-edges.yml
+  name: Twitch Business Capability Map
 - type: AgenticAccess
   url: agentic-access/twitch-agentic-access.yml
 - type: DomainSecurity
