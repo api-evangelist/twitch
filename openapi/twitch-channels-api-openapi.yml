@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Twitch Drops Ads Channels API
-  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
+  title: Twitch Helix Channels API
+  description: The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.
   version: '1.0'
   contact:
     name: Twitch Developer Support
@@ -12,6 +12,7 @@ servers:
   description: Twitch Helix API Production
 security:
 - oauth2: []
+- appAccessToken: []
 tags:
 - name: Channels
   description: Manage channel information and editors
@@ -160,35 +161,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Error:
       type: object
       properties:
@@ -198,6 +184,18 @@ components:
           type: integer
         message:
           type: string
+    Follower:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        followed_at:
+          type: string
+          format: date-time
     Channel:
       type: object
       properties:
@@ -237,38 +235,88 @@ components:
         created_at:
           type: string
           format: date-time
-    Follower:
+    Pagination:
       type: object
       properties:
-        user_id:
+        cursor:
           type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-        followed_at:
-          type: string
-          format: date-time
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          description: Cursor value for pagination
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
   securitySchemes:
     oauth2:
       type: oauth2
+      description: OAuth 2.0 Authorization Code Flow
       flows:
-        clientCredentials:
+        authorizationCode:
+          authorizationUrl: https://id.twitch.tv/oauth2/authorize
           tokenUrl: https://id.twitch.tv/oauth2/token
-          scopes: {}
+          scopes:
+            analytics:read:extensions: View analytics data for extensions
+            analytics:read:games: View analytics data for games
+            bits:read: View Bits information
+            channel:edit:commercial: Run commercials on a channel
+            channel:manage:broadcast: Manage a channel's broadcast configuration
+            channel:manage:moderators: Add and remove channel moderators
+            channel:manage:polls: Manage a channel's polls
+            channel:manage:predictions: Manage a channel's predictions
+            channel:manage:raids: Manage a channel's raids
+            channel:manage:redemptions: Manage channel points custom rewards and their redemptions
+            channel:manage:schedule: Manage a channel's stream schedule
+            channel:manage:videos: Manage a channel's videos
+            channel:read:editors: View a channel's editors
+            channel:read:goals: View a channel's goals
+            channel:read:hype_train: View Hype Train information
+            channel:read:polls: View a channel's polls
+            channel:read:predictions: View a channel's predictions
+            channel:read:redemptions: View channel points custom rewards and their redemptions
+            channel:read:stream_key: Read an authorized user's stream key
+            channel:read:subscriptions: View a channel's subscribers
+            chat:edit: Send live stream chat messages
+            chat:read: View live stream chat messages
+            clips:edit: Create clips
+            moderation:read: View a channel's moderation data
+            moderator:manage:announcements: Send announcements in channels
+            moderator:manage:automod: Manage messages held by AutoMod
+            moderator:manage:banned_users: Ban and unban users
+            moderator:manage:blocked_terms: Manage blocked terms
+            moderator:manage:chat_messages: Delete chat messages
+            moderator:manage:chat_settings: Manage chat settings
+            moderator:read:chatters: View the chatters in a channel
+            moderator:read:followers: Read the followers of a channel
+            user:edit: Manage a user's account
+            user:manage:blocked_users: Manage user's block list
+            user:manage:whispers: Send whisper messages
+            user:read:blocked_users: View a user's block list
+            user:read:broadcast: View a user's broadcasting configuration
+            user:read:email: View a user's email address
+            user:read:follows: View the list of channels a user follows
+            user:read:subscriptions: View a user's subscriptions
+            whispers:read: View whisper messages
+    appAccessToken:
+      type: http
+      scheme: bearer
+      description: App Access Token obtained via Client Credentials grant
 externalDocs:
-  description: Twitch Drops Documentation
-  url: https://dev.twitch.tv/docs/drops/
+  description: Twitch API Reference
+  url: https://dev.twitch.tv/docs/api/reference

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Twitch Drops Ads Analytics API
+  title: Twitch Drops Analytics API
   description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
   version: '1.0'
   contact:
@@ -70,11 +70,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
     Error:
       type: object
       properties:
@@ -103,13 +98,11 @@ components:
             ended_at:
               type: string
               format: date-time
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
   parameters:
     clientId:
       name: Client-Id
@@ -118,6 +111,13 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Twitch Drops Ads Collections API
-  description: APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.
-  version: '1.0'
+  title: Twitch IGDB Collections API
+  description: The Internet Game Database (IGDB) API provides comprehensive video game information including metadata, ratings, screenshots, videos, and media. IGDB is owned and operated by Twitch and uses Twitch OAuth for authentication. The API uses a POST-based query language called Apicalypse.
+  version: '4.0'
   contact:
-    name: Twitch Developer Support
-    url: https://dev.twitch.tv/support/
+    name: IGDB Support
+    url: https://api-docs.igdb.com/
   termsOfService: https://www.twitch.tv/p/legal/terms-of-service/
 servers:
-- url: https://api.twitch.tv/helix
-  description: Twitch Helix API Production
+- url: https://api.igdb.com/v4
+  description: IGDB API v4 Production
 security:
 - oauth2: []
 tags:
@@ -67,9 +67,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/Franchise'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
   schemas:
     Collection:
       type: object
@@ -117,13 +114,17 @@ components:
       schema:
         type: string
       description: Twitch application client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
   securitySchemes:
     oauth2:
       type: oauth2
+      description: Twitch OAuth2 Client Credentials for IGDB access
       flows:
         clientCredentials:
           tokenUrl: https://id.twitch.tv/oauth2/token
           scopes: {}
 externalDocs:
-  description: Twitch Drops Documentation
-  url: https://dev.twitch.tv/docs/drops/
+  description: IGDB API Documentation
+  url: https://api-docs.igdb.com/
