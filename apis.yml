@@ -75,7 +75,7 @@ apis:
   - Chat
   - Irc
   - Messaging
-  - WebSocket
+  - Websocket
   tags_raw:
   - Chat
   - Irc
@@ -1911,7 +1911,7 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
-  - Pub-Sub
+  - Pubsub
   tags_raw:
   - Pubsub
   properties:
