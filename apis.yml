@@ -2687,6 +2687,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Website
+  url: https://www.twitch.tv/
 - type: CapabilityMap
   url: capabilities/twitch-capability-edges.yml
   name: Twitch Business Capability Map
