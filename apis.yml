@@ -1720,6 +1720,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Platform
+  tags_raw:
   - Platforms
   properties:
   - type: OpenAPI
@@ -2562,6 +2564,8 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
