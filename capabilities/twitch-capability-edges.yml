@@ -1,0 +1,90 @@
+slug: twitch
+provider: Twitch
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Moderation
+  spec_file: twitch-moderation-api-openapi.yml
+  capability_id: BC-3780.40
+  capability_id_l1: BC-3780
+  capability_name: User-Generated Content Moderation
+  confidence: 0.9
+  evidence: POST /moderation/bans banUser; POST /moderation/automod/message Twitch Manage Held AutoMod
+    Messages
+  reason: Bans, moderator assignment, and automated held-message review are exactly user-generated content
+    moderation with automated triage and human review on a UGC platform.
+- tag: EventSub
+  spec_file: twitch-eventsub-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: POST /eventsub/subscriptions createEventSubSubscription; DELETE /eventsub/subscriptions; schema
+    EventSubSubscriptionInput
+  reason: Create/list/delete of outbound event (webhook) subscriptions that developers register to receive
+    platform events — a direct match to webhook and event subscription lifecycle management in the developer
+    platform capability.
+- tag: Ingest
+  spec_file: twitch-ingest-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.8
+  evidence: API for retrieving ingest server information used by broadcasters to send live video streams
+    to Twitch via RTMP. Provides ingest endpoints sorted by proximity and availability.
+  reason: Directly concerns live streaming contribution/origin infrastructure endpoints for a streaming
+    service, matching OTT & streaming delivery operations. Some ambiguity as it could also read as asset
+    ingest, but the description is explicitly about live stream transport servers.
+- tag: Ads
+  spec_file: twitch-ads-api-openapi.yml
+  capability_id: BC-3760.40
+  capability_id_l1: BC-3760
+  capability_name: Ad Trafficking & Operations
+  confidence: 0.75
+  evidence: 'POST /channels/ads  startCommercial  Twitch Start Commercial; schema: Commercial'
+  reason: The single operation triggers an advertising break on a live channel, i.e. runtime ad insertion
+    into a break stream, which is ad trafficking and operations. Some residual ambiguity because the surface
+    is one narrow trigger endpoint with no creative or scheduling management.
+- tag: Schedule
+  spec_file: twitch-schedule-api-openapi.yml
+  capability_id: BC-3730.10
+  capability_id_l1: BC-3730
+  capability_name: Linear Channel Scheduling
+  confidence: 0.75
+  evidence: 'GET /schedule getChannelStreamSchedule; PATCH /schedule updateChannelStreamSchedule; schemas:
+    StreamSchedule'
+  reason: Retrieval and update of a channel's stream broadcast schedule is channel/stream scheduling published
+    to viewers. Sub-capability choice between linear channel scheduling and EPG data is somewhat ambiguous
+    for a creator-managed streaming schedule.
+- tag: Media
+  spec_file: twitch-media-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.7
+  evidence: 'POST /screenshots queryScreenshots; POST /covers queryCovers; schemas: GameVideo, Screenshot,
+    Cover, Artwork'
+  reason: IGDB media endpoints expose catalogued descriptive media metadata (covers, artworks, screenshots,
+    videos) for game titles — a metadata catalogue query surface. Read-only third-party catalogue querying
+    makes this only moderately confident.
+- tag: Subscriptions
+  spec_file: twitch-subscriptions-api-openapi.yml
+  capability_id: BC-3750.20
+  capability_id_l1: BC-3750
+  capability_name: Subscription & Entitlement Management
+  confidence: 0.7
+  evidence: 'GET /subscriptions getBroadcasterSubscriptions  Twitch Get Broadcaster Subscriptions; schemas:
+    Subscription'
+  reason: Returns the paid subscriber records of a channel's viewers — the subscription/entitlement records
+    governing viewer access to a content service. Not a SaaS tenant subscription, so the viewer-side capability
+    fits better.
