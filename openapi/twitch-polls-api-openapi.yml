@@ -118,6 +118,12 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -126,13 +132,40 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   schemas:
+    PollInput:
+      type: object
+      required:
+      - broadcaster_id
+      - title
+      - choices
+      - duration
+      properties:
+        broadcaster_id:
+          type: string
+        title:
+          type: string
+          maxLength: 60
+        choices:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+                maxLength: 25
+        duration:
+          type: integer
+          minimum: 15
+          maximum: 1800
+        channel_points_voting_enabled:
+          type: boolean
+        channel_points_per_vote:
+          type: integer
     Poll:
       type: object
       properties:
@@ -193,39 +226,6 @@ components:
         cursor:
           type: string
           description: Cursor value for pagination
-    PollInput:
-      type: object
-      required:
-      - broadcaster_id
-      - title
-      - choices
-      - duration
-      properties:
-        broadcaster_id:
-          type: string
-        title:
-          type: string
-          maxLength: 60
-        choices:
-          type: array
-          minItems: 2
-          maxItems: 5
-          items:
-            type: object
-            required:
-            - title
-            properties:
-              title:
-                type: string
-                maxLength: 25
-        duration:
-          type: integer
-          minimum: 15
-          maximum: 1800
-        channel_points_voting_enabled:
-          type: boolean
-        channel_points_per_vote:
-          type: integer
   securitySchemes:
     oauth2:
       type: oauth2

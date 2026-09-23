@@ -126,14 +126,6 @@ paths:
         '204':
           description: Required configuration set successfully
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   schemas:
     ExtensionConfigurationSegment:
       type: object
@@ -150,6 +142,14 @@ components:
           type: string
         version:
           type: string
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   securitySchemes:
     oauth2:
       type: oauth2

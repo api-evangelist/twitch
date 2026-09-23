@@ -234,14 +234,10 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    Error:
+    Pagination:
       type: object
       properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
+        cursor:
           type: string
     Extension:
       type: object
@@ -348,10 +344,44 @@ components:
                   type: integer
                 can_link_external_content:
                   type: boolean
-    Pagination:
+    ActiveExtensions:
       type: object
       properties:
-        cursor:
+        panel:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        overlay:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        component:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+    ActiveExtensionSlot:
+      type: object
+      properties:
+        active:
+          type: boolean
+        id:
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        x:
+          type: integer
+        y:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
           type: string
     InstalledExtension:
       type: object
@@ -373,36 +403,13 @@ components:
             - mobile
             - panel
             - overlay
-    ActiveExtensionSlot:
-      type: object
-      properties:
-        active:
-          type: boolean
-        id:
-          type: string
-        version:
-          type: string
-        name:
-          type: string
-        x:
-          type: integer
-        y:
-          type: integer
-    ActiveExtensions:
-      type: object
-      properties:
-        panel:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        overlay:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        component:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     clientId:
       name: Client-Id
@@ -411,13 +418,6 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

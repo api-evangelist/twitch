@@ -127,15 +127,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    Pagination:
       type: object
       properties:
-        error:
+        cursor:
           type: string
-        status:
-          type: integer
-        message:
-          type: string
+          description: Cursor value for pagination
     EventSubSubscriptionInput:
       type: object
       required:
@@ -178,6 +175,15 @@ components:
             conduit_id:
               type: string
               description: Conduit ID (required for conduit transport)
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     EventSubSubscription:
       type: object
       properties:
@@ -213,12 +219,6 @@ components:
               type: string
         cost:
           type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
   parameters:
     clientId:
       name: Client-Id

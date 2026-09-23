@@ -194,19 +194,6 @@ paths:
           description: Shards updated successfully
 components:
   schemas:
-    Conduit:
-      type: object
-      properties:
-        id:
-          type: string
-        shard_count:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     ConduitShard:
       type: object
       properties:
@@ -229,6 +216,19 @@ components:
             disconnected_at:
               type: string
               format: date-time
+    Conduit:
+      type: object
+      properties:
+        id:
+          type: string
+        shard_count:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
   parameters:
     clientId:
       name: Client-Id

@@ -161,29 +161,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
     Follower:
       type: object
       properties:
@@ -194,6 +172,16 @@ components:
         user_name:
           type: string
         followed_at:
+          type: string
+          format: date-time
+    ChannelEditor:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_name:
+          type: string
+        created_at:
           type: string
           format: date-time
     Channel:
@@ -225,22 +213,34 @@ components:
             type: string
         is_branded_content:
           type: boolean
-    ChannelEditor:
+    Error:
       type: object
       properties:
-        user_id:
+        error:
           type: string
-        user_name:
+        status:
+          type: integer
+        message:
           type: string
-        created_at:
-          type: string
-          format: date-time
     Pagination:
       type: object
       properties:
         cursor:
           type: string
           description: Cursor value for pagination
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     clientId:
       name: Client-Id
@@ -249,6 +249,12 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -257,12 +263,6 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   securitySchemes:
     oauth2:
       type: oauth2

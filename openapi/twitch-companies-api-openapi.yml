@@ -67,18 +67,28 @@ paths:
                 items:
                   $ref: '#/components/schemas/InvolvedCompany'
 components:
-  parameters:
-    clientId:
-      name: Client-ID
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Twitch application client ID
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
   schemas:
+    InvolvedCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+        company:
+          type: integer
+        game:
+          type: integer
+        developer:
+          type: boolean
+        publisher:
+          type: boolean
+        porting:
+          type: boolean
+        supporting:
+          type: boolean
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
     Company:
       type: object
       properties:
@@ -112,27 +122,17 @@ components:
           type: integer
         updated_at:
           type: integer
-    InvolvedCompany:
-      type: object
-      properties:
-        id:
-          type: integer
-        company:
-          type: integer
-        game:
-          type: integer
-        developer:
-          type: boolean
-        publisher:
-          type: boolean
-        porting:
-          type: boolean
-        supporting:
-          type: boolean
-        created_at:
-          type: integer
-        updated_at:
-          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
   securitySchemes:
     oauth2:
       type: oauth2

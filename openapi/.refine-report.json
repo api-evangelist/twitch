@@ -63,7 +63,8 @@
     "twitch-video-broadcast-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Entitlements' spans 2 source specs (twitch-drops-openapi.yml, twitch-helix-openapi.yml): per-path servers applied",
     "tag 'Games' spans 2 source specs (twitch-helix-openapi.yml, twitch-igdb-openapi.yml): per-path servers applied",
-    "tag 'Search' spans 2 source specs (twitch-helix-openapi.yml, twitch-igdb-openapi.yml): per-path servers applied"
+    "tag 'Search' spans 2 source specs (twitch-helix-openapi.yml, twitch-igdb-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "twitch-ads-api-openapi.yml: previously refined output, superseded by openapi/_original/",

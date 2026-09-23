@@ -179,25 +179,7 @@ paths:
     - url: https://api.igdb.com/v4
       description: IGDB API v4 Production
 components:
-  responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token is invalid
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
     Game:
       type: object
       properties:
@@ -209,12 +191,46 @@ components:
           type: string
         igdb_id:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     Pagination:
       type: object
       properties:
         cursor:
           type: string
           description: Cursor value for pagination
+    ReleaseDate:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        platform:
+          type: integer
+        date:
+          type: integer
+          description: Unix timestamp
+        region:
+          type: integer
+          description: 1=Europe, 2=North America, 3=Australia, 4=New Zealand, 5=Japan, 6=China, 7=Asia, 8=Worldwide, 9=Korea, 10=Brazil
+        category:
+          type: integer
+          description: 0=YYYYMMMMDD, 1=YYYYMMMM, 2=YYYY, 3=YYYYQ1, 4=YYYYQ2, 5=YYYYQ3, 6=YYYYQ4, 7=TBD
+        human:
+          type: string
+          description: Human-readable date string
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
     Game_2:
       type: object
       properties:
@@ -298,31 +314,15 @@ components:
           type: integer
         updated_at:
           type: integer
-    ReleaseDate:
-      type: object
-      properties:
-        id:
-          type: integer
-        game:
-          type: integer
-        platform:
-          type: integer
-        date:
-          type: integer
-          description: Unix timestamp
-        region:
-          type: integer
-          description: 1=Europe, 2=North America, 3=Australia, 4=New Zealand, 5=Japan, 6=China, 7=Asia, 8=Worldwide, 9=Korea, 10=Brazil
-        category:
-          type: integer
-          description: 0=YYYYMMMMDD, 1=YYYYMMMM, 2=YYYY, 3=YYYYQ1, 4=YYYYQ2, 5=YYYYQ3, 6=YYYYQ4, 7=TBD
-        human:
-          type: string
-          description: Human-readable date string
-        created_at:
-          type: integer
-        updated_at:
-          type: integer
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token is invalid
   parameters:
     clientId:
       name: Client-Id
@@ -337,6 +337,12 @@ components:
       schema:
         type: string
       description: Cursor for backward pagination
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -345,12 +351,6 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
     clientId_2:
       name: Client-ID
       in: header

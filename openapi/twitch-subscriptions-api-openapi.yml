@@ -64,6 +64,12 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -72,19 +78,7 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Subscription:
       type: object
       properties:
@@ -116,6 +110,12 @@ components:
           type: string
         user_login:
           type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

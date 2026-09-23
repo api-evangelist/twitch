@@ -133,35 +133,11 @@ components:
           format: date-time
         is_broadcast:
           type: boolean
-    BitsProductInput:
+    Pagination:
       type: object
-      required:
-      - sku
-      - cost
       properties:
-        sku:
+        cursor:
           type: string
-        cost:
-          type: object
-          required:
-          - amount
-          - type
-          properties:
-            amount:
-              type: integer
-            type:
-              type: string
-              enum:
-              - bits
-        display_name:
-          type: string
-        in_development:
-          type: boolean
-        expiration:
-          type: string
-          format: date-time
-        is_broadcast:
-          type: boolean
     ExtensionTransaction:
       type: object
       properties:
@@ -204,11 +180,35 @@ components:
               type: string
             inDevelopment:
               type: boolean
-    Pagination:
+    BitsProductInput:
       type: object
+      required:
+      - sku
+      - cost
       properties:
-        cursor:
+        sku:
           type: string
+        cost:
+          type: object
+          required:
+          - amount
+          - type
+          properties:
+            amount:
+              type: integer
+            type:
+              type: string
+              enum:
+              - bits
+        display_name:
+          type: string
+        in_development:
+          type: boolean
+        expiration:
+          type: string
+          format: date-time
+        is_broadcast:
+          type: boolean
   parameters:
     clientId:
       name: Client-Id

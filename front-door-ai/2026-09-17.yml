@@ -1,0 +1,21 @@
+# Front Door AI Index — twitch — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: twitch
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.twitch.tv
+  final_host: www.twitch.tv
+  ownership: own
+  owner: twitch
+  shares_host_with: null
+  inherited_from: null
+  verdict: thin
+  score: null
+  host_score: null
+  density: null
+  words: 31
+  tiers: null
+  ambiguous: null
+  top_terms: null

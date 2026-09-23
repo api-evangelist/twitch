@@ -344,29 +344,33 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    ChatBadgeSet:
       type: object
       properties:
-        error:
+        set_id:
           type: string
-        status:
-          type: integer
-        message:
-          type: string
+        versions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              image_url_1x:
+                type: string
+              image_url_2x:
+                type: string
+              image_url_4x:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              click_action:
+                type: string
+              click_url:
+                type: string
     ChatSettingsUpdate:
       type: object
       properties:
@@ -388,15 +392,6 @@ components:
           type: boolean
         unique_chat_mode:
           type: boolean
-    Chatter:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
     ChatSettings:
       type: object
       properties:
@@ -425,38 +420,6 @@ components:
           type: boolean
         unique_chat_mode:
           type: boolean
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
-    ChatBadgeSet:
-      type: object
-      properties:
-        set_id:
-          type: string
-        versions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              image_url_1x:
-                type: string
-              image_url_2x:
-                type: string
-              image_url_4x:
-                type: string
-              title:
-                type: string
-              description:
-                type: string
-              click_action:
-                type: string
-              click_url:
-                type: string
     Emote:
       type: object
       properties:
@@ -505,6 +468,43 @@ components:
             enum:
             - light
             - dark
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Chatter:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     clientId:
       name: Client-Id

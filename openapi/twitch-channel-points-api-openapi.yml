@@ -103,15 +103,38 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    CustomRewardInput:
       type: object
+      required:
+      - title
+      - cost
       properties:
-        error:
+        title:
           type: string
-        status:
+        cost:
           type: integer
-        message:
+        prompt:
           type: string
+        is_enabled:
+          type: boolean
+        background_color:
+          type: string
+        is_user_input_required:
+          type: boolean
+        is_max_per_stream_enabled:
+          type: boolean
+        max_per_stream:
+          type: integer
+        is_max_per_user_per_stream_enabled:
+          type: boolean
+        max_per_user_per_stream:
+          type: integer
+        is_global_cooldown_enabled:
+          type: boolean
+        global_cooldown_seconds:
+          type: integer
+        should_redemptions_skip_request_queue:
+          type: boolean
     CustomReward:
       type: object
       properties:
@@ -179,38 +202,15 @@ components:
           type: string
           nullable: true
           format: date-time
-    CustomRewardInput:
+    Error:
       type: object
-      required:
-      - title
-      - cost
       properties:
-        title:
+        error:
           type: string
-        cost:
+        status:
           type: integer
-        prompt:
+        message:
           type: string
-        is_enabled:
-          type: boolean
-        background_color:
-          type: string
-        is_user_input_required:
-          type: boolean
-        is_max_per_stream_enabled:
-          type: boolean
-        max_per_stream:
-          type: integer
-        is_max_per_user_per_stream_enabled:
-          type: boolean
-        max_per_user_per_stream:
-          type: integer
-        is_global_cooldown_enabled:
-          type: boolean
-        global_cooldown_seconds:
-          type: integer
-        should_redemptions_skip_request_queue:
-          type: boolean
   parameters:
     clientId:
       name: Client-Id

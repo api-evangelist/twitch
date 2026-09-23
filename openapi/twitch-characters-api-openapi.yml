@@ -43,6 +43,9 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
   parameters:
     clientId:
       name: Client-ID
@@ -51,9 +54,6 @@ components:
       schema:
         type: string
       description: Twitch application client ID
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
   schemas:
     Character:
       type: object

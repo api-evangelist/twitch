@@ -66,6 +66,25 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    Commercial:
+      type: object
+      properties:
+        length:
+          type: integer
+        message:
+          type: string
+        retry_after:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
   responses:
     BadRequest:
       description: The request was invalid
@@ -79,25 +98,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
-    Commercial:
-      type: object
-      properties:
-        length:
-          type: integer
-        message:
-          type: string
-        retry_after:
-          type: integer
   parameters:
     clientId:
       name: Client-Id
