@@ -38,6 +38,7 @@ tags:
 - Streaming
 - Video
 - Twitch
+- Real-Time
 apis:
 - name: Twitch EventSub
   description: >-
@@ -150,8 +151,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -214,8 +213,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -278,8 +275,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -342,8 +337,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -406,8 +399,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -470,8 +461,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -534,8 +523,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -598,8 +585,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -662,8 +647,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -728,8 +711,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -792,8 +773,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -856,8 +835,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -920,8 +897,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -984,8 +959,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1048,8 +1021,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1112,8 +1083,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1176,8 +1145,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1240,8 +1207,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1304,8 +1269,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1368,8 +1331,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1432,8 +1393,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1496,8 +1455,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1560,8 +1517,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1624,8 +1579,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1688,8 +1641,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1754,8 +1705,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1818,8 +1767,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1882,8 +1829,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -1948,8 +1893,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2012,8 +1955,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2076,8 +2017,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2140,8 +2079,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2204,8 +2141,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2270,8 +2205,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2336,8 +2269,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2400,8 +2331,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2466,8 +2395,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2532,8 +2459,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2598,8 +2523,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
@@ -2662,8 +2585,6 @@ apis:
     url: https://dev.twitch.tv/docs/api/clips
   - type: Videos
     url: https://dev.twitch.tv/docs/api/videos/
-  - type: GraphQL
-    url: graphql/twitch-graphql.md
   - type: Documentation
     url: https://dev.twitch.tv/docs/extensions/
   - type: Building Extensions
