@@ -137,6 +137,12 @@ components:
         maximum: 100
       description: Maximum number of items to return
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Video:
       type: object
       properties:
@@ -192,12 +198,6 @@ components:
                 type: integer
               offset:
                 type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

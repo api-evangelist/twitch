@@ -44,6 +44,14 @@ paths:
                     items:
                       $ref: '#/components/schemas/CreatorGoal'
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   schemas:
     CreatorGoal:
       type: object
@@ -73,14 +81,6 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   securitySchemes:
     oauth2:
       type: oauth2

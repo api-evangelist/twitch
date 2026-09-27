@@ -145,6 +145,35 @@ paths:
     - url: https://api.twitch.tv/helix
       description: Twitch Helix API Production
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     DropsEntitlement:
       type: object
@@ -175,6 +204,11 @@ components:
           type: string
           format: date-time
           description: When the entitlement was last updated
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
     Error:
       type: object
       properties:
@@ -183,11 +217,6 @@ components:
         status:
           type: integer
         message:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
           type: string
     DropsEntitlement_2:
       type: object
@@ -217,35 +246,6 @@ components:
         cursor:
           type: string
           description: Cursor value for pagination
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
   securitySchemes:
     oauth2:
       type: oauth2

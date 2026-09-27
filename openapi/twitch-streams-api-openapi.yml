@@ -220,7 +220,47 @@ paths:
                     items:
                       $ref: '#/components/schemas/StreamTag'
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
   schemas:
+    StreamMarker:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        position_seconds:
+          type: integer
     Stream:
       type: object
       properties:
@@ -278,6 +318,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/StreamMarker'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     StreamTag:
       type: object
       properties:
@@ -293,52 +339,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    StreamMarker:
-      type: object
-      properties:
-        id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        position_seconds:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
   securitySchemes:
     oauth2:
       type: oauth2

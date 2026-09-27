@@ -67,6 +67,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/Franchise'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
   schemas:
     Franchise:
       type: object
@@ -106,9 +109,6 @@ components:
           type: integer
         updated_at:
           type: integer
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
   parameters:
     clientId:
       name: Client-ID

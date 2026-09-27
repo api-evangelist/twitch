@@ -46,16 +46,22 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
     CharityCampaign:
       type: object
       properties:
@@ -93,21 +99,15 @@ components:
               type: integer
             currency:
               type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2

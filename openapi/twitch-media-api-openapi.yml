@@ -113,20 +113,16 @@ paths:
                 items:
                   $ref: '#/components/schemas/Cover'
 components:
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
   schemas:
-    GameVideo:
-      type: object
-      properties:
-        id:
-          type: integer
-        game:
-          type: integer
-        name:
-          type: string
-        video_id:
-          type: string
-          description: YouTube video ID
-    Cover:
+    Screenshot:
       type: object
       properties:
         id:
@@ -141,7 +137,7 @@ components:
           type: integer
         height:
           type: integer
-    Screenshot:
+    Cover:
       type: object
       properties:
         id:
@@ -171,14 +167,18 @@ components:
           type: integer
         height:
           type: integer
-  parameters:
-    clientId:
-      name: Client-ID
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Twitch application client ID
+    GameVideo:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        name:
+          type: string
+        video_id:
+          type: string
+          description: YouTube video ID
   securitySchemes:
     oauth2:
       type: oauth2

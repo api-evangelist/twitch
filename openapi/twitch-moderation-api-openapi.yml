@@ -243,77 +243,6 @@ paths:
         '204':
           description: AutoMod message managed successfully
 components:
-  schemas:
-    BannedUser:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-        expires_at:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        reason:
-          type: string
-        moderator_id:
-          type: string
-        moderator_login:
-          type: string
-        moderator_name:
-          type: string
-    Moderator:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-    BanResponse:
-      type: object
-      properties:
-        broadcaster_id:
-          type: string
-        moderator_id:
-          type: string
-        user_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-          nullable: true
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
-  responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     clientId:
       name: Client-Id
@@ -342,6 +271,77 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
+  schemas:
+    Moderator:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+    BanResponse:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        moderator_id:
+          type: string
+        user_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    BannedUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        moderator_id:
+          type: string
+        moderator_login:
+          type: string
+        moderator_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -110,13 +110,19 @@ paths:
                       $ref: '#/components/schemas/BitsProduct'
 components:
   schemas:
-    BitsProduct:
+    BitsProductInput:
       type: object
+      required:
+      - sku
+      - cost
       properties:
         sku:
           type: string
         cost:
           type: object
+          required:
+          - amount
+          - type
           properties:
             amount:
               type: integer
@@ -124,20 +130,15 @@ components:
               type: string
               enum:
               - bits
-        in_development:
-          type: boolean
         display_name:
           type: string
+        in_development:
+          type: boolean
         expiration:
           type: string
           format: date-time
         is_broadcast:
           type: boolean
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
     ExtensionTransaction:
       type: object
       properties:
@@ -180,19 +181,13 @@ components:
               type: string
             inDevelopment:
               type: boolean
-    BitsProductInput:
+    BitsProduct:
       type: object
-      required:
-      - sku
-      - cost
       properties:
         sku:
           type: string
         cost:
           type: object
-          required:
-          - amount
-          - type
           properties:
             amount:
               type: integer
@@ -200,15 +195,20 @@ components:
               type: string
               enum:
               - bits
-        display_name:
-          type: string
         in_development:
           type: boolean
+        display_name:
+          type: string
         expiration:
           type: string
           format: date-time
         is_broadcast:
           type: boolean
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
   parameters:
     clientId:
       name: Client-Id

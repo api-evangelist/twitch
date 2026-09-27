@@ -133,39 +133,6 @@ components:
         maximum: 100
       description: Maximum number of items to return
   schemas:
-    PollInput:
-      type: object
-      required:
-      - broadcaster_id
-      - title
-      - choices
-      - duration
-      properties:
-        broadcaster_id:
-          type: string
-        title:
-          type: string
-          maxLength: 60
-        choices:
-          type: array
-          minItems: 2
-          maxItems: 5
-          items:
-            type: object
-            required:
-            - title
-            properties:
-              title:
-                type: string
-                maxLength: 25
-        duration:
-          type: integer
-          minimum: 15
-          maximum: 1800
-        channel_points_voting_enabled:
-          type: boolean
-        channel_points_per_vote:
-          type: integer
     Poll:
       type: object
       properties:
@@ -220,6 +187,39 @@ components:
           type: string
           format: date-time
           nullable: true
+    PollInput:
+      type: object
+      required:
+      - broadcaster_id
+      - title
+      - choices
+      - duration
+      properties:
+        broadcaster_id:
+          type: string
+        title:
+          type: string
+          maxLength: 60
+        choices:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+                maxLength: 25
+        duration:
+          type: integer
+          minimum: 15
+          maximum: 1800
+        channel_points_voting_enabled:
+          type: boolean
+        channel_points_per_vote:
+          type: integer
     Pagination:
       type: object
       properties:

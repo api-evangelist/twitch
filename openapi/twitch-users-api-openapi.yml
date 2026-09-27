@@ -150,13 +150,36 @@ paths:
         '204':
           description: User unblocked successfully
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     User:
       type: object
       properties:
@@ -193,15 +216,12 @@ components:
         created_at:
           type: string
           format: date-time
-    Error:
+    Pagination:
       type: object
       properties:
-        error:
+        cursor:
           type: string
-        status:
-          type: integer
-        message:
-          type: string
+          description: Cursor value for pagination
     BlockedUser:
       type: object
       properties:
@@ -211,35 +231,15 @@ components:
           type: string
         display_name:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2

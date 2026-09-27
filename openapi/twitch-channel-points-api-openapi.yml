@@ -89,52 +89,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    CustomRewardInput:
-      type: object
-      required:
-      - title
-      - cost
-      properties:
-        title:
-          type: string
-        cost:
-          type: integer
-        prompt:
-          type: string
-        is_enabled:
-          type: boolean
-        background_color:
-          type: string
-        is_user_input_required:
-          type: boolean
-        is_max_per_stream_enabled:
-          type: boolean
-        max_per_stream:
-          type: integer
-        is_max_per_user_per_stream_enabled:
-          type: boolean
-        max_per_user_per_stream:
-          type: integer
-        is_global_cooldown_enabled:
-          type: boolean
-        global_cooldown_seconds:
-          type: integer
-        should_redemptions_skip_request_queue:
-          type: boolean
     CustomReward:
       type: object
       properties:
@@ -202,6 +178,38 @@ components:
           type: string
           nullable: true
           format: date-time
+    CustomRewardInput:
+      type: object
+      required:
+      - title
+      - cost
+      properties:
+        title:
+          type: string
+        cost:
+          type: integer
+        prompt:
+          type: string
+        is_enabled:
+          type: boolean
+        background_color:
+          type: string
+        is_user_input_required:
+          type: boolean
+        is_max_per_stream_enabled:
+          type: boolean
+        max_per_stream:
+          type: integer
+        is_max_per_user_per_stream_enabled:
+          type: boolean
+        max_per_user_per_stream:
+          type: integer
+        is_global_cooldown_enabled:
+          type: boolean
+        global_cooldown_seconds:
+          type: integer
+        should_redemptions_skip_request_queue:
+          type: boolean
     Error:
       type: object
       properties:
@@ -211,14 +219,6 @@ components:
           type: integer
         message:
           type: string
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   securitySchemes:
     oauth2:
       type: oauth2
