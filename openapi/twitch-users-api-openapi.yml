@@ -151,6 +151,14 @@ paths:
           description: User unblocked successfully
 components:
   parameters:
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -164,22 +172,25 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    BlockedUser:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        display_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     User:
       type: object
       properties:
@@ -222,24 +233,13 @@ components:
         cursor:
           type: string
           description: Cursor value for pagination
-    BlockedUser:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        display_name:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

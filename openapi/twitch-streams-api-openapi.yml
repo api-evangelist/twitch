@@ -220,47 +220,22 @@ paths:
                     items:
                       $ref: '#/components/schemas/StreamTag'
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
   schemas:
-    StreamMarker:
+    StreamTag:
       type: object
       properties:
-        id:
+        tag_id:
           type: string
-        created_at:
-          type: string
-          format: date-time
-        description:
-          type: string
-        position_seconds:
-          type: integer
+        is_auto:
+          type: boolean
+        localization_names:
+          type: object
+          additionalProperties:
+            type: string
+        localization_descriptions:
+          type: object
+          additionalProperties:
+            type: string
     Stream:
       type: object
       properties:
@@ -298,6 +273,24 @@ components:
             type: string
         is_mature:
           type: boolean
+    StreamMarker:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        description:
+          type: string
+        position_seconds:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     StreamMarkerGroup:
       type: object
       properties:
@@ -318,27 +311,34 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/StreamMarker'
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
-    StreamTag:
-      type: object
-      properties:
-        tag_id:
-          type: string
-        is_auto:
-          type: boolean
-        localization_names:
-          type: object
-          additionalProperties:
-            type: string
-        localization_descriptions:
-          type: object
-          additionalProperties:
-            type: string
+  parameters:
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
   securitySchemes:
     oauth2:
       type: oauth2

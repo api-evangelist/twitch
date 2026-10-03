@@ -344,29 +344,72 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
   schemas:
+    ChatSettingsUpdate:
+      type: object
+      properties:
+        emote_mode:
+          type: boolean
+        follower_mode:
+          type: boolean
+        follower_mode_duration:
+          type: integer
+        non_moderator_chat_delay:
+          type: boolean
+        non_moderator_chat_delay_duration:
+          type: integer
+        slow_mode:
+          type: boolean
+        slow_mode_wait_time:
+          type: integer
+        subscriber_mode:
+          type: boolean
+        unique_chat_mode:
+          type: boolean
+    Chatter:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+    ChatBadgeSet:
+      type: object
+      properties:
+        set_id:
+          type: string
+        versions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              image_url_1x:
+                type: string
+              image_url_2x:
+                type: string
+              image_url_4x:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              click_action:
+                type: string
+              click_url:
+                type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     ChatSettings:
       type: object
       properties:
@@ -395,32 +438,6 @@ components:
           type: boolean
         unique_chat_mode:
           type: boolean
-    ChatBadgeSet:
-      type: object
-      properties:
-        set_id:
-          type: string
-        versions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              image_url_1x:
-                type: string
-              image_url_2x:
-                type: string
-              image_url_4x:
-                type: string
-              title:
-                type: string
-              description:
-                type: string
-              click_action:
-                type: string
-              click_url:
-                type: string
     Emote:
       type: object
       properties:
@@ -469,51 +486,34 @@ components:
             enum:
             - light
             - dark
-    ChatSettingsUpdate:
-      type: object
-      properties:
-        emote_mode:
-          type: boolean
-        follower_mode:
-          type: boolean
-        follower_mode_duration:
-          type: integer
-        non_moderator_chat_delay:
-          type: boolean
-        non_moderator_chat_delay_duration:
-          type: integer
-        slow_mode:
-          type: boolean
-        slow_mode_wait_time:
-          type: integer
-        subscriber_mode:
-          type: boolean
-        unique_chat_mode:
-          type: boolean
     Pagination:
       type: object
       properties:
         cursor:
           type: string
           description: Cursor value for pagination
-    Chatter:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
+  parameters:
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
   responses:
     Unauthorized:
       description: Authentication required or token is invalid

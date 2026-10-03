@@ -89,14 +89,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   responses:
     Unauthorized:
       description: Authentication required or token is invalid
@@ -110,6 +102,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   schemas:
     CustomReward:
       type: object
@@ -178,6 +178,15 @@ components:
           type: string
           nullable: true
           format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     CustomRewardInput:
       type: object
       required:
@@ -210,15 +219,6 @@ components:
           type: integer
         should_redemptions_skip_request_queue:
           type: boolean
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

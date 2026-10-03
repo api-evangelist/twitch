@@ -119,62 +119,7 @@ paths:
         '204':
           description: Subscription deleted successfully
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   schemas:
-    EventSubSubscription:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        type:
-          type: string
-        version:
-          type: string
-        condition:
-          type: object
-          additionalProperties:
-            type: string
-        created_at:
-          type: string
-          format: date-time
-        transport:
-          type: object
-          properties:
-            method:
-              type: string
-              enum:
-              - webhook
-              - websocket
-              - conduit
-            callback:
-              type: string
-            session_id:
-              type: string
-            conduit_id:
-              type: string
-        cost:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     EventSubSubscriptionInput:
       type: object
       required:
@@ -226,6 +171,61 @@ components:
           type: integer
         message:
           type: string
+    EventSubSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        condition:
+          type: object
+          additionalProperties:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        transport:
+          type: object
+          properties:
+            method:
+              type: string
+              enum:
+              - webhook
+              - websocket
+              - conduit
+            callback:
+              type: string
+            session_id:
+              type: string
+            conduit_id:
+              type: string
+        cost:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
   responses:
     BadRequest:
       description: The request was invalid

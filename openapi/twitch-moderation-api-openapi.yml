@@ -244,25 +244,6 @@ paths:
           description: AutoMod message managed successfully
 components:
   parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -271,38 +252,33 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+  responses:
+    BadRequest:
+      description: The request was invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Moderator:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-    BanResponse:
-      type: object
-      properties:
-        broadcaster_id:
-          type: string
-        moderator_id:
-          type: string
-        user_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        end_time:
-          type: string
-          format: date-time
-          nullable: true
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     BannedUser:
       type: object
       properties:
@@ -326,6 +302,15 @@ components:
           type: string
         moderator_name:
           type: string
+    Moderator:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
     Error:
       type: object
       properties:
@@ -335,13 +320,28 @@ components:
           type: integer
         message:
           type: string
-  responses:
-    BadRequest:
-      description: The request was invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    BanResponse:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
+        moderator_id:
+          type: string
+        user_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
   securitySchemes:
     oauth2:
       type: oauth2

@@ -111,6 +111,14 @@ paths:
           description: Poll ended successfully
 components:
   parameters:
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -124,15 +132,46 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
   schemas:
+    PollInput:
+      type: object
+      required:
+      - broadcaster_id
+      - title
+      - choices
+      - duration
+      properties:
+        broadcaster_id:
+          type: string
+        title:
+          type: string
+          maxLength: 60
+        choices:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items:
+            type: object
+            required:
+            - title
+            properties:
+              title:
+                type: string
+                maxLength: 25
+        duration:
+          type: integer
+          minimum: 15
+          maximum: 1800
+        channel_points_voting_enabled:
+          type: boolean
+        channel_points_per_vote:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Poll:
       type: object
       properties:
@@ -187,45 +226,6 @@ components:
           type: string
           format: date-time
           nullable: true
-    PollInput:
-      type: object
-      required:
-      - broadcaster_id
-      - title
-      - choices
-      - duration
-      properties:
-        broadcaster_id:
-          type: string
-        title:
-          type: string
-          maxLength: 60
-        choices:
-          type: array
-          minItems: 2
-          maxItems: 5
-          items:
-            type: object
-            required:
-            - title
-            properties:
-              title:
-                type: string
-                maxLength: 25
-        duration:
-          type: integer
-          minimum: 15
-          maximum: 1800
-        channel_points_voting_enabled:
-          type: boolean
-        channel_points_per_vote:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

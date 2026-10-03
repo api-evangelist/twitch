@@ -180,25 +180,6 @@ paths:
       description: IGDB API v4 Production
 components:
   parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -207,6 +188,25 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     clientId_2:
       name: Client-ID
       in: header
@@ -215,12 +215,6 @@ components:
         type: string
       description: Twitch application client ID
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Game:
       type: object
       properties:
@@ -241,6 +235,12 @@ components:
           type: integer
         message:
           type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     ReleaseDate:
       type: object
       properties:

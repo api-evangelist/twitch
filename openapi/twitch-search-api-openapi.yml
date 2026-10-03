@@ -127,6 +127,14 @@ paths:
       description: IGDB API v4 Production
 components:
   parameters:
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -140,14 +148,6 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
     clientId_2:
       name: Client-ID
       in: header
@@ -156,23 +156,6 @@ components:
         type: string
       description: Twitch application client ID
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
-    Game:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        box_art_url:
-          type: string
-        igdb_id:
-          type: string
     ChannelSearchResult:
       type: object
       properties:
@@ -201,6 +184,23 @@ components:
         started_at:
           type: string
           format: date-time
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        box_art_url:
+          type: string
+        igdb_id:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

@@ -109,20 +109,22 @@ paths:
                     items:
                       $ref: '#/components/schemas/BitsProduct'
 components:
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   schemas:
-    BitsProductInput:
+    BitsProduct:
       type: object
-      required:
-      - sku
-      - cost
       properties:
         sku:
           type: string
         cost:
           type: object
-          required:
-          - amount
-          - type
           properties:
             amount:
               type: integer
@@ -130,10 +132,10 @@ components:
               type: string
               enum:
               - bits
-        display_name:
-          type: string
         in_development:
           type: boolean
+        display_name:
+          type: string
         expiration:
           type: string
           format: date-time
@@ -181,13 +183,19 @@ components:
               type: string
             inDevelopment:
               type: boolean
-    BitsProduct:
+    BitsProductInput:
       type: object
+      required:
+      - sku
+      - cost
       properties:
         sku:
           type: string
         cost:
           type: object
+          required:
+          - amount
+          - type
           properties:
             amount:
               type: integer
@@ -195,10 +203,10 @@ components:
               type: string
               enum:
               - bits
-        in_development:
-          type: boolean
         display_name:
           type: string
+        in_development:
+          type: boolean
         expiration:
           type: string
           format: date-time
@@ -209,14 +217,6 @@ components:
       properties:
         cursor:
           type: string
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   securitySchemes:
     oauth2:
       type: oauth2

@@ -105,25 +105,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -132,6 +113,25 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
   responses:
     Unauthorized:
       description: Authentication required or token is invalid
@@ -140,12 +140,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Clip:
       type: object
       properties:
@@ -192,6 +186,12 @@ components:
           type: integer
         message:
           type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2
