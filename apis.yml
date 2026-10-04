@@ -39,6 +39,7 @@ tags:
 - Video
 - Twitch
 - Real-Time
+- Live Streaming
 apis:
 - name: Twitch EventSub
   description: >-
