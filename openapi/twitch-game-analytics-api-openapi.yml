@@ -78,13 +78,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     clientId:
       name: Client-Id
@@ -102,11 +95,6 @@ components:
         status:
           type: integer
         message:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
           type: string
     GameAnalyticsReport:
       type: object
@@ -129,6 +117,18 @@ components:
             ended_at:
               type: string
               format: date-time
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -94,14 +94,6 @@ paths:
           description: Schedule updated successfully
 components:
   parameters:
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -115,7 +107,21 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     StreamSchedule:
       type: object
       properties:
@@ -164,12 +170,6 @@ components:
             end_time:
               type: string
               format: date-time
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

@@ -79,14 +79,6 @@ paths:
                       $ref: '#/components/schemas/Prediction'
 components:
   parameters:
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -100,7 +92,21 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Prediction:
       type: object
       properties:
@@ -171,12 +177,6 @@ components:
           type: string
           format: date-time
           nullable: true
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     PredictionInput:
       type: object
       required:

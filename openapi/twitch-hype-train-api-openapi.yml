@@ -49,14 +49,6 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   parameters:
-    first:
-      name: first
-      in: query
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-      description: Maximum number of items to return
     clientId:
       name: Client-Id
       in: header
@@ -70,6 +62,14 @@ components:
       schema:
         type: string
       description: Cursor for forward pagination
+    first:
+      name: first
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+      description: Maximum number of items to return
   schemas:
     Pagination:
       type: object

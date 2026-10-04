@@ -41,14 +41,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/Theme'
 components:
-  parameters:
-    clientId:
-      name: Client-ID
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Twitch application client ID
   schemas:
     Theme:
       type: object
@@ -65,6 +57,14 @@ components:
           type: integer
         updated_at:
           type: integer
+  parameters:
+    clientId:
+      name: Client-ID
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Twitch application client ID
   securitySchemes:
     oauth2:
       type: oauth2

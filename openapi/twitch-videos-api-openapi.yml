@@ -109,6 +109,19 @@ paths:
                   type: string
 components:
   parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
     first:
       name: first
       in: query
@@ -123,26 +136,7 @@ components:
       schema:
         type: string
       description: Cursor for backward pagination
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Video:
       type: object
       properties:
@@ -198,6 +192,12 @@ components:
                 type: integer
               offset:
                 type: integer
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
   securitySchemes:
     oauth2:
       type: oauth2

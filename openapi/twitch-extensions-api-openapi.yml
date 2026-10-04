@@ -234,21 +234,6 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    ActiveExtensions:
-      type: object
-      properties:
-        panel:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        overlay:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        component:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
     Extension:
       type: object
       properties:
@@ -363,21 +348,6 @@ components:
           type: integer
         message:
           type: string
-    ActiveExtensionSlot:
-      type: object
-      properties:
-        active:
-          type: boolean
-        id:
-          type: string
-        version:
-          type: string
-        name:
-          type: string
-        x:
-          type: integer
-        y:
-          type: integer
     InstalledExtension:
       type: object
       properties:
@@ -403,13 +373,36 @@ components:
       properties:
         cursor:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    ActiveExtensionSlot:
+      type: object
+      properties:
+        active:
+          type: boolean
+        id:
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        x:
+          type: integer
+        y:
+          type: integer
+    ActiveExtensions:
+      type: object
+      properties:
+        panel:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        overlay:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        component:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
   parameters:
     clientId:
       name: Client-Id
@@ -418,6 +411,13 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -162,43 +162,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ChannelEditor:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-    Follower:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-        followed_at:
-          type: string
-          format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Channel:
       type: object
       properties:
@@ -228,7 +191,57 @@ components:
             type: string
         is_branded_content:
           type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    ChannelEditor:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Follower:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        followed_at:
+          type: string
+          format: date-time
   parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
     first:
       name: first
       in: query
@@ -237,19 +250,6 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   responses:
     Unauthorized:
       description: Authentication required or token is invalid
