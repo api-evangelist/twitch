@@ -2,6 +2,13 @@
   "repo": "twitch",
   "feeds": [
     {
+      "source": "https://blog.twitch.tv/en/tags/developers/",
+      "feed_url": "https://blog.twitch.tv/en/tags/developers/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://dev.twitch.tv/console",
       "feed_url": "https://dev.twitch.tv/console",
       "title": "",
@@ -10,7 +17,7 @@
     }
   ],
   "post_count": 2,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "blog_subdomain",
