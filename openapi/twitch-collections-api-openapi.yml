@@ -68,7 +68,7 @@ paths:
                   $ref: '#/components/schemas/Franchise'
 components:
   schemas:
-    Collection:
+    Franchise:
       type: object
       properties:
         id:
@@ -87,7 +87,7 @@ components:
           type: integer
         updated_at:
           type: integer
-    Franchise:
+    Collection:
       type: object
       properties:
         id:

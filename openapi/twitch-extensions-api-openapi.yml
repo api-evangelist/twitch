@@ -234,6 +234,50 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    ActiveExtensionSlot:
+      type: object
+      properties:
+        active:
+          type: boolean
+        id:
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        x:
+          type: integer
+        y:
+          type: integer
+    ActiveExtensions:
+      type: object
+      properties:
+        panel:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        overlay:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
+        component:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ActiveExtensionSlot'
     Extension:
       type: object
       properties:
@@ -339,15 +383,6 @@ components:
                   type: integer
                 can_link_external_content:
                   type: boolean
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
     InstalledExtension:
       type: object
       properties:
@@ -368,41 +403,6 @@ components:
             - mobile
             - panel
             - overlay
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-    ActiveExtensionSlot:
-      type: object
-      properties:
-        active:
-          type: boolean
-        id:
-          type: string
-        version:
-          type: string
-        name:
-          type: string
-        x:
-          type: integer
-        y:
-          type: integer
-    ActiveExtensions:
-      type: object
-      properties:
-        panel:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        overlay:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
-        component:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ActiveExtensionSlot'
   parameters:
     clientId:
       name: Client-Id

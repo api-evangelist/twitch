@@ -191,6 +191,12 @@ components:
             type: string
         is_branded_content:
           type: boolean
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Error:
       type: object
       properties:
@@ -200,12 +206,6 @@ components:
           type: integer
         message:
           type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     ChannelEditor:
       type: object
       properties:
@@ -251,14 +251,14 @@ components:
         maximum: 100
       description: Maximum number of items to return
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    BadRequest:
+      description: The request was invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

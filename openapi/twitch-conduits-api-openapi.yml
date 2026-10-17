@@ -193,34 +193,7 @@ paths:
         '202':
           description: Shards updated successfully
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
-    after:
-      name: after
-      in: query
-      schema:
-        type: string
-      description: Cursor for forward pagination
   schemas:
-    Conduit:
-      type: object
-      properties:
-        id:
-          type: string
-        shard_count:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     ConduitShard:
       type: object
       properties:
@@ -243,6 +216,33 @@ components:
             disconnected_at:
               type: string
               format: date-time
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Conduit:
+      type: object
+      properties:
+        id:
+          type: string
+        shard_count:
+          type: integer
+  parameters:
+    after:
+      name: after
+      in: query
+      schema:
+        type: string
+      description: Cursor for forward pagination
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   securitySchemes:
     oauth2:
       type: oauth2

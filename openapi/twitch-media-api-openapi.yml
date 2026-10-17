@@ -114,18 +114,6 @@ paths:
                   $ref: '#/components/schemas/Cover'
 components:
   schemas:
-    GameVideo:
-      type: object
-      properties:
-        id:
-          type: integer
-        game:
-          type: integer
-        name:
-          type: string
-        video_id:
-          type: string
-          description: YouTube video ID
     Cover:
       type: object
       properties:
@@ -141,7 +129,19 @@ components:
           type: integer
         height:
           type: integer
-    Screenshot:
+    GameVideo:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          type: integer
+        name:
+          type: string
+        video_id:
+          type: string
+          description: YouTube video ID
+    Artwork:
       type: object
       properties:
         id:
@@ -156,7 +156,7 @@ components:
           type: integer
         height:
           type: integer
-    Artwork:
+    Screenshot:
       type: object
       properties:
         id:

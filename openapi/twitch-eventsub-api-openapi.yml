@@ -120,15 +120,6 @@ paths:
           description: Subscription deleted successfully
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
     EventSubSubscriptionInput:
       type: object
       required:
@@ -177,6 +168,15 @@ components:
         cursor:
           type: string
           description: Cursor value for pagination
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     EventSubSubscription:
       type: object
       properties:

@@ -180,6 +180,12 @@ paths:
       description: IGDB API v4 Production
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Error:
       type: object
       properties:
@@ -189,12 +195,6 @@ components:
           type: integer
         message:
           type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Game:
       type: object
       properties:
@@ -328,6 +328,12 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
     first:
       name: first
       in: query
@@ -336,12 +342,6 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
     clientId_2:
       name: Client-ID
       in: header

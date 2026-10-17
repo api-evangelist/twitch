@@ -345,39 +345,23 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
-    Error:
+    ChatSettingsUpdate:
       type: object
       properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
-    ChatSettings:
-      type: object
-      properties:
-        broadcaster_id:
-          type: string
         emote_mode:
           type: boolean
         follower_mode:
           type: boolean
         follower_mode_duration:
           type: integer
-          nullable: true
-        moderator_id:
-          type: string
         non_moderator_chat_delay:
           type: boolean
         non_moderator_chat_delay_duration:
           type: integer
-          nullable: true
         slow_mode:
           type: boolean
         slow_mode_wait_time:
           type: integer
-          nullable: true
         subscriber_mode:
           type: boolean
         unique_chat_mode:
@@ -388,15 +372,32 @@ components:
         cursor:
           type: string
           description: Cursor value for pagination
-    Chatter:
+    ChatBadgeSet:
       type: object
       properties:
-        user_id:
+        set_id:
           type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
+        versions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              image_url_1x:
+                type: string
+              image_url_2x:
+                type: string
+              image_url_4x:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              click_action:
+                type: string
+              click_url:
+                type: string
     Emote:
       type: object
       properties:
@@ -445,53 +446,52 @@ components:
             enum:
             - light
             - dark
-    ChatSettingsUpdate:
+    Error:
       type: object
       properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
+    ChatSettings:
+      type: object
+      properties:
+        broadcaster_id:
+          type: string
         emote_mode:
           type: boolean
         follower_mode:
           type: boolean
         follower_mode_duration:
           type: integer
+          nullable: true
+        moderator_id:
+          type: string
         non_moderator_chat_delay:
           type: boolean
         non_moderator_chat_delay_duration:
           type: integer
+          nullable: true
         slow_mode:
           type: boolean
         slow_mode_wait_time:
           type: integer
+          nullable: true
         subscriber_mode:
           type: boolean
         unique_chat_mode:
           type: boolean
-    ChatBadgeSet:
+    Chatter:
       type: object
       properties:
-        set_id:
+        user_id:
           type: string
-        versions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              image_url_1x:
-                type: string
-              image_url_2x:
-                type: string
-              image_url_4x:
-                type: string
-              title:
-                type: string
-              description:
-                type: string
-              click_action:
-                type: string
-              click_url:
-                type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
   parameters:
     after:
       name: after
@@ -515,14 +515,14 @@ components:
         maximum: 100
       description: Maximum number of items to return
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    BadRequest:
+      description: The request was invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

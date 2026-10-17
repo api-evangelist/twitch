@@ -68,27 +68,6 @@ paths:
                   $ref: '#/components/schemas/InvolvedCompany'
 components:
   schemas:
-    InvolvedCompany:
-      type: object
-      properties:
-        id:
-          type: integer
-        company:
-          type: integer
-        game:
-          type: integer
-        developer:
-          type: boolean
-        publisher:
-          type: boolean
-        porting:
-          type: boolean
-        supporting:
-          type: boolean
-        created_at:
-          type: integer
-        updated_at:
-          type: integer
     Company:
       type: object
       properties:
@@ -118,6 +97,27 @@ components:
             type: integer
         parent:
           type: integer
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+    InvolvedCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+        company:
+          type: integer
+        game:
+          type: integer
+        developer:
+          type: boolean
+        publisher:
+          type: boolean
+        porting:
+          type: boolean
+        supporting:
+          type: boolean
         created_at:
           type: integer
         updated_at:

@@ -53,14 +53,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   schemas:
     Error:
       type: object
@@ -71,6 +63,14 @@ components:
           type: integer
         message:
           type: string
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   responses:
     Unauthorized:
       description: Authentication required or token is invalid

@@ -47,6 +47,15 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
     CharityCampaign:
       type: object
       properties:
@@ -84,15 +93,6 @@ components:
               type: integer
             currency:
               type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
   parameters:
     clientId:
       name: Client-Id

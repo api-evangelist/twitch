@@ -94,14 +94,14 @@ components:
         type: string
       description: Your registered application's client ID
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    BadRequest:
+      description: The request was invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

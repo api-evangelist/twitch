@@ -151,6 +151,12 @@ paths:
           description: User unblocked successfully
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
     Error:
       type: object
       properties:
@@ -196,12 +202,6 @@ components:
         created_at:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     BlockedUser:
       type: object
       properties:

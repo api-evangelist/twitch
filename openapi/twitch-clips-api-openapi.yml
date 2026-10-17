@@ -105,21 +105,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        status:
-          type: integer
-        message:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-          description: Cursor value for pagination
     Clip:
       type: object
       properties:
@@ -157,6 +142,21 @@ components:
         vod_offset:
           type: integer
           nullable: true
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+          description: Cursor value for pagination
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+        message:
+          type: string
   parameters:
     after:
       name: after
@@ -171,6 +171,12 @@ components:
       schema:
         type: string
       description: Your registered application's client ID
+    before:
+      name: before
+      in: query
+      schema:
+        type: string
+      description: Cursor for backward pagination
     first:
       name: first
       in: query
@@ -179,12 +185,6 @@ components:
         default: 20
         maximum: 100
       description: Maximum number of items to return
-    before:
-      name: before
-      in: query
-      schema:
-        type: string
-      description: Cursor for backward pagination
   responses:
     Unauthorized:
       description: Authentication required or token is invalid

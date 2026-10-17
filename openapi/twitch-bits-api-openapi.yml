@@ -109,14 +109,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    clientId:
-      name: Client-Id
-      in: header
-      required: true
-      schema:
-        type: string
-      description: Your registered application's client ID
   schemas:
     Error:
       type: object
@@ -127,19 +119,6 @@ components:
           type: integer
         message:
           type: string
-    BitsLeaderboardEntry:
-      type: object
-      properties:
-        user_id:
-          type: string
-        user_login:
-          type: string
-        user_name:
-          type: string
-        rank:
-          type: integer
-        score:
-          type: integer
     Cheermote:
       type: object
       properties:
@@ -169,6 +148,27 @@ components:
           format: date-time
         is_charitable:
           type: boolean
+    BitsLeaderboardEntry:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_login:
+          type: string
+        user_name:
+          type: string
+        rank:
+          type: integer
+        score:
+          type: integer
+  parameters:
+    clientId:
+      name: Client-Id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Your registered application's client ID
   responses:
     Unauthorized:
       description: Authentication required or token is invalid
