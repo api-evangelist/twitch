@@ -34,6 +34,14 @@ specificationVersion: '0.23'
 tags:
 - Entertainment
 - Gaming
+- Live Streaming
+- Streaming
+- Video
+- Twitch
+- Real-Time
+tags_raw:
+- Entertainment
+- Gaming
 - Live Video
 - Streaming
 - Video
@@ -1860,7 +1868,7 @@ apis:
   humanURL: https://dev.twitch.tv/
   baseURL: https://api.twitch.tv/helix
   tags:
-  - Pub-Sub
+  - Pub/Sub
   tags_raw:
   - Pubsub
   properties:
