@@ -26,8 +26,35 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Streaming Video Technology Alliance
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://www.svta.org/svta-member-companies-list/
+  category: streaming video technology alliance
+  contract_reference:
+    register: Streaming Video Technology Alliance member companies (svta.org, wp-json pages API)
+    standard: SVTA specifications (CDN interop, Open Caching, measurement)
+    spec_file: null
+    role: svta-member
+    registered_name: Twitch
+    register_id: Twitch
+    matched_domain: twitch.tv
+    matched_by: domain
+    identity: wikidata Q4555537 'Twitch' P856 https://www.twitch.tv/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    signal_note: participation only; the list prints no tier
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  detected_by: sweep-streaming-video.py
+  first_seen: '2026-10-18'
 method: searched
 checked:
+- https://dashif.org/members/
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://www.svta.org/svta-member-companies-list/
 source:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
