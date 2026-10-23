@@ -2622,6 +2622,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/twitch/overview
 - type: Plans
   url: plans/twitch-plans-pricing.yml
 - type: RateLimits
