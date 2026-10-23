@@ -103,6 +103,31 @@ edges:
   - Twitch
   - Twitch Chat
   direction: partner-built
+- partner_name: IFTTT
+  partner: ifttt
+  partner_match: aggregator
+  type: marketplace
+  marketplace: ifttt-services
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://ifttt.com/twitch
+  category: null
+  contract_reference:
+    register: IFTTT service directory (ifttt.com/explore/services; ifttt.com/<service>)
+    spec_file: null
+    role: ipaas-connector:ifttt
+    registered_name: Twitch
+    matched_domain: twitch.tv
+    matched_by: domain
+    app_slug: twitch
+    ifttt_category: Gaming & Entertainment
+    builder: unknown (the service page does not say who built it)
+    detected_by: sweep-ifttt-services.py
+    detected: '2026-10-23'
+    signal_note: one edge per (provider, platform); triggers, actions and applet counts are context, never read
+  detected_by: sweep-ifttt-services.py
+  first_seen: '2026-10-23'
 method: searched
 checked:
 - https://dashif.org/members/
@@ -111,5 +136,8 @@ checked:
 - https://www.svta.org/svta-member-companies-list/
 - https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
 - https://www.raycast.com/api/v1/store_listings
+- https://ifttt.com/explore/services
+- https://ifttt.com/sitemap_services.xml
+- https://ifttt.com/twitch
 source:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
