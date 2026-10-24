@@ -1,35 +1,28 @@
 {
+  "info": {
+    "_postman_id": "1314c377-8fac-45ac-9c94-825220f45c4c",
+    "name": "Twitch IGDB Genres API",
+    "description": "The Internet Game Database (IGDB) API provides comprehensive video game information including metadata, ratings, screenshots, videos, and media. IGDB is owned and operated by Twitch and uses Twitch OAuth for authentication. The API uses a POST-based query language called Apicalypse.\n\nContact Support:\n Name: IGDB Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:14.000Z",
+    "updatedAt": "2026-10-22T02:33:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1314c377-8fac-45ac-9c94-825220f45c4c"
+  },
   "item": [
     {
-      "id": "53d4bcf8-f4fa-46bc-b7dc-4924e7b0911f",
-      "name": "Genres",
-      "description": {
-        "content": "Game genre data",
-        "type": "text/plain"
-      },
+      "name": "genres",
       "item": [
         {
-          "id": "3a653416-30ef-4fca-a537-b10a6241d771",
           "name": "Twitch Query Genres",
+          "id": "b697fda2-d94d-4fc7-a5d5-e774e8b25c5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Query Genres",
-            "description": {
-              "content": "Query game genres using Apicalypse query language.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "genres"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -43,82 +36,87 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/genres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres"
+              ]
+            },
+            "description": "Query game genres using Apicalypse query language."
           },
           "response": [
             {
-              "id": "0f76aaf8-2180-418f-aea6-fac0539bd5cf",
+              "id": "ff142edb-9f63-4bb9-8463-f09968da3d22",
               "name": "Genres returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "genres"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/genres",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "genres"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 8437,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 8439,\n    \"updated_at\": 1764\n  },\n  {\n    \"id\": 7392,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 9312,\n    \"updated_at\": 4925\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:33:15.000Z",
+              "updatedAt": "2026-10-22T02:33:15.000Z",
+              "uid": "35240-ff142edb-9f63-4bb9-8463-f09968da3d22"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:33:15.000Z",
+          "updatedAt": "2026-10-22T02:33:15.000Z",
+          "uid": "35240-b697fda2-d94d-4fc7-a5d5-e774e8b25c5f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "9d78df10-8fda-44a6-a4ec-82a80350e1aa",
+      "createdAt": "2026-10-22T02:33:15.000Z",
+      "updatedAt": "2026-10-22T02:33:15.000Z",
+      "uid": "35240-9d78df10-8fda-44a6-a4ec-82a80350e1aa"
     }
   ],
   "auth": {
@@ -126,21 +124,20 @@
     "oauth2": [
       {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e0b3b8a6-28c8-4d4c-87d4-3f96ac0f4e0d",
-    "name": "Twitch Drops Ads Genres API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.igdb.com/v4"
     }
-  }
+  ]
 }

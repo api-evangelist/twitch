@@ -1,48 +1,28 @@
 {
+  "info": {
+    "_postman_id": "1fced686-a6ad-4fd2-aa8d-26a935737d45",
+    "name": "Twitch Helix Whispers API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:35:19.000Z",
+    "updatedAt": "2026-10-22T02:35:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1fced686-a6ad-4fd2-aa8d-26a935737d45"
+  },
   "item": [
     {
-      "id": "8c92ca93-2ee4-4f3b-acc9-c7dde14ae2aa",
-      "name": "Whispers",
-      "description": {
-        "content": "Send whisper messages",
-        "type": "text/plain"
-      },
+      "name": "whispers",
       "item": [
         {
-          "id": "2c22186f-b315-4504-8d65-455752cc6ca6",
           "name": "Twitch Send Whisper",
+          "id": "8e300b28-449c-4659-a4e2-24b874260d22",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Send Whisper",
-            "description": {
-              "content": "Sends a whisper message to the specified user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "whispers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "from_user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "to_user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -56,185 +36,218 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"message\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/whispers?from_user_id=<string>&to_user_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "whispers"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "from_user_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "to_user_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Sends a whisper message to the specified user."
           },
           "response": [
             {
-              "id": "e1924b6d-44dd-4d6e-9d41-cc81b948b888",
+              "id": "f8bc2000-0587-4238-8bf6-2f804d2e16f7",
               "name": "Whisper sent successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "whispers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "from_user_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "to_user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"message\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/whispers?from_user_id=<string>&to_user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whispers"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "to_user_id",
+                      "value": "<string>"
+                    }
+                  ]
                 }
               },
               "status": "No Content",
               "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:35:19.000Z",
+              "updatedAt": "2026-10-22T02:35:19.000Z",
+              "uid": "35240-f8bc2000-0587-4238-8bf6-2f804d2e16f7"
             },
             {
-              "id": "0bd4d4bf-fb06-48c0-a2e4-9d11926e0643",
+              "id": "a2dbeb68-5c86-4725-9823-a4cc7899951b",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "whispers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "from_user_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "to_user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"message\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/whispers?from_user_id=<string>&to_user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whispers"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "to_user_id",
+                      "value": "<string>"
+                    }
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 8372,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:35:19.000Z",
+              "updatedAt": "2026-10-22T02:35:19.000Z",
+              "uid": "35240-a2dbeb68-5c86-4725-9823-a4cc7899951b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:35:19.000Z",
+          "updatedAt": "2026-10-22T02:35:19.000Z",
+          "uid": "35240-8e300b28-449c-4659-a4e2-24b874260d22"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "9f4fa5ec-9dc5-477c-9f84-4a57ec674c3d",
+      "createdAt": "2026-10-22T02:35:19.000Z",
+      "updatedAt": "2026-10-22T02:35:19.000Z",
+      "uid": "35240-9f4fa5ec-9dc5-477c-9f84-4a57ec674c3d"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8936202e-a788-4041-8aab-00a5a9b6c4b5",
-    "name": "Twitch Drops Ads Whispers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

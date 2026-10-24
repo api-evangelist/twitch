@@ -1,274 +1,300 @@
 {
+  "info": {
+    "_postman_id": "03d9bbb4-7248-414b-9743-117844db6cd5",
+    "name": "Twitch Helix Ads API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:11.000Z",
+    "updatedAt": "2026-10-22T02:31:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03d9bbb4-7248-414b-9743-117844db6cd5"
+  },
   "item": [
     {
-      "id": "63b3db69-73e7-4648-a767-f0196fbb3fdc",
-      "name": "Ads",
-      "description": {
-        "content": "Manage and start commercial ad breaks",
-        "type": "text/plain"
-      },
+      "name": "channels",
       "item": [
         {
-          "id": "805c16e3-72b5-45cc-a3e6-a20e3d1e8c59",
-          "name": "Twitch Start Commercial",
-          "request": {
-            "name": "Twitch Start Commercial",
-            "description": {
-              "content": "Starts a commercial on the specified broadcaster's channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "channels",
-                "ads"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "ads",
+          "item": [
             {
-              "id": "6f0f6f61-fa28-46c1-9839-bdacc5e6a462",
-              "name": "Commercial started successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels",
-                    "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Twitch Start Commercial",
+              "id": "95d1336d-3f9f-4126-a3a4-08e3da586e02",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": \"<integer>\"\n}",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": 60\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"length\": 7066,\n      \"message\": \"string\",\n      \"retry_after\": 540\n    },\n    {\n      \"length\": 9556,\n      \"message\": \"string\",\n      \"retry_after\": 9196\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f80b549a-1791-463b-8ea7-e7d44ce16204",
-              "name": "The request was invalid",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "channels",
-                    "ads"
-                  ],
+                  "raw": "{{baseUrl}}/channels/ads",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 3737,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c3db91bf-03bf-4767-aea6-04daa934481e",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "channels",
                     "ads"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Starts a commercial on the specified broadcaster's channel."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "42631a7f-f2a5-4e2f-b539-3048a2b50ee0",
+                  "name": "Commercial started successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": 60\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/ads",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "ads"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"length\": \"<integer>\",\n      \"message\": \"<string>\",\n      \"retry_after\": \"<integer>\"\n    },\n    {\n      \"length\": \"<integer>\",\n      \"message\": \"<string>\",\n      \"retry_after\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:31:11.000Z",
+                  "updatedAt": "2026-10-22T02:31:11.000Z",
+                  "uid": "35240-42631a7f-f2a5-4e2f-b539-3048a2b50ee0"
+                },
+                {
+                  "id": "c97e5dc7-d0af-463a-8d59-23f59f43c6bf",
+                  "name": "The request was invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": 60\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/ads",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "ads"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:11.000Z",
+                  "updatedAt": "2026-10-22T02:31:11.000Z",
+                  "uid": "35240-c97e5dc7-d0af-463a-8d59-23f59f43c6bf"
+                },
+                {
+                  "id": "d760c72e-13c9-4ee6-9724-430ffc884ad2",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"length\": 60\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/ads",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "ads"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:11.000Z",
+                  "updatedAt": "2026-10-22T02:31:11.000Z",
+                  "uid": "35240-d760c72e-13c9-4ee6-9724-430ffc884ad2"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 3737,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:31:11.000Z",
+              "updatedAt": "2026-10-22T02:31:11.000Z",
+              "uid": "35240-95d1336d-3f9f-4126-a3a4-08e3da586e02"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2cf7aeaf-0ce5-4401-9e29-e82aff08275a",
+          "createdAt": "2026-10-22T02:31:11.000Z",
+          "updatedAt": "2026-10-22T02:31:11.000Z",
+          "uid": "35240-2cf7aeaf-0ce5-4401-9e29-e82aff08275a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "dad8e33d-b796-4673-81ec-649c7b80dd98",
+      "createdAt": "2026-10-22T02:31:11.000Z",
+      "updatedAt": "2026-10-22T02:31:11.000Z",
+      "uid": "35240-dad8e33d-b796-4673-81ec-649c7b80dd98"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2ef132b4-a8bb-4887-bc77-8feb365b7766",
-    "name": "Twitch Drops Ads API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

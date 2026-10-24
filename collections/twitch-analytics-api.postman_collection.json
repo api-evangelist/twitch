@@ -1,91 +1,48 @@
 {
+  "info": {
+    "_postman_id": "bcc4f2b7-6d44-4998-8936-07d496271b09",
+    "name": "Twitch Drops Analytics API",
+    "description": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:17.000Z",
+    "updatedAt": "2026-10-22T02:31:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bcc4f2b7-6d44-4998-8936-07d496271b09"
+  },
   "item": [
     {
-      "id": "0c01bbb5-1bc2-4de4-bafc-34e6cefce048",
-      "name": "Analytics",
-      "description": {
-        "content": "Retrieve Drops analytics",
-        "type": "text/plain"
-      },
+      "name": "analytics",
       "item": [
         {
-          "id": "80e7531c-6b22-4272-9452-e9a5d07136ab",
-          "name": "Twitch Get Game Analytics",
-          "request": {
-            "name": "Twitch Get Game Analytics",
-            "description": {
-              "content": "Gets an analytics report for one or more games including Drops data.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "analytics",
-                "games"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "game_id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "started_at",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "ended_at",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "<integer>"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "games",
+          "item": [
             {
-              "id": "dc0515a5-c987-4e1d-a5a7-a47aed81f075",
-              "name": "Game analytics returned successfully",
-              "originalRequest": {
+              "name": "Twitch Get Game Analytics",
+              "id": "feaba149-7d3d-4cae-b0e1-005ddf8287f8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/analytics/games?game_id=<string>&type=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=<integer>&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "analytics",
                     "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
                   ],
                   "query": [
                     {
@@ -112,135 +69,175 @@
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Gets an analytics report for one or more games including Drops data."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1999-03-23T03:59:17.730Z\",\n        \"ended_at\": \"2009-04-13T15:03:47.488Z\"\n      }\n    },\n    {\n      \"game_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1972-05-15T20:09:07.624Z\",\n        \"ended_at\": \"1958-01-25T06:23:53.845Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6071e7e8-8935-487e-9827-1ba59e491738",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "analytics",
-                    "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "5c2a3380-f902-4e82-821b-ed36f7560f1e",
+                  "name": "Game analytics returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/games?game_id=<string>&type=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=<integer>&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "games"
+                      ],
+                      "query": [
+                        {
+                          "key": "game_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "started_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "ended_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "first",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "game_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "started_at",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "ended_at",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "first",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"game_id\": \"<string>\",\n      \"URL\": \"<string>\",\n      \"type\": \"<string>\",\n      \"date_range\": {\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"game_id\": \"<string>\",\n      \"URL\": \"<string>\",\n      \"type\": \"<string>\",\n      \"date_range\": {\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:31:18.000Z",
+                  "updatedAt": "2026-10-22T02:31:18.000Z",
+                  "uid": "35240-5c2a3380-f902-4e82-821b-ed36f7560f1e"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "6ab5ba80-5270-4385-9569-0fbd96192646",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/games?game_id=<string>&type=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=<integer>&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "games"
+                      ],
+                      "query": [
+                        {
+                          "key": "game_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "started_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "ended_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "first",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:18.000Z",
+                  "updatedAt": "2026-10-22T02:31:18.000Z",
+                  "uid": "35240-6ab5ba80-5270-4385-9569-0fbd96192646"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 4037,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:31:18.000Z",
+              "updatedAt": "2026-10-22T02:31:18.000Z",
+              "uid": "35240-feaba149-7d3d-4cae-b0e1-005ddf8287f8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b2b5e38a-1d11-4b3b-9363-302e7b41ca82",
+          "createdAt": "2026-10-22T02:31:18.000Z",
+          "updatedAt": "2026-10-22T02:31:18.000Z",
+          "uid": "35240-b2b5e38a-1d11-4b3b-9363-302e7b41ca82"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "c8bb8266-18ae-4ac9-b848-cb9a246461d5",
+      "createdAt": "2026-10-22T02:31:18.000Z",
+      "updatedAt": "2026-10-22T02:31:18.000Z",
+      "uid": "35240-c8bb8266-18ae-4ac9-b848-cb9a246461d5"
     }
   ],
   "auth": {
@@ -248,21 +245,20 @@
     "oauth2": [
       {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a0f31521-2b5b-41a2-8dce-34394458033d",
-    "name": "Twitch Drops Ads Analytics API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

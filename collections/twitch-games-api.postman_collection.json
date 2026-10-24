@@ -1,105 +1,56 @@
 {
+  "info": {
+    "_postman_id": "f8683e49-aa54-4dcb-813e-712eef23d5e1",
+    "name": "Twitch Games API",
+    "description": "Operations tagged Games across 2 of this provider's published API definitions: twitch-helix-openapi.yml, twitch-igdb-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:07.000Z",
+    "updatedAt": "2026-10-22T02:33:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f8683e49-aa54-4dcb-813e-712eef23d5e1"
+  },
   "item": [
     {
-      "id": "dfabb83a-b8f1-4f23-889d-4e22be3cdc07",
-      "name": "Games",
-      "description": {
-        "content": "Retrieve game/category information",
-        "type": "text/plain"
-      },
+      "name": "games",
       "item": [
         {
-          "id": "5ae1cfda-7e10-4f60-8cc3-1d3313e26517",
-          "name": "Twitch Get Games",
-          "request": {
-            "name": "Twitch Get Games",
-            "description": {
-              "content": "Gets information about one or more games/categories.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "games"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "id",
-                  "value": "<string>",
-                  "description": "The game/category ID"
-                },
-                {
-                  "disabled": false,
-                  "key": "name",
-                  "value": "<string>",
-                  "description": "The game/category name"
-                },
-                {
-                  "disabled": false,
-                  "key": "igdb_id",
-                  "value": "<string>",
-                  "description": "The IGDB ID of the game"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "top",
+          "item": [
             {
-              "id": "ce29b1c7-aa12-4014-aaf6-1c8002c759a8",
-              "name": "Games returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "Twitch Get Top Games",
+              "id": "c2a03dc4-a3ba-450c-b68a-2b6b7e0e6c24",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "key": "id",
-                      "value": "<string>"
+                      "key": "scope",
+                      "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                      "type": "string"
                     },
                     {
-                      "key": "name",
-                      "value": "<string>"
+                      "key": "accessTokenUrl",
+                      "value": "https://id.twitch.tv/oauth2/token",
+                      "type": "string"
                     },
                     {
-                      "key": "igdb_id",
-                      "value": "<string>"
+                      "key": "authUrl",
+                      "value": "https://id.twitch.tv/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -109,380 +60,327 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e1ed3f74-6759-4638-844c-8c042e4164de",
-              "name": "The request was invalid",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "games"
-                  ],
+                  "raw": "{{baseUrl}}/games/top?first=20&after=<string>&before=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "igdb_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 7808,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "593fd9c1-779a-4a2a-a738-ec1a88f6db56",
-          "name": "Twitch Query Games",
-          "request": {
-            "name": "Twitch Query Games",
-            "description": {
-              "content": "Query the games endpoint using Apicalypse query language. Send the query as the request body in plain text format.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "games"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Twitch application client ID",
-                "key": "Client-ID",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "text/plain"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<string>"
-            }
-          },
-          "response": [
-            {
-              "id": "ce4164c7-1e38-4a02-8911-ab1afb400b00",
-              "name": "Games returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Twitch application client ID",
-                    "key": "Client-ID",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "fields name,rating,summary,genres.name; where rating > 90; sort rating desc; limit 10;"
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": 9379,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"summary\": \"string\",\n    \"storyline\": \"string\",\n    \"rating\": 5444.009734791464,\n    \"rating_count\": 963,\n    \"aggregated_rating\": 8849.727802603193,\n    \"aggregated_rating_count\": 5044,\n    \"total_rating\": 1528.7236215117061,\n    \"total_rating_count\": 2821,\n    \"first_release_date\": 4046,\n    \"category\": 901,\n    \"status\": 2589,\n    \"genres\": [\n      1445,\n      6450\n    ],\n    \"platforms\": [\n      3232,\n      6033\n    ],\n    \"themes\": [\n      1673,\n      5459\n    ],\n    \"cover\": 3548,\n    \"screenshots\": [\n      1352,\n      1888\n    ],\n    \"artworks\": [\n      3945,\n      4687\n    ],\n    \"videos\": [\n      495,\n      8124\n    ],\n    \"involved_companies\": [\n      2903,\n      5503\n    ],\n    \"franchises\": [\n      7877,\n      4546\n    ],\n    \"collection\": 1506,\n    \"similar_games\": [\n      9856,\n      683\n    ],\n    \"url\": \"string\",\n    \"created_at\": 3986,\n    \"updated_at\": 5802\n  },\n  {\n    \"id\": 3904,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"summary\": \"string\",\n    \"storyline\": \"string\",\n    \"rating\": 1983.860566682868,\n    \"rating_count\": 8491,\n    \"aggregated_rating\": 658.2648187058193,\n    \"aggregated_rating_count\": 5997,\n    \"total_rating\": 8828.479061073778,\n    \"total_rating_count\": 9202,\n    \"first_release_date\": 4719,\n    \"category\": 8327,\n    \"status\": 665,\n    \"genres\": [\n      6449,\n      7070\n    ],\n    \"platforms\": [\n      5749,\n      6230\n    ],\n    \"themes\": [\n      9983,\n      1325\n    ],\n    \"cover\": 4524,\n    \"screenshots\": [\n      6100,\n      8422\n    ],\n    \"artworks\": [\n      9706,\n      8315\n    ],\n    \"videos\": [\n      8710,\n      5361\n    ],\n    \"involved_companies\": [\n      1073,\n      2665\n    ],\n    \"franchises\": [\n      8205,\n      2464\n    ],\n    \"collection\": 3668,\n    \"similar_games\": [\n      4845,\n      5841\n    ],\n    \"url\": \"string\",\n    \"created_at\": 1785,\n    \"updated_at\": 9191\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c9d5ccdd-b3ad-4656-993c-6ef62f5b923b",
-              "name": "Invalid query syntax",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Twitch application client ID",
-                    "key": "Client-ID",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "fields name,rating,summary,genres.name; where rating > 90; sort rating desc; limit 10;"
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b8dbad2e-f5f8-4957-8269-cbd6f2821112",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "games"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Twitch application client ID",
-                    "key": "Client-ID",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "fields name,rating,summary,genres.name; where rating > 90; sort rating desc; limit 10;"
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e90942b3-48cd-412c-9228-817442be4779",
-          "name": "Twitch Get Top Games",
-          "request": {
-            "name": "Twitch Get Top Games",
-            "description": {
-              "content": "Gets games sorted by number of current viewers, most popular first.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "games",
-                "top"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "before",
-                  "value": "<string>",
-                  "description": "Cursor for backward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f55d1f4c-a6b2-4a0c-8f2e-03b0c355892c",
-              "name": "Top games returned successfully",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "games",
                     "top"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor for backward pagination",
                       "key": "before",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "description": "Gets games sorted by number of current viewers, most popular first."
+              },
+              "response": [
+                {
+                  "id": "eb9ec66d-90cb-4595-a0a4-7251ebd25a8c",
+                  "name": "Top games returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/games/top?first=20&after=<string>&before=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "games",
+                        "top"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor for backward pagination",
+                          "key": "before",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:33:08.000Z",
+                  "updatedAt": "2026-10-22T02:33:08.000Z",
+                  "uid": "35240-eb9ec66d-90cb-4595-a0a4-7251ebd25a8c"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-c2a03dc4-a3ba-450c-b68a-2b6b7e0e6c24"
+            }
+          ],
+          "id": "dd3adb29-65a0-4196-8439-77d70add5fec",
+          "createdAt": "2026-10-22T02:33:08.000Z",
+          "updatedAt": "2026-10-22T02:33:08.000Z",
+          "uid": "35240-dd3adb29-65a0-4196-8439-77d70add5fec"
+        },
+        {
+          "name": "count",
+          "item": [
+            {
+              "name": "Twitch Count Games",
+              "id": "a037fd1e-b8c8-4e36-a05c-862e45555ad8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://id.twitch.tv/oauth2/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://id.twitch.tv/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
                   },
                   {
-                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/games/count",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games",
+                    "count"
+                  ]
+                },
+                "description": "Returns the count of games matching the query."
+              },
+              "response": [
+                {
+                  "id": "5532f314-a66a-42b5-ac92-da569fff86a5",
+                  "name": "Count returned",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Twitch application client ID",
+                        "key": "Client-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "text/plain"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/games/count",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "games",
+                        "count"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:33:08.000Z",
+                  "updatedAt": "2026-10-22T02:33:08.000Z",
+                  "uid": "35240-5532f314-a66a-42b5-ac92-da569fff86a5"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-a037fd1e-b8c8-4e36-a05c-862e45555ad8"
+            }
+          ],
+          "id": "0eff90c0-c663-4de2-8a9a-04ea82ca8e2d",
+          "createdAt": "2026-10-22T02:33:08.000Z",
+          "updatedAt": "2026-10-22T02:33:08.000Z",
+          "uid": "35240-0eff90c0-c663-4de2-8a9a-04ea82ca8e2d"
+        },
+        {
+          "name": "Twitch Get Games",
+          "id": "a0860581-a7a0-4509-a8d2-d93f4db82a47",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://id.twitch.tv/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://id.twitch.tv/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/games?id=<string>&name=<string>&igdb_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "games"
+              ],
+              "query": [
+                {
+                  "description": "The game/category ID",
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The game/category name",
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The IGDB ID of the game",
+                  "key": "igdb_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets information about one or more games/categories."
+          },
+          "response": [
+            {
+              "id": "888b12bc-8d2a-431c-890c-a693b1b11931",
+              "name": "Games returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -490,52 +388,160 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
+                "url": {
+                  "raw": "{{baseUrl}}/games?id=<string>&name=<string>&igdb_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games"
+                  ],
+                  "query": [
+                    {
+                      "description": "The game/category ID",
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The game/category name",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The IGDB ID of the game",
+                      "key": "igdb_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-888b12bc-8d2a-431c-890c-a693b1b11931"
+            },
+            {
+              "id": "56b77168-7ea8-4f8d-979d-a1d75bb54b8f",
+              "name": "The request was invalid",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/games?id=<string>&name=<string>&igdb_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games"
+                  ],
+                  "query": [
+                    {
+                      "description": "The game/category ID",
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The game/category name",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The IGDB ID of the game",
+                      "key": "igdb_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
-              "status": "OK",
-              "code": 200,
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-56b77168-7ea8-4f8d-979d-a1d75bb54b8f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:33:08.000Z",
+          "updatedAt": "2026-10-22T02:33:08.000Z",
+          "uid": "35240-a0860581-a7a0-4509-a8d2-d93f4db82a47"
         },
         {
-          "id": "1ef9c90a-124a-4405-81a6-fa8e05a12e19",
-          "name": "Twitch Count Games",
+          "name": "Twitch Query Games",
+          "id": "64897048-8345-41b3-94fc-6f25f9509a3e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Count Games",
-            "description": {
-              "content": "Returns the count of games matching the query.",
-              "type": "text/plain"
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://id.twitch.tv/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://id.twitch.tv/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
             },
-            "url": {
-              "path": [
-                "games",
-                "count"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -549,206 +555,318 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
-          },
-          "response": [
-            {
-              "id": "73ddf7f1-178b-4394-86c2-f8cef62bdf9f",
-              "name": "Count returned",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "games",
-                    "count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Twitch application client ID",
-                    "key": "Client-ID",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<string>"
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"count\": 853\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7eceb2ab-04b0-4762-9602-ba1e779b53d5",
-          "name": "Twitch Query Release Dates",
-          "request": {
-            "name": "Twitch Query Release Dates",
-            "description": {
-              "content": "Query game release dates across platforms and regions.",
-              "type": "text/plain"
             },
             "url": {
-              "path": [
-                "release_dates"
-              ],
+              "raw": "{{baseUrl}}/games",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "games"
+              ]
             },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Twitch application client ID",
-                "key": "Client-ID",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "text/plain"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<string>"
-            }
+            "description": "Query the games endpoint using Apicalypse query language. Send the query as the request body in plain text format."
           },
           "response": [
             {
-              "id": "9703a1d4-19c3-4ead-ae3b-ff2503729a9c",
-              "name": "Release dates returned",
+              "id": "7d1a4334-00a6-4b02-8a5e-ee50b15b2924",
+              "name": "Games returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "release_dates"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/games",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 1253,\n    \"game\": 6336,\n    \"platform\": 459,\n    \"date\": 593,\n    \"region\": 1239,\n    \"category\": 2744,\n    \"human\": \"string\",\n    \"created_at\": 9403,\n    \"updated_at\": 1211\n  },\n  {\n    \"id\": 4399,\n    \"game\": 9219,\n    \"platform\": 4925,\n    \"date\": 6396,\n    \"region\": 8210,\n    \"category\": 9252,\n    \"human\": \"string\",\n    \"created_at\": 4785,\n    \"updated_at\": 5551\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"summary\": \"<string>\",\n    \"storyline\": \"<string>\",\n    \"rating\": \"<double>\",\n    \"rating_count\": \"<integer>\",\n    \"aggregated_rating\": \"<double>\",\n    \"aggregated_rating_count\": \"<integer>\",\n    \"total_rating\": \"<double>\",\n    \"total_rating_count\": \"<integer>\",\n    \"first_release_date\": \"<integer>\",\n    \"category\": \"<integer>\",\n    \"status\": \"<integer>\",\n    \"genres\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"platforms\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"themes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cover\": \"<integer>\",\n    \"screenshots\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"artworks\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"videos\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"involved_companies\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"franchises\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"collection\": \"<integer>\",\n    \"similar_games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"summary\": \"<string>\",\n    \"storyline\": \"<string>\",\n    \"rating\": \"<double>\",\n    \"rating_count\": \"<integer>\",\n    \"aggregated_rating\": \"<double>\",\n    \"aggregated_rating_count\": \"<integer>\",\n    \"total_rating\": \"<double>\",\n    \"total_rating_count\": \"<integer>\",\n    \"first_release_date\": \"<integer>\",\n    \"category\": \"<integer>\",\n    \"status\": \"<integer>\",\n    \"genres\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"platforms\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"themes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"cover\": \"<integer>\",\n    \"screenshots\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"artworks\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"videos\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"involved_companies\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"franchises\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"collection\": \"<integer>\",\n    \"similar_games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-7d1a4334-00a6-4b02-8a5e-ee50b15b2924"
+            },
+            {
+              "id": "dc8abf06-3cee-49c8-9c76-8292bc476a79",
+              "name": "Invalid query syntax",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/games",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-dc8abf06-3cee-49c8-9c76-8292bc476a79"
+            },
+            {
+              "id": "db307f13-12d5-4bcc-9f46-a3c49a267058",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/games",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "games"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-db307f13-12d5-4bcc-9f46-a3c49a267058"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:33:08.000Z",
+          "updatedAt": "2026-10-22T02:33:08.000Z",
+          "uid": "35240-64897048-8345-41b3-94fc-6f25f9509a3e"
         }
       ],
-      "event": []
+      "id": "4e38b6d6-d1fd-4973-8c5d-1178534340d6",
+      "createdAt": "2026-10-22T02:33:08.000Z",
+      "updatedAt": "2026-10-22T02:33:08.000Z",
+      "uid": "35240-4e38b6d6-d1fd-4973-8c5d-1178534340d6"
+    },
+    {
+      "name": "release_dates",
+      "item": [
+        {
+          "name": "Twitch Query Release Dates",
+          "id": "aee4b625-7640-4a12-8bc5-d830bf90ec34",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://id.twitch.tv/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://id.twitch.tv/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Twitch application client ID",
+                "key": "Client-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/release_dates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "release_dates"
+              ]
+            },
+            "description": "Query game release dates across platforms and regions."
+          },
+          "response": [
+            {
+              "id": "a5d9206a-7ebc-48db-99ee-8ce9b6ce2943",
+              "name": "Release dates returned",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Twitch application client ID",
+                    "key": "Client-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/release_dates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "release_dates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"game\": \"<integer>\",\n    \"platform\": \"<integer>\",\n    \"date\": \"<integer>\",\n    \"region\": \"<integer>\",\n    \"category\": \"<integer>\",\n    \"human\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"game\": \"<integer>\",\n    \"platform\": \"<integer>\",\n    \"date\": \"<integer>\",\n    \"region\": \"<integer>\",\n    \"category\": \"<integer>\",\n    \"human\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:33:08.000Z",
+              "updatedAt": "2026-10-22T02:33:08.000Z",
+              "uid": "35240-a5d9206a-7ebc-48db-99ee-8ce9b6ce2943"
+            }
+          ],
+          "createdAt": "2026-10-22T02:33:08.000Z",
+          "updatedAt": "2026-10-22T02:33:08.000Z",
+          "uid": "35240-aee4b625-7640-4a12-8bc5-d830bf90ec34"
+        }
+      ],
+      "id": "2b48949a-34d0-4f6e-bc74-53d719198de0",
+      "createdAt": "2026-10-22T02:33:08.000Z",
+      "updatedAt": "2026-10-22T02:33:08.000Z",
+      "uid": "35240-2b48949a-34d0-4f6e-bc74-53d719198de0"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  ],
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
-      },
-      {
-        "key": "grant_type",
-        "value": "client_credentials"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "bce7b291-c044-42c8-ac34-e75766d4872a",
-    "name": "Twitch Drops Ads Games API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

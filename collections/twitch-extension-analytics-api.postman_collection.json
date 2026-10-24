@@ -1,137 +1,31 @@
 {
+  "info": {
+    "_postman_id": "32234c4b-ea24-45ba-8715-bec3aa0864ae",
+    "name": "Twitch Insights and Analytics Extension Analytics API",
+    "description": "APIs for accessing extension and game analytics data including views, clicks, hours watched, and concurrent streamers as downloadable CSV reports. Provides both extension analytics and game analytics endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:32:48.000Z",
+    "updatedAt": "2026-10-22T02:32:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-32234c4b-ea24-45ba-8715-bec3aa0864ae"
+  },
   "item": [
     {
-      "id": "b6d128aa-6e0c-4f22-9417-8d4da24f0851",
-      "name": "Extension Analytics",
-      "description": {
-        "content": "Analytics data for extensions",
-        "type": "text/plain"
-      },
+      "name": "analytics",
       "item": [
         {
-          "id": "5ecc6eff-bcd3-4c61-8a44-23a12833d542",
-          "name": "Twitch Get Extension Analytics",
-          "request": {
-            "name": "Twitch Get Extension Analytics",
-            "description": {
-              "content": "Gets an analytics report for one or more extensions. The response includes a URL to a downloadable CSV file containing the analytics data.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "analytics",
-                "extensions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "extension_id",
-                  "value": "<string>",
-                  "description": "Extension ID to filter by"
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "The type of analytics report"
-                },
-                {
-                  "disabled": false,
-                  "key": "started_at",
-                  "value": "<dateTime>",
-                  "description": "Start of the date range (RFC 3339)"
-                },
-                {
-                  "disabled": false,
-                  "key": "ended_at",
-                  "value": "<dateTime>",
-                  "description": "End of the date range (RFC 3339)"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of results to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "extensions",
+          "item": [
             {
-              "id": "8c6f7115-78f4-4297-b84b-87a23d1afef3",
-              "name": "Extension analytics returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "analytics",
-                    "extensions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "extension_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "started_at",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "ended_at",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "first",
-                      "value": "20"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Twitch Get Extension Analytics",
+              "id": "06c8fa0b-2eb8-420f-afc3-a4ea1cd9a6b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -141,134 +35,258 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"extension_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1952-05-28T23:36:24.075Z\",\n        \"ended_at\": \"2007-11-23T21:34:24.916Z\"\n      }\n    },\n    {\n      \"extension_id\": \"string\",\n      \"URL\": \"string\",\n      \"type\": \"string\",\n      \"date_range\": {\n        \"started_at\": \"1962-11-02T04:35:11.637Z\",\n        \"ended_at\": \"1980-05-19T08:16:13.965Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "18d8aad1-9968-4511-b575-b6fa60b38ec0",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/analytics/extensions?extension_id=<string>&type=overview_v2&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "analytics",
                     "extensions"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Extension ID to filter by",
                       "key": "extension_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "The type of analytics report",
                       "key": "type",
-                      "value": "<string>"
+                      "value": "overview_v2"
                     },
                     {
+                      "description": "Start of the date range (RFC 3339)",
                       "key": "started_at",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "End of the date range (RFC 3339)",
                       "key": "ended_at",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Maximum number of results to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Gets an analytics report for one or more extensions. The response includes a URL to a downloadable CSV file containing the analytics data."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "66b9620d-ff76-498d-bcfb-769545015a3e",
+                  "name": "Extension analytics returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/extensions?extension_id=<string>&type=overview_v2&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "extensions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Extension ID to filter by",
+                          "key": "extension_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The type of analytics report",
+                          "key": "type",
+                          "value": "overview_v2"
+                        },
+                        {
+                          "description": "Start of the date range (RFC 3339)",
+                          "key": "started_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of the date range (RFC 3339)",
+                          "key": "ended_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"extension_id\": \"<string>\",\n      \"URL\": \"<string>\",\n      \"type\": \"<string>\",\n      \"date_range\": {\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"extension_id\": \"<string>\",\n      \"URL\": \"<string>\",\n      \"type\": \"<string>\",\n      \"date_range\": {\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:32:48.000Z",
+                  "updatedAt": "2026-10-22T02:32:48.000Z",
+                  "uid": "35240-66b9620d-ff76-498d-bcfb-769545015a3e"
+                },
+                {
+                  "id": "53f10361-c67f-4293-9763-4e3ba48fc58d",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/analytics/extensions?extension_id=<string>&type=overview_v2&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "analytics",
+                        "extensions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Extension ID to filter by",
+                          "key": "extension_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The type of analytics report",
+                          "key": "type",
+                          "value": "overview_v2"
+                        },
+                        {
+                          "description": "Start of the date range (RFC 3339)",
+                          "key": "started_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of the date range (RFC 3339)",
+                          "key": "ended_at",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:32:48.000Z",
+                  "updatedAt": "2026-10-22T02:32:48.000Z",
+                  "uid": "35240-53f10361-c67f-4293-9763-4e3ba48fc58d"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 7913,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:32:48.000Z",
+              "updatedAt": "2026-10-22T02:32:48.000Z",
+              "uid": "35240-06c8fa0b-2eb8-420f-afc3-a4ea1cd9a6b6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5e27e22a-8349-447e-97c9-a9af46ce5813",
+          "createdAt": "2026-10-22T02:32:48.000Z",
+          "updatedAt": "2026-10-22T02:32:48.000Z",
+          "uid": "35240-5e27e22a-8349-447e-97c9-a9af46ce5813"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "21f3113b-c1a6-4657-afef-4f67529370e6",
+      "createdAt": "2026-10-22T02:32:48.000Z",
+      "updatedAt": "2026-10-22T02:32:48.000Z",
+      "uid": "35240-21f3113b-c1a6-4657-afef-4f67529370e6"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "1ebb28ec-c0c5-4967-8034-d5bfc656a2c8",
-    "name": "Twitch Drops Ads Extension Analytics API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

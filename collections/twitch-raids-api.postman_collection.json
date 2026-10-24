@@ -1,48 +1,28 @@
 {
+  "info": {
+    "_postman_id": "b482cb8e-b9d1-4bc2-9be8-53071b0fc84e",
+    "name": "Twitch Helix Raids API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:34:15.000Z",
+    "updatedAt": "2026-10-22T02:34:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b482cb8e-b9d1-4bc2-9be8-53071b0fc84e"
+  },
   "item": [
     {
-      "id": "2b759130-1aaf-4430-add0-1a038eb40510",
-      "name": "Raids",
-      "description": {
-        "content": "Start and cancel raids",
-        "type": "text/plain"
-      },
+      "name": "raids",
       "item": [
         {
-          "id": "f474deab-a181-4ad0-909e-3596da32f048",
           "name": "Twitch Start a Raid",
+          "id": "f90ce4aa-e732-43ee-8d5b-22da3cbb5695",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Start a Raid",
-            "description": {
-              "content": "Raid another channel by sending the broadcaster's viewers to the target.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "raids"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "from_broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "to_broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -52,44 +32,37 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/raids?from_broadcaster_id=<string>&to_broadcaster_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "raids"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "from_broadcaster_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "to_broadcaster_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Raid another channel by sending the broadcaster's viewers to the target."
           },
           "response": [
             {
-              "id": "aa355017-acb9-45b3-9164-321b30879dd1",
+              "id": "1c4d5527-f474-400b-8a8b-3788c272de82",
               "name": "Raid started successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "raids"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "from_broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "to_broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -97,155 +70,176 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/raids?from_broadcaster_id=<string>&to_broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "raids"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from_broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "to_broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"1958-01-12T06:48:07.473Z\",\n      \"is_mature\": true\n    },\n    {\n      \"created_at\": \"1973-04-07T16:11:24.094Z\",\n      \"is_mature\": true\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"is_mature\": \"<boolean>\"\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"is_mature\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:34:16.000Z",
+              "updatedAt": "2026-10-22T02:34:16.000Z",
+              "uid": "35240-1c4d5527-f474-400b-8a8b-3788c272de82"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:16.000Z",
+          "updatedAt": "2026-10-22T02:34:16.000Z",
+          "uid": "35240-f90ce4aa-e732-43ee-8d5b-22da3cbb5695"
         },
         {
-          "id": "64db96e0-33d6-4868-acd2-8d4b6bbb58d4",
           "name": "Twitch Cancel a Raid",
+          "id": "a8230d9b-9eb9-431f-84dd-6264810439f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Cancel a Raid",
-            "description": {
-              "content": "Cancel a pending raid.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "raids"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
+            "method": "DELETE",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
               }
             ],
-            "method": "DELETE",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/raids?broadcaster_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "raids"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Cancel a pending raid."
           },
           "response": [
             {
-              "id": "bc2c0f56-bda9-4f4a-9179-b243249e762b",
+              "id": "84ff0a32-d0f2-47a9-988f-e5c2725c3292",
               "name": "Raid cancelled successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "raids"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "DELETE",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "DELETE",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/raids?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "raids"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "No Content",
               "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:34:16.000Z",
+              "updatedAt": "2026-10-22T02:34:16.000Z",
+              "uid": "35240-84ff0a32-d0f2-47a9-988f-e5c2725c3292"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:16.000Z",
+          "updatedAt": "2026-10-22T02:34:16.000Z",
+          "uid": "35240-a8230d9b-9eb9-431f-84dd-6264810439f2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "9d1e2b0e-6129-4a57-810d-5c5ef9d1a2dd",
+      "createdAt": "2026-10-22T02:34:16.000Z",
+      "updatedAt": "2026-10-22T02:34:16.000Z",
+      "uid": "35240-9d1e2b0e-6129-4a57-810d-5c5ef9d1a2dd"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "27e411c9-4596-434d-a625-0551d79c7d6d",
-    "name": "Twitch Drops Ads Raids API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

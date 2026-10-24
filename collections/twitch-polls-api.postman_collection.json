@@ -1,59 +1,137 @@
 {
+  "info": {
+    "_postman_id": "a9b77ab1-0e34-40db-bf91-38ba8c86fd99",
+    "name": "Twitch Helix Polls API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:59.000Z",
+    "updatedAt": "2026-10-22T02:33:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9b77ab1-0e34-40db-bf91-38ba8c86fd99"
+  },
   "item": [
     {
-      "id": "ba0cf783-1463-40e2-b9b8-0aad486403ff",
-      "name": "Polls",
-      "description": {
-        "content": "Create and manage channel polls",
-        "type": "text/plain"
-      },
+      "name": "polls",
       "item": [
         {
-          "id": "0fcb5c35-fa8f-46ff-a3bc-5b4b4341394d",
-          "name": "Twitch Get Polls",
-          "request": {
-            "name": "Twitch Get Polls",
-            "description": {
-              "content": "Gets polls for a specified channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "polls"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
+          "name": "end",
+          "item": [
+            {
+              "name": "Twitch End Poll",
+              "id": "f1b47161-844d-4725-ab9c-351f2c180567",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"ARCHIVED\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
                 },
-                {
-                  "disabled": false,
-                  "key": "id",
-                  "value": "<string>"
+                "url": {
+                  "raw": "{{baseUrl}}/polls/end",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "polls",
+                    "end"
+                  ]
                 },
+                "description": "Ends an active poll."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
+                  "id": "fe9ff13a-4ece-4f3b-886f-b62e8126b81a",
+                  "name": "Poll ended successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"ARCHIVED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/polls/end",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "polls",
+                        "end"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:34:00.000Z",
+                  "updatedAt": "2026-10-22T02:34:00.000Z",
+                  "uid": "35240-fe9ff13a-4ece-4f3b-886f-b62e8126b81a"
                 }
               ],
-              "variable": []
-            },
+              "createdAt": "2026-10-22T02:34:00.000Z",
+              "updatedAt": "2026-10-22T02:34:00.000Z",
+              "uid": "35240-f1b47161-844d-4725-ab9c-351f2c180567"
+            }
+          ],
+          "id": "2ba81f42-05ec-441b-a546-9993592abbe7",
+          "createdAt": "2026-10-22T02:34:00.000Z",
+          "updatedAt": "2026-10-22T02:34:00.000Z",
+          "uid": "35240-2ba81f42-05ec-441b-a546-9993592abbe7"
+        },
+        {
+          "name": "Twitch Get Polls",
+          "id": "56c63ec9-7252-4acb-8d40-1fba59aa57ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -63,23 +141,71 @@
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/polls?broadcaster_id=<string>&id=<string>&first=20&after=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "polls"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "first",
+                  "value": "20"
+                },
+                {
+                  "description": "Cursor for forward pagination",
+                  "key": "after",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets polls for a specified channel."
           },
           "response": [
             {
-              "id": "dfd5c53f-ba36-466b-8c43-f2788c67fc55",
+              "id": "31ce86a9-1eb7-4493-9f4a-1489a8fa78ad",
               "name": "Polls returned successfully",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "polls"
-                  ],
+                  "raw": "{{baseUrl}}/polls?broadcaster_id=<string>&id=<string>&first=20&after=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "polls"
+                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "broadcaster_id",
                       "value": "<string>"
                     },
@@ -88,79 +214,49 @@
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 2096,\n          \"channel_points_votes\": 133,\n          \"bits_votes\": 4981\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4421,\n          \"channel_points_votes\": 2514,\n          \"bits_votes\": 5659\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 2188,\n      \"channel_points_voting_enabled\": false,\n      \"channel_points_per_vote\": 8725,\n      \"status\": \"ACTIVE\",\n      \"duration\": 3485,\n      \"started_at\": \"2021-02-13T13:00:09.012Z\",\n      \"ended_at\": \"1951-07-29T20:56:22.799Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 1125,\n          \"channel_points_votes\": 3540,\n          \"bits_votes\": 4108\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4094,\n          \"channel_points_votes\": 8700,\n          \"bits_votes\": 3724\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 3420,\n      \"channel_points_voting_enabled\": true,\n      \"channel_points_per_vote\": 4541,\n      \"status\": \"TERMINATED\",\n      \"duration\": 303,\n      \"started_at\": \"1960-04-30T20:26:05.610Z\",\n      \"ended_at\": \"1987-12-02T07:00:18.682Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"title\": \"<string>\",\n      \"choices\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        }\n      ],\n      \"bits_voting_enabled\": \"<boolean>\",\n      \"bits_per_vote\": \"<integer>\",\n      \"channel_points_voting_enabled\": \"<boolean>\",\n      \"channel_points_per_vote\": \"<integer>\",\n      \"status\": \"TERMINATED\",\n      \"duration\": \"<integer>\",\n      \"started_at\": \"<dateTime>\",\n      \"ended_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"title\": \"<string>\",\n      \"choices\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        }\n      ],\n      \"bits_voting_enabled\": \"<boolean>\",\n      \"bits_per_vote\": \"<integer>\",\n      \"channel_points_voting_enabled\": \"<boolean>\",\n      \"channel_points_per_vote\": \"<integer>\",\n      \"status\": \"ACTIVE\",\n      \"duration\": \"<integer>\",\n      \"started_at\": \"<dateTime>\",\n      \"ended_at\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:34:00.000Z",
+              "updatedAt": "2026-10-22T02:34:00.000Z",
+              "uid": "35240-31ce86a9-1eb7-4493-9f4a-1489a8fa78ad"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:00.000Z",
+          "updatedAt": "2026-10-22T02:34:00.000Z",
+          "uid": "35240-56c63ec9-7252-4acb-8d40-1fba59aa57ac"
         },
         {
-          "id": "1593f55f-dd94-4c92-a2dd-d5c1104aba6c",
           "name": "Twitch Create Poll",
+          "id": "970eb5c9-583a-4973-8e62-4d14d3c38e2e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Create Poll",
-            "description": {
-              "content": "Creates a poll for the specified channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "polls"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -174,219 +270,130 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"choices\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"duration\": \"<integer>\",\n  \"channel_points_voting_enabled\": \"<boolean>\",\n  \"channel_points_per_vote\": \"<integer>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/polls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "polls"
+              ]
+            },
+            "description": "Creates a poll for the specified channel."
           },
           "response": [
             {
-              "id": "167b6b7d-c1a9-421a-be3a-be8bf60509c1",
+              "id": "95d0c71d-3f4d-4477-aafc-0aa1e0317c12",
               "name": "Poll created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "polls"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"choices\": [\n    {\n      \"title\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\"\n    }\n  ],\n  \"duration\": \"<integer>\",\n  \"channel_points_voting_enabled\": \"<boolean>\",\n  \"channel_points_per_vote\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/polls",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "polls"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4486,\n          \"channel_points_votes\": 9073,\n          \"bits_votes\": 7212\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 3806,\n          \"channel_points_votes\": 9064,\n          \"bits_votes\": 1047\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 8669,\n      \"channel_points_voting_enabled\": false,\n      \"channel_points_per_vote\": 911,\n      \"status\": \"MODERATED\",\n      \"duration\": 8233,\n      \"started_at\": \"1950-04-07T16:18:53.063Z\",\n      \"ended_at\": \"2003-04-15T11:54:33.147Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"title\": \"string\",\n      \"choices\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 4138,\n          \"channel_points_votes\": 8953,\n          \"bits_votes\": 2631\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"string\",\n          \"votes\": 2356,\n          \"channel_points_votes\": 4536,\n          \"bits_votes\": 3245\n        }\n      ],\n      \"bits_voting_enabled\": true,\n      \"bits_per_vote\": 5848,\n      \"channel_points_voting_enabled\": true,\n      \"channel_points_per_vote\": 8105,\n      \"status\": \"MODERATED\",\n      \"duration\": 3167,\n      \"started_at\": \"2006-06-08T15:36:06.801Z\",\n      \"ended_at\": \"2001-09-14T21:04:14.162Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"title\": \"<string>\",\n      \"choices\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        }\n      ],\n      \"bits_voting_enabled\": \"<boolean>\",\n      \"bits_per_vote\": \"<integer>\",\n      \"channel_points_voting_enabled\": \"<boolean>\",\n      \"channel_points_per_vote\": \"<integer>\",\n      \"status\": \"COMPLETED\",\n      \"duration\": \"<integer>\",\n      \"started_at\": \"<dateTime>\",\n      \"ended_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"title\": \"<string>\",\n      \"choices\": [\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"title\": \"<string>\",\n          \"votes\": \"<integer>\",\n          \"channel_points_votes\": \"<integer>\",\n          \"bits_votes\": \"<integer>\"\n        }\n      ],\n      \"bits_voting_enabled\": \"<boolean>\",\n      \"bits_per_vote\": \"<integer>\",\n      \"channel_points_voting_enabled\": \"<boolean>\",\n      \"channel_points_per_vote\": \"<integer>\",\n      \"status\": \"COMPLETED\",\n      \"duration\": \"<integer>\",\n      \"started_at\": \"<dateTime>\",\n      \"ended_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:34:00.000Z",
+              "updatedAt": "2026-10-22T02:34:00.000Z",
+              "uid": "35240-95d0c71d-3f4d-4477-aafc-0aa1e0317c12"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1e715846-980a-4566-8ff2-26ad620f6933",
-          "name": "Twitch End Poll",
-          "request": {
-            "name": "Twitch End Poll",
-            "description": {
-              "content": "Ends an active poll.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "polls",
-                "end"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "39ae5f6b-7517-4211-8017-b3c59501971b",
-              "name": "Poll ended successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "polls",
-                    "end"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"broadcaster_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:00.000Z",
+          "updatedAt": "2026-10-22T02:34:00.000Z",
+          "uid": "35240-970eb5c9-583a-4973-8e62-4d14d3c38e2e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "7f4bdfa3-f708-4293-8a08-ae4abc9399e5",
+      "createdAt": "2026-10-22T02:34:00.000Z",
+      "updatedAt": "2026-10-22T02:34:00.000Z",
+      "uid": "35240-7f4bdfa3-f708-4293-8a08-ae4abc9399e5"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "260b81cc-9569-4639-890a-f39bed6918ce",
-    "name": "Twitch Drops Ads Polls API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

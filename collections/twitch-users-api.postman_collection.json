@@ -1,69 +1,403 @@
 {
+  "info": {
+    "_postman_id": "5f6728d6-0ac7-41d5-b427-233cb5f446e8",
+    "name": "Twitch Helix Users API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:35:06.000Z",
+    "updatedAt": "2026-10-22T02:35:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5f6728d6-0ac7-41d5-b427-233cb5f446e8"
+  },
   "item": [
     {
-      "id": "a44a0252-d020-46e0-8347-ece1127bd258",
-      "name": "Users",
-      "description": {
-        "content": "Manage user information and blocks",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "652f4727-6ab5-4b4e-848a-47220fde3d78",
-          "name": "Twitch Get Users",
-          "request": {
-            "name": "Twitch Get Users",
-            "description": {
-              "content": "Gets information about one or more Twitch users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users"
+          "name": "blocks",
+          "item": [
+            {
+              "name": "Twitch Get User Block List",
+              "id": "886a8b3d-b859-4656-8e94-bcebd5beb22b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/blocks?broadcaster_id=<string>&first=20&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "blocks"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Cursor for forward pagination",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets the list of users the authenticated user has blocked."
+              },
+              "response": [
+                {
+                  "id": "f2c7b374-f12f-4c27-b1b0-48bf98c237ca",
+                  "name": "Block list returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/blocks?broadcaster_id=<string>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "blocks"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"display_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"display_name\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:35:06.000Z",
+                  "updatedAt": "2026-10-22T02:35:06.000Z",
+                  "uid": "35240-f2c7b374-f12f-4c27-b1b0-48bf98c237ca"
+                }
               ],
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-886a8b3d-b859-4656-8e94-bcebd5beb22b"
+            },
+            {
+              "name": "Twitch Block User",
+              "id": "18b2b797-a429-4a5b-a9dc-d206372ee8ab",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/blocks?target_user_id=<string>&source_context=whisper&reason=spam",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "blocks"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "target_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_context",
+                      "value": "whisper"
+                    },
+                    {
+                      "key": "reason",
+                      "value": "spam"
+                    }
+                  ]
+                },
+                "description": "Blocks the specified user from interacting with the broadcaster."
+              },
+              "response": [
+                {
+                  "id": "9d7fead9-ebf7-4ef9-be8c-1b0af27fcd96",
+                  "name": "User blocked successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/blocks?target_user_id=<string>&source_context=whisper&reason=spam",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "blocks"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "target_user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "source_context",
+                          "value": "whisper"
+                        },
+                        {
+                          "key": "reason",
+                          "value": "spam"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:35:06.000Z",
+                  "updatedAt": "2026-10-22T02:35:06.000Z",
+                  "uid": "35240-9d7fead9-ebf7-4ef9-be8c-1b0af27fcd96"
+                }
+              ],
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-18b2b797-a429-4a5b-a9dc-d206372ee8ab"
+            },
+            {
+              "name": "Twitch Unblock User",
+              "id": "98b10fc5-e916-4e1e-9de0-d44bcb4bee4d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/blocks?target_user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "blocks"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "target_user_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Removes the user from the broadcaster's block list."
+              },
+              "response": [
+                {
+                  "id": "e3b3243a-b3e2-444d-9a09-27795205fff4",
+                  "name": "User unblocked successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/blocks?target_user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "blocks"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "target_user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:35:06.000Z",
+                  "updatedAt": "2026-10-22T02:35:06.000Z",
+                  "uid": "35240-e3b3243a-b3e2-444d-9a09-27795205fff4"
+                }
+              ],
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-98b10fc5-e916-4e1e-9de0-d44bcb4bee4d"
+            }
+          ],
+          "id": "433fd3f2-c4d6-4185-bf53-565f8d257e7c",
+          "createdAt": "2026-10-22T02:35:06.000Z",
+          "updatedAt": "2026-10-22T02:35:06.000Z",
+          "uid": "35240-433fd3f2-c4d6-4185-bf53-565f8d257e7c"
+        },
+        {
+          "name": "Twitch Get Users",
+          "id": "3d6eeee2-d122-4b68-ad95-b238a61e22b4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?id=<string>&login=<string>",
               "host": [
                 "{{baseUrl}}"
               ],
+              "path": [
+                "users"
+              ],
               "query": [
                 {
-                  "disabled": false,
                   "key": "id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "login",
                   "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Gets information about one or more Twitch users."
           },
           "response": [
             {
-              "id": "f1ee734f-0e5d-4fef-8656-cdf07ac971aa",
+              "id": "960a8414-8cac-47b2-8147-d3f15b1f233d",
               "name": "Users returned successfully",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?id=<string>&login=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
                   ],
                   "query": [
                     {
@@ -74,54 +408,53 @@
                       "key": "login",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"login\": \"string\",\n      \"display_name\": \"string\",\n      \"type\": \"staff\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"string\",\n      \"profile_image_url\": \"string\",\n      \"offline_image_url\": \"string\",\n      \"view_count\": 9452,\n      \"email\": \"string\",\n      \"created_at\": \"1965-07-25T08:09:42.476Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"login\": \"string\",\n      \"display_name\": \"string\",\n      \"type\": \"staff\",\n      \"broadcaster_type\": \"affiliate\",\n      \"description\": \"string\",\n      \"profile_image_url\": \"string\",\n      \"offline_image_url\": \"string\",\n      \"view_count\": 5292,\n      \"email\": \"string\",\n      \"created_at\": \"2021-08-04T01:24:46.986Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"admin\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"<string>\",\n      \"profile_image_url\": \"<string>\",\n      \"offline_image_url\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"global_mod\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"<string>\",\n      \"profile_image_url\": \"<string>\",\n      \"offline_image_url\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-960a8414-8cac-47b2-8147-d3f15b1f233d"
             },
             {
-              "id": "9707987d-c81a-42b7-a7b9-c6bad0e61a2a",
+              "id": "d7c0c6b5-5c62-4dbc-b5a0-c0580e184bb1",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?id=<string>&login=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
                   ],
                   "query": [
                     {
@@ -132,78 +465,40 @@
                       "key": "login",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 4377,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-d7c0c6b5-5c62-4dbc-b5a0-c0580e184bb1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:35:06.000Z",
+          "updatedAt": "2026-10-22T02:35:06.000Z",
+          "uid": "35240-3d6eeee2-d122-4b68-ad95-b238a61e22b4"
         },
         {
-          "id": "5e905a7a-6a19-47b8-90fd-d287e646939a",
           "name": "Twitch Update User",
+          "id": "c685d1cc-3e34-4a9f-878e-54d63d470e62",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Update User",
-            "description": {
-              "content": "Updates the authenticated user's information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "description",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
+            "method": "PUT",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -213,436 +508,118 @@
                 "value": "application/json"
               }
             ],
-            "method": "PUT",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/users?description=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "description",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Updates the authenticated user's information."
           },
           "response": [
             {
-              "id": "df8c9471-9971-4bc4-a2b8-d47534b4cc30",
+              "id": "16001c56-0cd8-4c27-9aca-a7b8afcb1056",
               "name": "User updated successfully",
               "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?description=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
                   ],
                   "query": [
                     {
                       "key": "description",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"login\": \"string\",\n      \"display_name\": \"string\",\n      \"type\": \"staff\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"string\",\n      \"profile_image_url\": \"string\",\n      \"offline_image_url\": \"string\",\n      \"view_count\": 9452,\n      \"email\": \"string\",\n      \"created_at\": \"1965-07-25T08:09:42.476Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"login\": \"string\",\n      \"display_name\": \"string\",\n      \"type\": \"staff\",\n      \"broadcaster_type\": \"affiliate\",\n      \"description\": \"string\",\n      \"profile_image_url\": \"string\",\n      \"offline_image_url\": \"string\",\n      \"view_count\": 5292,\n      \"email\": \"string\",\n      \"created_at\": \"2021-08-04T01:24:46.986Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"admin\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"<string>\",\n      \"profile_image_url\": \"<string>\",\n      \"offline_image_url\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"global_mod\",\n      \"broadcaster_type\": \"\",\n      \"description\": \"<string>\",\n      \"profile_image_url\": \"<string>\",\n      \"offline_image_url\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:35:06.000Z",
+              "updatedAt": "2026-10-22T02:35:06.000Z",
+              "uid": "35240-16001c56-0cd8-4c27-9aca-a7b8afcb1056"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0c4f006c-9813-49c8-a1e5-8b8c3696fb63",
-          "name": "Twitch Get User Block List",
-          "request": {
-            "name": "Twitch Get User Block List",
-            "description": {
-              "content": "Gets the list of users the authenticated user has blocked.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "blocks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "88f5dfc2-0e1c-4b82-87e9-16cdafc6a32e",
-              "name": "Block list returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "blocks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "first",
-                      "value": "20"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"display_name\": \"string\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"display_name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b9f8ba71-288c-4c82-9b89-957a895a8c6b",
-          "name": "Twitch Block User",
-          "request": {
-            "name": "Twitch Block User",
-            "description": {
-              "content": "Blocks the specified user from interacting with the broadcaster.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "blocks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "target_user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "source_context",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "reason",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "70022c99-f77f-43d1-98a3-3763480465fd",
-              "name": "User blocked successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "blocks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "target_user_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "source_context",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "reason",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a00f3d5c-62c2-4f40-9ac3-405c247182a9",
-          "name": "Twitch Unblock User",
-          "request": {
-            "name": "Twitch Unblock User",
-            "description": {
-              "content": "Removes the user from the broadcaster's block list.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "blocks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "target_user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "5358bd0b-a3db-4007-bcf7-4879789f7039",
-              "name": "User unblocked successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "blocks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "target_user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:35:06.000Z",
+          "updatedAt": "2026-10-22T02:35:06.000Z",
+          "uid": "35240-c685d1cc-3e34-4a9f-878e-54d63d470e62"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "73601fc8-cbe9-4ec3-b65d-ad7c6f7db041",
+      "createdAt": "2026-10-22T02:35:06.000Z",
+      "updatedAt": "2026-10-22T02:35:06.000Z",
+      "uid": "35240-73601fc8-cbe9-4ec3-b65d-ad7c6f7db041"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3e97ecc3-5a48-44e0-a99a-8f1b20856c2b",
-    "name": "Twitch Drops Ads Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

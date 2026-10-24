@@ -1,102 +1,114 @@
 {
+  "info": {
+    "_postman_id": "bb2901d9-f6ca-4ca7-89a3-b8a58cf09031",
+    "name": "Twitch Helix Clips API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:57.000Z",
+    "updatedAt": "2026-10-22T02:31:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bb2901d9-f6ca-4ca7-89a3-b8a58cf09031"
+  },
   "item": [
     {
-      "id": "38d0280c-2325-4234-8ae8-24e2bacfa436",
-      "name": "Clips",
-      "description": {
-        "content": "Create and retrieve clips",
-        "type": "text/plain"
-      },
+      "name": "clips",
       "item": [
         {
-          "id": "3806174c-79f1-4aa7-9c60-30e31c50d6ee",
           "name": "Twitch Get Clips",
+          "id": "09a82a69-dabf-4855-8a25-79513d27f985",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Get Clips",
-            "description": {
-              "content": "Gets one or more video clips by clip ID, broadcaster, or game.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
-              "path": [
-                "clips"
-              ],
+              "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&game_id=<string>&id=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>&before=<string>",
               "host": [
                 "{{baseUrl}}"
               ],
+              "path": [
+                "clips"
+              ],
               "query": [
                 {
-                  "disabled": false,
                   "key": "broadcaster_id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "game_id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "id",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
                   "key": "started_at",
                   "value": "<dateTime>"
                 },
                 {
-                  "disabled": false,
                   "key": "ended_at",
                   "value": "<dateTime>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Maximum number of items to return",
                   "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
+                  "value": "20"
                 },
                 {
-                  "disabled": false,
+                  "description": "Cursor for forward pagination",
                   "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Cursor for backward pagination",
                   "key": "before",
-                  "value": "<string>",
-                  "description": "Cursor for backward pagination"
+                  "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Gets one or more video clips by clip ID, broadcaster, or game."
           },
           "response": [
             {
-              "id": "782e9d60-84e0-402b-8216-38328b384357",
+              "id": "554b03da-6c8f-40d4-967f-dca5c9470927",
               "name": "Clips returned successfully",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "clips"
-                  ],
+                  "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&game_id=<string>&id=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>&before=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clips"
                   ],
                   "query": [
                     {
@@ -120,65 +132,67 @@
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor for backward pagination",
                       "key": "before",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"embed_url\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"creator_id\": \"string\",\n      \"creator_name\": \"string\",\n      \"video_id\": \"string\",\n      \"game_id\": \"string\",\n      \"language\": \"string\",\n      \"title\": \"string\",\n      \"view_count\": 3415,\n      \"created_at\": \"1979-11-26T21:52:06.190Z\",\n      \"thumbnail_url\": \"string\",\n      \"duration\": 5198.597487323839,\n      \"vod_offset\": 203\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"embed_url\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"creator_id\": \"string\",\n      \"creator_name\": \"string\",\n      \"video_id\": \"string\",\n      \"game_id\": \"string\",\n      \"language\": \"string\",\n      \"title\": \"string\",\n      \"view_count\": 9193,\n      \"created_at\": \"1972-05-26T16:05:09.825Z\",\n      \"thumbnail_url\": \"string\",\n      \"duration\": 6244.8716496076195,\n      \"vod_offset\": 5836\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"embed_url\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"creator_id\": \"<string>\",\n      \"creator_name\": \"<string>\",\n      \"video_id\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"language\": \"<string>\",\n      \"title\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"thumbnail_url\": \"<string>\",\n      \"duration\": \"<number>\",\n      \"vod_offset\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"embed_url\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"creator_id\": \"<string>\",\n      \"creator_name\": \"<string>\",\n      \"video_id\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"language\": \"<string>\",\n      \"title\": \"<string>\",\n      \"view_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"thumbnail_url\": \"<string>\",\n      \"duration\": \"<number>\",\n      \"vod_offset\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:31:58.000Z",
+              "updatedAt": "2026-10-22T02:31:58.000Z",
+              "uid": "35240-554b03da-6c8f-40d4-967f-dca5c9470927"
             },
             {
-              "id": "a292a3cd-e60a-4597-b0cf-e2cccc6c920f",
+              "id": "e1c00c0f-8a3d-45c4-b851-bb5f7f568974",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "clips"
-                  ],
+                  "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&game_id=<string>&id=<string>&started_at=<dateTime>&ended_at=<dateTime>&first=20&after=<string>&before=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clips"
                   ],
                   "query": [
                     {
@@ -202,95 +216,54 @@
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor for backward pagination",
                       "key": "before",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 1016,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:58.000Z",
+              "updatedAt": "2026-10-22T02:31:58.000Z",
+              "uid": "35240-e1c00c0f-8a3d-45c4-b851-bb5f7f568974"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:31:58.000Z",
+          "updatedAt": "2026-10-22T02:31:58.000Z",
+          "uid": "35240-09a82a69-dabf-4855-8a25-79513d27f985"
         },
         {
-          "id": "ef20dedd-37a0-4758-a78a-fe62c23f019a",
           "name": "Twitch Create Clip",
+          "id": "5f42e388-df81-4f1b-b1a2-6424203fae9c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Create Clip",
-            "description": {
-              "content": "Creates a clip from the broadcaster's stream.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "clips"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "has_delay",
-                  "value": "<boolean>"
-                }
-              ],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -300,44 +273,36 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&has_delay=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clips"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "has_delay",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Creates a clip from the broadcaster's stream."
           },
           "response": [
             {
-              "id": "4df084a4-dd4c-4308-a7af-057a7661def3",
+              "id": "e427cda1-5f33-48ec-9e66-c7c9b9bc138d",
               "name": "Clip creation initiated",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "clips"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "has_delay",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -345,57 +310,57 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&has_delay=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clips"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_delay",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
               },
               "status": "Accepted",
               "code": 202,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"edit_url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"edit_url\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"edit_url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"edit_url\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:31:58.000Z",
+              "updatedAt": "2026-10-22T02:31:58.000Z",
+              "uid": "35240-e427cda1-5f33-48ec-9e66-c7c9b9bc138d"
             },
             {
-              "id": "af580cf4-d4a1-4fe9-bff2-66a6993734de",
+              "id": "c1feeb8a-4a75-44af-993b-f3b1995f62a7",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "clips"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "has_delay",
-                      "value": "<boolean>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -403,61 +368,91 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/clips?broadcaster_id=<string>&has_delay=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clips"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_delay",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 1016,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:58.000Z",
+              "updatedAt": "2026-10-22T02:31:58.000Z",
+              "uid": "35240-c1feeb8a-4a75-44af-993b-f3b1995f62a7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:31:58.000Z",
+          "updatedAt": "2026-10-22T02:31:58.000Z",
+          "uid": "35240-5f42e388-df81-4f1b-b1a2-6424203fae9c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "adb5aec5-0bea-451d-98b4-a4c98ace70e7",
+      "createdAt": "2026-10-22T02:31:58.000Z",
+      "updatedAt": "2026-10-22T02:31:58.000Z",
+      "uid": "35240-adb5aec5-0bea-451d-98b4-a4c98ace70e7"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a7f2c51a-a1dd-4bc0-bcf4-c9fc568212eb",
-    "name": "Twitch Drops Ads Clips API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

@@ -1,176 +1,31 @@
 {
+  "info": {
+    "_postman_id": "14b9429d-f854-48d7-a1f4-b8937f36b8f8",
+    "name": "Twitch Helix Conduits API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:32:14.000Z",
+    "updatedAt": "2026-10-22T02:32:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14b9429d-f854-48d7-a1f4-b8937f36b8f8"
+  },
   "item": [
     {
-      "id": "4219c37c-0c06-4c75-9f82-84313b4665e7",
-      "name": "Conduits",
-      "description": {
-        "content": "Manage EventSub conduits and shards",
-        "type": "text/plain"
-      },
+      "name": "conduits",
       "item": [
         {
-          "id": "86ff01c4-f25e-4395-8382-e55808ccacf1",
-          "name": "Twitch Get Conduits",
-          "request": {
-            "name": "Twitch Get Conduits",
-            "description": {
-              "content": "Gets the conduits for a client ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "conduits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "shards",
+          "item": [
             {
-              "id": "820b9e9e-09b2-45ab-b3a5-4741508cc273",
-              "name": "Conduits returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "conduits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
+              "name": "Twitch Get Conduit Shards",
+              "id": "c413445e-af34-4c8c-bb9c-a35ca9658827",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"shard_count\": 5203\n    },\n    {\n      \"id\": \"string\",\n      \"shard_count\": 3852\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7404651e-d1a2-41b3-8172-c8bbbbc076e9",
-          "name": "Twitch Create Conduit",
-          "request": {
-            "name": "Twitch Create Conduit",
-            "description": {
-              "content": "Creates a new conduit.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "conduits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"shard_count\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "82f6e8cc-1e3a-43a5-8b9f-e3cd481fbaa6",
-              "name": "Conduit created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "conduits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -180,300 +35,18 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"shard_count\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"shard_count\": 5203\n    },\n    {\n      \"id\": \"string\",\n      \"shard_count\": 3852\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a185a320-1ede-45d2-854c-825d2a65bf8f",
-          "name": "Twitch Update Conduit",
-          "request": {
-            "name": "Twitch Update Conduit",
-            "description": {
-              "content": "Updates a conduit's shard count.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "conduits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"shard_count\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "01e04073-11df-4935-a445-51ac9cf12eae",
-              "name": "Conduit updated successfully",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "conduits"
-                  ],
+                  "raw": "{{baseUrl}}/conduits/shards?conduit_id=<string>&status=<string>&after=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"<string>\",\n  \"shard_count\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6691e985-5fe8-423b-843a-71f9c4a7e188",
-          "name": "Twitch Delete Conduit",
-          "request": {
-            "name": "Twitch Delete Conduit",
-            "description": {
-              "content": "Deletes a specified conduit.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "conduits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a1ce2f54-aa15-4206-8db2-71dcb6bb23a5",
-              "name": "Conduit deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "conduits"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "eb92df14-1677-4017-a5fd-766b102115bf",
-          "name": "Twitch Get Conduit Shards",
-          "request": {
-            "name": "Twitch Get Conduit Shards",
-            "description": {
-              "content": "Gets the shards for a conduit.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "conduits",
-                "shards"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "conduit_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d3b2a2ad-5f94-4988-8ee8-cda780d07603",
-              "name": "Conduit shards returned",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "conduits",
                     "shards"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "conduit_id",
                       "value": "<string>"
                     },
@@ -482,23 +55,228 @@
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "description": "Gets the shards for a conduit."
+              },
+              "response": [
+                {
+                  "id": "ff75171a-2d04-4cac-86a2-c2fa88c64fc5",
+                  "name": "Conduit shards returned",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conduits/shards?conduit_id=<string>&status=<string>&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conduits",
+                        "shards"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "conduit_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"session_id\": \"<string>\",\n        \"connected_at\": \"<dateTime>\",\n        \"disconnected_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"session_id\": \"<string>\",\n        \"connected_at\": \"<dateTime>\",\n        \"disconnected_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:32:15.000Z",
+                  "updatedAt": "2026-10-22T02:32:15.000Z",
+                  "uid": "35240-ff75171a-2d04-4cac-86a2-c2fa88c64fc5"
+                }
+              ],
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-c413445e-af34-4c8c-bb9c-a35ca9658827"
+            },
+            {
+              "name": "Twitch Update Conduit Shards",
+              "id": "e04d9541-873a-42e1-a246-35e0902801bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
                   },
                   {
-                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conduit_id\": \"<string>\",\n  \"shards\": [\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"webhook\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"websocket\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/conduits/shards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conduits",
+                    "shards"
+                  ]
+                },
+                "description": "Updates shard transport for a conduit."
+              },
+              "response": [
+                {
+                  "id": "ca5d13b9-7f21-408c-b106-6a81a207d400",
+                  "name": "Shards updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"conduit_id\": \"<string>\",\n  \"shards\": [\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"webhook\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"websocket\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/conduits/shards",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conduits",
+                        "shards"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:32:15.000Z",
+                  "updatedAt": "2026-10-22T02:32:15.000Z",
+                  "uid": "35240-ca5d13b9-7f21-408c-b106-6a81a207d400"
+                }
+              ],
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-e04d9541-873a-42e1-a246-35e0902801bc"
+            }
+          ],
+          "id": "fcef7dd9-a114-4cbc-94cd-783f1b0ae714",
+          "createdAt": "2026-10-22T02:32:15.000Z",
+          "updatedAt": "2026-10-22T02:32:15.000Z",
+          "uid": "35240-fcef7dd9-a114-4cbc-94cd-783f1b0ae714"
+        },
+        {
+          "name": "Twitch Get Conduits",
+          "id": "48c77ab2-e5f1-492a-b3ed-e9042aa13890",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/conduits",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conduits"
+              ]
+            },
+            "description": "Gets the conduits for a client ID."
+          },
+          "response": [
+            {
+              "id": "df6c1171-02b3-4dce-8e79-d00aac608966",
+              "name": "Conduits returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -506,52 +284,165 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/conduits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conduits"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"transport\": {\n        \"method\": \"string\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"connected_at\": \"1963-02-06T15:05:12.505Z\",\n        \"disconnected_at\": \"1965-01-14T17:58:27.849Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"transport\": {\n        \"method\": \"string\",\n        \"callback\": \"string\",\n        \"session_id\": \"string\",\n        \"connected_at\": \"2021-04-16T03:58:34.656Z\",\n        \"disconnected_at\": \"2011-10-08T18:13:21.100Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"shard_count\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"shard_count\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-df6c1171-02b3-4dce-8e79-d00aac608966"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:32:15.000Z",
+          "updatedAt": "2026-10-22T02:32:15.000Z",
+          "uid": "35240-48c77ab2-e5f1-492a-b3ed-e9042aa13890"
         },
         {
-          "id": "76992ad6-963f-4cac-91d2-491b0b04640c",
-          "name": "Twitch Update Conduit Shards",
+          "name": "Twitch Create Conduit",
+          "id": "195a4114-bea9-41c8-bf0c-17450a246279",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Update Conduit Shards",
-            "description": {
-              "content": "Updates shard transport for a conduit.",
-              "type": "text/plain"
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shard_count\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
             },
             "url": {
-              "path": [
-                "conduits",
-                "shards"
-              ],
+              "raw": "{{baseUrl}}/conduits",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "conduits"
+              ]
             },
+            "description": "Creates a new conduit."
+          },
+          "response": [
+            {
+              "id": "f1e98b70-32bc-412e-9a22-2c88c9bb7349",
+              "name": "Conduit created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shard_count\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/conduits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conduits"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"shard_count\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"shard_count\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-f1e98b70-32bc-412e-9a22-2c88c9bb7349"
+            }
+          ],
+          "createdAt": "2026-10-22T02:32:15.000Z",
+          "updatedAt": "2026-10-22T02:32:15.000Z",
+          "uid": "35240-195a4114-bea9-41c8-bf0c-17450a246279"
+        },
+        {
+          "name": "Twitch Update Conduit",
+          "id": "5a554de4-b641-4230-8ed8-14b03f93240a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PATCH",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -561,111 +452,205 @@
                 "value": "application/json"
               }
             ],
-            "method": "PATCH",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"conduit_id\": \"<string>\",\n  \"shards\": [\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"shard_count\": \"<integer>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/conduits",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conduits"
+              ]
+            },
+            "description": "Updates a conduit's shard count."
           },
           "response": [
             {
-              "id": "a9869f20-a5dd-4ab5-b189-e8faf6c9a7c8",
-              "name": "Shards updated successfully",
+              "id": "6f4925c1-c171-4852-8f54-4b63eb1e46f2",
+              "name": "Conduit updated successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "conduits",
-                    "shards"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "PATCH",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"conduit_id\": \"<string>\",\n  \"shards\": [\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"transport\": {\n        \"method\": \"<string>\",\n        \"callback\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"session_id\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"shard_count\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/conduits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conduits"
+                  ]
                 }
               },
-              "status": "Accepted",
-              "code": 202,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-6f4925c1-c171-4852-8f54-4b63eb1e46f2"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T02:32:15.000Z",
+          "updatedAt": "2026-10-22T02:32:15.000Z",
+          "uid": "35240-5a554de4-b641-4230-8ed8-14b03f93240a"
+        },
+        {
+          "name": "Twitch Delete Conduit",
+          "id": "a5ff3237-adc0-4f15-876e-8e301c00e5fb",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "description": "(Required) Your registered application's client ID",
+                "key": "Client-Id",
+                "value": "<string>"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/conduits?id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conduits"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Deletes a specified conduit."
+          },
+          "response": [
+            {
+              "id": "c1693cd0-5101-4225-af30-2f0493e6a8ee",
+              "name": "Conduit deleted successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/conduits?id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conduits"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:32:15.000Z",
+              "updatedAt": "2026-10-22T02:32:15.000Z",
+              "uid": "35240-c1693cd0-5101-4225-af30-2f0493e6a8ee"
+            }
+          ],
+          "createdAt": "2026-10-22T02:32:15.000Z",
+          "updatedAt": "2026-10-22T02:32:15.000Z",
+          "uid": "35240-a5ff3237-adc0-4f15-876e-8e301c00e5fb"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "986b2613-d78f-4598-93e1-af8a34895314",
+      "createdAt": "2026-10-22T02:32:15.000Z",
+      "updatedAt": "2026-10-22T02:32:15.000Z",
+      "uid": "35240-986b2613-d78f-4598-93e1-af8a34895314"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ca2844e7-3e26-4ad0-af09-17ddfaeb4d24",
-    "name": "Twitch Drops Ads Conduits API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

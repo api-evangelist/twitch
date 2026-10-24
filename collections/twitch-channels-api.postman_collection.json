@@ -1,42 +1,399 @@
 {
+  "info": {
+    "_postman_id": "807d05bd-462a-415f-9d7c-b1d19e788711",
+    "name": "Twitch Helix Channels API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:34.000Z",
+    "updatedAt": "2026-10-22T02:31:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-807d05bd-462a-415f-9d7c-b1d19e788711"
+  },
   "item": [
     {
-      "id": "816a32ba-c3c0-418c-86d1-37f9c43e4459",
-      "name": "Channels",
-      "description": {
-        "content": "Manage channel information and editors",
-        "type": "text/plain"
-      },
+      "name": "channels",
       "item": [
         {
-          "id": "5e69e3ae-32ae-4c0f-a678-d77c065f7c21",
-          "name": "Twitch Get Channel Information",
-          "request": {
-            "name": "Twitch Get Channel Information",
-            "description": {
-              "content": "Gets information about one or more channels.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "channels"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "editors",
+          "item": [
+            {
+              "name": "Twitch Get Channel Editors",
+              "id": "ed627b43-0290-4abb-bb87-65d91021b1da",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/channels/editors?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels",
+                    "editors"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets a list of users who are editors for the specified channel."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) The ID of the broadcaster"
+                  "id": "dcef957d-0764-473f-8df8-9040be9e45c9",
+                  "name": "Channel editors returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/editors?broadcaster_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "editors"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-dcef957d-0764-473f-8df8-9040be9e45c9"
+                },
+                {
+                  "id": "e9a13911-c6cf-49d0-86a2-b4d2d7a406bf",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/editors?broadcaster_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "editors"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-e9a13911-c6cf-49d0-86a2-b4d2d7a406bf"
                 }
               ],
-              "variable": []
-            },
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-ed627b43-0290-4abb-bb87-65d91021b1da"
+            }
+          ],
+          "id": "fe64f4e2-467f-4790-beb2-a698e5f9f4cf",
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-fe64f4e2-467f-4790-beb2-a698e5f9f4cf"
+        },
+        {
+          "name": "followers",
+          "item": [
+            {
+              "name": "Twitch Get Channel Followers",
+              "id": "0ffeac34-feed-452f-a6e5-ad4fdcf86a58",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/channels/followers?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels",
+                    "followers"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by specific follower user ID",
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Cursor for forward pagination",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets a list of users that follow the specified broadcaster."
+              },
+              "response": [
+                {
+                  "id": "b927747a-7345-450f-98d2-94dc2b9d994c",
+                  "name": "Followers returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/followers?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "followers"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by specific follower user ID",
+                          "key": "user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"followed_at\": \"<dateTime>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"followed_at\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  },\n  \"total\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-b927747a-7345-450f-98d2-94dc2b9d994c"
+                },
+                {
+                  "id": "8755944d-d49a-47b3-b6c9-fe039d93b0c9",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/channels/followers?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "channels",
+                        "followers"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by specific follower user ID",
+                          "key": "user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-8755944d-d49a-47b3-b6c9-fe039d93b0c9"
+                }
+              ],
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-0ffeac34-feed-452f-a6e5-ad4fdcf86a58"
+            }
+          ],
+          "id": "a398379b-73dc-471b-90e6-d61409649672",
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-a398379b-73dc-471b-90e6-d61409649672"
+        },
+        {
+          "name": "Twitch Get Channel Information",
+          "id": "96026e14-e0f9-4f5a-9c79-40eb8eb14f96",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -46,207 +403,202 @@
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8e8e8554-4fcc-4495-9701-7dbc34d5c325",
-              "name": "Channel information returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_language\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"title\": \"string\",\n      \"delay\": 7080,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"content_classification_labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_branded_content\": false\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_language\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"title\": \"string\",\n      \"delay\": 2617,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"content_classification_labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_branded_content\": false\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9bdd1960-3ed6-4121-9e84-2f6f366f9643",
-              "name": "The request was invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2f3515a7-8f19-47a8-9928-ef5d9b8b5e0c",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1e7c48d0-d974-434e-ad9a-19303773b6f3",
-          "name": "Twitch Modify Channel Information",
-          "request": {
-            "name": "Twitch Modify Channel Information",
-            "description": {
-              "content": "Updates a channel's properties.",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "channels"
-              ],
+              "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
               "host": [
                 "{{baseUrl}}"
               ],
+              "path": [
+                "channels"
+              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "(Required) The ID of the broadcaster",
                   "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) The ID of the broadcaster"
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets information about one or more channels."
+          },
+          "response": [
+            {
+              "id": "77a78c79-7cfa-4b7d-8dc0-b8a2efe19913",
+              "name": "Channel information returned successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
                 }
               ],
-              "variable": []
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_language\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"game_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"delay\": \"<integer>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"content_classification_labels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_branded_content\": \"<boolean>\"\n    },\n    {\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_language\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"game_name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"delay\": \"<integer>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"content_classification_labels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_branded_content\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-77a78c79-7cfa-4b7d-8dc0-b8a2efe19913"
             },
+            {
+              "id": "4d0adfa1-bbda-481b-ace7-174873588044",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-4d0adfa1-bbda-481b-ace7-174873588044"
+            },
+            {
+              "id": "9f9b5500-0b4a-4011-bb0c-53badf2f67e8",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-9f9b5500-0b4a-4011-bb0c-53badf2f67e8"
+            }
+          ],
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-96026e14-e0f9-4f5a-9c79-40eb8eb14f96"
+        },
+        {
+          "name": "Twitch Modify Channel Information",
+          "id": "3a6f8064-cf22-4d86-8d2a-bc1f7d1065f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PATCH",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -260,599 +612,271 @@
                 "value": "application/json"
               }
             ],
-            "method": "PATCH",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"game_id\": \"<string>\",\n  \"broadcaster_language\": \"<string>\",\n  \"title\": \"<string>\",\n  \"delay\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "channels"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The ID of the broadcaster",
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Updates a channel's properties."
           },
           "response": [
             {
-              "id": "b978ff7d-cd04-472d-acb2-b3d005027a7b",
+              "id": "ee4327c3-4e2e-43ba-8f38-936a1f5b26c5",
               "name": "Channel updated successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "PATCH",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"game_id\": \"<string>\",\n  \"broadcaster_language\": \"<string>\",\n  \"title\": \"<string>\",\n  \"delay\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
                 }
               },
               "status": "No Content",
               "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-ee4327c3-4e2e-43ba-8f38-936a1f5b26c5"
             },
             {
-              "id": "a2d7e589-3283-493b-989f-41a81ba4558f",
+              "id": "ad4d8173-a596-446a-9a9d-4f5ab29cd5d1",
               "name": "The request was invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "PATCH",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"game_id\": \"<string>\",\n  \"broadcaster_language\": \"<string>\",\n  \"title\": \"<string>\",\n  \"delay\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-ad4d8173-a596-446a-9a9d-4f5ab29cd5d1"
             },
             {
-              "id": "d6fbc8d4-237e-49c0-aa6f-f965e2d65642",
+              "id": "8f1852b5-701e-4e5a-8c4f-9a597c7676a2",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "PATCH",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "PATCH",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"game_id\": \"<string>\",\n  \"broadcaster_language\": \"<string>\",\n  \"title\": \"<string>\",\n  \"delay\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/channels?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "channels"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The ID of the broadcaster",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-8f1852b5-701e-4e5a-8c4f-9a597c7676a2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "91678c7b-bcba-49ff-b36a-d8160adeddba",
-          "name": "Twitch Get Channel Editors",
-          "request": {
-            "name": "Twitch Get Channel Editors",
-            "description": {
-              "content": "Gets a list of users who are editors for the specified channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "channels",
-                "editors"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "66f3c8ab-4661-4af9-8389-5585f386b90e",
-              "name": "Channel editors returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels",
-                    "editors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"created_at\": \"1967-11-23T07:44:53.384Z\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_name\": \"string\",\n      \"created_at\": \"1950-10-14T16:52:01.630Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "552d4c46-78c1-4d85-b6d2-32e5725de23c",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels",
-                    "editors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b20c246c-3e7d-4789-aa97-0c4c987809d9",
-          "name": "Twitch Get Channel Followers",
-          "request": {
-            "name": "Twitch Get Channel Followers",
-            "description": {
-              "content": "Gets a list of users that follow the specified broadcaster.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "channels",
-                "followers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>",
-                  "description": "Filter by specific follower user ID"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ba18df45-45c4-4a1f-b734-bece609a5151",
-              "name": "Followers returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "first",
-                      "value": "20"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"followed_at\": \"1974-10-16T16:30:46.469Z\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"followed_at\": \"2016-04-05T21:22:51.467Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  },\n  \"total\": 4328\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8679fdac-a44e-4671-a65b-90a6432a8265",
-              "name": "Authentication required or token is invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "channels",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "first",
-                      "value": "20"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 2698,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-3a6f8064-cf22-4d86-8d2a-bc1f7d1065f7"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "8a1e8c1f-98e4-4948-9e9c-355e8ec8d6a2",
+      "createdAt": "2026-10-22T02:31:35.000Z",
+      "updatedAt": "2026-10-22T02:31:35.000Z",
+      "uid": "35240-8a1e8c1f-98e4-4948-9e9c-355e8ec8d6a2"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d7affe7f-b7c5-4a8a-a508-82e6c51c696a",
-    "name": "Twitch Drops Ads Channels API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

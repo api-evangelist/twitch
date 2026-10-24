@@ -1,35 +1,28 @@
 {
+  "info": {
+    "_postman_id": "50a49cd4-e18a-4cd4-8fcb-06b6156550fe",
+    "name": "Twitch IGDB Companies API",
+    "description": "The Internet Game Database (IGDB) API provides comprehensive video game information including metadata, ratings, screenshots, videos, and media. IGDB is owned and operated by Twitch and uses Twitch OAuth for authentication. The API uses a POST-based query language called Apicalypse.\n\nContact Support:\n Name: IGDB Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:32:10.000Z",
+    "updatedAt": "2026-10-22T02:32:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50a49cd4-e18a-4cd4-8fcb-06b6156550fe"
+  },
   "item": [
     {
-      "id": "c87863cb-f54d-4a4f-bde8-72a703da4762",
-      "name": "Companies",
-      "description": {
-        "content": "Game company data",
-        "type": "text/plain"
-      },
+      "name": "companies",
       "item": [
         {
-          "id": "f50c9f91-9db7-4e96-8ea8-ca1c8da21b75",
           "name": "Twitch Query Companies",
+          "id": "48b307ea-e4ff-4412-8f2a-892e5dee9e98",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Query Companies",
-            "description": {
-              "content": "Query game companies using Apicalypse query language.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "companies"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -43,142 +36,147 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            },
+            "description": "Query game companies using Apicalypse query language."
           },
           "response": [
             {
-              "id": "cb45a285-57ee-4d8e-8a7e-05ee8b06e25c",
+              "id": "073df505-6317-4e14-9449-92a26a9308f1",
               "name": "Companies returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "companies"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 9530,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"country\": 7891,\n    \"logo\": 5797,\n    \"start_date\": 4343,\n    \"url\": \"string\",\n    \"developed\": [\n      7226,\n      594\n    ],\n    \"published\": [\n      3060,\n      4140\n    ],\n    \"parent\": 582,\n    \"created_at\": 7039,\n    \"updated_at\": 6269\n  },\n  {\n    \"id\": 1363,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"country\": 1367,\n    \"logo\": 5516,\n    \"start_date\": 2615,\n    \"url\": \"string\",\n    \"developed\": [\n      7620,\n      4051\n    ],\n    \"published\": [\n      2359,\n      4400\n    ],\n    \"parent\": 6866,\n    \"created_at\": 9346,\n    \"updated_at\": 5457\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"description\": \"<string>\",\n    \"country\": \"<integer>\",\n    \"logo\": \"<integer>\",\n    \"start_date\": \"<integer>\",\n    \"url\": \"<string>\",\n    \"developed\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"published\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parent\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"description\": \"<string>\",\n    \"country\": \"<integer>\",\n    \"logo\": \"<integer>\",\n    \"start_date\": \"<integer>\",\n    \"url\": \"<string>\",\n    \"developed\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"published\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"parent\": \"<integer>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:32:11.000Z",
+              "updatedAt": "2026-10-22T02:32:11.000Z",
+              "uid": "35240-073df505-6317-4e14-9449-92a26a9308f1"
             },
             {
-              "id": "689adf8a-b336-4eb0-a035-11922fe2d0ba",
+              "id": "09b0c992-24e5-4a17-b322-20563e3ea5a9",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "companies"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:32:11.000Z",
+              "updatedAt": "2026-10-22T02:32:11.000Z",
+              "uid": "35240-09b0c992-24e5-4a17-b322-20563e3ea5a9"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T02:32:11.000Z",
+          "updatedAt": "2026-10-22T02:32:11.000Z",
+          "uid": "35240-48b307ea-e4ff-4412-8f2a-892e5dee9e98"
+        }
+      ],
+      "id": "1155a90e-1687-4b68-bd44-812cff34e172",
+      "createdAt": "2026-10-22T02:32:11.000Z",
+      "updatedAt": "2026-10-22T02:32:11.000Z",
+      "uid": "35240-1155a90e-1687-4b68-bd44-812cff34e172"
+    },
+    {
+      "name": "involved_companies",
+      "item": [
+        {
+          "name": "Twitch Query Involved Companies",
+          "id": "fb767a0c-ab63-4346-a16a-e2b4d91e40a0",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f899eb08-55a7-4244-b276-f0b1f6a6a1a7",
-          "name": "Twitch Query Involved Companies",
+          },
           "request": {
-            "name": "Twitch Query Involved Companies",
-            "description": {
-              "content": "Query companies involved in game development or publishing.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "involved_companies"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -192,82 +190,87 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/involved_companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "involved_companies"
+              ]
+            },
+            "description": "Query companies involved in game development or publishing."
           },
           "response": [
             {
-              "id": "d5f2f130-b010-4b55-9539-d5b659c89ced",
+              "id": "ee6ef1d9-c5fd-4807-b24c-2fe3cd5b726e",
               "name": "Involved companies returned",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "involved_companies"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/involved_companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "involved_companies"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 364,\n    \"company\": 3780,\n    \"game\": 1790,\n    \"developer\": true,\n    \"publisher\": false,\n    \"porting\": false,\n    \"supporting\": true,\n    \"created_at\": 2020,\n    \"updated_at\": 5868\n  },\n  {\n    \"id\": 2379,\n    \"company\": 2540,\n    \"game\": 4052,\n    \"developer\": true,\n    \"publisher\": true,\n    \"porting\": false,\n    \"supporting\": true,\n    \"created_at\": 1667,\n    \"updated_at\": 8278\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"company\": \"<integer>\",\n    \"game\": \"<integer>\",\n    \"developer\": \"<boolean>\",\n    \"publisher\": \"<boolean>\",\n    \"porting\": \"<boolean>\",\n    \"supporting\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"company\": \"<integer>\",\n    \"game\": \"<integer>\",\n    \"developer\": \"<boolean>\",\n    \"publisher\": \"<boolean>\",\n    \"porting\": \"<boolean>\",\n    \"supporting\": \"<boolean>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:32:11.000Z",
+              "updatedAt": "2026-10-22T02:32:11.000Z",
+              "uid": "35240-ee6ef1d9-c5fd-4807-b24c-2fe3cd5b726e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:32:11.000Z",
+          "updatedAt": "2026-10-22T02:32:11.000Z",
+          "uid": "35240-fb767a0c-ab63-4346-a16a-e2b4d91e40a0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "ccc2913b-9d2a-4976-8f95-998e3f10f424",
+      "createdAt": "2026-10-22T02:32:11.000Z",
+      "updatedAt": "2026-10-22T02:32:11.000Z",
+      "uid": "35240-ccc2913b-9d2a-4976-8f95-998e3f10f424"
     }
   ],
   "auth": {
@@ -275,21 +278,20 @@
     "oauth2": [
       {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8bbfbab4-5801-43e8-9e2e-221453ecf2b4",
-    "name": "Twitch Drops Ads Companies API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.igdb.com/v4"
     }
-  }
+  ]
 }

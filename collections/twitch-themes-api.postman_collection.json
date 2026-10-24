@@ -1,35 +1,28 @@
 {
+  "info": {
+    "_postman_id": "89c6c2f8-1186-4ae4-be05-68dab9f8e91a",
+    "name": "Twitch IGDB Themes API",
+    "description": "The Internet Game Database (IGDB) API provides comprehensive video game information including metadata, ratings, screenshots, videos, and media. IGDB is owned and operated by Twitch and uses Twitch OAuth for authentication. The API uses a POST-based query language called Apicalypse.\n\nContact Support:\n Name: IGDB Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:34:54.000Z",
+    "updatedAt": "2026-10-22T02:34:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89c6c2f8-1186-4ae4-be05-68dab9f8e91a"
+  },
   "item": [
     {
-      "id": "cd2dfcff-22de-45d4-8601-e1c42a2ff78b",
-      "name": "Themes",
-      "description": {
-        "content": "Game theme data",
-        "type": "text/plain"
-      },
+      "name": "themes",
       "item": [
         {
-          "id": "6ce82328-d0d8-4e3b-a716-3ac0785cbc8d",
           "name": "Twitch Query Themes",
+          "id": "32d58582-c95a-4782-82b4-b09cbbb7e60e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Query Themes",
-            "description": {
-              "content": "Query game themes using Apicalypse query language.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "themes"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -43,82 +36,87 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/themes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "themes"
+              ]
+            },
+            "description": "Query game themes using Apicalypse query language."
           },
           "response": [
             {
-              "id": "137a50e0-7a88-4b9c-909e-4bce440da094",
+              "id": "60f7904e-7d4b-42f2-9f94-e58936e91285",
               "name": "Themes returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "themes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/themes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "themes"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 8278,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 1270,\n    \"updated_at\": 116\n  },\n  {\n    \"id\": 1581,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"string\",\n    \"created_at\": 2185,\n    \"updated_at\": 7337\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:34:55.000Z",
+              "updatedAt": "2026-10-22T02:34:55.000Z",
+              "uid": "35240-60f7904e-7d4b-42f2-9f94-e58936e91285"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:55.000Z",
+          "updatedAt": "2026-10-22T02:34:55.000Z",
+          "uid": "35240-32d58582-c95a-4782-82b4-b09cbbb7e60e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "e3284444-8cf0-444f-a49d-763110f09d71",
+      "createdAt": "2026-10-22T02:34:55.000Z",
+      "updatedAt": "2026-10-22T02:34:55.000Z",
+      "uid": "35240-e3284444-8cf0-444f-a49d-763110f09d71"
     }
   ],
   "auth": {
@@ -126,21 +124,20 @@
     "oauth2": [
       {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "0724836e-2c49-46cc-992f-223116208cc6",
-    "name": "Twitch Drops Ads Themes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.igdb.com/v4"
     }
-  }
+  ]
 }

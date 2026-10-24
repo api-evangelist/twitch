@@ -1,127 +1,119 @@
 {
+  "info": {
+    "_postman_id": "ae6e1b4c-776e-470b-8da3-a615d63894c3",
+    "name": "Twitch Video Broadcast Ingest API",
+    "description": "API for retrieving ingest server information used by broadcasters to send live video streams to Twitch via RTMP. Provides ingest endpoints sorted by proximity and availability.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:36.000Z",
+    "updatedAt": "2026-10-22T02:33:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae6e1b4c-776e-470b-8da3-a615d63894c3"
+  },
   "item": [
     {
-      "id": "3c711d0f-946b-40bc-aaf4-978fbfc71928",
-      "name": "Ingest",
-      "description": {
-        "content": "Ingest server information for broadcasting",
-        "type": "text/plain"
-      },
+      "name": "api",
       "item": [
         {
-          "id": "6cd0d809-cbdf-44eb-a2c4-df9670185d2e",
-          "name": "Twitch Get Ingest Servers",
-          "request": {
-            "name": "Twitch Get Ingest Servers",
-            "description": {
-              "content": "Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "v2",
-                "ingests"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "44f9925c-7479-41dc-939c-423d435edc3d",
-              "name": "Ingest servers returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "v2",
-                    "ingests"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "ingests",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Twitch Get Ingest Servers",
+                  "id": "98d8f2a8-0603-46e7-841d-3b1777cc4eda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/ingests",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "ingests"
+                      ]
+                    },
+                    "description": "Gets a list of Twitch ingest servers for broadcasting. Returns servers sorted by proximity to the requester. Broadcasters should connect to the lowest-numbered available server."
+                  },
+                  "response": [
+                    {
+                      "id": "603dd243-0980-42be-9888-5e6183f3d662",
+                      "name": "Ingest servers returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/ingests",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "ingests"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ingests\": [\n    {\n      \"_id\": \"<integer>\",\n      \"availability\": \"<float>\",\n      \"default\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"url_template\": \"<string>\",\n      \"url_template_secure\": \"<string>\",\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"_id\": \"<integer>\",\n      \"availability\": \"<float>\",\n      \"default\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"url_template\": \"<string>\",\n      \"url_template_secure\": \"<string>\",\n      \"priority\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:33:37.000Z",
+                      "updatedAt": "2026-10-22T02:33:37.000Z",
+                      "uid": "35240-603dd243-0980-42be-9888-5e6183f3d662"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:33:37.000Z",
+                  "updatedAt": "2026-10-22T02:33:37.000Z",
+                  "uid": "35240-98d8f2a8-0603-46e7-841d-3b1777cc4eda"
                 }
               ],
-              "body": "{\n  \"ingests\": [\n    {\n      \"_id\": 7300,\n      \"availability\": 4092.252041940723,\n      \"default\": true,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 9388\n    },\n    {\n      \"_id\": 4058,\n      \"availability\": 4735.306808636259,\n      \"default\": true,\n      \"name\": \"string\",\n      \"url_template\": \"string\",\n      \"url_template_secure\": \"string\",\n      \"priority\": 7746\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b4bd474f-d1bf-48f8-a8c4-6c7138e19a49",
+              "createdAt": "2026-10-22T02:33:37.000Z",
+              "updatedAt": "2026-10-22T02:33:37.000Z",
+              "uid": "35240-b4bd474f-d1bf-48f8-a8c4-6c7138e19a49"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "49c883e7-1fbf-413a-a205-bd5268846d56",
+          "createdAt": "2026-10-22T02:33:37.000Z",
+          "updatedAt": "2026-10-22T02:33:37.000Z",
+          "uid": "35240-49c883e7-1fbf-413a-a205-bd5268846d56"
         }
       ],
-      "event": []
+      "id": "5d745a55-e4ea-4b85-8065-616c8874a6d0",
+      "createdAt": "2026-10-22T02:33:37.000Z",
+      "updatedAt": "2026-10-22T02:33:37.000Z",
+      "uid": "35240-5d745a55-e4ea-4b85-8065-616c8874a6d0"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://ingest.twitch.tv"
     }
-  ],
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
-      },
-      {
-        "key": "grant_type",
-        "value": "client_credentials"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "349c6bcd-e6a3-473f-abda-648ce067133f",
-    "name": "Twitch Drops Ads Ingest API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

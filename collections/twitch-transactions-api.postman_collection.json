@@ -1,85 +1,52 @@
 {
+  "info": {
+    "_postman_id": "ae1acbdb-2e9a-4aee-8398-5acb2d2899aa",
+    "name": "Twitch Extensions Transactions API",
+    "description": "APIs for building interactive extensions that run as overlays or panels on Twitch channels. Extensions enable developers to create interactive experiences using a sandboxed iframe, with access to configuration, transactions, and live channel data.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:35:00.000Z",
+    "updatedAt": "2026-10-22T02:35:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae1acbdb-2e9a-4aee-8398-5acb2d2899aa"
+  },
   "item": [
     {
-      "id": "c18e0395-ea39-4683-b204-f4282e5cc90c",
-      "name": "Transactions",
-      "description": {
-        "content": "Extension Bits transactions",
-        "type": "text/plain"
-      },
+      "name": "extensions",
       "item": [
         {
-          "id": "4e1ebe29-11b4-4cfe-b248-23cb55bbbab8",
-          "name": "Twitch Get Extension Transactions",
-          "request": {
-            "name": "Twitch Get Extension Transactions",
-            "description": {
-              "content": "Gets a list of transactions for the specified extension.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "extensions",
-                "transactions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "extension_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "<integer>"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "transactions",
+          "item": [
             {
-              "id": "bda70d0f-188c-4f23-8440-12b4d79e395e",
-              "name": "Transactions returned successfully",
-              "originalRequest": {
+              "name": "Twitch Get Extension Transactions",
+              "id": "22986003-d347-4998-a9bb-532983db3b7e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/extensions/transactions?extension_id=<string>&id=<string>&first=<integer>&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "extensions",
                     "transactions"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "extension_id",
                       "value": "<string>"
                     },
@@ -95,302 +62,357 @@
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Gets a list of transactions for the specified extension."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"timestamp\": \"1979-12-01T14:23:46.737Z\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"product_type\": \"BITS_IN_EXTENSION\",\n      \"product_data\": {\n        \"sku\": \"string\",\n        \"cost\": {\n          \"amount\": 7134,\n          \"type\": \"bits\"\n        },\n        \"displayName\": \"string\",\n        \"inDevelopment\": true\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"timestamp\": \"1966-05-20T10:08:40.620Z\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"product_type\": \"BITS_IN_EXTENSION\",\n      \"product_data\": {\n        \"sku\": \"string\",\n        \"cost\": {\n          \"amount\": 2032,\n          \"type\": \"bits\"\n        },\n        \"displayName\": \"string\",\n        \"inDevelopment\": false\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "372d400f-a221-4f7f-8297-a18d07d47b12",
-          "name": "Twitch Get Extension Bits Products",
-          "request": {
-            "name": "Twitch Get Extension Bits Products",
-            "description": {
-              "content": "Gets a list of Bits products registered for the extension.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "extensions",
-                "bits",
-                "products"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "should_include_all",
-                  "value": "<boolean>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "61632383-56f5-4b8c-8afe-b3224917379c",
-              "name": "Bits products returned",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "extensions",
-                    "bits",
-                    "products"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "7d0c07b1-8787-4f52-8dee-0dd0be085848",
+                  "name": "Transactions returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extensions/transactions?extension_id=<string>&id=<string>&first=<integer>&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extensions",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "extension_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "first",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "should_include_all",
-                      "value": "<boolean>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"product_type\": \"BITS_IN_EXTENSION\",\n      \"product_data\": {\n        \"sku\": \"<string>\",\n        \"cost\": {\n          \"amount\": \"<integer>\",\n          \"type\": \"bits\"\n        },\n        \"displayName\": \"<string>\",\n        \"inDevelopment\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"product_type\": \"BITS_IN_EXTENSION\",\n      \"product_data\": {\n        \"sku\": \"<string>\",\n        \"cost\": {\n          \"amount\": \"<integer>\",\n          \"type\": \"bits\"\n        },\n        \"displayName\": \"<string>\",\n        \"inDevelopment\": \"<boolean>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:35:00.000Z",
+                  "updatedAt": "2026-10-22T02:35:00.000Z",
+                  "uid": "35240-7d0c07b1-8787-4f52-8dee-0dd0be085848"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"sku\": \"string\",\n      \"cost\": {\n        \"amount\": 605,\n        \"type\": \"bits\"\n      },\n      \"in_development\": true,\n      \"display_name\": \"string\",\n      \"expiration\": \"2019-03-04T15:34:15.104Z\",\n      \"is_broadcast\": false\n    },\n    {\n      \"sku\": \"string\",\n      \"cost\": {\n        \"amount\": 5961,\n        \"type\": \"bits\"\n      },\n      \"in_development\": true,\n      \"display_name\": \"string\",\n      \"expiration\": \"1978-08-12T02:57:07.865Z\",\n      \"is_broadcast\": true\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:35:00.000Z",
+              "updatedAt": "2026-10-22T02:35:00.000Z",
+              "uid": "35240-22986003-d347-4998-a9bb-532983db3b7e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "df899962-b23a-42a3-8ca0-a520850c6ef5",
+          "createdAt": "2026-10-22T02:35:00.000Z",
+          "updatedAt": "2026-10-22T02:35:00.000Z",
+          "uid": "35240-df899962-b23a-42a3-8ca0-a520850c6ef5"
         },
         {
-          "id": "a465545e-3a5e-4fc2-a6e6-65f370762853",
-          "name": "Twitch Update Extension Bits Product",
-          "request": {
-            "name": "Twitch Update Extension Bits Product",
-            "description": {
-              "content": "Adds or updates a Bits product registered for the extension.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "extensions",
-                "bits",
-                "products"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"sku\": \"<string>\",\n  \"cost\": {\n    \"amount\": \"<integer>\",\n    \"type\": \"<string>\"\n  },\n  \"display_name\": \"<string>\",\n  \"in_development\": \"<boolean>\",\n  \"expiration\": \"<dateTime>\",\n  \"is_broadcast\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "bits",
+          "item": [
             {
-              "id": "4e444a1e-a874-4511-9af8-5c8d856e462d",
-              "name": "Product updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "extensions",
-                    "bits",
-                    "products"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"sku\": \"<string>\",\n  \"cost\": {\n    \"amount\": \"<integer>\",\n    \"type\": \"<string>\"\n  },\n  \"display_name\": \"<string>\",\n  \"in_development\": \"<boolean>\",\n  \"expiration\": \"<dateTime>\",\n  \"is_broadcast\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "products",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Twitch Get Extension Bits Products",
+                  "id": "f235def8-ea6b-450f-aada-1e1fd7ef295c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extensions/bits/products?should_include_all=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extensions",
+                        "bits",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "key": "should_include_all",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "description": "Gets a list of Bits products registered for the extension."
+                  },
+                  "response": [
+                    {
+                      "id": "423e0cb3-73c5-48aa-a98e-50681ba94735",
+                      "name": "Bits products returned",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Your registered application's client ID",
+                            "key": "Client-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/extensions/bits/products?should_include_all=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "extensions",
+                            "bits",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "key": "should_include_all",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"sku\": \"<string>\",\n      \"cost\": {\n        \"amount\": \"<integer>\",\n        \"type\": \"bits\"\n      },\n      \"in_development\": \"<boolean>\",\n      \"display_name\": \"<string>\",\n      \"expiration\": \"<dateTime>\",\n      \"is_broadcast\": \"<boolean>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"cost\": {\n        \"amount\": \"<integer>\",\n        \"type\": \"bits\"\n      },\n      \"in_development\": \"<boolean>\",\n      \"display_name\": \"<string>\",\n      \"expiration\": \"<dateTime>\",\n      \"is_broadcast\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:35:00.000Z",
+                      "updatedAt": "2026-10-22T02:35:00.000Z",
+                      "uid": "35240-423e0cb3-73c5-48aa-a98e-50681ba94735"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:35:00.000Z",
+                  "updatedAt": "2026-10-22T02:35:00.000Z",
+                  "uid": "35240-f235def8-ea6b-450f-aada-1e1fd7ef295c"
+                },
+                {
+                  "name": "Twitch Update Extension Bits Product",
+                  "id": "beff066b-9738-41c1-9312-4850e01f9e4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": \"<string>\",\n  \"cost\": {\n    \"amount\": \"<integer>\",\n    \"type\": \"bits\"\n  },\n  \"display_name\": \"<string>\",\n  \"in_development\": \"<boolean>\",\n  \"expiration\": \"<dateTime>\",\n  \"is_broadcast\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/extensions/bits/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extensions",
+                        "bits",
+                        "products"
+                      ]
+                    },
+                    "description": "Adds or updates a Bits product registered for the extension."
+                  },
+                  "response": [
+                    {
+                      "id": "0c7e4dc4-67f4-43d4-b02c-331b09a31d2a",
+                      "name": "Product updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) Your registered application's client ID",
+                            "key": "Client-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sku\": \"<string>\",\n  \"cost\": {\n    \"amount\": \"<integer>\",\n    \"type\": \"bits\"\n  },\n  \"display_name\": \"<string>\",\n  \"in_development\": \"<boolean>\",\n  \"expiration\": \"<dateTime>\",\n  \"is_broadcast\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/extensions/bits/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "extensions",
+                            "bits",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"sku\": \"<string>\",\n      \"cost\": {\n        \"amount\": \"<integer>\",\n        \"type\": \"bits\"\n      },\n      \"in_development\": \"<boolean>\",\n      \"display_name\": \"<string>\",\n      \"expiration\": \"<dateTime>\",\n      \"is_broadcast\": \"<boolean>\"\n    },\n    {\n      \"sku\": \"<string>\",\n      \"cost\": {\n        \"amount\": \"<integer>\",\n        \"type\": \"bits\"\n      },\n      \"in_development\": \"<boolean>\",\n      \"display_name\": \"<string>\",\n      \"expiration\": \"<dateTime>\",\n      \"is_broadcast\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:35:00.000Z",
+                      "updatedAt": "2026-10-22T02:35:00.000Z",
+                      "uid": "35240-0c7e4dc4-67f4-43d4-b02c-331b09a31d2a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:35:00.000Z",
+                  "updatedAt": "2026-10-22T02:35:00.000Z",
+                  "uid": "35240-beff066b-9738-41c1-9312-4850e01f9e4e"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"sku\": \"string\",\n      \"cost\": {\n        \"amount\": 605,\n        \"type\": \"bits\"\n      },\n      \"in_development\": true,\n      \"display_name\": \"string\",\n      \"expiration\": \"2019-03-04T15:34:15.104Z\",\n      \"is_broadcast\": false\n    },\n    {\n      \"sku\": \"string\",\n      \"cost\": {\n        \"amount\": 5961,\n        \"type\": \"bits\"\n      },\n      \"in_development\": true,\n      \"display_name\": \"string\",\n      \"expiration\": \"1978-08-12T02:57:07.865Z\",\n      \"is_broadcast\": true\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b045e647-53c2-44e7-9a51-032a0129263f",
+              "createdAt": "2026-10-22T02:35:00.000Z",
+              "updatedAt": "2026-10-22T02:35:00.000Z",
+              "uid": "35240-b045e647-53c2-44e7-9a51-032a0129263f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f74e7d48-53eb-4c7d-92ba-368c3981b489",
+          "createdAt": "2026-10-22T02:35:00.000Z",
+          "updatedAt": "2026-10-22T02:35:00.000Z",
+          "uid": "35240-f74e7d48-53eb-4c7d-92ba-368c3981b489"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "0a8fdb68-5320-44f0-9503-f03f5853aa0e",
+      "createdAt": "2026-10-22T02:35:00.000Z",
+      "updatedAt": "2026-10-22T02:35:00.000Z",
+      "uid": "35240-0a8fdb68-5320-44f0-9503-f03f5853aa0e"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "user:read:broadcast user:edit:broadcast",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "7822a4fd-34f0-4ab4-a7ea-7258c4059cc8",
-    "name": "Twitch Drops Ads Transactions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

@@ -1,46 +1,136 @@
 {
+  "info": {
+    "_postman_id": "ee264db5-57f6-48e6-9076-d434ee84969e",
+    "name": "Twitch Helix Teams API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:34:48.000Z",
+    "updatedAt": "2026-10-22T02:34:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ee264db5-57f6-48e6-9076-d434ee84969e"
+  },
   "item": [
     {
-      "id": "70b8bafe-9d00-4295-8014-7ee3a864581b",
-      "name": "Teams",
-      "description": {
-        "content": "Retrieve team information",
-        "type": "text/plain"
-      },
+      "name": "teams",
       "item": [
         {
-          "id": "ca4c9662-9bc6-4c82-bfe0-8c305e0490bf",
-          "name": "Twitch Get Teams",
-          "request": {
-            "name": "Twitch Get Teams",
-            "description": {
-              "content": "Gets information about a Twitch team.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "teams"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "name",
-                  "value": "<string>"
+          "name": "channel",
+          "item": [
+            {
+              "name": "Twitch Get Channel Teams",
+              "id": "3d520304-8dcf-4963-a018-5564d8b4f51e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams/channel?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams",
+                    "channel"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
                 },
+                "description": "Gets the teams that a broadcaster belongs to."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "id",
-                  "value": "<string>"
+                  "id": "5808fa2e-bdb6-4282-90e3-24e8c91995a0",
+                  "name": "Channel teams returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/channel?broadcaster_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        "channel"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"team_name\": \"<string>\",\n      \"team_display_name\": \"<string>\",\n      \"info\": \"<string>\",\n      \"thumbnail_url\": \"<string>\",\n      \"banner\": \"<string>\",\n      \"background_image_url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"users\": [\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        },\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"team_name\": \"<string>\",\n      \"team_display_name\": \"<string>\",\n      \"info\": \"<string>\",\n      \"thumbnail_url\": \"<string>\",\n      \"banner\": \"<string>\",\n      \"background_image_url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"users\": [\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        },\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:34:49.000Z",
+                  "updatedAt": "2026-10-22T02:34:49.000Z",
+                  "uid": "35240-5808fa2e-bdb6-4282-90e3-24e8c91995a0"
                 }
               ],
-              "variable": []
-            },
+              "createdAt": "2026-10-22T02:34:49.000Z",
+              "updatedAt": "2026-10-22T02:34:49.000Z",
+              "uid": "35240-3d520304-8dcf-4963-a018-5564d8b4f51e"
+            }
+          ],
+          "id": "e10e6992-7b2b-41c3-bf19-4b679417fd67",
+          "createdAt": "2026-10-22T02:34:49.000Z",
+          "updatedAt": "2026-10-22T02:34:49.000Z",
+          "uid": "35240-e10e6992-7b2b-41c3-bf19-4b679417fd67"
+        },
+        {
+          "name": "Twitch Get Teams",
+          "id": "d2911329-c1f2-4fc1-82f8-79de10c7fbff",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -50,20 +140,56 @@
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/teams?name=<string>&id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teams"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "key": "id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets information about a Twitch team."
           },
           "response": [
             {
-              "id": "48ddb3e5-6502-4c79-8d85-5ab19d4cd23c",
+              "id": "7d938f7d-1801-42d4-8607-f13ba04dac66",
               "name": "Team information returned successfully",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "teams"
-                  ],
+                  "raw": "{{baseUrl}}/teams?name=<string>&id=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
                   ],
                   "query": [
                     {
@@ -74,186 +200,66 @@
                       "key": "id",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"team_name\": \"string\",\n      \"team_display_name\": \"string\",\n      \"info\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"banner\": \"string\",\n      \"background_image_url\": \"string\",\n      \"created_at\": \"1976-01-07T17:35:17.662Z\",\n      \"updated_at\": \"1977-02-03T00:41:36.858Z\",\n      \"users\": [\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        },\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"team_name\": \"string\",\n      \"team_display_name\": \"string\",\n      \"info\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"banner\": \"string\",\n      \"background_image_url\": \"string\",\n      \"created_at\": \"1980-11-01T02:18:20.588Z\",\n      \"updated_at\": \"2006-06-10T06:33:23.026Z\",\n      \"users\": [\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        },\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"team_name\": \"<string>\",\n      \"team_display_name\": \"<string>\",\n      \"info\": \"<string>\",\n      \"thumbnail_url\": \"<string>\",\n      \"banner\": \"<string>\",\n      \"background_image_url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"users\": [\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        },\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"team_name\": \"<string>\",\n      \"team_display_name\": \"<string>\",\n      \"info\": \"<string>\",\n      \"thumbnail_url\": \"<string>\",\n      \"banner\": \"<string>\",\n      \"background_image_url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"users\": [\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        },\n        {\n          \"user_id\": \"<string>\",\n          \"user_login\": \"<string>\",\n          \"user_name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:34:49.000Z",
+              "updatedAt": "2026-10-22T02:34:49.000Z",
+              "uid": "35240-7d938f7d-1801-42d4-8607-f13ba04dac66"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "af0c595a-0dc8-4016-bb0d-38d3d8cd0d5f",
-          "name": "Twitch Get Channel Teams",
-          "request": {
-            "name": "Twitch Get Channel Teams",
-            "description": {
-              "content": "Gets the teams that a broadcaster belongs to.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "teams",
-                "channel"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0f8cc23e-312b-4df2-9161-70c70679700e",
-              "name": "Channel teams returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "teams",
-                    "channel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"team_name\": \"string\",\n      \"team_display_name\": \"string\",\n      \"info\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"banner\": \"string\",\n      \"background_image_url\": \"string\",\n      \"created_at\": \"1976-01-07T17:35:17.662Z\",\n      \"updated_at\": \"1977-02-03T00:41:36.858Z\",\n      \"users\": [\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        },\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"team_name\": \"string\",\n      \"team_display_name\": \"string\",\n      \"info\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"banner\": \"string\",\n      \"background_image_url\": \"string\",\n      \"created_at\": \"1980-11-01T02:18:20.588Z\",\n      \"updated_at\": \"2006-06-10T06:33:23.026Z\",\n      \"users\": [\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        },\n        {\n          \"user_id\": \"string\",\n          \"user_login\": \"string\",\n          \"user_name\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:49.000Z",
+          "updatedAt": "2026-10-22T02:34:49.000Z",
+          "uid": "35240-d2911329-c1f2-4fc1-82f8-79de10c7fbff"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "93eb518f-a703-4df6-a91b-869371f86075",
+      "createdAt": "2026-10-22T02:34:49.000Z",
+      "updatedAt": "2026-10-22T02:34:49.000Z",
+      "uid": "35240-93eb518f-a703-4df6-a91b-869371f86075"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a3411dd0-93a9-424f-a33c-1413ef9464da",
-    "name": "Twitch Drops Ads Teams API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

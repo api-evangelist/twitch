@@ -1,93 +1,52 @@
 {
+  "info": {
+    "_postman_id": "bdc95331-5ce7-4831-b554-98d1a5db7548",
+    "name": "Twitch Helix Moderation API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:47.000Z",
+    "updatedAt": "2026-10-22T02:33:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bdc95331-5ce7-4831-b554-98d1a5db7548"
+  },
   "item": [
     {
-      "id": "c85dc172-200c-4c9f-911c-514d157e6a30",
-      "name": "Moderation",
-      "description": {
-        "content": "Manage channel moderation including bans, blocks, and AutoMod",
-        "type": "text/plain"
-      },
+      "name": "moderation",
       "item": [
         {
-          "id": "77267bf0-f3a2-4b33-b20b-291dddba3531",
-          "name": "Twitch Get Banned Users",
-          "request": {
-            "name": "Twitch Get Banned Users",
-            "description": {
-              "content": "Gets all users that the broadcaster has banned or timed out.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "banned"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "before",
-                  "value": "<string>",
-                  "description": "Cursor for backward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "banned",
+          "item": [
             {
-              "id": "168d114a-79b4-436e-a144-e191c29f1cbe",
-              "name": "Banned users returned successfully",
-              "originalRequest": {
+              "name": "Twitch Get Banned Users",
+              "id": "09613d2c-6839-4df9-b145-8dff1e442ae8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/moderation/banned?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>&before=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "moderation",
                     "banned"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "broadcaster_id",
                       "value": "<string>"
                     },
@@ -96,31 +55,334 @@
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Cursor for backward pagination",
                       "key": "before",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "description": "Gets all users that the broadcaster has banned or timed out."
+              },
+              "response": [
+                {
+                  "id": "978e999f-6f79-435c-9818-7365c03ad499",
+                  "name": "Banned users returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/banned?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>&before=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "banned"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor for backward pagination",
+                          "key": "before",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"expires_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"reason\": \"<string>\",\n      \"moderator_id\": \"<string>\",\n      \"moderator_login\": \"<string>\",\n      \"moderator_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\",\n      \"expires_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"reason\": \"<string>\",\n      \"moderator_id\": \"<string>\",\n      \"moderator_login\": \"<string>\",\n      \"moderator_name\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-978e999f-6f79-435c-9818-7365c03ad499"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-09613d2c-6839-4df9-b145-8dff1e442ae8"
+            }
+          ],
+          "id": "cf2c86eb-1eb9-409b-b85f-a3b1a03a8e33",
+          "createdAt": "2026-10-22T02:33:47.000Z",
+          "updatedAt": "2026-10-22T02:33:47.000Z",
+          "uid": "35240-cf2c86eb-1eb9-409b-b85f-a3b1a03a8e33"
+        },
+        {
+          "name": "bans",
+          "item": [
+            {
+              "name": "Twitch Ban User",
+              "id": "f67f2bd3-7338-4dc1-aa44-3906e57fc1db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
                   },
                   {
-                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "moderation",
+                    "bans"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Bans a user from participating in the specified broadcaster's chat room or times them out."
+              },
+              "response": [
+                {
+                  "id": "937ba9d6-582e-4889-a5df-74756685a3c7",
+                  "name": "User banned successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "bans"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "moderator_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"<string>\",\n      \"moderator_id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\"\n    },\n    {\n      \"broadcaster_id\": \"<string>\",\n      \"moderator_id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"end_time\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-937ba9d6-582e-4889-a5df-74756685a3c7"
+                },
+                {
+                  "id": "2e91f6fd-747f-445c-ab2f-9764e82f2ed1",
+                  "name": "The request was invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "bans"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "moderator_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-2e91f6fd-747f-445c-ab2f-9764e82f2ed1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-f67f2bd3-7338-4dc1-aa44-3906e57fc1db"
+            },
+            {
+              "name": "Twitch Unban User",
+              "id": "4a5080d4-dec7-4f86-9df9-8c77365f6f95",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -130,124 +392,181 @@
                     "value": "application/json"
                   }
                 ],
+                "url": {
+                  "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>&user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "moderation",
+                    "bans"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "moderator_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Removes the ban or timeout on a user."
+              },
+              "response": [
+                {
+                  "id": "33261168-412c-4fec-8057-f3a5b98e7eb1",
+                  "name": "User unbanned successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "bans"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "moderator_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-33261168-412c-4fec-8057-f3a5b98e7eb1"
+                },
+                {
+                  "id": "0fc49bfb-c52d-4686-b22a-11d19b7a6bd1",
+                  "name": "The request was invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/bans?broadcaster_id=<string>&moderator_id=<string>&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "bans"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "moderator_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-0fc49bfb-c52d-4686-b22a-11d19b7a6bd1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-4a5080d4-dec7-4f86-9df9-8c77365f6f95"
+            }
+          ],
+          "id": "d7a4e407-a71f-47e3-95ba-f94c7256a7fc",
+          "createdAt": "2026-10-22T02:33:47.000Z",
+          "updatedAt": "2026-10-22T02:33:47.000Z",
+          "uid": "35240-d7a4e407-a71f-47e3-95ba-f94c7256a7fc"
+        },
+        {
+          "name": "moderators",
+          "item": [
+            {
+              "name": "Twitch Get Moderators",
+              "id": "19a6ad28-f992-47fe-b1ff-bcb887dabe46",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"expires_at\": \"1954-02-04T06:35:54.385Z\",\n      \"created_at\": \"1968-03-08T14:42:59.280Z\",\n      \"reason\": \"string\",\n      \"moderator_id\": \"string\",\n      \"moderator_login\": \"string\",\n      \"moderator_name\": \"string\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\",\n      \"expires_at\": \"2015-03-17T05:50:10.221Z\",\n      \"created_at\": \"1985-07-20T17:03:33.611Z\",\n      \"reason\": \"string\",\n      \"moderator_id\": \"string\",\n      \"moderator_login\": \"string\",\n      \"moderator_name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d30ee0a4-b33f-412f-a2a6-3b329cc9cb9d",
-          "name": "Twitch Ban User",
-          "request": {
-            "name": "Twitch Ban User",
-            "description": {
-              "content": "Bans a user from participating in the specified broadcaster's chat room or times them out.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "bans"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "moderator_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "52dceca3-1cd2-4320-8726-d4dfcf80bd33",
-              "name": "User banned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "bans"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "moderator_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -257,359 +576,18 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_id\": \"string\",\n      \"moderator_id\": \"string\",\n      \"user_id\": \"string\",\n      \"created_at\": \"1989-03-05T06:04:25.764Z\",\n      \"end_time\": \"2010-12-27T05:29:46.485Z\"\n    },\n    {\n      \"broadcaster_id\": \"string\",\n      \"moderator_id\": \"string\",\n      \"user_id\": \"string\",\n      \"created_at\": \"1983-07-20T13:36:57.385Z\",\n      \"end_time\": \"1987-12-27T18:33:27.919Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f67d8279-c68c-486e-906c-93841795200c",
-              "name": "The request was invalid",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "moderation",
-                    "bans"
-                  ],
+                  "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "moderator_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"data\": {\n    \"user_id\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"reason\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 830,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "829a9b1c-5b51-4d70-9f59-6631148a0a19",
-          "name": "Twitch Unban User",
-          "request": {
-            "name": "Twitch Unban User",
-            "description": {
-              "content": "Removes the ban or timeout on a user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "bans"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "moderator_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "60c316e0-8142-4580-8a4e-3a1c2edc55a3",
-              "name": "User unbanned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "bans"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "moderator_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "72984d2f-1967-4590-8c0f-6be9ca1e8415",
-              "name": "The request was invalid",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "bans"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "moderator_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"status\": 830,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "877a06d8-819b-42fa-8d74-ad5c2919da24",
-          "name": "Twitch Get Moderators",
-          "request": {
-            "name": "Twitch Get Moderators",
-            "description": {
-              "content": "Gets the moderators for the specified broadcaster's channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "moderators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8840ca03-647a-48f5-889b-7201e8f00755",
-              "name": "Moderators returned successfully",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "moderation",
                     "moderators"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "broadcaster_id",
                       "value": "<string>"
                     },
@@ -618,408 +596,448 @@
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Gets the moderators for the specified broadcaster's channel."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\"\n    },\n    {\n      \"user_id\": \"string\",\n      \"user_login\": \"string\",\n      \"user_name\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fe086d29-a2c4-4e36-80c4-418d5aa26cd4",
-          "name": "Twitch Add Channel Moderator",
-          "request": {
-            "name": "Twitch Add Channel Moderator",
-            "description": {
-              "content": "Adds a moderator to the broadcaster's channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "moderators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "52112daf-b2ea-413e-ad50-998e2dc76b11",
-              "name": "Moderator added successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "moderators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "ef414de5-d447-4474-acce-c76c854294d3",
+                  "name": "Moderators returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "moderators"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  }
-                ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\"\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"user_login\": \"<string>\",\n      \"user_name\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-ef414de5-d447-4474-acce-c76c854294d3"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-19a6ad28-f992-47fe-b1ff-bcb887dabe46"
+            },
+            {
+              "name": "Twitch Add Channel Moderator",
+              "id": "03921cff-d9a9-4a2a-a5ed-ff20585420cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "POST",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "23c62221-4e43-4e66-bea8-1e4ca22905a6",
-          "name": "Twitch Remove Channel Moderator",
-          "request": {
-            "name": "Twitch Remove Channel Moderator",
-            "description": {
-              "content": "Removes a moderator from the broadcaster's channel.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "moderators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "139e573b-b059-44c5-9d03-6db7391a057c",
-              "name": "Moderator removed successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "moderators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   }
                 ],
+                "url": {
+                  "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "moderation",
+                    "moderators"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Adds a moderator to the broadcaster's channel."
+              },
+              "response": [
+                {
+                  "id": "6c85827e-b007-49b4-a867-914949a6d50b",
+                  "name": "Moderator added successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "moderators"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-6c85827e-b007-49b4-a867-914949a6d50b"
+                }
+              ],
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-03921cff-d9a9-4a2a-a5ed-ff20585420cb"
+            },
+            {
+              "name": "Twitch Remove Channel Moderator",
+              "id": "9a097ea4-367f-48b4-a2e1-af4efc9566e7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2006a3bd-1b64-4b64-b691-b90d04d17ce0",
-          "name": "Twitch Manage Held AutoMod Messages",
-          "request": {
-            "name": "Twitch Manage Held AutoMod Messages",
-            "description": {
-              "content": "Allow or deny a message that was held by AutoMod.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "moderation",
-                "automod",
-                "message"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_id\": \"<string>\",\n  \"msg_id\": \"<string>\",\n  \"action\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c415f018-bf80-483d-bb66-655cc0fd7bf9",
-              "name": "AutoMod message managed successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "moderation",
-                    "automod",
-                    "message"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_id\": \"<string>\",\n  \"msg_id\": \"<string>\",\n  \"action\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                "url": {
+                  "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "moderation",
+                    "moderators"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "user_id",
+                      "value": "<string>"
                     }
-                  }
-                }
+                  ]
+                },
+                "description": "Removes a moderator from the broadcaster's channel."
               },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "1559d6b1-02b9-4a41-b4fa-dab80d0b533c",
+                  "name": "Moderator removed successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/moderators?broadcaster_id=<string>&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "moderators"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "broadcaster_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-1559d6b1-02b9-4a41-b4fa-dab80d0b533c"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:33:48.000Z",
+              "updatedAt": "2026-10-22T02:33:48.000Z",
+              "uid": "35240-9a097ea4-367f-48b4-a2e1-af4efc9566e7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "584df5a3-2d4a-41ec-8001-ed4b7794493a",
+          "createdAt": "2026-10-22T02:33:47.000Z",
+          "updatedAt": "2026-10-22T02:33:47.000Z",
+          "uid": "35240-584df5a3-2d4a-41ec-8001-ed4b7794493a"
+        },
+        {
+          "name": "automod",
+          "item": [
+            {
+              "name": "message",
+              "item": [
+                {
+                  "name": "Twitch Manage Held AutoMod Messages",
+                  "id": "bf267a6c-26b3-45ab-ae3b-3bab1cfa03d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"msg_id\": \"<string>\",\n  \"action\": \"DENY\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/moderation/automod/message",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "moderation",
+                        "automod",
+                        "message"
+                      ]
+                    },
+                    "description": "Allow or deny a message that was held by AutoMod."
+                  },
+                  "response": [
+                    {
+                      "id": "11ddaf41-c0b3-4f23-a715-2da0b9123333",
+                      "name": "AutoMod message managed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Your registered application's client ID",
+                            "key": "Client-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"msg_id\": \"<string>\",\n  \"action\": \"DENY\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/moderation/automod/message",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "moderation",
+                            "automod",
+                            "message"
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:33:48.000Z",
+                      "updatedAt": "2026-10-22T02:33:48.000Z",
+                      "uid": "35240-11ddaf41-c0b3-4f23-a715-2da0b9123333"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:33:48.000Z",
+                  "updatedAt": "2026-10-22T02:33:48.000Z",
+                  "uid": "35240-bf267a6c-26b3-45ab-ae3b-3bab1cfa03d2"
+                }
+              ],
+              "id": "d577aadb-43fd-4af9-a134-d28da2c61784",
+              "createdAt": "2026-10-22T02:33:47.000Z",
+              "updatedAt": "2026-10-22T02:33:47.000Z",
+              "uid": "35240-d577aadb-43fd-4af9-a134-d28da2c61784"
+            }
+          ],
+          "id": "8620a89b-17ff-47e7-a1f6-43a7f20d3b0a",
+          "createdAt": "2026-10-22T02:33:47.000Z",
+          "updatedAt": "2026-10-22T02:33:47.000Z",
+          "uid": "35240-8620a89b-17ff-47e7-a1f6-43a7f20d3b0a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "8ea30f96-1e07-4ab8-b417-b3f7a7fa259b",
+      "createdAt": "2026-10-22T02:33:47.000Z",
+      "updatedAt": "2026-10-22T02:33:47.000Z",
+      "uid": "35240-8ea30f96-1e07-4ab8-b417-b3f7a7fa259b"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e5aa83f8-2656-40e5-a8b8-8aeff53b1785",
-    "name": "Twitch Drops Ads Moderation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

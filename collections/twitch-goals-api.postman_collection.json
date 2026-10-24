@@ -1,42 +1,28 @@
 {
+  "info": {
+    "_postman_id": "cde7349a-3f5e-48d7-8ccd-56408fc33ef3",
+    "name": "Twitch Helix Goals API",
+    "description": "The Twitch Helix API provides programmatic access to Twitch platform features including streams, users, videos, clips, channels, chat, subscriptions, moderation, polls, predictions, and more.\n\nContact Support:\n Name: Twitch Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:33:21.000Z",
+    "updatedAt": "2026-10-22T02:33:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cde7349a-3f5e-48d7-8ccd-56408fc33ef3"
+  },
   "item": [
     {
-      "id": "6b1e16ce-7fe2-4f5a-a3e2-db4b4c37bc4e",
-      "name": "Goals",
-      "description": {
-        "content": "Retrieve creator goals",
-        "type": "text/plain"
-      },
+      "name": "goals",
       "item": [
         {
-          "id": "85157eb2-1dbd-45d2-8d91-edf90b341904",
           "name": "Twitch Get Creator Goals",
+          "id": "0e99cee9-032f-453a-a320-ab5f88ba514d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Get Creator Goals",
-            "description": {
-              "content": "Gets the broadcaster's list of active goals.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "goals"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "broadcaster_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Your registered application's client ID",
                 "key": "Client-Id",
                 "value": "<string>"
@@ -46,40 +32,32 @@
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/goals?broadcaster_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "goals"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "broadcaster_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Gets the broadcaster's list of active goals."
           },
           "response": [
             {
-              "id": "31a89eb9-44be-45f7-bf84-a531d2b2ec8a",
+              "id": "66120b56-d426-4ff2-82b9-9c5e8851fd4c",
               "name": "Creator goals returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "goals"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "broadcaster_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -87,61 +65,87 @@
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/goals?broadcaster_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "goals"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "broadcaster_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"type\": \"new_subscription_count\",\n      \"description\": \"string\",\n      \"current_amount\": 5366,\n      \"target_amount\": 5643,\n      \"created_at\": \"1985-02-03T18:39:04.267Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcaster_id\": \"string\",\n      \"broadcaster_name\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"type\": \"follower\",\n      \"description\": \"string\",\n      \"current_amount\": 1024,\n      \"target_amount\": 33,\n      \"created_at\": \"2020-11-14T23:45:02.233Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"type\": \"new_subscription_count\",\n      \"description\": \"<string>\",\n      \"current_amount\": \"<integer>\",\n      \"target_amount\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"broadcaster_id\": \"<string>\",\n      \"broadcaster_name\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"type\": \"subscription_count\",\n      \"description\": \"<string>\",\n      \"current_amount\": \"<integer>\",\n      \"target_amount\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:33:21.000Z",
+              "updatedAt": "2026-10-22T02:33:21.000Z",
+              "uid": "35240-66120b56-d426-4ff2-82b9-9c5e8851fd4c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:33:21.000Z",
+          "updatedAt": "2026-10-22T02:33:21.000Z",
+          "uid": "35240-0e99cee9-032f-453a-a320-ab5f88ba514d"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "739ccc7b-db27-427b-ba34-a79342b5a576",
+      "createdAt": "2026-10-22T02:33:21.000Z",
+      "updatedAt": "2026-10-22T02:33:21.000Z",
+      "uid": "35240-739ccc7b-db27-427b-ba34-a79342b5a576"
     }
   ],
   "auth": {
     "type": "oauth2",
     "oauth2": [
       {
+        "key": "scope",
+        "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+        "type": "string"
+      },
+      {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://id.twitch.tv/oauth2/authorize",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "authorization_code",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "25949943-3337-42b7-a89e-8e72296af062",
-    "name": "Twitch Drops Ads Goals API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  }
+  ]
 }

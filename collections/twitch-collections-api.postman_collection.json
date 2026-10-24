@@ -1,35 +1,28 @@
 {
+  "info": {
+    "_postman_id": "f5e8db27-d8e6-4b5a-8c9f-8466e40cfc4b",
+    "name": "Twitch IGDB Collections API",
+    "description": "The Internet Game Database (IGDB) API provides comprehensive video game information including metadata, ratings, screenshots, videos, and media. IGDB is owned and operated by Twitch and uses Twitch OAuth for authentication. The API uses a POST-based query language called Apicalypse.\n\nContact Support:\n Name: IGDB Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:32:03.000Z",
+    "updatedAt": "2026-10-22T02:32:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f5e8db27-d8e6-4b5a-8c9f-8466e40cfc4b"
+  },
   "item": [
     {
-      "id": "51cb6b62-1746-4618-bb12-e4826a7af0a1",
-      "name": "Collections",
-      "description": {
-        "content": "Game collections and franchises",
-        "type": "text/plain"
-      },
+      "name": "collections",
       "item": [
         {
-          "id": "6c27446c-5750-42ae-bd6c-e30eb3670595",
           "name": "Twitch Query Collections",
+          "id": "2e7c7974-f106-4815-96d7-076f75ad07c8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Query Collections",
-            "description": {
-              "content": "Query game collections and franchises using Apicalypse query language.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -43,142 +36,147 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/collections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections"
+              ]
+            },
+            "description": "Query game collections and franchises using Apicalypse query language."
           },
           "response": [
             {
-              "id": "37b6e618-b966-418c-8190-e0d188968836",
+              "id": "e69407fd-7258-41c2-b820-adee3173e4bf",
               "name": "Collections returned successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 5169,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"games\": [\n      9569,\n      5520\n    ],\n    \"url\": \"string\",\n    \"created_at\": 4696,\n    \"updated_at\": 3193\n  },\n  {\n    \"id\": 4164,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"games\": [\n      1270,\n      3066\n    ],\n    \"url\": \"string\",\n    \"created_at\": 8371,\n    \"updated_at\": 4376\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:32:03.000Z",
+              "updatedAt": "2026-10-22T02:32:03.000Z",
+              "uid": "35240-e69407fd-7258-41c2-b820-adee3173e4bf"
             },
             {
-              "id": "a6a6299d-60a3-4e78-9d0c-cfa6af9aefda",
+              "id": "a9b0588a-4bea-400e-b300-ac21902d9a51",
               "name": "Authentication required or token is invalid",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:32:03.000Z",
+              "updatedAt": "2026-10-22T02:32:03.000Z",
+              "uid": "35240-a9b0588a-4bea-400e-b300-ac21902d9a51"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T02:32:03.000Z",
+          "updatedAt": "2026-10-22T02:32:03.000Z",
+          "uid": "35240-2e7c7974-f106-4815-96d7-076f75ad07c8"
+        }
+      ],
+      "id": "2ab18af1-8ded-4f75-a88f-04048360c1e9",
+      "createdAt": "2026-10-22T02:32:03.000Z",
+      "updatedAt": "2026-10-22T02:32:03.000Z",
+      "uid": "35240-2ab18af1-8ded-4f75-a88f-04048360c1e9"
+    },
+    {
+      "name": "franchises",
+      "item": [
+        {
+          "name": "Twitch Query Franchises",
+          "id": "4fb60d75-d64c-4595-b788-b94f244e7fd9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "67e72826-3b26-42fb-9c09-0703979525c1",
-          "name": "Twitch Query Franchises",
+          },
           "request": {
-            "name": "Twitch Query Franchises",
-            "description": {
-              "content": "Query game franchises using Apicalypse query language.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "franchises"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -192,82 +190,87 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/franchises",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "franchises"
+              ]
+            },
+            "description": "Query game franchises using Apicalypse query language."
           },
           "response": [
             {
-              "id": "c2ed5873-81d6-4d50-82b2-72d98116de44",
+              "id": "79dd17b9-a162-4f3c-87cb-86558cf360f9",
               "name": "Franchises returned",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "franchises"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/franchises",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "franchises"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 5169,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"games\": [\n      9569,\n      5520\n    ],\n    \"url\": \"string\",\n    \"created_at\": 4696,\n    \"updated_at\": 3193\n  },\n  {\n    \"id\": 4164,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"games\": [\n      1270,\n      3066\n    ],\n    \"url\": \"string\",\n    \"created_at\": 8371,\n    \"updated_at\": 4376\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"games\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"url\": \"<string>\",\n    \"created_at\": \"<integer>\",\n    \"updated_at\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:32:03.000Z",
+              "updatedAt": "2026-10-22T02:32:03.000Z",
+              "uid": "35240-79dd17b9-a162-4f3c-87cb-86558cf360f9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:32:03.000Z",
+          "updatedAt": "2026-10-22T02:32:03.000Z",
+          "uid": "35240-4fb60d75-d64c-4595-b788-b94f244e7fd9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "id": "129ed794-daab-48e2-9cc9-f3484dffdc01",
+      "createdAt": "2026-10-22T02:32:03.000Z",
+      "updatedAt": "2026-10-22T02:32:03.000Z",
+      "uid": "35240-129ed794-daab-48e2-9cc9-f3484dffdc01"
     }
   ],
   "auth": {
@@ -275,21 +278,20 @@
     "oauth2": [
       {
         "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
+        "value": "https://id.twitch.tv/oauth2/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "490cc442-28f6-4a87-8bea-c5b1d6c01670",
-    "name": "Twitch Drops Ads Collections API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.igdb.com/v4"
     }
-  }
+  ]
 }

@@ -1,107 +1,56 @@
 {
+  "info": {
+    "_postman_id": "238320d0-f83d-4b43-a81e-838e0cf8c8d0",
+    "name": "Twitch Search API",
+    "description": "Operations tagged Search across 2 of this provider's published API definitions: twitch-helix-openapi.yml, twitch-igdb-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:34:28.000Z",
+    "updatedAt": "2026-10-22T02:34:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-238320d0-f83d-4b43-a81e-838e0cf8c8d0"
+  },
   "item": [
     {
-      "id": "9954ac01-66e8-47f6-9764-a99e73b2a53e",
-      "name": "Search",
-      "description": {
-        "content": "Search for channels and categories",
-        "type": "text/plain"
-      },
+      "name": "search",
       "item": [
         {
-          "id": "95cd0cdf-ca94-41f0-992d-9a229b9d4315",
-          "name": "Twitch Search Categories",
-          "request": {
-            "name": "Twitch Search Categories",
-            "description": {
-              "content": "Gets the games or categories that match the specified query.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "search",
-                "categories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "categories",
+          "item": [
             {
-              "id": "44e4067e-9045-4291-b277-79ad59accd96",
-              "name": "Categories returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "search",
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "Twitch Search Categories",
+              "id": "487f0426-0695-47c0-8760-f2b2189c0d08",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "key": "query",
-                      "value": "<string>"
+                      "key": "scope",
+                      "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                      "type": "string"
                     },
                     {
-                      "key": "first",
-                      "value": "20"
+                      "key": "accessTokenUrl",
+                      "value": "https://id.twitch.tv/oauth2/token",
+                      "type": "string"
                     },
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "authUrl",
+                      "value": "https://id.twitch.tv/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Your registered application's client ID",
                     "key": "Client-Id",
                     "value": "<string>"
@@ -111,101 +60,171 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/search/categories?query=<string>&first=20&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search",
+                    "categories"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "first",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Cursor for forward pagination",
+                      "key": "after",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets the games or categories that match the specified query."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9bc37c1a-c222-4e6a-9a53-89ac18d77a70",
+                  "name": "Categories returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/search/categories?query=<string>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "search",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"box_art_url\": \"<string>\",\n      \"igdb_id\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:34:29.000Z",
+                  "updatedAt": "2026-10-22T02:34:29.000Z",
+                  "uid": "35240-9bc37c1a-c222-4e6a-9a53-89ac18d77a70"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"box_art_url\": \"string\",\n      \"igdb_id\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:34:29.000Z",
+              "updatedAt": "2026-10-22T02:34:29.000Z",
+              "uid": "35240-487f0426-0695-47c0-8760-f2b2189c0d08"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "168e91f6-9dc7-4b5b-9843-107f05987fd8",
+          "createdAt": "2026-10-22T02:34:29.000Z",
+          "updatedAt": "2026-10-22T02:34:29.000Z",
+          "uid": "35240-168e91f6-9dc7-4b5b-9843-107f05987fd8"
         },
         {
-          "id": "e6733a9b-c17a-4aec-b521-37c57f7e5959",
-          "name": "Twitch Search Channels",
-          "request": {
-            "name": "Twitch Search Channels",
-            "description": {
-              "content": "Gets the channels that match the specified query.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "search",
-                "channels"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "live_only",
-                  "value": "<boolean>"
-                },
-                {
-                  "disabled": false,
-                  "key": "first",
-                  "value": "20",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Cursor for forward pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your registered application's client ID",
-                "key": "Client-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "channels",
+          "item": [
             {
-              "id": "16935a75-2c9f-48fb-ba88-b0ab99c7662b",
-              "name": "Channels returned successfully",
-              "originalRequest": {
+              "name": "Twitch Search Channels",
+              "id": "f2378e55-65b0-41d1-89f7-382e8faed473",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://id.twitch.tv/oauth2/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://id.twitch.tv/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Your registered application's client ID",
+                    "key": "Client-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/search/channels?query=<string>&live_only=<boolean>&first=20&after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "search",
                     "channels"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "query",
                       "value": "<string>"
                     },
@@ -214,79 +233,135 @@
                       "value": "<boolean>"
                     },
                     {
+                      "description": "Maximum number of items to return",
                       "key": "first",
                       "value": "20"
                     },
                     {
+                      "description": "Cursor for forward pagination",
                       "key": "after",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your registered application's client ID",
-                    "key": "Client-Id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Gets the channels that match the specified query."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "ebbaa1e5-0823-48e6-8827-07daf910759a",
+                  "name": "Channels returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your registered application's client ID",
+                        "key": "Client-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/search/channels?query=<string>&live_only=<boolean>&first=20&after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "search",
+                        "channels"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "live_only",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "first",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Cursor for forward pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"broadcaster_language\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"game_name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"is_live\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thumbnail_url\": \"<string>\",\n      \"title\": \"<string>\",\n      \"started_at\": \"<dateTime>\"\n    },\n    {\n      \"broadcaster_language\": \"<string>\",\n      \"broadcaster_login\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"game_id\": \"<string>\",\n      \"game_name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"is_live\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"thumbnail_url\": \"<string>\",\n      \"title\": \"<string>\",\n      \"started_at\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:34:29.000Z",
+                  "updatedAt": "2026-10-22T02:34:29.000Z",
+                  "uid": "35240-ebbaa1e5-0823-48e6-8827-07daf910759a"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"broadcaster_language\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"display_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"id\": \"string\",\n      \"is_live\": false,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"thumbnail_url\": \"string\",\n      \"title\": \"string\",\n      \"started_at\": \"1973-08-16T07:04:16.125Z\"\n    },\n    {\n      \"broadcaster_language\": \"string\",\n      \"broadcaster_login\": \"string\",\n      \"display_name\": \"string\",\n      \"game_id\": \"string\",\n      \"game_name\": \"string\",\n      \"id\": \"string\",\n      \"is_live\": true,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"thumbnail_url\": \"string\",\n      \"title\": \"string\",\n      \"started_at\": \"1973-11-14T05:49:50.253Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:34:29.000Z",
+              "updatedAt": "2026-10-22T02:34:29.000Z",
+              "uid": "35240-f2378e55-65b0-41d1-89f7-382e8faed473"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a0daa4b1-830e-49df-8de0-8c14f04f3d8e",
+          "createdAt": "2026-10-22T02:34:29.000Z",
+          "updatedAt": "2026-10-22T02:34:29.000Z",
+          "uid": "35240-a0daa4b1-830e-49df-8de0-8c14f04f3d8e"
         },
         {
-          "id": "0b1e7969-a814-417b-ae3a-e2b83eaf27f9",
           "name": "Twitch Multi-Search",
+          "id": "c7b43167-5c6d-4a0a-b2bb-e5391c8eeec1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Twitch Multi-Search",
-            "description": {
-              "content": "Search across multiple IGDB resources simultaneously.",
-              "type": "text/plain"
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "analytics:read:extensions analytics:read:games bits:read channel:edit:commercial channel:manage:broadcast channel:manage:moderators channel:manage:polls channel:manage:predictions channel:manage:raids channel:manage:redemptions channel:manage:schedule channel:manage:videos channel:read:editors channel:read:goals channel:read:hype_train channel:read:polls channel:read:predictions channel:read:redemptions channel:read:stream_key channel:read:subscriptions chat:edit chat:read clips:edit moderation:read moderator:manage:announcements moderator:manage:automod moderator:manage:banned_users moderator:manage:blocked_terms moderator:manage:chat_messages moderator:manage:chat_settings moderator:read:chatters moderator:read:followers user:edit user:manage:blocked_users user:manage:whispers user:read:blocked_users user:read:broadcast user:read:email user:read:follows user:read:subscriptions whispers:read",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://id.twitch.tv/oauth2/token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://id.twitch.tv/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
             },
-            "url": {
-              "path": [
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) Twitch application client ID",
                 "key": "Client-ID",
                 "value": "<string>"
@@ -300,104 +375,93 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "<string>"
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search"
+              ]
+            },
+            "description": "Search across multiple IGDB resources simultaneously."
           },
           "response": [
             {
-              "id": "6791a393-1f82-44f8-88cf-d2ef75298302",
+              "id": "7861505f-c5ea-46c2-aa42-9261cb8e5cbd",
               "name": "Search results returned",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) Twitch application client ID",
                     "key": "Client-ID",
                     "value": "<string>"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "search"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 5352,\n    \"name\": \"string\",\n    \"game\": 654\n  },\n  {\n    \"id\": 2724,\n    \"name\": \"string\",\n    \"game\": 8350\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"game\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"game\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:34:29.000Z",
+              "updatedAt": "2026-10-22T02:34:29.000Z",
+              "uid": "35240-7861505f-c5ea-46c2-aa42-9261cb8e5cbd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:34:29.000Z",
+          "updatedAt": "2026-10-22T02:34:29.000Z",
+          "uid": "35240-c7b43167-5c6d-4a0a-b2bb-e5391c8eeec1"
         }
       ],
-      "event": []
+      "id": "f247ccca-10b3-4aa7-b9b0-f396a1c6ff5f",
+      "createdAt": "2026-10-22T02:34:29.000Z",
+      "updatedAt": "2026-10-22T02:34:29.000Z",
+      "uid": "35240-f247ccca-10b3-4aa7-b9b0-f396a1c6ff5f"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.twitch.tv/helix",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.twitch.tv/helix"
     }
-  ],
-  "auth": {
-    "type": "oauth2",
-    "oauth2": [
-      {
-        "key": "accessTokenUrl",
-        "value": "https://id.twitch.tv/oauth2/token"
-      },
-      {
-        "key": "grant_type",
-        "value": "client_credentials"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "06713c02-1cde-48fa-b778-68f4fe5df6a0",
-    "name": "Twitch Drops Ads Search API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "APIs for game developers to create and manage Drops campaigns that grant in-game rewards to Twitch viewers watching streamers play their game. Drops campaigns are managed through the Twitch Developer Console and fulfilled via the Helix API entitlements endpoints.\n\nContact Support:\n Name: Twitch Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
